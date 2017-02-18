@@ -1497,7 +1497,66 @@ ret_delete = link.delete_node();
 link.traverse()
 
 --------------------------------------------------------------------------------------
-abhay_19_02_17
+""" some debugging """
 
+class Node(object):
+    def __init__(self,data):
+        self.data = data
+        self.next_node = None
+    
+class LinkedList(object):
+    def __init__(self):
+        self.head = None
+        
+    def insert_end(self,data):
+        
+        new = Node(data)
+        
+        if self.head is None:
+            self.head = new
+        else:
+            p = self.head
+            while p.next_node is not None:
+                    p = p.next_node
+            
+            p.next_node = new
+
+    def traverse(self):
+        p = self.head
+        while p is not None:
+            print(" {0}".format(p.data),end = ' ')
+            p = p.next_node
+        
+    def sample(self):
+        self.sample_two(self.head)
+
+    def sample_two(self,cur):
+        self.found = 5
+        q = self.head
+        while cur is not None:            
+            print(" {0}".format(cur.data),end = ' ')
+            cur = cur.next_node
+        print()
+        for i  in range(0,2):
+            q = q.next_node
+
+        print("q.data :", q.data)
+    def show(self):
+        print("self.head.data :",self.head.data)
+        print("self.found:",self.found)
+    
+link = LinkedList()
+link.insert_end(20)
+link.insert_end(31)
+link.insert_end(40)
+link.insert_end(51)
+link.insert_end(60)
+
+#link.traverse()
+print()
+link.sample()
+#link.traverse()
+link.show()
 
 --------------------------------------------------------------------------------------
+abhay_19_02_17_second
