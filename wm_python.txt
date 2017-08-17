@@ -1559,4 +1559,21 @@ link.sample()
 link.show()
 
 --------------------------------------------------------------------------------------
-abhay_19_02_17_second
+def a_new_decorator(a_func):
+    def wrapTheFunction():
+        print("Entering def : {0}".format(a_func.__name__))
+        a_func()
+        print("Leaving def : {0}".format(a_func.__name__))
+    return wrapTheFunction
+
+@a_new_decorator
+def a_function_requiring_decoration():
+    a = 3
+    b = 5
+    add = a + b
+    print(add)
+
+a_function_requiring_decoration()
+
+--------------------------------------------------------------------------------------
+abhay_17_08_17
