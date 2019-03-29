@@ -285,26 +285,22 @@ print(alist)
 --------------------------------------------------------------------------------------
 14. Delete an integer from a list
 
-alist =  [int(x) for x in input().split()]
-
-num = input("Enter number to delete")
-num = int(num)
-
+a_list = [int(x) for x in input().split()]
+num = int(input('Enter number'))
 flag = 0
-length = len(alist)
-print(length)
 i = 0
-while i < length - 1:
-    if num == alist[i] and flag == 0:
+length = len(a_list)
+
+while(i < length - 1):
+    if(num == a_list[i]) or (flag == 1):
+        a_list[i] = a_list[i + 1]
         flag = 1
-    if(flag):
-        alist[i] = alist[i + 1]
-
-    i += 1
     
-alist[length - 1] = None
+    i += 1
 
-print(alist)
+del a_list[-1]
+
+print(a_list)
 
 --------------------------------------------------------------------------------------
 15.  inp = ' DJ on module     234  56, instance 0\r\n\r',extract 234
