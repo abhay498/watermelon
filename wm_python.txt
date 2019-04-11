@@ -400,11 +400,8 @@ while 1:
 
     inp_str = inp_str.split()
 
-    count = len(inp_str) - 1
-
-    while count >= 0:
-        a.append(inp_str[count])
-        count -= 1
+    for i in inp_str:
+    	a.append(i)
         
     out_str = " ".join(a)
     
