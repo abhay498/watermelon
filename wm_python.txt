@@ -536,7 +536,7 @@ print(num)
 """ Find interface address """
 import re
 test_string = "Interface ip address is 123.45.56.110/24"
-matc = re.match("Interface ip address is\s+(.*)\/",test_string)
+matc = re.match(".*is\s+(.*)\/",test_string)
 
 if matc:
     print(matc.group(1))
