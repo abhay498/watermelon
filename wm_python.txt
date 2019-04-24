@@ -1511,8 +1511,10 @@ class LinkedList(object):
             if p == None:
                 return 1
 
-            chk = p.next_node
+            chk = p.data
             
+	q = p
+	p = p.next_node
         while p is not None:
             chk = p.data
 
