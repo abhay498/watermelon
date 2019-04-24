@@ -1522,7 +1522,6 @@ class LinkedList(object):
                 q.next_node = p.next_node
                 p.next_node = None
                 del p
-                p = None
                 p = q.next_node
             else:
                 q = p
