@@ -1208,7 +1208,7 @@ class Tree(object):
             
             self.parent = q
         
-            if(q.value > item):
+            if(item < q.value):
                 q = q.left
             else:
                 q = q.right
