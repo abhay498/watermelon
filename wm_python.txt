@@ -1146,17 +1146,17 @@ class Tree(object):
         if self.root == None:
             self.root = Node(data)
         else:
-            self._insert(data,self.root)
+            self._insert(self.root, data)
                 
-    def _insert(self,data,node):
+    def _insert(self,node, data):
         if(data < node.value):
-            if(node.left != None):
-                self._insert(data,node.left)
+            if(node.left is not None):
+                self._insert(node.left, data)
             else:
                 node.left = Node(data)
         else:
-            if(node.right != None):
-                self._insert(data,node.right)
+            if(node.right is not None):
+                self._insert(node.right, data)
             else:
                 node.right = Node(data)
 
@@ -1201,7 +1201,7 @@ class Tree(object):
         self.parent = None
     
         while q is not None:
-            if q.value is item:
+            if q.value == item:
                 self.found = True
                 self.x = q
                 return
@@ -1214,19 +1214,20 @@ class Tree(object):
                 q = q.right
             
     def delete(self,item):
-        self.found = False
+        #self.found = False
         self.xsucc = None
         
-        if (self.root == None):
+        if (self.root is None):
             print("Empty tree")
-        
+            return -1
+	    
         self.search(item)
     
-        if (self.found == False):
+        if (self.found is False):
             print("Data not found")
-            return
+            return -2
     
-        if(self.x.left != None) and (self.x.right != None):
+        if(self.x.left is not None) and (self.x.right is not None):
             self.parent = self.x
             self.xsucc = self.xsucc.right
         
@@ -1238,10 +1239,10 @@ class Tree(object):
             self.x = self.xsucc
         
         if (self.x.left is None) and (self.x.right is None):
-            if self.parent.right is self.x:
-                self.parent.right = None
-            else:
+            if self.parent.left is self.x:
                 self.parent.left = None
+            else:
+                self.parent.right = None
             
             del self.x
             return
@@ -1289,15 +1290,15 @@ print()
 --------------------------------------------------------------------------------------
 50. """ Merge sort"""
 
-def mergeSort(alist):
+def merge_sort(alist):
     print("Splitting ",alist)
     if len(alist)>1:
         mid = len(alist)//2
         lefthalf = alist[:mid]
         righthalf = alist[mid:]
 
-        mergeSort(lefthalf)
-        mergeSort(righthalf)
+        merge_sort(lefthalf)
+        merge_sort(righthalf)
 
         i=0
         j=0
@@ -1324,7 +1325,7 @@ def mergeSort(alist):
 
 ##alist = [54,26,93,17,77,31,44,55,20]
 alist = [78,56,45,34,54]
-mergeSort(alist)
+merge_sort(alist)
 print(alist)
 
 --------------------------------------------------------------------------------------
@@ -1496,7 +1497,6 @@ class LinkedList(object):
             p = p.next_node
         
     def delete_node(self):
-        p = None
         q = None
         p = self.head
         chk = p.data
