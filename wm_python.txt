@@ -1498,7 +1498,6 @@ class LinkedList(object):
     def delete_node(self):
         p = None
         q = None
-        flag = 0
         p = self.head
         chk = p.data
 
