@@ -1542,6 +1542,7 @@ ret_delete = link.delete_node();
 link.traverse()
 
 --------------------------------------------------------------------------------------
+55.
 """ some debugging """
 
 class Node(object):
@@ -1604,6 +1605,7 @@ link.sample()
 link.show()
 
 --------------------------------------------------------------------------------------
+56.
 def a_new_decorator(a_func):
     def wrapTheFunction():
         print("Entering def : {0}".format(a_func.__name__))
@@ -1621,6 +1623,7 @@ def a_function_requiring_decoration():
 a_function_requiring_decoration()
 
 --------------------------------------------------------------------------------------
+57. Veryfying whether a number is a palindrome or not
 num = int(input("enter a number: "))
  
 temp = num
@@ -1635,3 +1638,43 @@ if num == rev:
 else:
 	print("number is not palindrome")
 --------------------------------------------------------------------------------------
+58. *args and **kwargs
+
+def example_one(f_argv, *args, **kwargs):
+    print('First argument is {0}'.format(f_argv))
+    for each in args:
+        print(each)
+
+example_one('Hunt','won','car','races',10)
+
+def example_three(f_argv, arg_one, arg_two, **kwargs):
+    print('First argument is {0}'.format(f_argv))
+    print('arg_one {1}',format(arg_one))
+    print('arg_two {1}',format(arg_two))
+    
+args = ('Hunt','was','F1')
+example_three(*args)
+
+def example_four(**kwargs):
+    if kwargs is not None:
+        for key, value in kwargs.items():
+            print('{0} is {1}'.format(key, value))
+    
+example_four(name='Hunt')
+kwargs = {'name':'Hunt','Races':10,'Country':'England'}
+
+example_four(**kwargs)
+
+def example_five(f_argv, arg_one, arg_two, **kwargs):
+    print('f_argv is {0}'.format(f_argv))
+    print('arg_one is {0}'.format(arg_one))
+    print('arg_two is {0}'.format(arg_two))
+
+    for key, value in kwargs.items():
+        print('{0} is {1}'.format(key, value))
+
+args = ('Hunt', 10)
+kwargs = {'Racer':'Hunt','Year':1979}
+example_five('England', *args, **kwargs)
+--------------------------------------------------------------------------------------
+
