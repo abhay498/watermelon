@@ -1,1 +1,50 @@
 
+
+Coding guidelines and respective tools
+------------------------------------------------------------------------------------------
+
+1. Code formatter - autopep8
+
+2. Tool for finding bugs and style problems in Python source code = Pylint
+
+3. Use from x import y as z if two modules named y are to be imported or if y is an inconveniently long name. Use import y as z only when z is a standard abbreviation (e.g., np for numpy ).
+
+4. Raise exceptions like this: raise MyError('Error message') or raise MyError() .
+   Do not use the two-argument form ( raise MyError, 'Error message' ).
+
+5. Avoid global variables.
+
+6. Comprehensions & Generator Expressions -> Okay to use for simple cases.
+
+7. Generators -> Use generators as needed.
+
+8. Imports should be on separate lines.
+
+9. Be consistent with your choice of string quote character within a file. Pick ' or " and stick with it.
+
+10. Prefer """ for multi-line strings rather than ''' . Projects may choose to use ''' for all non-docstring multi-line strings if and only if they also use ' for regular strings.
+	Docstrings must use """ regardless.
+
+11. If a class inherits from no other base classes, explicitly inherit from object . This also applies to nested classes.
+
+12. Classes should have a docstring below the class definition describing the class. If your class has public attributes,
+	they should be documented here in an Attributes section
+
+13. List all exceptions that are relevant to the interface.
+
+14. The docstring should be descriptive ( """Fetches rows from a Bigtable.""" ) rather than
+	imperative ( """Fetch rows from a Bigtable.""" ). A docstring should describe the
+	function’s calling syntax and its semantics, not its implementation. For tricky code,
+	comments alongside the code are more appropriate than using docstrings. 
+ 
+15. Parantheses -> Use parentheses sparingly.
+	It is fine, though not required, to use parentheses around tuples. Do not use them in return statements or conditional statements
+	unless using parentheses for implied line continuation or to indicate a tuple.
+
+16. Use of from __future__ import statements is encouraged. All new code should contain the following and existing code should be updated to be compatible when possible:
+	from __future__ import absolute_import from __future__ import division from __future__ import print_function
+
+17. Use the “implicit” false if at all possible, e.g., if foo: rather than if foo != []: .
+    There are a few caveats that you should keep in mind though: Never use == or != to compare singletons like None . Use is or is not . Beware of writing if x: when you really mean if x is not None: -e.g., when testing whether a variable or argument that defaults to None was set to some other value. The other value might be a value that’s false in a boolean context! Never compare a boolean variable to False using == . Use if not x: instead. If you need to distinguish False from None then chain the expressions, such as if not x and x is not None: . For sequences (strings, lists, tuples), use the fact that empty sequences are false, so if seq: and if not seq: are preferable to if len(seq): and if not len(seq): respectively. When handling integers, implicit false may involve more risk than benefit (i.e., accidentally handling None as 0). You may compare a value which is known to be an integer (and is not the result of len() ) against the integer 0.
+
+
