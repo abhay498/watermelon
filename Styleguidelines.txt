@@ -1,6 +1,6 @@
 
 
-Coding guidelines and respective tools
+Coding guidelines and respective tools with respect Python 3.0 and above versions
 ------------------------------------------------------------------------------------------
 
 1. Code formatter - autopep8
