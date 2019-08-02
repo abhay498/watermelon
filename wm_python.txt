@@ -1649,6 +1649,9 @@ def example_one(f_argv, *args, **kwargs):
 
 example_one('Hunt','won','the','race')
 
+----------------------------------------------
+----------------------------------------------
+
 def example_three(f_argv, arg_one, arg_two, **kwargs):
     print('First argument is {0}'.format(f_argv))
     print('arg_one {1}',format(arg_one))
@@ -1656,6 +1659,9 @@ def example_three(f_argv, arg_one, arg_two, **kwargs):
     
 args = ('Hunt','was','F1')
 example_three(*args)
+
+----------------------------------------------
+----------------------------------------------
 
 def example_four(**kwargs):
     if kwargs is not None:
@@ -1666,6 +1672,9 @@ example_four(name='Hunt')
 kwargs = {'name':'Hunt','Races':10,'Country':'England'}
 
 example_four(**kwargs)
+
+----------------------------------------------
+----------------------------------------------
 
 def example_five(f_argv, arg_one, arg_two, **kwargs):
     print('f_argv is {0}'.format(f_argv))
