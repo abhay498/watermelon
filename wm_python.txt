@@ -1641,11 +1641,13 @@ else:
 58. *args and **kwargs
 
 def example_one(f_argv, *args, **kwargs):
-    print('First argument is {0}'.format(f_argv))
+    print('First argument {}'.format(f_argv))
+    print(args)
+    
     for each in args:
         print(each)
 
-example_one('Hunt','won','car','races',10)
+example_one('Hunt','won','the','race')
 
 def example_three(f_argv, arg_one, arg_two, **kwargs):
     print('First argument is {0}'.format(f_argv))
