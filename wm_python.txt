@@ -1605,7 +1605,7 @@ link.sample()
 link.show()
 
 --------------------------------------------------------------------------------------
-56.
+56. Usage of decorator
 def a_new_decorator(a_func):
     def wrapTheFunction():
         print("Entering def : {0}".format(a_func.__name__))
