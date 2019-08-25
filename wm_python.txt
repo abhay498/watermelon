@@ -63,7 +63,7 @@ while i < length // 2:
     i += 1
 
 user_str = "".join(user_str)
-if(flag):
+if flag:
     print("{0} is palindrome".format(user_str))
 else:
     print("{0} is not palindrome".format(user_str))
