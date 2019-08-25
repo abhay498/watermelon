@@ -138,15 +138,14 @@ else:
 --------------------------------------------------------------------------------------
 8. Reverse every word in a sentence
 
-str_inp = list(input("Enter string"))
-
-length = len(str_inp)
-print(length)
+user_string = input('Enter string')
+input_string = list(user_string)
+length = len(input_string)
 
 i = 0
 j = 0
 while j < length:
-    if str_inp[j] == ' ' or j == length - 1:
+    if input_string[j] == ' ' or j == length - 1:
 
         if j < length - 1:
             k = j - 1
@@ -154,18 +153,18 @@ while j < length:
             k = j
             
         while i < k:
-            temp = str_inp[i]
-            str_inp[i] = str_inp[k]
-            str_inp[k] = temp
+            temp = input_string[i]
+            input_string[i] = input_string[k]
+            input_string[k] = temp
             i += 1
             k -= 1
 
         i = j + 1
 
     j += 1
-
-str_inp = "".join(str_inp)
-print("Reversed every word :{0}".format(str_inp))
+    
+input_string = ''.join(input_string)
+print("Reversed every word :{0}".format(input_string))
 
 --------------------------------------------------------------------------------------
 9. Linear search
