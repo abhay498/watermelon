@@ -1539,7 +1539,7 @@ link.insert_end(60)
 
 link.traverse()
 print("-------")
-ret_delete = link.delete_node();
+ret_delete = link.delete_node()
 link.traverse()
 
 --------------------------------------------------------------------------------------
