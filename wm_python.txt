@@ -59,14 +59,15 @@ length = len(input_string)
 i = 0
 flag = 1
 while i < length // 2:
-    if (input_string[i] != input_string[length - 1 - i]):
+    if input_string[i] != input_string[length - 1 - i]:
         flag = 0
+	break
     i += 1
     
 if flag:
-    print('{0} is palindrome'.format(user_string))
+    print('{0} is a palindrome'.format(user_string))
 else:
-    print('{0} is not palindrome'.format(user_string))
+    print('{0} is NOT a palindrome'.format(user_string))
 
 --------------------------------------------------------------------------------------
 5. """ Sum of digits of a number """
