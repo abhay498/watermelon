@@ -1505,11 +1505,12 @@ class LinkedList(object):
             self.head = p.next_node
             p.next_node = None
             del p
-            p = self.head
 
-            if p == None:
+            if self.head is None:
                 return 1
-
+		
+            p = self.head
+	    
             chk = p.data
             
 	q = p
