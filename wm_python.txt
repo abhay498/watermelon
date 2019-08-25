@@ -164,7 +164,7 @@ while j < length:
     j += 1
     
 input_string = ''.join(input_string)
-print("Reversed every word :{0}".format(input_string))
+print('Reversed every word : {0}'.format(input_string))
 
 --------------------------------------------------------------------------------------
 9. Linear search
