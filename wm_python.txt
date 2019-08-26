@@ -947,28 +947,28 @@ dir = 0
 
 while L <= R and T <= B:
     
-    if dir is 0:        
+    if dir == 0:        
         k = L
         while k <= R:
             print(a[T][k],end = ' ')
             k += 1
         T += 1 
         
-    if dir is 1:
+    if dir == 1:
         k = T
         while k <= B:
             print(a[k][R],end = ' ')
             k += 1
         R -= 1
         
-    if dir is 2:
+    if dir == 2:
         k = R
         while k >= L:
             print(a[B][k],end = ' ')
             k -= 1
         B -= 1
         
-    if dir is 3:
+    if dir == 3:
         k = B
         while k >= T:
             print(a[k][L],end = ' ')
