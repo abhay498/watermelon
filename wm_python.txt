@@ -74,14 +74,14 @@ else:
 
 num = input("Enter number")
 num = int(num)
-total = 0
+sum = 0
 
 while num != 0:
     rem = num % 10
     num = num // 10
-    total = total + rem
+    sum = sum + rem
 
-print("sum of digits :",total)
+print('Sum of digits : {0}'.format(total))
 
 --------------------------------------------------------------------------------------
 6. Armstrong number
@@ -91,7 +91,7 @@ num = int(num)
 
 dup_num_one = dup_num_two = num
 digits = 0
-total = 0
+sum = 0
 
 while dup_num_two != 0:
     dup_num_two = dup_num_two // 10    
@@ -105,7 +105,7 @@ while num != 0:
         mul = mul * rem        
         i += 1
         
-    total = total + mul
+    sum = sum + mul
     num = num // 10
 
 if total == dup_num_one:
@@ -116,21 +116,21 @@ else:
 --------------------------------------------------------------------------------------
 7. Number is perfect square or not
 
-num = input("Enter number")
+num = input('Enter number')
 
 num = int(num)
 flag = 0
 if num == 1 or num == 4:
-    print("{0} is a perfect square".format(num))
+    print('{0} is a perfect square'.format(num))
 else:
     i = 3
-    while i < num // 2:
+    while num // 2 > i:
         if num == i * i:
             flag = 1
             break
         i += 1
 
-if(flag):
+if flag:
     print("{0} is a perfect square".format(num))
 else:
     print("{0} is NOT a perfect square".format(num))
@@ -182,8 +182,8 @@ while i < length:
         break
     i += 1
 
-if(flag == 0):
-    print("Number not present")
+if flag == 0:
+    print('Number {0} is not present'.format(num))
 
 --------------------------------------------------------------------------------------
 10. Binary search
