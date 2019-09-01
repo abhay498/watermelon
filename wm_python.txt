@@ -6,10 +6,10 @@ Keeping main counter as i
 a = 0
 b = 1
 
-c = a + b
 print(a, end = ' ')
 print(b, end = ' ')
 
+c = a + b
 while c <= 100:
     print(c, end = ' ')
     a = b
