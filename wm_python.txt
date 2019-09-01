@@ -30,24 +30,24 @@ while i <= 100:
         k += 1
         
     if flag:
-        print(i,end = ' ')
+        print(i, end = ' ')
         
     i += 1
 
 --------------------------------------------------------------------------------------
 3. """ Leap year or not """
 
-year = input("Enter year")
+year = input('Enter year')
 year = int(year)
 
 if year % 400 == 0:
-    print("{0} is a leap year".format(year))
+    print('{0} is a leap year'.format(year))
 elif year % 100 == 0:
-    print("{0} is not a leap year".format(year))
+    print('{0} is not a leap year'.format(year))
 elif year % 4 == 0:
-    print("{0} is a leap year".format(year))
+    print('{0} is a leap year'.format(year))
 else:
-    print("{0} is not a leap year".format(year))
+    print('{0} is not a leap year'.format(year))
 
 --------------------------------------------------------------------------------------
 4. """ String is palindrome or not """
@@ -81,7 +81,7 @@ while num != 0:
     num = num // 10
     sum = sum + rem
 
-print('Sum of digits : {0}'.format(total))
+print('Sum of digits of number {0} is {1}'.format(num, sum))
 
 --------------------------------------------------------------------------------------
 6. Armstrong number
