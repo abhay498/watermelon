@@ -1738,7 +1738,7 @@ class LinkedList(object):
         p = self.head
         while p is not None:
             if display:
-               print(' {0}'.format(p.data),end='')
+               print(p.data, end=' ')
             p = p.next_node
             total += 1
         return total
