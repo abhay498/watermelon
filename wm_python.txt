@@ -385,31 +385,24 @@ while i <=5:
 --------------------------------------------------------------------------------------
 19. File operations
 
-file_input = open("input.txt","r")
-file_output = open("output.txt","w")
+-----------------------------------------
+M1
+with open('input.txt') as f_one:
+    with open('output.txt', 'w') as f_two:
+        for line in f_one:
+            f_two.write(line)
 
-a = []
+-----------------------------------------
+M2
 
-while 1:
+file_one = open('input.txt','r')
+file_two = open('output.txt','w')
 
-    inp_str = file_input.readline()
+for line in file_one:
+    file_two.write(line)
 
-    if not inp_str:
-        break
-
-    inp_str = inp_str.split()
-
-    for i in inp_str:
-    	a.append(i)
-        
-    out_str = " ".join(a)
-    
-    file_output.write(out_str)
-    file_output.write("\n")
-    del a[:]    
-    
-file_input.close()
-file_output.close()
+file_one.close()
+file_two.close()
 
 --------------------------------------------------------------------------------------
 20. Election problem
