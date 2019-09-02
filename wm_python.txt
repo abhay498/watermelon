@@ -412,7 +412,7 @@ file_input.close()
 file_output.close()
 
 --------------------------------------------------------------------------------------
-20. election problem
+20. Election problem
 
 votes = ['Victor','Veronica','Ryan','Dave','Maria','Maria','Veronica','John']
 
@@ -437,9 +437,34 @@ while i < length:
             if name == votes[j]:
                 name_votes[name]=count +  1
             j += 1
-
-
+	    
     i += 1
+
+num = list(name_votes.values())
+
+maximum = num[0]
+
+for i in num:
+    if i > maximum:
+      maximum = i
+
+for i in name_votes:
+    if name_votes[i] == maximum:
+        highest_votes.append(i)
+
+highest_votes.sort()
+
+winner = highest_votes[-1]
+print(winner)
+
+---------------------------------------
+M2
+---------------------------------------
+from collections import Counter
+votes = ['Victor','Veronica','Ryan','Dave','Maria','Maria','Veronica','John']
+name_votes = {}
+highest_votes = []
+name_votes = Counter(votes)  
 
 num = list(name_votes.values())
 
