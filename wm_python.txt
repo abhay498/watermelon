@@ -299,7 +299,7 @@ while i < length - 1:
 
 del a_list[-1]
 
-print(a_list)
+print('New list is {0}'.format(alist))
 
 --------------------------------------------------------------------------------------
 15.  inp = ' DJ on module     234  56, instance 0\r\n\r',extract 234
@@ -308,7 +308,7 @@ import re
 inp = ' DJ on module     234  56, instance 0\r\n\r'
 
 inp = inp.strip()
-matc = re.match("DJ on module\s+(\d+)",inp)
+matc = re.match("DJ\s+on\s+module\s+(\d+)",inp)
 
 if matc:
     print(matc.group(1))
@@ -329,7 +329,7 @@ cities = """
          Lucknow 
          """
 
-user = input('Enter the string')
+user = input('Enter string')
 
 cities = cities.split('\n')
 
