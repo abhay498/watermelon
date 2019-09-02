@@ -318,27 +318,27 @@ if matc:
 
 import re
 
-city = """
-       Bangalore
-       Auckland
-       Canberra
-       Ottawa
-       San Jose
-       Las Vegas
-       Bangkok
-       Lucknow 
-       """
+cities = """
+         Bangalore
+         Auckland
+         Canberra
+         Ottawa
+         San Jose
+         Las Vegas
+         Bangkok
+         Lucknow 
+         """
 
-user = input("Enter ")
+user = input('Enter the string')
 
-city = city.split("\n")
+cities = cities.split('\n')
 
-for content in city:
-    content = content.strip()
-    matc = re.match("^"+user,content,re.I)
+for each in cities:
+    each = each.strip()
+    matc = re.match('^'+user, each, re.I)
 
     if matc:
-        print(content)
+        print(each)
 
 --------------------------------------------------------------------------------------
 17. even ,odd separation
@@ -346,16 +346,16 @@ for content in city:
 even = []
 odd = []
 
-alist = [int(x) for x in input().split()]
+a_list = [int(x) for x in input().split()]
 
-for num in alist:
-    if num % 2 == 0:
-        even.append(num)
+for each in a_list:
+    if each % 2 == 0:
+        even.append(each)
     else:
-        odd.append(num)
+        odd.append(each)
 
-print("Even numbers {0}".format(even))
-print("Odd numbers {0}".format(odd))
+print('Even numbers {0}'.format(even))
+print('Odd numbers {0}'.format(odd))
 
 --------------------------------------------------------------------------------------
 18.
