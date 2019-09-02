@@ -456,14 +456,12 @@ hmm_process = ['ps -ef | grep hmm', 'root     26441 15790  0 02:11 ?        00:0
 import re
 hmm_process = ['ps -ef | grep hmm', 'root     26441 15790  0 02:11 ?        00:00:00 /isan/bin/routing-sw/hmm']
 
-for content in hmm_process:
-    if "root" in content:
-        process_id = content
-
-matc = re.match("root\s+(\d+)",process_id)
-
-if matc:
-    process_id = matc.group(1)
+for each in hmm_process:
+    if 'root' in content:
+        matc = re.match('root\s+(\d+)',process_id)
+	
+	if matc:
+    	    process_id = matc.group(1)
 
 print(process_id)
 
