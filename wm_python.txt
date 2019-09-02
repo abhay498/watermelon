@@ -264,23 +264,22 @@ print("Decimal equivalent {0}".format(decimal))
 --------------------------------------------------------------------------------------
 13. Insert a number at a specified position in a list
 
-alist = [int(x) for x in input().split()]
-num = input("Enter number to add")
-position = input("Enter position")
-
+a_list = [int(x) for x in input().split()]
+num = input('Enter number to add')
 num = int(num)
+position = input('Enter position')
 position = int(position)
-length = len(alist)
-alist.append(None)
+ 
+a_list.append(None)
 
-i = length - 1
-while(i >= position - 1):
-    alist[i + 1] = alist[i]
+i = len(a_list) - 1
+while i >= position - 1:
+    alist[i + 1] = a_list[i]
     i -= 1
 
 alist[position - 1] = num
 
-print(alist)
+print('New list is {0}'.format(alist))
 
 --------------------------------------------------------------------------------------
 14. Delete an integer from a list
