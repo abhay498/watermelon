@@ -1711,6 +1711,82 @@ example_five('England', *args, **kwargs)
 --------------------------------------------------------------------------------------
 59. Delete Kth node from the end
 
+class Node(object):
+    def __init__(self,data):
+        self.data = data
+        self.next_node = None
+    
+class LinkedList(object):
+    def __init__(self):
+        self.head = None
+        
+    def insert_end(self,data):
+        
+        new = Node(data)
+        
+        if self.head is None:
+            self.head = new
+        else:
+            p = self.head
+            while p.next_node is not None:
+                    p = p.next_node
+            
+            p.next_node = new
+
+    def traverse(self, display=1):
+        total = 0
+        p = self.head
+        while p is not None:
+            if display:
+               print(' {0}'.format(p.data),end='')
+            p = p.next_node
+            total += 1
+        return total
+    
+    def delete_node(self, position_from_end):
+        total = self.traverse(display = 0)
+        print('\nDeleting {0}th node from end'.format(position_from_end))
+        position_from_start = total - position_from_end + 1
+
+        if position_from_start <= 0:
+            print('\nNo node present at that position')
+            return
+            
+        p = self.head
+
+        if position_from_start == 1:
+            self.head = p.next_node
+            p.next_node = None
+            del p
+            return
+        
+        count = 1
+        while count < position_from_start - 1:
+                p = p.next_node
+                count += 1
+            
+        q = p.next_node
+        p.next_node = q.next_node
+        q.next_node = None
+        del q
+        
+        
+link = LinkedList()
+link.insert_end(20)
+link.insert_end(30)
+link.insert_end(40)
+link.insert_end(50)
+link.insert_end(60)
+
+link.traverse()
+link.delete_node(2)
+link.traverse()
+link.delete_node(4)
+link.traverse()
+link.delete_node(3)
+link.traverse()
+link.delete_node(1)
+link.traverse()
 
 --------------------------------------------------------------------------------------
 60. Monkey Patching
