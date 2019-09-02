@@ -414,7 +414,7 @@ file_output.close()
 --------------------------------------------------------------------------------------
 20. election problem
 
-votes = ["Victor","Veronica","Ryan","Dave","Maria","Maria","Veronica"]
+votes = ['Victor','Veronica','Ryan','Dave','Maria','Maria','Veronica','John']
 
 name_votes = {}
 highest_votes = []
@@ -431,10 +431,7 @@ while i < length:
         count = 1
         name_votes[name] = count
 
-        if i == length -1:
-            break
-        else:
-            j = i + 1
+        j = i + 1
             
         while j < length:
             if name == votes[j]:
