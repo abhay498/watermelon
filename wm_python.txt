@@ -506,8 +506,8 @@ print(process_id)
 --------------------------------------------------------------------------------------
 22. """ Dictionary manipulations """
 
-keys = ["veronica","rashmi","tina","sharya","agni"]
-dict_1 = dict.fromkeys(keys,0)
+a_list = ['veronica', 'rashmi', 'tina']
+dict_1 = dict.fromkeys(a_list, 0)
 print(dict_1)
 
 dict_2 = dict_1
@@ -521,6 +521,51 @@ dict_1.update(dict_3)
 
 print(dict_1)
 
+--------------------------------------------
+states_capitals = { 
+                     'Gujarat' : 'Gandhinagar', 
+                     'Maharashtra' : 'Mumbai', 
+                     'Rajasthan' : 'Jaipur', 
+                     'Bihar' : 'Patna'
+                    } 
+                      
+print('List of states:') 
+
+--------------------------------------------
+for state in states_capitals.keys(): 
+    print(state)
+
+print()
+
+--------------------------------------------
+print('List of capitals:')
+for capital in states_capitals.values(): 
+    print(capital)
+
+print()
+
+--------------------------------------------
+print('List of states and their capitals:')
+for (state, capital) in states_capitals.items():
+    print('{0} : {1}'.format(state, capital))
+
+
+print()
+
+--------------------------------------------
+from collections import OrderedDict 
+  
+states_and_capitals = OrderedDict([ 
+                                 ('Gujarat', 'Gandhinagar'), 
+                                 ('Maharashtra', 'Mumbai'), 
+                                 ('Rajasthan', 'Jaipur'), 
+                                 ('Bihar', 'Patna') 
+                                ]) 
+                      
+print('List Of given states and capitals:') 
+
+for state in states_and_capitals: 
+    print(state) 
 --------------------------------------------------------------------------------------
 23.
 import re
