@@ -416,33 +416,49 @@ file_output.close()
 
 votes = ["Victor","Veronica","Ryan","Dave","Maria","Maria","Veronica"]
 
-name_num = {}
-a = []
+name_votes = {}
+highest_votes = []
+length = len(votes)
+i = 0
 
-for i in votes:
-    name = i
-    count = 0
-    for j in votes:
-        if name == j:
-            count += 1
-        
-    name_num[name] = count
+while i < length:
+    name = votes[i]
+    
+    if name in name_votes.keys():
+        i += 1
+        continue
+    else:
+        count = 1
+        name_votes[name] = count
 
-num = list(name_num.values())
+        if i == length -1:
+            break
+        else:
+            j = i + 1
+            
+        while j < length:
+            if name == votes[j]:
+                name_votes[name]=count +  1
+            j += 1
 
-maxi = num[0]
+
+    i += 1
+
+num = list(name_votes.values())
+
+maximum = num[0]
 
 for i in num:
-    if i > maxi:
-      maxi = i
+    if i > maximum:
+      maximum = i
 
-for i in name_num:
-    if name_num[i] == maxi:
-        a.append(i)
+for i in name_votes:
+    if name_votes[i] == maximum:
+        highest_votes.append(i)
 
-a.sort()
+highest_votes.sort()
 
-winner = a[-1]
+winner = highest_votes[-1]
 print(winner)
 
 --------------------------------------------------------------------------------------
