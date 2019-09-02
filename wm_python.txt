@@ -497,7 +497,7 @@ for each in hmm_process:
 print(process_id)
 
 --------------------------------------------------------------------------------------
-22. """ Dictionary manipulations """
+22. """ Dictionary operations """
 
 a_list = ['veronica', 'rashmi', 'tina']
 dict_1 = dict.fromkeys(a_list, 0)
@@ -1715,5 +1715,41 @@ example_five('England', *args, **kwargs)
 --------------------------------------------------------------------------------------
 60. Monkey Patching
 
+In Python, we can change the behavior of a code at run-time with the help of monkey
+patching.
+
+class Test:
+    def __init__(self):  
+      self.a = 4
+      
+    def class_method(self):
+        print('This is a class method')
+        print(self.a)
+        
+def monkey_function(self):
+    print('This is a monkey function')
+    print(self.a + 2)
+    
+Test.class_method = monkey_function
+Test().class_method()
+
+-----------------------------------------------------------------
+# monk.py 
+class A: 
+     def func(self): 
+          print("func() is being called")
+	 
+---------------------
+import monk 
+def monkey_f(self): 
+	print("monkey_f() is being called")
+
+monk.A.func = monkey_f 
+obj = monk.A() 
+
+obj.func()
+
+---------------------
+Output : monkey_f() is being called
 --------------------------------------------------------------------------------------
 
