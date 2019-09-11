@@ -702,6 +702,9 @@ print(k)
 32.
 """ decorators """
 
+Decorators allow us to wrap another function in order to extend the behavior of wrapped function,
+without permanently modifying it.
+
 """ for definitions """
 def double(f):
     def g(a,b):
