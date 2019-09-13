@@ -1863,7 +1863,45 @@ else:
 
 
 --------------------------------------------------------------------------------------
-65. 
+65. Factorial of a number
 
+M1
+---
+number = input('Enter number ')
+number = int(number)
 
+factorial = 1
+i = number
+while i > 1:
+    factorial = factorial * i
+    i -= 1
+    
+print('Factorial of {0} is {1}'.format(number, factorial))
+     
+M2
+---
+
+def factorial(number):
+    if number == 1:
+        return number
+    else:
+        return number * factorial(number - 1)
+
+number = int(input('Enter a number : '))
+    
+if number < 0:
+   print('Sorry, factorial does not exist for negative numbers')
+elif number == 0:
+   print('Factorial of 0 is 1')
+else:
+   print('Factorial of {0} is {1}'.format(number, factorial(number)))
+
+--------------------------------------------------------------------------------------
+import re
+import collections
+file_one = open('input.txt', 'r')
+passage = file_one.read()
+words = re.findall('language', passage, re.I)
+count = len(words)
+print(count)
 --------------------------------------------------------------------------------------
