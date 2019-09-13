@@ -2,11 +2,11 @@
 2. Make sure that code is working functionality wise.
 3. Make sure it is not breaking in any condition.Cover all the corner cases.
 4. Make sure you are following coding guidelines.
+5. Make sure to verify whether the input is righ or not.
 
-Link :
+Links :
 
-1. When to use is and == in python ?
-   https://stackoverflow.com/questions/6570371/when-to-use-and-when-to-use-is
+
    
    
 
