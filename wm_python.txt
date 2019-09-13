@@ -1839,7 +1839,27 @@ timestamp = datetime.timestamp(now)
 print('Timestamp is {0}'.format(timestamp))
 
 --------------------------------------------------------------------------------------
+62.
 
+user_number  = input("Enter your number")
+if( user_number.isdigit()):
+    print("User input is Number ")
+else:
+    print("User input is string ")
+
+--------------------------------------------------------------------------------------
+63. Why is Python slow ?
+
+1. High-level programming language: With Python, the code looks very close to how humans think. For this purpose, it must abstract the    details of the computer from you: memory management, pointers,… Hence, it is slower than “lower-level language” like C;
+
+2. Python is interpreted and not compiled: Sure, this statement is a gross simplification but it’s somehow correct. During the  execution, Python code is interpreted at runtime instead of being compiled to native code at compile time;
+
+3. Python is a dynamically typed language: Unlike “statically-typed” languages like C, C++ or Java, you don’t have to declare the  variable type like String, boolean or int. The less you do, the more your computer has to work. For each attribute access, tons of lookup is required. In addition, being very dynamic makes it incredibly hard to optimize Python;
+
+4. Global Interpreter Lock (GIL): This GIL basically prevents multi-threading by mandating the interpreter only execute a single thread within a single process (an instance of the Python interpreter) at a time.
+
+--------------------------------------------------------------------------------------
+64. 
 
 
 --------------------------------------------------------------------------------------
