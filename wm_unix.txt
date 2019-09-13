@@ -1,0 +1,34 @@
+-----------------------------------------------------------------------------------------------------
+1. Number of occurences of a word in a file
+
+abhay@abhay-VirtualBox:~/Desktop$ cat tray
+
+james was a Racer.
+In 1975, james won the world champion ship.
+AUstrlaia is the home country of james where james used to enjoy a lot
+abhay@abhay-VirtualBox:~/Desktop$ 
+abhay@abhay-VirtualBox:~/Desktop$ 
+abhay@abhay-VirtualBox:~/Desktop$ grep -o -i james tray | wc -l
+4
+
+-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------
