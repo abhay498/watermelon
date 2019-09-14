@@ -1906,3 +1906,15 @@ words = re.findall('language', passage, re.I)
 count = len(words)
 print(count)
 --------------------------------------------------------------------------------------
+67. Extract ip address, validate the same and tell which class does it fall under
+
+output =
+"""
+hostname sr1
+host address 45.56.76.87/23
+processor
+"""
+
+
+
+--------------------------------------------------------------------------------------
