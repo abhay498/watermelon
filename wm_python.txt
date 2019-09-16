@@ -1914,9 +1914,61 @@ hostname sr1
 host address 45.56.76.87/23
 processor
 """
+M1 - Working on it
+---
+from ipaddress import IPv4Network
+import pdb
+class_A = IPv4Network(("10.0.0.0", "255.0.0.0"))  # or IPv4Network("10.0.0.0\8")
+class_B = IPv4Network(("172.16.0.0", "255.240.0.0"))  # or IPv4Network("172.16.0.0\12")
+class_C = IPv4Network(("192.168.0.0", "255.255.0.0"))  # or IPv4Network("192.168.0.0\16")
 
+ip_1 = IPv4Address("10.0.2.8")
+ip_2 = IPv4Address("172.18.76.25")
+ip_3 = IPv4Address("192.168.45.62")
 
+def ip_class(ip_address):
+    if ip_address in class_A:
+        print('{0} belongs to Class A family'.format(ip_address))
+    elif ip_address in class_B:
+        print('{0} belongs to Class B family'.format(ip_address))
+    elif ip_address in class_C:
+        print('{0} belongs to Class C family'.format(ip_address))
 
+ip_class(ip_1)
+ip_class(ip_2)
+ip_class(ip_3)
+
+M2
+---
+
+import re
+output ="""
+hostname sr1
+host address 45.56.76.87/23
+processor
+"""
+
+output = output.split('\n')
+pattern = '[0-9]+(?:\.[0-9]+){3}'
+output = list(filter(None, output))
+
+for each in output:
+    if re.match('host\s+address', each):
+        ipv4_address = each
+        break
+
+print(ipv4_address)
+
+ipv4_address = re.findall(pattern,ipv4_address)
+print(ipv4_address)
+
+for each in ipv4_address:
+    ip = re.search(r'\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b', each)
+
+print(ip.group(1))
+print(ip.group(2))
+print(ip.group(3))
+print(ip.group(4))
 --------------------------------------------------------------------------------------
 68. Vlan problem
 
