@@ -1959,21 +1959,26 @@ import re
 def identify_class_ip_address(ip, ip_first_block):
     if ip_first_block >= 0 and ip_first_block <= 127:
         print('{0} is a Class A IP Address'.format(ip))
-    if ip_first_block > 127 and ip_first_block < 191:
+        return
+    if ip_first_block >= 128 and ip_first_block <= 191:
         print('{0} is a Class B IP Address'.format(ip))
-    if ip_first_block > 191 and ip_first_block < 224:
+        return
+    if ip_first_block >= 192 and ip_first_block <= 223:
         print('{0} is a Class C IP Address'.format(ip))
-    if ip_first_block > 224 and ip_first_block <= 239:
+        return
+    if ip_first_block >= 224 and ip_first_block <= 239:
         print('{0} is a Class D IP Address'.format(ip))
-    if ip_first_block > 239:
+        return
+    if ip_first_block >= 240:
         print('{0} is a Class E IP Address'.format(ip))
-
+        return
+    
 ip_address = []
 output = output.split('\n')
 output = list(filter(None, output))
 
 for each in output:
-    ip = re.search(r'\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b', each)
+    ip = re.search(r'(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)', each)
     if ip:        
         ip_address.append(ip.group(0))
         identify_class_ip_address(ip.group(0), int(ip.group(1)))
