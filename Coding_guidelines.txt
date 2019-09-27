@@ -53,4 +53,5 @@ Coding guidelines and respective tools with respect Python 3.0 and above version
 19. https://pybit.es/faster-python.html
     Time complexities and space complexities.
     
+20. https://medium.com/humans-create-software/how-do-i-learn-to-write-simpler-more-efficient-code-with-fewer-lines-da0fe693146e
     
