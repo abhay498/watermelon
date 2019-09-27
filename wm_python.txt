@@ -1354,21 +1354,16 @@ print(alist)
 --------------------------------------------------------------------------------------
 51. """ Bubble sort """
 
-def bubbleSort(arr):
-    n = len(arr)
- 
-    for i in range(n):
-        for j in range(0, n-i-1):
-            if arr[j] > arr[j+1] :
-                arr[j], arr[j+1] = arr[j+1], arr[j]
-				
-arr = [64, 34, 25, 12, 22, 11, 90]
- 
-bubbleSort(arr)
- 
-print ("Sorted array is:")
-for i in range(len(arr)):
-    print ("%d" %arr[i])
+def bubble_sort(a_list):
+    length = len(a_list)
+    for i in range(length):
+        for j in range(0, length-1-i):
+            if a_list[j] > a_list[j + 1]:
+                a_list[j], a_list[j + 1] = a_list[j+1], a_list[j]
+                
+a_list = [65,43,56,89,4,17]
+bubble_sort(a_list)
+print(a_list)
 
 --------------------------------------------------------------------------------------
 52. """ Stack """
