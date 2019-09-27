@@ -50,3 +50,7 @@ Coding guidelines and respective tools with respect Python 3.0 and above version
 18. When to use is and == in python ?
     https://stackoverflow.com/questions/6570371/when-to-use-and-when-to-use-is
 
+19. https://pybit.es/faster-python.html
+    Time complexities and space complexities.
+    
+    
