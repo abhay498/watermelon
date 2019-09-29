@@ -1,7 +1,17 @@
 Keeping main counter as i
 
 #--------------------------------------------------------------------------------------
-1. """ Fibonacci series upto 100 """
+# 1. """ Fibonacci series upto 100 """
+
+# M1
+a, b = 0, 1
+while a <= 100:
+    print(a)
+    a, b = b, a + b
+
+#------------------------------------------
+# M2
+
 a = 0
 b = 1
 
@@ -15,8 +25,8 @@ while c <= 100:
     b = c
     c = a + b
 
---------------------------------------------------------------------------------------
-2. """ Prime numbers upto 100 """
+#--------------------------------------------------------------------------------------
+#2. """ Prime numbers upto 100 """
 
 i = 2
 while i <= 100:
@@ -33,8 +43,8 @@ while i <= 100:
         
     i += 1
 
---------------------------------------------------------------------------------------
-3. """ Leap year or not """
+#--------------------------------------------------------------------------------------
+#3. """ Leap year or not """
 
 year = input('Enter year')
 year = int(year)
@@ -48,8 +58,8 @@ elif year % 4 == 0:
 else:
     print('{0} is not a leap year'.format(year))
 
---------------------------------------------------------------------------------------
-4. """ String is palindrome or not """
+#--------------------------------------------------------------------------------------
+#4. """ String is palindrome or not """
 
 user_string =  input('Enter string')
 input_string = list(user_string)
@@ -68,8 +78,8 @@ if flag:
 else:
     print('{0} is NOT a palindrome'.format(user_string))
 
---------------------------------------------------------------------------------------
-5. """ Sum of digits of a number """
+#--------------------------------------------------------------------------------------
+#5. """ Sum of digits of a number """
 
 num = input("Enter number")
 num = int(num)
@@ -82,8 +92,8 @@ while num != 0:
 
 print('Sum of digits of number {0} is {1}'.format(num, sum))
 
---------------------------------------------------------------------------------------
-6. Armstrong number
+#--------------------------------------------------------------------------------------
+#6. Armstrong number
 
 num = input('Enter number')
 num = int(num)
@@ -112,8 +122,8 @@ if sum == dup_num_one:
 else:
     print('{0} is NOT an armstrong number'.format(dup_num_one))
 
---------------------------------------------------------------------------------------
-7. Number is perfect square or not
+#--------------------------------------------------------------------------------------
+#7. Number is perfect square or not
 
 num = input('Enter number')
 
@@ -134,8 +144,8 @@ if flag:
 else:
     print("{0} is NOT a perfect square".format(num))
 
---------------------------------------------------------------------------------------
-8. Reverse every word in a sentence
+#--------------------------------------------------------------------------------------
+#8. Reverse every word in a sentence
 
 user_string = input('Enter string')
 input_string = list(user_string)
@@ -165,8 +175,8 @@ while j < length:
 input_string = ''.join(input_string)
 print('Reversed every word in the input sentence : {0}'.format(input_string))
 
---------------------------------------------------------------------------------------
-9. Linear search
+#--------------------------------------------------------------------------------------
+#9. Linear search
 
 alist = [9,8,7,6,5,4,3,22,23,24,25,86,45]
 num = input("Enter number")
@@ -185,8 +195,8 @@ if flag:
 else:
     print('{0} is not present'.format(num))
 
---------------------------------------------------------------------------------------
-10. Binary search
+#--------------------------------------------------------------------------------------
+#10. Binary search
 
 def binary_search(a_list, num):
     low = 0
@@ -219,8 +229,8 @@ def main():
 if __name__ == '__main__':
     main()
 
---------------------------------------------------------------------------------------
-11. Decimal to binary
+#--------------------------------------------------------------------------------------
+#11. Decimal to binary
 
 base = 1
 binary = 0
@@ -244,8 +254,8 @@ while num > 0:
 print("Binary equivalent :{0}".format(binary))
 print("Number of ones :{0}".format(no_of_ones))
 
---------------------------------------------------------------------------------------
-12. Binary to decimal
+#--------------------------------------------------------------------------------------
+#12. Binary to decimal
 
 binary = input("Enter binary number")
 binary = int(binary)
@@ -260,8 +270,8 @@ while(binary > 0):
 
 print("Decimal equivalent {0}".format(decimal))
 
---------------------------------------------------------------------------------------
-13. Insert a number at a specified position in a list
+#--------------------------------------------------------------------------------------
+#13. Insert a number at a specified position in a list
 
 a_list = [int(x) for x in input().split()]
 num = input('Enter number to add')
@@ -280,8 +290,8 @@ alist[position - 1] = num
 
 print('New list is {0}'.format(alist))
 
---------------------------------------------------------------------------------------
-14. Delete an integer from a list
+#--------------------------------------------------------------------------------------
+#14. Delete an integer from a list
 
 a_list = [int(x) for x in input().split()]
 num = input('Enter number')
@@ -300,8 +310,8 @@ del a_list[-1]
 
 print('New list is {0}'.format(alist))
 
---------------------------------------------------------------------------------------
-15.  inp = ' DJ on module     234  56, instance 0\r\n\r',extract 234
+#--------------------------------------------------------------------------------------
+#15.  inp = ' DJ on module     234  56, instance 0\r\n\r',extract 234
 
 import re
 inp = ' DJ on module     234  56, instance 0\r\n\r'
@@ -312,8 +322,8 @@ matc = re.match("DJ\s+on\s+module\s+(\d+)",inp)
 if matc:
     print(matc.group(1))
 
---------------------------------------------------------------------------------------
-16. search city
+#--------------------------------------------------------------------------------------
+#16. search city
 
 import re
 
@@ -339,8 +349,8 @@ for each in cities:
     if matc:
         print(each)
 
---------------------------------------------------------------------------------------
-17. even ,odd separation
+#--------------------------------------------------------------------------------------
+#17. even ,odd separation
 
 even = []
 odd = []
@@ -356,8 +366,8 @@ for each in a_list:
 print('Even numbers {0}'.format(even))
 print('Odd numbers {0}'.format(odd))
 
---------------------------------------------------------------------------------------
-18.
+#--------------------------------------------------------------------------------------
+#18.
 """
     1
    12
@@ -381,18 +391,19 @@ while i <=5:
 
     i += 1 
 
---------------------------------------------------------------------------------------
-19. File operations
+#--------------------------------------------------------------------------------------
+#19. File operations
 
 -----------------------------------------
-M1
+#M1
+----
 with open('input.txt') as f_one:
     with open('output.txt', 'w') as f_two:
         for line in f_one:
             f_two.write(line)
 
------------------------------------------
-M2
+#-----------------------------------------
+#M2
 
 file_one = open('input.txt','r')
 file_two = open('output.txt','w')
@@ -403,8 +414,8 @@ for line in file_one:
 file_one.close()
 file_two.close()
 
---------------------------------------------------------------------------------------
-20. Election problem
+#--------------------------------------------------------------------------------------
+#20. Election problem
 
 votes = ['Victor','Veronica','Ryan','Dave','Maria','Maria','Veronica','John']
 
