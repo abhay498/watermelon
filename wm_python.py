@@ -28,6 +28,15 @@ while c <= 100:
 #--------------------------------------------------------------------------------------
 #2. """ Prime numbers upto 100 """
 
+# M1
+import math
+print(2)
+for num in range(3,101,2):
+    if all(num%i!=0 for i in range(3, int(math.sqrt(num))+1, 2)):
+        print(num)
+
+#------------------------------------------
+# M2
 i = 2
 while i <= 100:
     flag = 1
