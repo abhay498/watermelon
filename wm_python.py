@@ -2022,6 +2022,53 @@ vlan = 1, 2, 3, 20-30, 'abc'-'def', 40, 4099, 5001, 34, -1, 41-51
 
 #--------------------------------------------------------------------------------------
 70. Generators
+"""
+unlike functions, which return a whole array, a generator yields one value at a time which requires less memory.
+Any python function with a keyword “yield” may be called as generator.
+A normal python function starts execution from first line and continues until we got a return statement or
+an exception or end of the function however, any of the local variables created during the function scope are destroyed and not accessible further. While in case of generator when it encounters a yield keyword the state of the function is frozen and all the variables are stored in memory until the generator is called again.
 
+We can used generator in accordance with an iterator or can be explicitly called using the “next” keyword.
+
+Generally generators in Python:
+
+-Defined with the def keyword
+-Use the yield keyword
+-May contain several yield keywords.
+-Returns an iterator.
+"""
+
+#Example 1
+def generator_thr_iter():
+   yield 'xyz'
+   yield 246
+   yield 40.50
+
+g = generator_thr_iter()
+print(g.__next__())
+print(g.__next__())
+print(g.__next__())
+
+#Example 2
+#M1 Not using generator
+
+n= 200
+number_list = range(1, n+1)
+for i in number_list:
+    print(i*i)
+
+#M2 Using generator
+
+def num_generator(n):
+    num =1
+    while True:
+       yield num
+       if num == n:
+          return
+       else:
+          num += 1
+
+for i in num_generator(200):
+   print (i*i)
 
 #--------------------------------------------------------------------------------------
