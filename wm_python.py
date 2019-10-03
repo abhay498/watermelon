@@ -1871,7 +1871,7 @@ else:
     print("User input is string ")
 
 #--------------------------------------------------------------------------------------
-63. Why is Python slow ?
+63. # Why is Python slow ?
 
 #1. High-level programming language: With Python, the code looks very close to how humans think. For this purpose, it must abstract the    details of the computer from you: memory management, pointers,… Hence, it is slower than “lower-level language” like C;
 
