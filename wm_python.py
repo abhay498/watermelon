@@ -2103,3 +2103,32 @@ for i in num_generator(200):
    print (i*i)
 
 #--------------------------------------------------------------------------------------
+71. itertools # Functions creating iterators for efficient looping
+
+"""
+Python itertools module is very useful in creating efficient iterators.
+In almost every program you write with any programming language, one of the task which is usually always present is Iteration.
+Traversing sequence of objects and manipulating them is very common.
+Many times while doing these common operations, we miss out on managing memory usage of the variables,
+size of the sequence being iterated and create a risk of inefficient code usage.
+With itertools module in Python, this can be prevented from happening with its functions.
+"""
+
+from itertools import islice
+from itertools import count
+
+for num in islice(count(), 4):
+    print(num)
+    
+print('I stopped at 4.')
+
+for num in islice(count(), 15, 20):
+    print(num)
+
+print('I started at 15 and stopped at 20.')
+
+for num in islice(count(), 5, 50, 10):
+    print(num)
+
+print('I started at 5 and leaped by 10 till 50.')
+#--------------------------------------------------------------------------------------
