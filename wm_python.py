@@ -561,23 +561,10 @@ print('List of states and their capitals:')
 for (state, capital) in states_capitals.items():
     print('{0} : {1}'.format(state, capital))
 
-
 print()
 
-#--------------------------------------------
-from collections import OrderedDict 
-  
-states_and_capitals = OrderedDict([ 
-                                 ('Gujarat', 'Gandhinagar'), 
-                                 ('Maharashtra', 'Mumbai'), 
-                                 ('Rajasthan', 'Jaipur'), 
-                                 ('Bihar', 'Patna') 
-                                ]) 
-                      
-print('List Of given states and capitals:') 
-
-for state in states_and_capitals: 
-    print(state) 
+#Dictionaries are now ordered from version 3.7
+#http://www.blog.pythonlibrary.org/2018/02/27/python-3-7-dictionaries-now-ordered/
 #--------------------------------------------------------------------------------------
 23.
 import re
