@@ -403,9 +403,9 @@ while i <=5:
 #--------------------------------------------------------------------------------------
 #19. File operations
 
------------------------------------------
+#-----------------------------------------
 #M1
-----
+#----
 with open('input.txt') as f_one:
     with open('output.txt', 'w') as f_two:
         for line in f_one:
@@ -1865,13 +1865,13 @@ else:
 #--------------------------------------------------------------------------------------
 63. Why is Python slow ?
 
-1. High-level programming language: With Python, the code looks very close to how humans think. For this purpose, it must abstract the    details of the computer from you: memory management, pointers,… Hence, it is slower than “lower-level language” like C;
+#1. High-level programming language: With Python, the code looks very close to how humans think. For this purpose, it must abstract the    details of the computer from you: memory management, pointers,… Hence, it is slower than “lower-level language” like C;
 
-2. Python is interpreted and not compiled: Sure, this statement is a gross simplification but it’s somehow correct. During the  execution, Python code is interpreted at runtime instead of being compiled to native code at compile time;
+#2. Python is interpreted and not compiled: Sure, this statement is a gross simplification but it’s somehow correct. During the  execution, Python code is interpreted at runtime instead of being compiled to native code at compile time;
 
-3. Python is a dynamically typed language: Unlike “statically-typed” languages like C, C++ or Java, you don’t have to declare the  variable type like String, boolean or int. The less you do, the more your computer has to work. For each attribute access, tons of lookup is required. In addition, being very dynamic makes it incredibly hard to optimize Python;
+#3. Python is a dynamically typed language: Unlike “statically-typed” languages like C, C++ or Java, you don’t have to declare the  variable type like String, boolean or int. The less you do, the more your computer has to work. For each attribute access, tons of lookup is required. In addition, being very dynamic makes it incredibly hard to optimize Python;
 
-4. Global Interpreter Lock (GIL): This GIL basically prevents multi-threading by mandating the interpreter only execute a single thread within a single process (an instance of the Python interpreter) at a time.
+#4. Global Interpreter Lock (GIL): This GIL basically prevents multi-threading by mandating the interpreter only execute a single thread within a single process (an instance of the Python interpreter) at a time.
 
 #--------------------------------------------------------------------------------------
 #64. Find the longest words
@@ -2006,7 +2006,7 @@ vlan = 1, 2, 3, 20-30, 'abc'-'def', 40, 4099, 5001, 34, -1, 41-51
 
 
 #--------------------------------------------------------------------------------------
-https://stackoverflow.com/questions/12354515/what-is-the-difference-between-sets-and-lists-in-python
+#https://stackoverflow.com/questions/12354515/what-is-the-difference-between-sets-and-lists-in-python
 
 #--------------------------------------------------------------------------------------
 69. Enum
