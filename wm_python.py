@@ -2018,7 +2018,38 @@ vlan = 1, 2, 3, 20-30, 'abc'-'def', 40, 4099, 5001, 34, -1, 41-51
 
 #--------------------------------------------------------------------------------------
 69. Enum
+"""
+An enumeration is a set of symbolic names (members) bound to unique, constant values. Within an enumeration,
+the members can be compared by identity, and the enumeration itself can be iterated over.
+"""
 
+#Example 1
+
+import enum
+class Days(enum.Enum):
+   Sun = 1
+   Mon = 2
+   Tue = 1
+if Days.Sun == Days.Tue:
+   print('Match')
+if Days.Mon != Days.Tue:
+   print('No Match')
+
+#Example 2
+#The members in an Enumeration are hashable, hence they can be used in dictionaries and sets.
+
+import enum
+class Days(enum.Enum):
+   Sun = 1
+   Mon = 2
+
+Daytype = {}
+Daytype[Days.Sun] = 'Sun God'
+Daytype[Days.Mon] = 'Moon God'
+
+print(Daytype =={Days.Sun:'Sun God',Days.Mon:'Moon God'})
+print(Daytype[Days.Sun])
+print(Daytype[Days.Mon])
 
 #--------------------------------------------------------------------------------------
 70. Generators
