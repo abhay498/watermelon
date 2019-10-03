@@ -706,6 +706,8 @@ print(slice_1 + slice_2)
 31.
 """ list comprehension """
 
+#example_one
+
 nums = range(10)
 
 for i in nums:
@@ -716,6 +718,25 @@ print(square_evens)
 
 k = [x*x for x in range(1,5)]
 print(k)
+
+#example_two
+#M1
+
+import re
+dict_1 = {'Samar':'java','Kabir':'c','AbhaySingh':'java','abhayksi':'python','abhay':'Ranchi'}
+
+a_list = []
+for each in dict_1.keys():
+    if re.match('abhay.*', each, re.I):
+        a_list.append(each)
+
+print(a_list)
+
+#M2
+import re
+dict_1 = {'Samar':'java','Kabir':'c','AbhaySingh':'java','abhayksi':'python','abhay':'Ranchi'}
+a_list = [each for each in dict_1.keys() if re.match('abhay.*', each, re.I)]
+print(a_list)
 
 #--------------------------------------------------------------------------------------
 32.
