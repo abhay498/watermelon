@@ -70,6 +70,18 @@ else:
 #--------------------------------------------------------------------------------------
 #4. """ String is palindrome or not """
 
+#M1
+string = input('Enter string')
+string_2 = string[::-1]
+print(string_2)
+
+if string == string_2:
+    print('{0} is a palindrome'.format(string))
+else:
+    print('{0} is NOT a palindrome'.format(string))
+
+#------------------------------------------
+#M2
 user_string =  input('Enter string')
 input_string = list(user_string)
 length = len(input_string)
