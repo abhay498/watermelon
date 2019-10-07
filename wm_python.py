@@ -82,6 +82,15 @@ else:
 
 #------------------------------------------
 #M2
+string = input('Enter string')		
+string_2 = ''.join(reversed(string))
+
+if string == string_2:
+    print('{0} is a palindrome'.format(string))
+else:
+    print('{0} is NOT a palindrome'.format(string))
+#------------------------------------------
+#M3
 user_string =  input('Enter string')
 input_string = list(user_string)
 length = len(input_string)
