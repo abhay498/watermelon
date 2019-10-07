@@ -125,6 +125,25 @@ print('Sum of digits of number {0} is {1}'.format(num, sum))
 #--------------------------------------------------------------------------------------
 #6. Armstrong number
 
+#M1
+#---------------------------------------
+num = int(input("enter a number: "))
+ 
+length = len(str(num))
+sum = 0
+temp = num
+ 
+while(temp != 0):
+    sum = sum + ((temp % 10) ** length)
+    temp = temp // 10
+ 
+if sum == num:
+    print("armstrong number")
+else:
+    print("Not armstrong number")
+
+#M2
+#---------------------------------------
 num = input('Enter number')
 num = int(num)
 
