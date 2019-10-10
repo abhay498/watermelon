@@ -30,10 +30,10 @@ while c <= 100:
 
 # M1
 import math
-print(2)
+print(2, end=' ')
 for num in range(3, 101, 2):
-    if all(num%i != 0 for i in range(3, int(math.sqrt(num))+1, 2)):
-        print(num)
+    if all(num % i != 0 for i in range(3, int(math.sqrt(num) + 1), 2)):
+        print(num, end = ' ')
 
 #------------------------------------------
 # M2
