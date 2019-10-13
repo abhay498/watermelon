@@ -637,20 +637,22 @@ searchc = re.search("(\d+.\d+)",string)
 if searchc:
     num = searchc.group(1)
 
-num = re.sub("(\-)","",num)
+num = re.sub('(\-)','',num)
 print(num)
 
 #--------------------------------------------------------------------------------------
 26.
-
-""" Find interface address """
 import re
-test_string = "Interface ip address is 123.45.56.110/24"
-matc = re.match(".*is\s+(.*)\/",test_string)
+string = 'phone -- number 9876-9344 is 7896     .mine'
 
-if matc:
-    print(matc.group(1))
-    
+mat_c = re.match('phone.*number\s+(\d+)-(\d+)', string, re.I)
+
+if mat_c:
+    num_1 = mat_c.group(1)
+    num_2 = mat_c.group(2)
+    number = num_1 + num_2
+    print(num_1 + num_2)
+
 #--------------------------------------------------------------------------------------
 27.
 
@@ -707,24 +709,21 @@ print(list(out_dict.values()))
 
 """ Slicing """
 
-aList = ['Ram','Lakshman','Hanuman',3,7,'Abhay',56,32]
-bList = ['Triage','resurrection']
+a_list = ['Ram','Lakshman','Hanuman',3,7,'Abhay',56,32]
+b_list = ['Triage','resurrection']
 
-print(aList)
-
-slice_1 = aList[1:5]
-slice_2 = aList[2:]
+slice_1 = a_list[1:5]
+slice_2 = a_list[2:]
 
 print(slice_1)
 print(slice_2)
-
 print(slice_1 + slice_2)
 
 #--------------------------------------------------------------------------------------
 31.
 """ list comprehension """
 
-#example_one
+#Example 1, Print square of all even numbers
 
 nums = range(10)
 
@@ -734,10 +733,11 @@ for i in nums:
 square_evens = [x**2 for x in nums if x%2 == 0 and x > 4]
 print(square_evens)
 
+#Example 2, Print square of all numbers from 1 to 4
 k = [x*x for x in range(1,5)]
 print(k)
 
-#example_two
+#Example 3, Append all the elements of a dictionary to a list that start with abhay
 #M1
 
 import re
