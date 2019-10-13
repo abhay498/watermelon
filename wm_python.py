@@ -562,50 +562,37 @@ print(process_id)
 #--------------------------------------------------------------------------------------
 22. """ Dictionary operations """
 
-a_list = ['veronica', 'rashmi', 'tina']
-dict_1 = dict.fromkeys(a_list, 0)
-print(dict_1)
+a_list = ["veronica","rashmi","tina","sharya","agni"]
 
+dict_1 = dict.fromkeys(a_list, 1)
 dict_2 = dict_1
-print(dict_2)
-dict_3 = {}
 
-dict_3["veronica"] = 5
-dict_3["samba"] = 8
-print(dict_3)
+dict_3 = {}
+dict_3['killer'] = 4
+dict_3['drama'] = 8
+
 dict_1.update(dict_3)
 
 print(dict_1)
+print(dict_2) # Elements of dictionary 2 also got updated
+print(dict_3)
 
-#--------------------------------------------
-states_capitals = { 
-                     'Gujarat' : 'Gandhinagar', 
-                     'Maharashtra' : 'Mumbai', 
-                     'Rajasthan' : 'Jaipur', 
-                     'Bihar' : 'Patna'
-                    } 
-                      
-print('List of states:') 
+print('############## Keys ###############')
+for each in dict_1:
+    print(each)
 
-#--------------------------------------------
-for state in states_capitals.keys(): 
-    print(state)
+print('################ Keys #############')
+for each in dict_1.keys():
+    print(each)
 
-print()
+print('############# Values ################')
 
-#--------------------------------------------
-print('List of capitals:')
-for capital in states_capitals.values(): 
-    print(capital)
+for each in dict_1.values():
+    print(each)
 
-print()
-
-#--------------------------------------------
-print('List of states and their capitals:')
-for (state, capital) in states_capitals.items():
-    print('{0} : {1}'.format(state, capital))
-
-print()
+print('############## Keys and Values ###############')
+for key, value in dict_1.items():
+    print(key, value)
 
 #Dictionaries are now ordered from version 3.7
 #http://www.blog.pythonlibrary.org/2018/02/27/python-3-7-dictionaries-now-ordered/
