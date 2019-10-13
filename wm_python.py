@@ -1740,7 +1740,7 @@ else:
 # *args and **kwargs allow to pass a variable number of arguments to a function.
 
 def example_one(f_argv, *args, **kwargs):
-    print('First argument {}'.format(f_argv))
+    print('First argument {0}'.format(f_argv))
     print(args)
     
     for each in args:
@@ -1784,7 +1784,7 @@ args = ('Hunt', 10)
 kwargs = {'Racer':'Hunt','Year':1979}
 example_five('England', *args, **kwargs)
 #--------------------------------------------------------------------------------------
-59. Delete Kth node from the end
+59. """ Delete Kth node from the end """
 
 class Node(object):
     def __init__(self,data):
@@ -2183,7 +2183,6 @@ print('I started at 5 and leaped by 10 till 50.')
 #--------------------------------------------------------------------------------------
 72. Shallow copy and Deep copy
 
-
 import copy
 color1 = ['Red', 'Blue']
 color2 = ['White','Black']
@@ -2202,16 +2201,15 @@ print (id(color3) == id(color4))        # False - color4 is now a new object
 print (id(color3[0]) == id(color4[0]))  # False - color4[0] is now a new object
 #--------------------------------------------------------------------------------------
 """
-The difference between shallow and deep copying is only relevant for compound objects (objects that contain other objects, like lists or class instances):
+The difference between shallow and deep copying is only relevant for compound objects
+(objects that contain other objects, like lists or class instances):
 
-A shallow copy constructs a new compound object and then (to the extent possible) inserts references into it to the objects found in the original.
-A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
-#--------------------------------------------------------------------------------------
-
-
+A shallow copy constructs a new compound object and then (to the extent possible) inserts
+references into it to the objects found in the original.A deep copy constructs a new compound
+object and then, recursively, inserts copies into it of the objects found in the original.
 """
-
 #--------------------------------------------------------------------------------------
+
 73. Nth armstrong number
 
 def nth_armstrong_number(n):
