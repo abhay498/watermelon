@@ -518,7 +518,7 @@ print(highest_votes[-1])
 #---------------------------------------
 M2
 #---------------------------------------
-from collections import Counter
+from import Counter
 votes = ['Victor','Veronica','Ryan','Dave','Maria','Maria','Veronica','John']
 
 name_votes = Counter(votes)
@@ -799,8 +799,7 @@ def factorial_number(num):
 factorial_number(5)
 
 #--------------------------------------------------------------------------------------
-33.
-""" lambda """
+33. """ lambda """
 sum_1 = lambda x, y : x + y
 print(sum_1(1,2))
 
@@ -811,7 +810,6 @@ print(sum_1(1,2))
 class Employee:
 
     num_of_emps = 0
-    raise_amt = 1.04
     
     def __init__(self,first,last,pay):
         self.first = first
@@ -837,9 +835,9 @@ class Employee:
         else:
             print("Working day")
         
-emp_str_1 = "John-Doe-70000"
-emp_str_2 = "Adam-Gilchrist-40000"
-emp_str_3 = "Harley-Davidson-50000"
+emp_str_1 = 'John-Doe-70000'
+emp_str_2 = 'Adam-Gilchrist-40000'
+emp_str_3 = 'Harley-Davidson-50000'
 
 emp1 = Employee.fromstring(emp_str_1)
 emp2 = Employee.fromstring(emp_str_2)
@@ -852,32 +850,24 @@ print(emp3.email)
 emp3.full_name()
 Employee.work_day(5)
 
+#Point_1 : A class method can access or modify class state while a static method can’t access or modify it.
 #--------------------------------------------------------------------------------------
 35.
 
-""" collections High performance container datatypes """
-
-import collections
-
-d = {'banana':1,'apple':2,'orange':4}
-k = collections.OrderedDict(sorted(d.items(),key = lambda t:t[0]))
-
-print(k)
 
 #--------------------------------------------------------------------------------------
-36. importing module from a different location
+36. """ importing module from a different location """
 
 import sys
-import imp
-pathToModule = "C://z_data"
-sys.path.append(pathToModule)
 import sample
+path_to_module = 'C://z_data'
+sys.path.append(path_to_module)
 k = sample.__file__
 result = sample.sub(16, 2)
-print("result = {0}".format(result))
+print('result : {0}'.format(result))
 print(k)
 #--------------------------------------------------------------------------------------
-37.
+37. """ A class example """
 
 class Employee:
     emp_count = 0
@@ -891,8 +881,8 @@ class Employee:
         print("Name is {0}".format(self.name))
         print("Age is {0}".format(self.age))
 
-emp1 = Employee("Arun",23)
-emp2 = Employee("Satish",45)
+emp1 = Employee('Arun', 23)
+emp2 = Employee('Satish', 45)
 
 emp2.display()
 print(Employee.emp_count)
