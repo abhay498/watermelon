@@ -83,7 +83,7 @@ else:
 
 #------------------------------------------
 #M2
-string = input('Enter string')		
+string = input('Enter string')      
 string_2 = ''.join(reversed(string))
 
 if string == string_2:
@@ -92,70 +92,71 @@ else:
     print('{0} is NOT a palindrome'.format(string))
 #------------------------------------------
 #M3
-user_string =  input('Enter string')
+user_string = input('Enter string')
 input_string = list(user_string)
+
 length = len(input_string)
 
 i = 0
 flag = 1
 while i < length // 2:
-    if input_string[i] != input_string[length - 1 - i]:
-        flag = 0
-	break
+    if input_string[i] != input_string[-1 -i]:
+        flag =0
+        break
     i += 1
-    
+        
 if flag:
     print('{0} is a palindrome'.format(user_string))
 else:
-    print('{0} is NOT a palindrome'.format(user_string))
+    print('{0} is not a palindrome'.format(user_string))
 
 #--------------------------------------------------------------------------------------
 #5. """ Sum of digits of a number """
 
-num = input("Enter number")
-num = int(num)
-sum = 0
+num = int(input('Enter number'))
+temp = num
 
+total = 0
 while num != 0:
-    rem = num % 10
+    total = total + num % 10
     num = num // 10
-    sum = sum + rem
 
-print('Sum of digits of number {0} is {1}'.format(num, sum))
+print('Sum of digits of {0} is {1}'.format(temp, total))
 
 #--------------------------------------------------------------------------------------
 #6. Armstrong number
 
+# The Armstrong numbers between 1 and 1000 are: 
+
+ # 1   2   3   4   5   6   7   8   9   153   370   371   407  
 #M1
 #---------------------------------------
-num = int(input("enter a number: "))
- 
+num = int(input('Enter number'))
 length = len(str(num))
-sum = 0
+
+total = 0
 temp = num
- 
-while(temp != 0):
-    sum = sum + ((temp % 10) ** length)
+while temp != 0:
+    total = total + (temp % 10) ** length
     temp = temp // 10
- 
-if sum == num:
-    print("armstrong number")
+
+if num == total:
+    print('{0} is an armstrong number'.format(num))
 else:
-    print("Not armstrong number")
+    print('{0} is not an armstrong number'.format(num))
 
 #M2
 #---------------------------------------
-num = input('Enter number')
-num = int(num)
+num = int(input('Enter number'))
 
 dup_num_one = dup_num_two = num
 digits = 0
-sum = 0
+total = 0
 
-while dup_num_two != 0:
-    dup_num_two = dup_num_two // 10    
+while dup_num_two != 0: 
     digits += 1
-
+    dup_num_two = dup_num_two // 10
+	
 while num != 0:
     rem = num % 10
     mul = 1
@@ -164,10 +165,10 @@ while num != 0:
         mul = mul * rem        
         i += 1
         
-    sum = sum + mul
+    total = total + mul
     num = num // 10
 
-if sum == dup_num_one:
+if total == dup_num_one:
     print('{0} is an armstrong number'.format(dup_num_one))
 else:
     print('{0} is NOT an armstrong number'.format(dup_num_one))
@@ -175,14 +176,12 @@ else:
 #--------------------------------------------------------------------------------------
 #7. Number is perfect square or not
 
-num = input('Enter number')
-
-num = int(num)
+num = int(input('Enter number'))
+flag = 0
 if num == 1 or num == 4:
     print('{0} is a perfect square'.format(num))
 else:
     i = 3
-    flag = 0
     while num // 2 > i:
         if num == i * i:
             flag = 1
@@ -197,40 +196,47 @@ else:
 #--------------------------------------------------------------------------------------
 #8. Reverse every word in a sentence
 
+#M1
+#-----
+sentence = input('Enter sentence')
+words = sentence.split(' ') 
+new_words = [word[::-1] for word in words]
+new_sentence = ' '.join(new_words)
+print(new_sentence)
+
+#M2
+#-----
 user_string = input('Enter string')
-input_string = list(user_string)
-length = len(input_string)
+string = list(user_string)
+length = len(string)
 
 i = 0
 j = 0
 while j < length:
-    if input_string[j] == ' ' or j == length - 1:
+    if string[j] == ' ' or j == length - 1:
 
         if j < length - 1:
             k = j - 1
         else:
-            k = j
-            
+            k = j 
+
         while i < k:
-            temp = input_string[k]
-            input_string[k] = input_string[i]
-            input_string[i] = temp
+            string[i], string[k] = string[k], string[i]
             i += 1
             k -= 1
-
+        
         i = j + 1
 
     j += 1
-    
-input_string = ''.join(input_string)
-print('Reversed every word in the input sentence : {0}'.format(input_string))
+
+string = ''.join(string)
+print('Reversed every word in the input sentence : {0}'.format(string))
 
 #--------------------------------------------------------------------------------------
 #9. Linear search
 
-alist = [9,8,7,6,5,4,3,22,23,24,25,86,45]
-num = input("Enter number")
-num = int(num)
+a_list = [int(x) for x in input().split()]
+num = int(input("Enter number"))
 length = len(alist)
 flag = 0
 i = 0
@@ -262,13 +268,13 @@ def binary_search(a_list, num):
             high = mid - 1
         else:
             low = mid + 1
-	    
+        
     return -1
 
 def main():
-    a_list = [1,2,3,4,5,6,7]
-    num = input('Enter number')
-    num = int(num)
+    print('Enter numbers in sorted fashion')
+    a_list = [int(x) for x in input().split()]
+    num = int(input('Enter number'))
     index = binary_search(a_list, num)
 
     if index == -1:
@@ -367,7 +373,7 @@ import re
 inp = ' DJ on module     234  56, instance 0\r\n\r'
 
 inp = inp.strip()
-matc = re.match("DJ\s+on\s+module\s+(\d+)",inp)
+matc = re.match("DJ\s+on\s+module\s+(\d+)\s+",inp,re.I)
 
 if matc:
     print(matc.group(1))
@@ -490,7 +496,7 @@ while i < length:
             if name == votes[j]:
                 name_votes[name]=count +  1
             j += 1
-	    
+        
     i += 1
 
 num = list(name_votes.values())
@@ -507,41 +513,38 @@ for i in name_votes:
 
 highest_votes.sort()
 
-winner = highest_votes[-1]
-print(winner)
+print(highest_votes[-1])
 
 #---------------------------------------
 M2
 #---------------------------------------
 from collections import Counter
 votes = ['Victor','Veronica','Ryan','Dave','Maria','Maria','Veronica','John']
-name_votes = {}
+
+name_votes = Counter(votes)
 highest_votes = []
-name_votes = Counter(votes)  
 
-num = list(name_votes.values())
+number = list(name_votes.values())
 
-maximum = num[0]
+maximum = number[0]
 
-for i in num:
-    if i > maximum:
-      maximum = i
+for each in name_votes.values():
+    if each > maximum:
+        maximum = each
 
-for i in name_votes:
-    if name_votes[i] == maximum:
-        highest_votes.append(i)
+for each in name_votes:
+    if maximum == name_votes[each]:
+        highest_votes.append(each)
 
 highest_votes.sort()
-
-winner = highest_votes[-1]
-print(winner)
+print(highest_votes[-1])
 
 #--------------------------------------------------------------------------------------
 21. 
 """
 process id 
 hmm_process = ['ps -ef | grep hmm', 'root     26441 15790  0 02:11 ?        00:00:00 /isan/bin/routing-sw/hmm']
- ,26441
+ ,extract --> 26441
 """
 
 import re
@@ -550,9 +553,9 @@ hmm_process = ['ps -ef | grep hmm', 'root     26441 15790  0 02:11 ?        00:0
 for each in hmm_process:
     if 'root' in content:
         matc = re.match('root\s+(\d+)',process_id)
-	
-	if matc:
-    	    process_id = matc.group(1)
+    
+    if matc:
+            process_id = matc.group(1)
 
 print(process_id)
 
@@ -660,7 +663,7 @@ matc = re.match(".*is\s+(.*)\/",test_string)
 
 if matc:
     print(matc.group(1))
-	
+    
 #--------------------------------------------------------------------------------------
 27.
 
@@ -1046,7 +1049,7 @@ print(count + 1)
 
 """ filter """
 def f(x):
-	return x % 3 == 0 or x % 5 == 0
+    return x % 3 == 0 or x % 5 == 0
 
 three_or_five = list(filter(f,range(2,25)))
 
@@ -1311,7 +1314,7 @@ class Tree(object):
         if (self.root is None):
             print("Empty tree")
             return -1
-	    
+        
         self.search(item)
     
         if (self.found is False):
@@ -1598,13 +1601,13 @@ class LinkedList(object):
 
             if self.head is None:
                 return 1
-		
+        
             p = self.head
-	    
+        
             chk = p.data
             
-	q = p
-	p = p.next_node
+    q = p
+    p = p.next_node
         while p is not None:
             chk = p.data
 
@@ -1721,13 +1724,13 @@ temp = num
 rev = 0
  
 while temp != 0:
-	rev = (rev * 10) + (temp % 10)
-	temp = temp // 10
+    rev = (rev * 10) + (temp % 10)
+    temp = temp // 10
  
 if num == rev:
-	print("number is palindrome")
+    print("number is palindrome")
 else:
-	print("number is not palindrome")
+    print("number is not palindrome")
 #--------------------------------------------------------------------------------------
 58. *args and **kwargs
 
@@ -1881,11 +1884,11 @@ Test().class_method()
 class A: 
      def func(self): 
           print("func() is being called")
-	 
+     
 #---------------------
 import monk 
 def monkey_f(self): 
-	print("monkey_f() is being called")
+    print("monkey_f() is being called")
 
 monk.A.func = monkey_f 
 obj = monk.A() 
@@ -2202,3 +2205,29 @@ A deep copy constructs a new compound object and then, recursively, inserts copi
 
 
 """
+
+#--------------------------------------------------------------------------------------
+73. Nth armstrong number
+
+def nth_armstrong_number(n):
+
+    if n == 1:
+        return 0
+    
+    count = 1
+    for i in range (1, 1000):
+        temp = i
+        total = 0
+        length = len(str(i))
+        while temp != 0:
+            total = total + ( temp % 10) ** length
+            temp = temp // 10
+
+        if total == i:
+            count += 1
+
+        if count == n:
+            return i
+
+n = int(input('th armstrong number '))
+print('{0} armstrong number is {1}'.format(n, nth_armstrong_number(n)))
