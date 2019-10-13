@@ -888,7 +888,8 @@ emp2.display()
 print(Employee.emp_count)
 
 #--------------------------------------------------------------------------------------
-38.
+38. """ Inheritance """
+
 class Parent:
     def __init__(self):
         print("Parent contructor")
@@ -998,7 +999,7 @@ else:
     print(content)
 
 #--------------------------------------------------------------------------------------
-40. Threading
+40. """ Threading """
 
 from threading import Thread
 import time
@@ -1015,8 +1016,8 @@ def execute_thread(name,delay,repeat):
 
 def Main():
 
-   t1 = Thread(target = execute_thread,args = ("THREAD_1",5,2))
-   t2 = Thread(target = execute_thread,args = ("THREAD_2",5,5))
+   t1 = Thread(target = execute_thread, args = ("THREAD_1",5,2))
+   t2 = Thread(target = execute_thread, args = ("THREAD_2",5,5))
 
    t1.start()
    t2.start()
@@ -1039,9 +1040,7 @@ for content in a:
 print(count + 1)
 
 #--------------------------------------------------------------------------------------
-42.
-
-""" filter """
+42. """ filter """
 def f(x):
     return x % 3 == 0 or x % 5 == 0
 
@@ -1049,8 +1048,7 @@ three_or_five = list(filter(f,range(2,25)))
 
 print(three_or_five)
 #--------------------------------------------------------------------------------------
-43.
-""" map """
+43.""" map """
 
 def add(x):
     return x + 10
@@ -1061,8 +1059,7 @@ for content in result:
     print(content)
 
 #--------------------------------------------------------------------------------------
-44.
-""" reduce """
+44.""" reduce """
 
 from functools import reduce
 
@@ -1073,7 +1070,7 @@ result = reduce(sum,[1,2,3,4])
 print(result)
 
 #--------------------------------------------------------------------------------------
-45. Spiral
+45. """ Spiral """
 # 1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
 a = [[1,2,3,4],
      [5,6,7,8],
@@ -1118,8 +1115,7 @@ while L <= R and T <= B:
     dir = (dir + 1) % 4
 
 #--------------------------------------------------------------------------------------
-46.
-# 1 2 3 4 8 7 6 5 9 10 11 12 16 15 14 13
+46. # 1 2 3 4 8 7 6 5 9 10 11 12 16 15 14 13
 
 a = [[1,2,3,4],
      [5,6,7,8],
@@ -1162,8 +1158,7 @@ while(i <= 5):
     i += 1       
 
 #--------------------------------------------------------------------------------------
-48.
-""" Reversing a Linked list """
+48. """ Reversing a Linked list """
 class Node(object):
     def __init__(self,data):
         self.data = data
@@ -1711,22 +1706,38 @@ def a_function_requiring_decoration():
 a_function_requiring_decoration()
 
 #--------------------------------------------------------------------------------------
-57. Veryfying whether a number is a palindrome or not
-num = int(input("enter a number: "))
+57. """ Veryfying whether a number is a palindrome or not """
+
+#M1
+def is_palindrome(number):
+    number = str(number)
+    if number == number[::-1]:
+        print('{0} is a palindrome'.format(number))
+    else:
+        print('{0} is not a palindrome'.format(number))
+
+is_palindrome(101)
+is_palindrome(105)
+
+#M2
+number = int(input("Enter number: "))
  
-temp = num
+temp = number
 rev = 0
  
 while temp != 0:
-    rev = (rev * 10) + (temp % 10)
+    rev = rev * 10 + temp % 10
     temp = temp // 10
  
-if num == rev:
+if number == rev:
     print("number is palindrome")
 else:
     print("number is not palindrome")
+
 #--------------------------------------------------------------------------------------
-58. *args and **kwargs
+58. """ *args and **kwargs """
+
+# *args and **kwargs allow you to pass a variable number of arguments to a function.
 
 def example_one(f_argv, *args, **kwargs):
     print('First argument {}'.format(f_argv))
