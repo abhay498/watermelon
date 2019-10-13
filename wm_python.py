@@ -1737,7 +1737,7 @@ else:
 #--------------------------------------------------------------------------------------
 58. """ *args and **kwargs """
 
-# *args and **kwargs allow you to pass a variable number of arguments to a function.
+# *args and **kwargs allow to pass a variable number of arguments to a function.
 
 def example_one(f_argv, *args, **kwargs):
     print('First argument {}'.format(f_argv))
