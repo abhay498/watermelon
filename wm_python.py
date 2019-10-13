@@ -724,18 +724,15 @@ print(slice_1 + slice_2)
 """ list comprehension """
 
 #Example 1, Print square of all even numbers
-
+#M1
 nums = range(10)
-
-for i in nums:
-    print(i)
-
 square_evens = [x**2 for x in nums if x%2 == 0 and x > 4]
 print(square_evens)
 
-#Example 2, Print square of all numbers from 1 to 4
-k = [x*x for x in range(1,5)]
-print(k)
+#M2
+nums = range(4, 19, 2)
+square_evens = [x**2 for x in nums]
+print(square_evens)
 
 #Example 3, Append all the elements of a dictionary to a list that start with abhay
 #M1
@@ -744,7 +741,7 @@ import re
 dict_1 = {'Samar':'java','Kabir':'c','AbhaySingh':'java','abhayksi':'python','abhay':'Ranchi'}
 
 a_list = []
-for each in dict_1.keys():
+for each in dict_1:
     if re.match('abhay.*', each, re.I):
         a_list.append(each)
 
@@ -753,17 +750,19 @@ print(a_list)
 #M2
 import re
 dict_1 = {'Samar':'java','Kabir':'c','AbhaySingh':'java','abhayksi':'python','abhay':'Ranchi'}
-a_list = [each for each in dict_1.keys() if re.match('abhay.*', each, re.I)]
+a_list = [each for each in dict_1 if re.match('abhay.*', each, re.I)]
 print(a_list)
 
 #--------------------------------------------------------------------------------------
 32.
 """ decorators """
 
+"""
 Decorators allow us to wrap another function in order to extend the behavior of wrapped function,
-without permanently modifying it.
+without modifying it.
+"""
 
-""" for definitions """
+# Example 1
 def double(f):
     def g(a,b):
         return 2 * f(a,b)
@@ -780,6 +779,24 @@ def subtractor(a,b):
     return a - b
 
 print(subtractor(9,3))
+
+# Example 2
+import time
+import math
+
+def calculate_time(func):
+    def g(*args, **kwargs):
+        start = time.time()
+        func(*args, **kwargs)
+        end = time.time()
+        print('Total time taken for {0} {1}'.format(func.__name__, end - start))
+    return g
+
+@calculate_time
+def factorial_number(num):
+    print(math.factorial(num))
+
+factorial_number(5)
 
 #--------------------------------------------------------------------------------------
 33.
