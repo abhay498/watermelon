@@ -478,25 +478,16 @@ votes = ['Victor','Veronica','Ryan','Dave','Maria','Maria','Veronica','John']
 name_votes = {}
 highest_votes = []
 length = len(votes)
-i = 0
 
+i = 0
 while i < length:
     name = votes[i]
     
     if name in name_votes.keys():
-        i += 1
-        continue
+        name_votes[name] += 1
     else:
-        count = 1
-        name_votes[name] = count
+        name_votes[name] = 1
 
-        j = i + 1
-            
-        while j < length:
-            if name == votes[j]:
-                name_votes[name]=count +  1
-            j += 1
-        
     i += 1
 
 num = list(name_votes.values())
