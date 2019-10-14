@@ -518,7 +518,7 @@ print(highest_votes[-1])
 #---------------------------------------
 M2
 #---------------------------------------
-from import Counter
+from collections import Counter
 votes = ['Victor','Veronica','Ryan','Dave','Maria','Maria','Veronica','John']
 
 name_votes = Counter(votes)
