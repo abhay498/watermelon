@@ -1785,6 +1785,7 @@ class Node(object):
 class LinkedList(object):
     def __init__(self):
         self.head = None
+        self.total = 0
         
     def insert_end(self,data):
         
@@ -1800,19 +1801,17 @@ class LinkedList(object):
             p.next_node = new
 
     def traverse(self, display=1):
-        total = 0
+        self.total = 0
         p = self.head
         while p is not None:
             if display:
                print(p.data, end=' ')
             p = p.next_node
-            total += 1
-        return total
+            self.total += 1
     
     def delete_node(self, position_from_end):
-        total = self.traverse(display = 0)
         print('\nDeleting {0}th node from end'.format(position_from_end))
-        position_from_start = total - position_from_end + 1
+        position_from_start = self.total - position_from_end + 1
 
         if position_from_start <= 0:
             print('\nNo node present at that position')
