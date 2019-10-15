@@ -1854,10 +1854,9 @@ link.delete_node(1)
 link.traverse()
 
 #--------------------------------------------------------------------------------------
-60. Monkey Patching
+60. """ Monkey Patching """
 
-In Python, we can change the behavior of a code at run-time with the help of monkey
-patching.
+# In Python, we can change the behavior of a code at run-time with the help of monkey patching.
 
 class Test:
     def __init__(self):  
@@ -1891,7 +1890,7 @@ obj = monk.A()
 obj.func()
 
 #---------------------
-Output : monkey_f() is being called
+# Output : monkey_f() is being called
 #--------------------------------------------------------------------------------------
 61. Timestamp 
 
