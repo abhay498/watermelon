@@ -2270,7 +2270,22 @@ for i in range(count, length):
 print(a_list)
 #--------------------------------------------------------------------------------------
 
-74.# 
+74.# Removing al element from a list greater than 5
 
+a_list = [10, 20, 30, 40, 50, 60, 70]
+ 
+print('Original list')
+print(a_list)
 
+length = len(a_list)
+i=0
+while i < length:
+	if a_list[i] > 35:
+	    a_list.remove(a_list[i])
+	    length = length - 1  
+	    continue
+	i = i + 1
+
+print ('New list')
+print (a_list)
 #--------------------------------------------------------------------------------------
