@@ -1928,8 +1928,7 @@ else:
 
 #M1
 #---
-number = input('Enter number ')
-number = int(number)
+number = int(input('Enter number '))
 
 factorial = 1
 i = number
