@@ -744,6 +744,12 @@ dict_1 = {'Samar':'java','Kabir':'c','AbhaySingh':'java','abhayksi':'python','ab
 a_list = [each for each in dict_1 if re.match('abhay.*', each, re.I)]
 print(a_list)
 
+# Example 4
+# Removing all elements greater than 5
+a = [24 , 66 , 10, 2, 3, 44, 55, 6]
+a = [i for i in a if i < 5]
+print(a)
+
 #--------------------------------------------------------------------------------------
 32.
 """ decorators """
