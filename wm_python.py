@@ -2198,7 +2198,7 @@ object and then, recursively, inserts copies into it of the objects found in the
 """
 #--------------------------------------------------------------------------------------
 
-73. Nth armstrong number
+73. # Nth armstrong number
 
 def nth_armstrong_number(n):
 
@@ -2222,3 +2222,49 @@ def nth_armstrong_number(n):
 
 n = int(input('th armstrong number '))
 print('{0} armstrong number is {1}'.format(n, nth_armstrong_number(n)))
+
+#--------------------------------------------------------------------------------------
+
+74. # Segregatting 0 and 1
+
+# M1
+def segregate_0_and_1(arr, size): 
+  
+    type0 = 0
+    type1 = size - 1
+      
+    while type0 < type1: 
+        if arr[type0] == 1: 
+            arr[type0],  arr[type1] = arr[type1], arr[type0]
+            type1 -= 1
+        else: 
+            type0 += 1
+
+arr = [0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1] 
+arr_size = len(arr) 
+segregate_0_and_1(arr, arr_size) 
+print('Array after segregation is {0}'.format(arr), end = ' ')
+
+# M2
+
+a_list = [0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1]
+
+length = len(a_list)
+count = 0
+for i in a_list:
+    if i == 0:
+        count += 1
+
+for i in range(0, count):
+    a_list[i] = 0
+
+for i in range(count, length):
+    a_list[i] = 1
+
+print(a_list)
+#--------------------------------------------------------------------------------------
+
+74.# 
+
+
+#--------------------------------------------------------------------------------------
