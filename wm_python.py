@@ -2270,7 +2270,7 @@ for i in range(count, length):
 print(a_list)
 #--------------------------------------------------------------------------------------
 
-74.# Removing al element from a list greater than 5
+74.# Removing all element from a list greater than 5
 
 a_list = [10, 20, 30, 40, 50, 60, 70]
  
