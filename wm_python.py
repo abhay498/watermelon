@@ -2113,12 +2113,12 @@ Generally generators in Python:
 """
 
 #Example 1
-def generator_thr_iter():
+def generator_example():
    yield 'xyz'
    yield 246
    yield 40.50
 
-g = generator_thr_iter()
+g = generator_example()
 print(g.__next__())
 print(g.__next__())
 print(g.__next__())
