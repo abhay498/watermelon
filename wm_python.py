@@ -1963,7 +1963,7 @@ else:
    print('Factorial of {0} is {1}'.format(number, factorial(number)))
 
 #--------------------------------------------------------------------------------------
-66. Find number of occurrences of a word in a sentence
+66. """ Find number of occurrences of a word in a passage """
 
 import re
 file_one = open('input.txt', 'r')
