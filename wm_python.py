@@ -999,28 +999,28 @@ else:
 40. """ Threading """
 
 from threading import Thread
-import time
+from time import sleep
 
 def execute_thread(name,delay,repeat):
     
-    print("Starting" + name + "thread")
+    print('Starting ' + name + ' thread')
 
     while repeat > 0:
-        time.sleep(delay)                
-        print("Executing {0}".format(name))
+        sleep(delay)                
+        print('Executing {0}'.format(name))
         repeat = repeat - 1
-    print("Thread" + name + "Completed")
+    print('Thread ' + name + ' Completed')
 
 def Main():
 
-   t1 = Thread(target = execute_thread, args = ("THREAD_1",5,2))
-   t2 = Thread(target = execute_thread, args = ("THREAD_2",5,5))
+   t1 = Thread(target = execute_thread, args = ('THREAD_1',5,2))
+   t2 = Thread(target = execute_thread, args = ('THREAD_2',5,5))
 
    t1.start()
    t2.start()
 
-   t1.stop()
-   t2.stop()
+   t2.join()
+   t1.join()
 
 if __name__ == '__main__':
     Main()
