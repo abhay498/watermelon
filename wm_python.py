@@ -2344,3 +2344,9 @@ if __name__ == '__main__':
     Main()
 
 #--------------------------------------------------------------------------------------
+76. # """ subprocess"""
+import subprocess
+cmd = 'rm -rf ' + location
+result = subprocess.Popen([cmd], stdout=subprocess.PIPE, shell=True)
+result.wait()
+#--------------------------------------------------------------------------------------
