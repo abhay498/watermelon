@@ -1051,13 +1051,15 @@ print(three_or_five)
 #--------------------------------------------------------------------------------------
 43.""" map """
 
+#Example 1
 def add(x):
     return x + 10
 
-result = map(add,range(4,10))
+result = list(map(add, range(4,10)))
 
-for content in result:
-    print(content)
+#Example 2
+items = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, items))
 
 """
 Python map() function is used to apply a function on all the elements of specified iterable and return map object.
@@ -1067,13 +1069,17 @@ objects such as list, tuple etc. using their factory functions.
 #--------------------------------------------------------------------------------------
 44.""" reduce """
 
+#Example 1
 from functools import reduce
 
-def sum(x,y):
+def sum(x, y):
     return x + y
     
-result = reduce(sum,[1,2,3,4])
+result = reduce(sum, [1,2,3,4])
 print(result)
+
+#Example 2
+
 
 #--------------------------------------------------------------------------------------
 45. """ Spiral """
