@@ -2043,8 +2043,13 @@ ip_address = []
 output = output.split('\n')
 output = list(filter(None, output))
 
+pattern = re.compile('(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'
+           	     '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'
+                     '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'
+                     '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')
+
 for each in output:
-    ip = re.search(r'(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)', each)
+    ip = re.search(pattern, each)
     if ip:        
         ip_address.append(ip.group(0))
         identify_class_ip_address(ip.group(0), int(ip.group(1)))
