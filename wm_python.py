@@ -1025,6 +1025,10 @@ def Main():
 if __name__ == '__main__':
     Main()
 
+"""
+when the join() is invoked from a main thread, the main thread 
+waits till the child thread on which join is invoked exits.
+"""
 #--------------------------------------------------------------------------------------
 41.
 
