@@ -1059,6 +1059,11 @@ result = map(add,range(4,10))
 for content in result:
     print(content)
 
+"""
+Python map() function is used to apply a function on all the elements of specified iterable and return map object.
+Python map object is an iterator, so we can iterate over its elements. We can also convert map object to sequence
+objects such as list, tuple etc. using their factory functions.
+"""
 #--------------------------------------------------------------------------------------
 44.""" reduce """
 
