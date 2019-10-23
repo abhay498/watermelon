@@ -1045,9 +1045,13 @@ print(count + 1)
 def f(x):
     return x % 3 == 0 or x % 5 == 0
 
-three_or_five = list(filter(f,range(2,25)))
+three_or_five = list(filter(f, range(2,25)))
 
 print(three_or_five)
+
+"""
+The filter() method constructs an iterator from elements of an iterable for which a function returns true.
+"""
 #--------------------------------------------------------------------------------------
 43.""" map """
 
