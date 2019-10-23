@@ -2294,3 +2294,34 @@ while i < length:
 print ('New list')
 print (a_list)
 #--------------------------------------------------------------------------------------
+
+75. # """ Multiprocessing """
+
+from multiprocessing import Process
+from time import sleep
+
+def execute_process(name, delay, repeat):
+    print('Starting ' + name + ' process')
+
+    while repeat > 0:
+        sleep(delay)
+        print('Executing {0}'.format(name))
+        repeat -= 1
+    print('Process ' + name +' Complete')
+    
+def Main():
+
+    p1 = Process(target = execute_process, args = ('PROCESS_ONE', 5, 2))
+    p2 = Process(target = execute_process, args = ('PROCESS_TWO', 4, 3))
+
+    p1.start()
+    p2.start()
+
+    p1.join()
+    p2.join()
+    
+
+if __name__ == '__main__':
+    Main()
+
+#--------------------------------------------------------------------------------------
