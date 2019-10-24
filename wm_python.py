@@ -2350,3 +2350,14 @@ cmd = 'rm -rf ' + location
 result = subprocess.Popen([cmd], stdout=subprocess.PIPE, shell=True)
 result.wait()
 #--------------------------------------------------------------------------------------
+77. 
+x = 5
+y = 5
+z = 10
+m = 10
+
+print(id(x) == id(y)) # True
+print(id(z) == id(m)) # True
+#--------------------------------------------------------------------------------------
+
+
