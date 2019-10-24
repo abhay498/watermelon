@@ -2400,3 +2400,24 @@ print(Test.b)   # 3
 print(obj_2.b)  # 67
 
 #--------------------------------------------------------------------------------------
+80. # Convert time into years, days, hours and minutes
+
+def convert_minutes_to_time(n): 
+
+    years  = n // (365 * 24 * 60)
+    n = n % (365 * 24 * 60)
+    day = n // (24 * 60) 
+  
+    n = n % (24 * 60) 
+    hour = n // 60
+  
+    n %= 60
+    minutes = n
+    
+    print ( years, "years", 
+            day, "days",
+            hour, "hours",
+            minutes, "minutes" )
+
+n = 645640
+convert_minutes_to_time(n)
