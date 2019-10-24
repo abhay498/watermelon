@@ -2199,33 +2199,54 @@ for num in islice(count(), 5, 50, 10):
 
 print('I started at 5 and leaped by 10 till 50.')
 #--------------------------------------------------------------------------------------
-72. Shallow copy and Deep copy
+72. """ Shallow copy and Deep copy """
 
-import copy
-color1 = ['Red', 'Blue']
-color2 = ['White','Black']
-color3 = [color1 , color2]
-# normal copy
-color4 = color3
-print (id(color3) == id(color4))        # True - color3 is the same object as color4
-print (id(color3[0]) == id(color4[0]))  # True - color4[0] is the same object as color3[0]
-# shallow copy
-color4 = copy.copy(color3)
-print (id(color3) == id(color4))        # False - color4 is now a new object
-print (id(color3[0]) == id(color4[0]))  # True - The new variable refers to the original variable.
-# deep  copy
-color4 = copy.deepcopy(color3)
-print (id(color3) == id(color4))        # False - color4 is now a new object
-print (id(color3[0]) == id(color4[0]))  # False - color4[0] is now a new object
-#--------------------------------------------------------------------------------------
-"""
-The difference between shallow and deep copying is only relevant for compound objects
-(objects that contain other objects, like lists or class instances):
+# https://www.python-course.eu/python3_deep_copy.php
+	
+############################################
 
-A shallow copy constructs a new compound object and then (to the extent possible) inserts
-references into it to the objects found in the original.A deep copy constructs a new compound
-object and then, recursively, inserts copies into it of the objects found in the original.
-"""
+>>> a_list = ['a', 'b', 'c', [4,5]]
+>>> a_list
+['a', 'b', 'c', [4, 5]]
+>>> b_list = a_list[:]
+>>> b_list
+['a', 'b', 'c', [4, 5]]
+>>> b_list[0] = 6
+>>> b_list
+[6, 'b', 'c', [4, 5]]
+>>> a_list
+['a', 'b', 'c', [4, 5]]
+>>> b_list[3][1] = 'j'
+>>> b_list
+[6, 'b', 'c', [4, 'j']]
+>>> a_list
+['a', 'b', 'c', [4, 'j']]
+>>> 
+
+############################################
+>>> from copy import deepcopy
+>>> a_list = ['a', 'b', 'c', ['ab', 'cd']]
+>>> b_list = deepcopy(a_list)
+>>> print(id(a_list))
+65263736
+>>> print(id(b_list))
+65262856
+>>> b_list[3][1] = 'xyz'
+>>> b_list
+['a', 'b', 'c', ['ab', 'xyz']]
+>>> a_list
+['a', 'b', 'c', ['ab', 'cd']]
+>>> b_list[0] = 'j'
+>>> b_list
+['j', 'b', 'c', ['ab', 'xyz']]
+>>> a_list
+['a', 'b', 'c', ['ab', 'cd']]
+>>> id(a_list[1])
+24165760
+>>> id(b_list[1])
+24165760
+>>> 
+
 #--------------------------------------------------------------------------------------
 
 73. # Nth armstrong number
