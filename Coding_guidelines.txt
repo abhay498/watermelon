@@ -1,18 +1,36 @@
-
-
 Coding guidelines and respective tools with respect Python 3.0 and above versions
 ------------------------------------------------------------------------------------------
 
-1. Code formatter - autopep8
+1. Code formatter - autopep8, yapf
 
-2. Tool for finding bugs and style problems in Python source code = Pylint
+2. Make sure you run pylint on your code.
 
-3. Use from x import y as z if two modules named y are to be imported or if y is an inconveniently long name. Use import y as z only when z is a standard abbreviation (e.g., np for numpy ).
+3. Using Imports
+   a. Use import x for importing packages and modules.
+   b. Use from x import y where x is the package prefix and y is the module name with no prefix.
+   c. Use from x import y as z if two modules named y are to be imported or if y is an inconveniently long name.
+   d. Use import y as z only when z is a standard abbreviation (e.g., np for numpy).   
+   e. Do not use relative names in imports. Even if the module is in the same package, use the full package name. This helps prevent      	unintentionally importing a package twice.
 
-4. Raise exceptions like this: raise MyError('Error message') or raise MyError() .
-   Do not use the two-argument form ( raise MyError, 'Error message' ).
+4. Exceptions
+   a. Raise exceptions like this: raise MyError('Error message') or raise MyError() .
+      Do not use the two-argument form ( raise MyError, 'Error message' ).
+   b. Make use of built-in exception classes when it makes sense. For example, raise a ValueError to indicate a programming mistake like       a violated precondition (such as if you were passed a negative number but required a positive one). Do not use assert statements         for validating argument values of a public API. assert is used to ensure internal correctness, not to enforce correct usage nor to       indicate that some unexpected event occurred. If an exception is desired in the latter cases, use a raise statement. 
+   c. Libraries or packages may define their own exceptions. When doing so they must inherit from an existing exception class. Exception       names should end in Error and should not introduce stutter (foo.FooError).
+   d. Never use catch-all except: statements, or catch Exception or StandardError, unless you are re-raising the exception, or
+      creating an isolation point in the program where exceptions are not propagated but are recorded and suppressed instead, such as         protecting a thread from crashing by guarding its outermost block.
+      Python is very tolerant in this regard and except: will really catch everything including misspelled names, sys.exit() calls,           Ctrl+C interrupts, unittest failures and all kinds of other exceptions that you simply don’t want to catch.
+   e. Minimize the amount of code in a try/except block. The larger the body of the try, the more likely that an exception will be             raised by a line of code that you didn’t expect to raise an exception. In those cases, the try/except block hides a real error.
+   f. Use the finally clause to execute code whether or not an exception is raised in the try block. This is often useful for cleanup,         i.e., closing a file.
 
-5. Avoid global variables.
+      When capturing an exception, use as rather than a comma. For example:
+      
+	try:
+	  raise Error()
+	except Error as error:
+	  pass
+  
+5. Avoid global variables.Has the potential to change module behavior during the import, because assignments to global variables are     done when the module is first imported.
 
 6. Comprehensions & Generator Expressions -> Okay to use for simple cases.
 
