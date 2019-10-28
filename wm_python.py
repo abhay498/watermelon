@@ -1389,43 +1389,46 @@ print()
 #--------------------------------------------------------------------------------------
 50. """ Merge sort"""
 
-def merge_sort(alist):
-    print("Splitting ",alist)
-    if len(alist)>1:
-        mid = len(alist)//2
-        lefthalf = alist[:mid]
-        righthalf = alist[mid:]
+def merge_sort(a_list):
+    print('Splitting', a_list)
 
-        merge_sort(lefthalf)
-        merge_sort(righthalf)
+    if len(a_list) >  1:
+        mid = len(a_list) // 2
 
-        i=0
-        j=0
-        k=0
-        while i < len(lefthalf) and j < len(righthalf):
-            if lefthalf[i] < righthalf[j]:
-                alist[k]=lefthalf[i]
-                i=i+1
+        left_half = a_list[:mid]
+        right_half = a_list[mid:]
+
+        merge_sort(left_half)
+        merge_sort(right_half)
+
+        i = 0
+        j = 0
+        k = 0
+
+        while i < len(left_half) and j < len(right_half):
+            if left_half[i] < right_half[j]:
+                a_list[k] = left_half[i]
+                i += 1
             else:
-                alist[k]=righthalf[j]
-                j=j+1
-            k=k+1
+                a_list[k] = right_half[j]
+                j += 1
 
-        while i < len(lefthalf):
-            alist[k]=lefthalf[i]
-            i=i+1
-            k=k+1
+            k += 1
 
-        while j < len(righthalf):
-            alist[k]=righthalf[j]
-            j=j+1
-            k=k+1
-    print("Merging ",alist)
+        while i < len(left_half):
+            a_list[k] = left_half[i]
+            i += 1
+            k += 1
 
-##alist = [54,26,93,17,77,31,44,55,20]
-alist = [78,56,45,34,54]
-merge_sort(alist)
-print(alist)
+        while j < len(right_half):
+            a_list[k] = right_half[j]
+            j += 1
+            k += 1
+    print('Merging ',a_list)
+
+a_list = [int(x) for x in input().split()]
+merge_sort(a_list)
+print(a_list)
 
 #--------------------------------------------------------------------------------------
 51. """ Bubble sort """
