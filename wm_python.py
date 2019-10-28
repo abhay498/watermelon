@@ -2421,3 +2421,21 @@ def convert_minutes_to_time(n):
 
 n = 645640
 convert_minutes_to_time(n)
+
+#--------------------------------------------------------------------------------------
+81. 
+"""
+Oneliner if statements
+"""
+# Example 1
+value_one = '-67'
+value = 67
+if '-' in value_one : value = -value
+print(value)
+
+# Example 2
+a, b = 10, 20
+minimum = a if a < b else b
+print(minimum)
+
+#--------------------------------------------------------------------------------------
