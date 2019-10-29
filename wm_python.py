@@ -2546,3 +2546,31 @@ print ("Sorted array is")
 print(arr)
 
 #--------------------------------------------------------------------------------------
+87.
+
+"""
+Enter number7
+7
+      A 
+     B B 
+    C C C 
+   D D D D 
+  E E E E E 
+ F F F F F F 
+G G G G G G G 
+"""
+
+alphabets = ['A', 'B', 'C', 'D', 'E', 'F','G','H', 'I','J','K','L','M']
+
+number = int(input('Enter number'))
+print(number)
+
+i = 0
+while i < number:
+    k = number - i
+    for j in range(k - 1): print(' ', end = '')
+    for j in range(i + 1): print(alphabets[i], end = ' ')
+    print()
+    i += 1
+
+#--------------------------------------------------------------------------------------
