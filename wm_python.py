@@ -2574,7 +2574,7 @@ while i < number:
     i += 1
 
 #--------------------------------------------------------------------------------------
-88.
+88. # Converting -ve number to +ve number
 
 a = -4
 b = 6
@@ -2586,3 +2586,17 @@ print(a)
 print(b)
 
 #--------------------------------------------------------------------------------------
+89. # Using random
+import random 
+
+a_list = list(range(2, 25, 4))
+print(a_list)
+print ("A random number from list is : ",end="") 
+print (random.choice(a_list)) 
+ 
+print ("A random number from range is : ",end="") 
+print (random.randrange(20, 50, 3))
+
+#--------------------------------------------------------------------------------------
+
+
