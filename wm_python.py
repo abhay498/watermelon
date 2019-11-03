@@ -2678,6 +2678,178 @@ a_list = [2, 1, 3, 5, 3, 8]
 a_list.reverse()
 print(a_list)
 
+# Example 8
+language = ['French', 'English', 'German']
+language_tuple = ('Spanish', 'Portuguese')
+language_set = {'Chinese', 'Japanese'}
+
+language.extend(language_tuple)
+
+print('New Language List: ', language)
+
+language.extend(language_set)
+
+print('Newest Language List: ', language)
+
+# Example 9
+
+a = [1, 2]
+b = [3, 4]
+a += b
+
+print('a = ', a)
+
+# Example 10
+
+vowel = ['a', 'e', 'i', 'u']
+
+vowel.insert(3, 'o')
+
+print('Updated List: ', vowel)
+
+# Example 11
+
+mixed_list = [{1, 2}, [5, 6, 7]]
+
+number_tuple = (3, 4)
+
+mixed_list.insert(1, number_tuple)
+
+print('Updated List: ', mixed_list) # Updated List:  [{1, 2}, (3, 4), [5, 6, 7]]
+
+# Example 12
+# animal list
+animal = ['cat', 'dog', 'rabbit', 'guinea pig']
+
+animal.remove('rabbit')
+
+print('Updated animal list: ', animal) # Updated animal list:  ['cat', 'dog', 'guinea pig']
+
+# Example 13
+
+# If a list contains duplicate elements
+# the remove() method removes only the first instance
+
+# animal list
+animal = ['cat', 'dog', 'dog', 'guinea pig', 'dog']
+
+# 'dog' element is removed
+animal.remove('dog')
+
+#Updated Animal List
+print('Updated animal list: ', animal) # Updated animal list:  ['cat', 'dog', 'guinea pig', 'dog']
+
+# Example 14
+
+# vowels list
+vowels = ['a', 'e', 'i', 'o', 'i', 'u']
+
+# count element 'i'
+count = vowels.count('i')
+
+# print count
+print('The count of i is:', count)
+
+# count element 'p'
+count = vowels.count('p')
+
+# print count
+print('The count of p is:', count)
+
+# The count of i is: 2
+# The count of p is: 0
+
+# Example 15
+
+# random list
+random = ['a', ('a', 'b'), ('a', 'b'), [3, 4]]
+
+# count element ('a', 'b')
+count = random.count(('a', 'b'))
+
+# print count
+print("The count of ('a', 'b') is:", count)
+
+# count element [3, 4]
+count = random.count([3, 4])
+
+# print count
+print("The count of [3, 4] is:", count)
+
+The count of ('a', 'b') is: 2
+The count of [3, 4] is: 1
+
+# Example 16
+
+# programming language list
+language = ['Python', 'Java', 'C++', 'French', 'C']
+
+# Return value from pop()
+# When 3 is passed
+return_value = language.pop(3)
+print('Return Value: ', return_value)
+
+# Updated List
+print('Updated List: ', language)
+
+Return Value:  French
+Updated List:  ['Python', 'Java', 'C++', 'C']
+
+# Example 17
+# programming language list
+language = ['Python', 'Java', 'C++', 'Ruby', 'C']
+
+# When index is not passed
+print('When index is not passed:') 
+print('Return Value: ', language.pop())
+print('Updated List: ', language)
+
+# When -1 is passed
+# Pops Last Element
+print('\nWhen -1 is passed:') 
+print('Return Value: ', language.pop(-1))
+print('Updated List: ', language)
+
+# When -3 is passed
+# Pops Third Last Element
+print('\nWhen -3 is passed:') 
+print('Return Value: ', language.pop(-3))
+print('Updated List: ', language)
+
+"""
+When index is not passed:
+Return Value:  C
+Updated List:  ['Python', 'Java', 'C++', 'Ruby']
+
+When -1 is passed:
+Return Value:  Ruby
+Updated List:  ['Python', 'Java', 'C++']
+
+When -3 is passed:
+Return Value:  Python
+Updated List:  ['Java', 'C++']
+"""
+
+# Example 18
+
+# Defining a list
+a_list = [{1, 2}, ('a'), ['1.1', '2.2']]
+
+# clearing the list
+a_list.clear()
+
+print('List:', a_list)
+
+# Example 19
+# Defining a list
+list = [{1, 2}, ('a'), ['1.1', '2.2']]
+
+# clearing the list
+del list[:]
+
+print('List:', list)
+
+
 #--------------------------------------------------------------------------------------
 
 
