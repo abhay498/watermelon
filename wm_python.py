@@ -2625,5 +2625,59 @@ o / p = [[3, 5],[3, 5, 2], [3, 5, 2, 1], [3, 5, 2, 1, 4]]
 
 
 #--------------------------------------------------------------------------------------
+91
+# List operations
+# Itearation using only for loop
 
-	
+# Example 1
+a_list = [6, 4, 2, 1, 8, 3]
+
+length = len(a_list)
+
+for i in range(length):
+    print(a_list[i], end = ' ')
+
+# Example 2
+a_list = [6, 4, 2, 1, 8, 3, 67, 43, 65, 22, 32, 54]
+length = len(a_list)
+
+for i in range(0, length, 2):
+    print(a_list[i], end = ' ')
+
+# Example 3
+a_list = [6, 4, 2, 1, 8, 3, 67, 43, 65, 22, 32, 54]
+
+length = len(a_list)
+
+for i in range(length-1, -1, -1):
+    print(a_list[i], end = ' ')
+
+# Example 4
+my_list = ['apple', 'orange'] 
+my_list.append('peech')
+another_list = [6,0,4,1]
+my_list.append(another_list)
+
+print(my_list)
+
+# Example 5
+my_list = ['apple', 'orange'] 
+my_list.append('peech')
+another_list = [6,0,4,1]
+my_list.extend(another_list)
+
+print(my_list)
+
+# Example 6
+a_list = [2, 1, 3, 5, 3, 8]
+a_list.sort()
+print(a_list)
+
+# Example 7
+a_list = [2, 1, 3, 5, 3, 8]
+a_list.reverse()
+print(a_list)
+
+#--------------------------------------------------------------------------------------
+
+
