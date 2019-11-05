@@ -2883,3 +2883,28 @@ person_1.display()
 
 #--------------------------------------------------------------------------------------
 
+93.
+
+ip = '10.16.177.18'
+
+import re
+result = re.match('([0-9]+).([0-9]+).([0-9]+).([0-9]+)', ip)
+
+first = int(result.group(1))
+second = int(result.group(2))
+third = int(result.group(3))
+fourth = int(result.group(4))
+
+if first <= 255 and first >= 0:
+	print('first Octet {0} is valid'.format(first))
+	
+if second <= 255 and second >= 0:
+	print('second Octet {0} is valid'.format(second))
+	
+if third <= 255 and third >= 0:
+	print('third Octet {0} is valid'.format(third))
+	
+if fourth <= 255 and fourth >= 0:
+	print('fourth Octet {0} is valid'.format(fourth))
+
+#--------------------------------------------------------------------------------------
