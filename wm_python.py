@@ -2938,9 +2938,14 @@ str_b = ' '.join(list_c)
 print(str_b)
 
 #--------------------------------------------------------------------------------------
+96. # Odd and even numbers via list comprehension
 
+numbers = [4,5,6,7,8,9]
+even = [i for i in numbers if i % 2 == 0]
+odd = [i for i in numbers if i % 2 != 0]
 
-
+print(even)
+print(odd)
 
 #--------------------------------------------------------------------------------------
 
