@@ -2851,5 +2851,35 @@ print('List:', list)
 
 
 #--------------------------------------------------------------------------------------
+92
+class BankAccount:
+	names = ['Abhay', 'Vikas', 'Pratik']
+	
+	def __init__(self, name, deposit):
+	    self.name = name
+	    self.deposit = deposit
+		
+	def display(self, withdrawl = 0):
+	    print('Name is {0}'.format(self.name))
+	    print('Deposit is {0}'.format(self.deposit))
 
+	    if withdrawl:
+	        self.deposit = self.deposit - withdrawl
+		
+	    print('Total amount {0}'.format(self.deposit))
+
+	def verify_name(self):
+	    if self.name in BankAccount.names:
+	        print('Username is valid')
+	    else:
+	        print('Username is invalid')
+
+person_1 = BankAccount('Abhay', 50000)
+person_1.verify_name()
+person_1.display(withdrawl = 30000)
+person_1.display()
+person_1.display(withdrawl = 10000)
+person_1.display()
+
+#--------------------------------------------------------------------------------------
 
