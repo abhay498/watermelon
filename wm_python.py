@@ -2090,6 +2090,46 @@ print(ip_address)
 
 vlan = 1, 2, 3, 20-30, 'abc'-'def', 40, 4099, 5001, 34, -1, 41-51
 
+import re
+
+def verify_vlan(vlan_id):
+
+    if not isinstance(vlan_id, str):
+        vlan_id = str(vlan_id)
+        
+    result = re.match('([0-9]+)-?([0-9]+)?', vlan_id)
+
+    if not result:
+       return 0
+
+    if int(result.group(1)) > 4096 and int(result.group(1)) < 0:
+        print('Invalid vlan')
+        return 0
+    return 1
+
+result = verify_vlan(6)
+if result:
+    print('Valid vlan 6')
+else:
+    print('Invalid vlan 6')
+    
+result = verify_vlan('abc')
+if result:
+    print('Valid vlan abc')
+else:
+    print('Invalid vlan abc')
+    
+result = verify_vlan('20')
+if result:
+    print('Valid vlan 20')
+else:
+    print('Invalid vlan 20')
+
+result = verify_vlan('20-40')
+if result:
+    print('Valid vlan 20 and 40')
+else:
+    print('Invalid vlan 20 and 40')
 
 #--------------------------------------------------------------------------------------
 #https://stackoverflow.com/questions/12354515/what-is-the-difference-between-sets-and-lists-in-python
