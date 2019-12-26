@@ -3,8 +3,9 @@ Coding guidelines and respective tools with respect Python 3.0 and above version
 
 1. Code formatter - autopep8, yapf
 
-2. Make sure you run pylint on your code.
-
+2. Make sure to run pylint on your code.
+   https://pypi.org/project/pylint/
+   
 3. Using Imports
    a. Use import x for importing packages and modules.
    b. Use from x import y where x is the package prefix and y is the module name with no prefix.
