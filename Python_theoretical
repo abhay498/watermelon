@@ -264,3 +264,1927 @@ Adds dictionary dict2's key-values pairs to dict
 
 10	dict.values()
 Returns list of dictionary dict's values
+
+
+#####################################################################################################
+#
+#						https://www.python-course.eu/python3_pytest.php
+#
+#####################################################################################################
+
+1. A variable is a way of referring
+to a memory location used by a computer program. In many
+programming languages a variable is a symbolic name for
+this physical location. This memory location contains values,
+like numbers, text or more complicated types. We can use this
+variable to tell the computer to save some data in this location
+or to retrieve some data from this location.
+
+2. i = 42
+The equal "=" sign in the assignment shouldn't be seen as "is equal to". It should be "read" or
+interpreted as "is set to", meaning in our example "the variable i is set to 42".
+
+3. Python variables are references to objects, but
+the actual data is contained in the objects:
+
+4. I am a python variable.My name is x and I can point to an arbitrary object.
+In this case to an int object.
+x = 42
+
+5. As variables are pointing to objects and objects can be of arbitrary data type, variables cannot
+have types associated with them.This is a huge difference to C, C++ or Java, where a variable
+is associated with a fixed data type. This association can't be changed as long as the program is
+running.
+Therefore it is possible to write code like the following in Python:
+>>> x = 42
+>>> print(x)
+
+6. We want to demonstrate something else now. Let's look at the following code:
+>>> x = 42
+>>> y = x
+We created an integer object 42 and assigned it to the variable x. After this we assigned x to the
+variable y. This means that both variables reference the same object.
+
+x ---> 42 (an obect)   <---- y
+
+7. y = 78
+Python will create a new integer object with the content 78 and then the variable y will
+reference this newly created object
+
+8. How can we see or prove that x and y really reference the same object
+The identity function id() can be used for this purpose. Every instance (object or variable) has
+an identity, i.e., an integer which is unique within the script or program, i.e., other objects have
+different identities.
+
+9. 
+>>> x = 42
+>>> id(x)
+10107136
+>>> y = x
+>>> id(x), id(y)
+(10107136, 10107136)
+>>> y = 78
+>>> id(x), id(y)
+(10107136, 10108288)
+>>>
+
+10. PYTHON KEYWORDS
+No identifier can have the same name as one of the Python keywords, although they are
+obeying the above naming conventions:
+
+11. and, as, assert, break, class, continue, def, del,
+elif, else,
+except, False, finally, for, from, global, if, import,
+in, is,
+lambda, None, nonlocal, not, or, pass, raise, return,
+True, try,
+while, with, yield
+There is no need to learn them by heart. You can get the list of Python keywords in the
+interactive shell by using help. You type help() in the interactive, but please don't forget the
+parenthesis:
+>>> help()
+
+12. The Style Guide for Python Code
+recommends underscore notation for variable names as well as function names.
+
+13. "All identifiers in the Python standard library MUST use ASCII-only identifiers, and SHOULD
+use English words wherever feasible (in many cases, abbreviations and technical terms are
+used which aren't English). In addition, string literals and comments must also be in ASCII.
+The only exceptions are (a) test cases testing the non-ASCII features, and (b) names of authors.
+Authors whose names are not based on the latin alphabet MUST provide a latin transliteration
+of their names
+
+14. In other words, "//" always truncates towards negative infinity.
+
+>>> 9 // 3
+3
+>>> 10 // 3
+3
+>>> 11 // 3
+3
+>>> 12 // 3
+4
+>>> 10.0 // 3
+3.0
+>>> -7 // 3
+-3
+>>> -7.0 // 3
+-3.0
+>>>
+
+15. In other words, the meaning of a character or a written or printed text doesn't depend
+on the font or writing style used. On a computer the capital A is encoded in binary form. If we
+use ASCII it is encoded - like all the other characters - as the byte 65.
+
+16. Characters consist of graphical shapes, so-called graphemes, consisting of lines, curves and
+crossings in certain angles or positions.
+
+17. UNICODE ENCODINGS
+UTF-32,  UTF-16, UTF-8.
+
+18. All strings in Python 3 are sequences of "pure" Unicode characters, no specific
+encoding like UTF-8.
+
+19. There are different ways to define strings in Python:
+>>> s = 'I am a string enclosed in single quotes.'
+>>> s2 = "I am another string, but I am enclosed in
+double quotes"
+Both s and s2 of the previous example are variables referencing string objects. We can see that
+string literals can either be enclosed in matching single (') or in double quotes ("). Single quotes
+will have to be escaped with a backslash (\), if the string is defined with single quotes:
+>>> s3 = 'It doesn\'t matter!'
+This is not necessary, if the string is represented by double quotes:
+>>> s3 = "It doesn't matter!"
+Analogously, we will have to escape a double quote inside a double quoted string:
+>>> txt = "He said: \"It doesn't matter, if you enclose
+a string in single or double quotes!\""
+>>> print(txt)
+He said: "It doesn't matter, if you enclose a string in
+single or double quotes!"
+>>>
+
+20. SOME OPERATORS AND FUNCTIONS FOR STRINGS
+Concatenation
+Strings can be glued together (concatenated) with the + operator:
+"Hello" + "World" will result in "HelloWorld"
+Repetition
+String can be repeated or repeatedly concatenated with the asterisk operator "*":
+"*-*" * 3 will result in "*-**-**-*"
+Indexing
+"Python"[0] will result in "P"
+Slicing
+Substrings can be created with the slice or slicing notation, i.e., two indices in square
+brackets separated by a colon:
+"Python"[2:4] will result in "th"
+Size
+len("Python") will result in 6
+
+21. IMMUTABLE STRINGS
+
+Python strings cannot be changed. Trying to change
+an indexed position will raise an error:
+>>> s = "Some things are immutable!"
+>>> s[-1] = "."
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item
+assignment
+>>>
+Beginners in Python are often confused, when they see the following codelines:
+>>> txt = "He lives in Berlin!"
+>>> txt = "He lives in Hamburg!"
+The variable "txt" is a reference to a string object. We define a completely new string object in
+the second assignment. So, you shouldn't confuse the variable name with the referenced object!
+
+22. >>> a = "Linux"
+>>> b = "Linux"
+>>> a is b
+True
+
+23. >>> a = "Baden-Württemberg"
+>>> b = "Baden-Württemberg"
+>>> a is b
+False
+>>> a == b
+True
+You are right, it has nothing to do with geographical places. The special character, i.e., the
+hyphen, is to "blame".
+>>> a = "Baden!"
+>>> b = "Baden!"
+>>> a is b
+False
+>>> a = "Baden1"
+>>> b = "Baden1"
+>>> a is b
+True
+
+24. String literals may optionally be prefixed with
+a letter 'r' or 'R'; these strings are called raw strings.
+
+25. Every string or text in Python 3 is Unicode, but encoded Unicode is represented as
+binary data.
+
+26. While a string object holds a sequence of characters (in Unicode), a bytes object holds a
+sequence of bytes, out of the range 0 .. 255, representing the ASCII values.
+Defining bytes objects and casting them into strings:
+>>> x = b"Hallo"
+>>> t = str(x)
+>>> u = t.encode("UTF-8")
+
+############################################################################################################
+27. LIST
+
+(a) s.append(x)
+This method appends an element to the end of the list "s".
+>>> lst = [3, 5, 7]
+>>> lst.append(42)
+>>> lst
+[3, 5, 7, 42]
+>>>
+
+(b) It's import to understand that append returns "None". This means that it usually
+doesn't make sense to reassign the return value:
+>>> lst = [3, 5, 7]
+>>> lst = lst.append(42)
+>>> print(lst)
+None
+>>>
+
+(c) s.pop(i)
+'pop' returns the ith element of a list s. The element will be removed from the list
+as well.
+>>> cities = ["Hamburg", "Linz", "Salzburg",
+"Vienna"]
+
+>>> cities.pop(0)
+'Hamburg'
+>>> cities
+['Linz', 'Salzburg', 'Vienna']
+>>> cities.pop(1)
+'Salzburg'
+>>> cities
+['Linz', 'Vienna']
+>>>
+The method 'pop' raises an IndexError exception if the list is empty or the index is
+out of range.
+
+(d) s.pop() is equivalent to s.pop(-1).
+
+>>> cities = ["Amsterdam", "The Hague",
+"Strasbourg"]
+>>> cities.pop()
+'Strasbourg'
+>>> cities
+['Amsterdam', 'The Hague']
+>>>
+
+(e)
+Python provides the method 'extend'. It extends a list by appending all
+the elements of an iterable like a list, a tuple or a string to a list:
+>>> lst = [42,98,77]
+>>> lst2 = [8,69]
+>>> lst.extend(lst2)
+>>> lst
+[42, 98, 77, 8, 69]
+>>>
+
+(f)
+
+>>> lst = ["a", "b", "c"]
+>>> programming_language = "Python"
+>>> lst.extend(programming_language)
+>>> print(lst)
+['a', 'b', 'c', 'P', 'y', 't', 'h', 'o', 'n']
+
+(g)
+
+>>> lst = ["Java", "C", "PHP"]
+>>> t = ("C#", "Jython", "Python", "IronPython")
+>>> lst.extend(t)
+>>> lst
+['Java', 'C', 'PHP', 'C#', 'Jython', 'Python',
+'IronPython']
+>>>
+
+(h)
+EXTENDING AND APPENDING LISTS WITH THE '+'-OPERATOR
+
+There is an alternative to 'append' and 'extend'. '+' can be used to combine lists.
+>>> level = ["beginner", "intermediate",
+"advanced"]
+>>> other_words = ["novice", "expert"]
+>>> level + other_words
+['beginner', 'intermediate', 'advanced', 'novice',
+'expert']
+>>>
+
+(i)
+Be careful. Never ever do the following:
+>>> L = [3, 4]
+>>> L = L + [42]
+>>> L
+[3, 4, 42]
+>>>
+Even though we get the same result, it is not an alternative to 'append' and 'extend':
+>>> L = [3, 4]
+>>> L.append(42)
+>>> L
+[3, 4, 42]
+>>>
+>>>
+>>> L = [3, 4]
+>>> L.extend([42])
+>>> L
+[3, 4, 42]
+>>>
+
+(j) We will compare in the following example the different approaches and calculate their
+run times. To understand the following program, you need to know that time.time()
+returns a float number, the time in seconds since the so-called ,,The Epoch''1.
+time.time() - start_time calculates the time in seconds consumed for the for loops:
+import time
+n= 100000
+start_time = time.time()
+l = []
+for i in range(n):
+l = l + [i * 2]
+print(time.time() - start_time)
+start_time = time.time()
+l = []
+for i in range(n):
+l += [i * 2]
+print(time.time() - start_time)
+start_time = time.time()
+l = []
+for i in range(n):
+l.append(i * 2)
+print(time.time() - start_time)
+This program returns shocking results:
+10/31/2019 Python Tutorial: A Tutorial
+https://www.python-course.eu/python3_list_manipulation.php 7/10
+26.3175041676
+0.0305399894714
+0.0207479000092
+We can see that the "+" operator is about 1268 slower than the append method. The
+explanation is easy: If we use the append method, we will simply append a further
+element to the list in each loop pass. Now we come to the first loop, in which we use l
+= l + [i * 2]. The list will be copied in every loop pass. The new element will be
+added to the copy of the list and result will be reassigned to the variable l. After this the
+old list will have to be removed by Python, because it is not referenced anymore. We
+can also see that the version with the augmented assignment ("+="), the loop in the
+middle, is only slightly slower than the version using "append".
+
+(k) REMOVING AN ELEMENT WITH REMOVE
+It is possible to remove with the method "remove" a certain value from a list without
+knowing the position.
+s.remove(x)
+
+(l) This call will remove the first occurrence of x from the list s. If x is not contained in the
+list, a ValueError will be raised.
+
+(m) FIND THE POSITION OF AN ELEMENT IN A LIST
+>>> colours = ["red", "green", "blue", "green",
+"yellow"]
+>>> colours.index("green")
+1
+>>> colours.index("green", 2)
+3
+>>> colours.index("green", 3,4)
+3
+>>> colours.index("black")
+Traceback (most recent call last):
+File "", line 1, in
+ValueError: 'black' is not in list
+>>>
+
+(n) INSERT
+An object "object" will be included in the list "s". "object" will be placed before the
+element s[index]. s[index] will be "object" and all the other elements will be moved one
+to the right.
+>>> lst = ["German is spoken", "in Germany,",
+"Austria", "Switzerland"]
+>>> lst.insert(3, "and")
+>>> lst
+['German is spoken', 'in Germany,', 'Austria',
+'and', 'Switzerland']
+>>>
+
+28. Sets
+They are used for example to get rid of doublets -
+multiple occurrences of elements - in a list, i.e.
+to make a list unique.
+
+29. To cut out all the words of the novel "Ulysses" we can use the function findall from the
+module "re":
+import re
+# we don't care about case sensitivity and
+therefore use lower:
+ulysses_txt =
+open("books/james_joyce_ulysses.txt").read().lower()
+words = re.findall(r"\b[\w-]+\b", ulysses_txt)
+print("The novel ulysses contains " +
+str(len(words)))
+The novel ulysses contains 272452
+
+30. This number is the sum of all the words and many words occur multiple time:
+for word in ["the", "while", "good", "bad",
+"ireland", "irish"]:
+print("The word '" + word + "' occurs " + \
+str(words.count(word)) + " times in the
+novel!" )
+The word 'the' occurs 15112 times in the novel!
+The word 'while' occurs 123 times in the novel!
+The word 'good' occurs 321 times in the novel!
+The word 'bad' occurs 90 times in the novel!
+The word 'ireland' occurs 90 times in the novel!
+The word 'irish' occurs 117 times in the novel!
+
+31. what is the difference between an iterable and an iterator ?
+
+(a) You can iterate with a for loop over iterators and
+iterables. Every iterator is also an iterable, but not every iterable is an iterator. E.g. a list
+is iterable but a list is not an iterator! An iterator can be created from an iterable by
+using the function 'iter'. To make this possible the class of an object needs either a
+method '__iter__', which returns an iterator, or a '__getitem__' method with sequential
+indexes starting with 0.
+
+(b) Iterators are objects with a '__next__' method, which will be used when the function
+'next' is called.
+
+(c) So what is going on behind the scenes, when a for loop is executed? The for statement
+calls iter() on the object ( which should be a so-called container object), which it is
+supposed to loop over. If this call is successful, the iter call will return return an iterator
+object that defines the method __next__() which accesses elements of the object one at
+a time. The __next__() method will raise a StopIteration exception, if there are no
+further elements available. The for loop whill terminate as soon as it catches a
+StopIteration exception. You can call the __next__() method using the next() built-in
+function. This is how it works:
+
+cities = ["Berlin", "Vienna", "Zurich"]
+iterator_obj = iter(cities)
+print(iterator_obj)
+print(next(iterator_obj))
+print(next(iterator_obj))
+print(next(iterator_obj))
+<list_iterator object at 0x7f08a055e0b8>
+Berlin
+Vienna
+Zurich
+
+(d) So if you want to add an iterator behavior to
+your class, you have to add the __iter__ and the __next__ method to your class. The
+__iter__ method returns an iterator object. If the class contains a __next__, it is enough
+for the __iter__ method to return self, i.e. a reference to itself:
+class Reverse:
+"""
+Creates Iterators for looping over a sequence
+backwards.
+"""
+def __init__(self, data):
+self.data = data
+self.index = len(data)
+def __iter__(self):
+return self
+def __next__(self):
+if self.index == 0:
+raise StopIteration
+self.index = self.index - 1
+return self.data[self.index]
+lst = [34, 978, 42]
+lst_backwards = Reverse(lst)
+for el in lst_backwards:
+print(el)
+42
+978
+34
+
+32. CLASS ATTRIBUTES
+a. Instance attributes are owned by the specific instances of a class.
+b. Class attributes are attributes which are owned by the class itself.
+   They will be shared by all the instances of the
+class. Therefore they have the same value for every instance. We define class attributes
+outside of all the methods, usually they are placed at the top, right below the class
+header.
+
+33. Besides this, we see that we can
+access a class attribute via an instance or via the class name:
+
+>>> class A:
+	a = 5
+
+	
+>>> x = A()
+>>> y = A()
+>>> x.a
+5
+>>> y.a
+5
+>>> A.a
+5
+>>> x.a = 100
+>>> x.a
+100
+>>> y.a
+5
+>>> A.a
+5
+>>> A.a = 999
+>>> x.a
+100
+>>> y.a
+999
+>>> A.a
+999
+>>> x.__dict__
+{'a': 100}
+>>> y.__dict__
+{}
+>>> A.__dict__
+mappingproxy({'__module__': '__main__', 'a': 999, '__dict__': <attribute '__dict__' of 'A' objects>, '__weakref__': <attribute '__weakref__' of 'A' objects>, '__doc__': None})
+>>> 
+
+34. 
+how you can count instance with class
+attributes. All we have to do is
+to create a class attribute, which we call "counter" in our example
+to increment this attribute by 1 every time a new instance will be create
+to decrement the attribute by 1 every time an instance will be destroyed
+class C:
+counter = 0
+def __init__(self):
+type(self).counter += 1
+def __del__(self):
+type(self).counter -= 1
+if __name__ == "__main__":
+x = C()
+print("Number of instances: : " +
+str(C.counter))
+y = C()
+print("Number of instances: : " +
+str(C.counter))
+del x
+print("Number of instances: : " +
+str(C.counter))
+del y
+
+print("Number of instances: : " +
+str(C.counter))
+
+Principially, we could have written C.counter instead of type(self).counter, because
+type(self) will be evaluated to "C" anyway. But we will see later, that type(self) makes
+sense, if we use such a class as a superclass.
+
+35. STATIC METHODS
+
+(a) Of course, we can
+make public attributes private as well. We can do this by adding the double underscore
+again. If we do so, we need a possibility to access and change these private class
+attributes.
+
+class Robot:
+counter = 0
+def __init__(self):
+type(self).__counter += 1
+@staticmethod
+def RobotInstances():
+return Robot.__counter
+if __name__ == "__main__":
+print(Robot.RobotInstances())
+x = Robot()
+print(x.RobotInstances())
+y = Robot()
+print(x.RobotInstances())
+print(Robot.RobotInstances())
+We will get the following output:
+0
+1
+2
+2
+
+36. CLASS METHODS
+
+(a) Like static methods class
+methods are not bound to instances, but unlike static methods class methods are bound
+to a class.
+
+(b) class Robot:
+__counter = 0
+def __init__(self):
+type(self).__counter += 1
+@classmethod
+def RobotInstances(cls):
+return cls, Robot.__counter
+if __name__ == "__main__":
+print(Robot.RobotInstances())
+x = Robot()
+print(x.RobotInstances())
+y = Robot()
+print(x.RobotInstances())
+print(Robot.RobotInstances())
+The output looks like this:
+$ python3 static_methods4.py
+<class '__main__.Robot'>, 0)
+<class '__main__.Robot'>, 1)
+<class '__main__.Robot'>, 2)
+<class '__main__.Robot'>, 2)
+The use cases of class methods:
+the are used in the definition of the so-called factory methods, which we will not
+cover here.
+They are often used, where we have static methods, which have to call other static
+methods. To do this, we would have to hard code the class name, if we had to use
+static methods. This is a problem, if we are in a use case, where we have inherited
+classes.
+
+(c)
+class fraction(object):
+def __init__(self, n, d):
+self.numerator, self.denominator =
+fraction.reduce(n, d)
+@staticmethod
+def gcd(a,b):
+while b != 0:
+a, b = b, a%b
+return a
+@classmethod
+def reduce(cls, n1, n2):
+g = cls.gcd(n1, n2)
+return (n1 // g, n2 // g)
+def __str__(self):
+return
+str(self.numerator)+'/'+str(self.denominator)
+
+Using this class:
+>>> from fraction1 import fraction
+>>> x = fraction(8,24)
+>>> print(x)
+1/3
+>>>
+
+37. TRUE OR FALSE
+
+The following objects are evaluated by Python as False:
+
+numerical zero values (0, 0.0, 0.0+0.0j),
+the Boolean value False,
+empty strings,
+empty lists and empty tuples,
+empty dictionaries.
+plus the special value None.
+All other values are considered to be True.
+
+38. lst = [3,4]
+list.__dict__["append"](lst, 42)
+lst
+The previous Python code returned the following output:
+[3, 4, 42]
+
+39. items in dictionaries are accessed via keys and not via their position.
+
+40. What happens, if we try to access a key, i.e. a city, which is not contained in the
+dictionary? We raise a KeyError:
+
+41. de_fr = {"rot" : "rouge", "grün" : "vert", "blau"
+: "bleu", "gelb":"jaune"}
+print("The French word for red is: " +
+de_fr[en_de["red"]])
+The output of the previous script:
+{'blue': 'blau', 'green': 'grün', 'yellow':
+'gelb', 'red': 'rot'}
+rot
+The French word for red is: rouge
+
+42. We can use arbitrary types as values in a dictionary, but there is a restriction for the
+keys. Only immutable data types can be used as keys, i.e. no lists or dictionaries can be
+used:
+If you use a mutable data type as a key, you get an error message:
+>>> dic = { [1,2,3]:"abc"}
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+TypeError: list objects are unhashable
+
+Tuple as keys are okay, as you can see in the following example:
+>>> dic = { (1,2,3):"abc", 3.1415:"abc"}
+>>> dic
+{3.1415: 'abc', (1, 2, 3): 'abc'}
+
+43. OPERATORS ON DICTIONARIES
+Operator Explanation
+len(d) returns the number of stored entries, i.e. the number of (key,value) pairs.
+del d[k] deletes the key k together with his value
+k in d True, if a key k exists in the dictionary d
+k not in d True, if a key k doesn't exist in the dictionary d
+
+44. If D is a dictionary, then D.pop(k) removes the key k with its value from the dictionary
+D and returns the corresponding value as the return value, i.e. D[k].
+If the key is not found a KeyError is raised:
+>>> en_de = {"Austria":"Vienna",
+"Switzerland":"Bern", "Germany":"Berlin",
+"Netherlands":"Amsterdam"}
+>>> capitals = {"Austria":"Vienna",
+"Germany":"Berlin", "Netherlands":"Amsterdam"}
+>>> capital = capitals.pop("Austria")
+>>> print(capital)
+Vienna
+>>> print(capitals)
+{'Netherlands': 'Amsterdam', 'Germany': 'Berlin'}
+>>> capital = capitals.pop("Switzerland")
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+KeyError: 'Switzerland'
+>>>
+If we try to find out the capital of Switzerland in the previous example, we raise a
+KeyError. To prevent these errors, there is an elegant way. The method pop() has an
+optional second parameter, which can be used as a default value:
+>>> capital = capitals.pop("Switzerland", "Bern")
+>>> print(capital)
+Bern
+>>> capital = capitals.pop("France", "Paris")
+>>> print(capital)
+Paris
+>>> capital = capitals.pop("Germany", "München")
+>>> print(capital)
+Berlin
+
+>>> sample = {'a':1,'b':2,'c':3}
+>>> sample
+{'a': 1, 'b': 2, 'c': 3}
+>>> output =sample.pop('a')
+>>> output
+1
+>>> sample
+{'b': 2, 'c': 3}
+>>> sample.pop('b',2)
+2
+>>> sample
+{'c': 3}
+>>> 
+
+45. >>> sample = {'a':1,'b':2,'c':3,'d':4}
+>>> sample
+{'a': 1, 'b': 2, 'c': 3, 'd': 4}
+>>> sample.popitem()
+('d', 4)
+>>> sample
+{'a': 1, 'b': 2, 'c': 3}
+>>> sample.popitem()
+('c', 3)
+>>> sample
+{'a': 1, 'b': 2}
+>>> sample.popitem()
+('b', 2)
+>>> sample
+{'a': 1}
+>>> sample.popitem()
+('a', 1)
+>>> sample
+{}
+>>> sample.popitem()
+Traceback (most recent call last):
+  File "<pyshell#10>", line 1, in <module>
+    sample.popitem()
+KeyError: 'popitem(): dictionary is empty'
+>>> 
+
+46. get() method
+
+>>> proj_language = {"proj1":"Python",
+"proj2":"Perl", "proj3":"Java"}
+>>> proj_language["proj1"]
+'Python'
+>>> proj_language["proj4"]
+Traceback (most recent call last):
+File "<stdin>", line 1, in
+KeyError: 'proj4'
+>>> proj_language.get("proj2")
+'Perl'
+>>> proj_language.get("proj4")
+>>> print(proj_language.get("proj4"))
+None
+>>> # setting a default value:
+>>> proj_language.get("proj4", "Python")
+'Python'
+>>>
+
+47. A dictionary can be copied with the method copy():
+>>> w = words.copy()
+>>> words["cat"]="chat"
+>>> print(w)
+{'house': 'Haus', 'cat': 'Katze'}
+>>> print(words)
+{'house': 'Haus', 'cat': 'chat'}
+This copy is a shallow and not a deep copy.
+
+48. The content of a dictionary can be cleared with the method clear(). The dictionary is not
+deleted, but set to an empty dictionary:
+>>> w.clear()
+>>> print(w)
+{}
+
+49. >>> knowledge = {"Frank": {"Perl"}, "Monica":
+{"C","C++"}}
+>>> knowledge2 = {"Guido":{"Python"}, "Frank":
+{"Perl", "Python"}}
+>>> knowledge.update(knowledge2)
+>>> knowledge
+{'Frank': {'Python', 'Perl'}, 'Guido': {'Python'},
+'Monica': {'C', 'C++'}}
+
+50. No method is needed to iterate over the keys of a dictionary:
+>>> d = {"a":123, "b":34, "c":304, "d":99}
+>>> for key in d:
+... print(key)
+...
+b
+c
+a
+d
+>>>
+But it's possible to use the method keys(), but we will get the same result:
+>>> for key in d.keys():
+... print(key)
+...
+b
+c
+a
+d
+>>>
+The method values() is a convenient way for iterating directly over the values:
+>>> for value in d.values():
+... print(value)
+...
+34
+304
+123
+99
+>>>
+The above loop is logically equivalent to the following one:
+
+for key in d:
+print(d[key])
+We said logically, because the second way is less efficient!
+
+51. >>> w = {"house":"Haus", "cat":"", "red":"rot"}
+>>> items_view = w.items()
+>>> items = list(items_view)
+>>> items
+[('house', 'Haus'), ('cat', ''), ('red', 'rot')]
+>>>
+>>> keys_view = w.keys()
+>>> keys = list(keys_view)
+>>> keys
+['house', 'cat', 'red']
+>>>
+>>> values_view = w.values()
+>>> values = list(values_view)
+>>> values
+['Haus', '', 'rot']
+>>> values_view
+dict_values(['Haus', '', 'rot'])
+>>> items_view
+dict_items([('house', 'Haus'), ('cat', ''),
+('red', 'rot')])
+>>> keys_view
+dict_keys(['house', 'cat', 'red'])
+>>>
+
+52. TURN LISTS INTO DICTIONARIES
+
+Now we will turn our attention to the art of cooking, but don't be afraid, this remains a
+python course and not a cooking course. We want to show you, how to turn lists into
+dictionaries, if these lists satisfy certain conditions.
+We have two lists, one containing the dishes and the other one the corresponding
+countries:
+
+>>> dishes = ["pizza", "sauerkraut", "paella",
+"hamburger"]
+>>> countries = ["Italy", "Germany", "Spain",
+"USA"]
+Now we will create a dictionary, which assigns a dish, a country-specific dish, to a
+country; please forgive us for resorting to the common prejudices. For this purpose we
+need the function zip(). The name zip was well chosen, because the two lists get
+combined like a zipper. The result is a list iterator. This means that we have to wrap a
+list() casting function around the zip call to get a list so that we can see what is going
+on:
+>>> country_specialities_iterator = zip(countries,
+dishes)
+>>> country_specialities_iterator
+<zip object at 0x7fa5f7cad408>
+>>> country_specialities =
+list(country_specialities_iterator)
+>>> print(country_specialities)
+[('Italy', 'pizza'), ('Germany', 'sauerkraut'),
+('Spain', 'paella'), ('USA', 'hamburger')]
+>>>
+Now our country-specific dishes are in a list form, - i.e. a list of two-tuples, where the
+first components are seen as keys and the second components as values - which can be
+automatically turned into a dictionary by casting it with dict().
+>>> country_specialities_dict =
+dict(country_specialities)
+>>> print(country_specialities_dict)
+{'USA': 'hamburger', 'Germany': 'sauerkraut',
+'Spain': 'paella', 'Italy': 'pizza'}
+>>>
+Yet, this is very inefficient, because we created a list of 2-tuples to turn this list into a
+dict. This can be done directly by applying dict to zip:
+10/31/2019 Python Tutorial: Dictionaries
+https://www.python-course.eu/python3_dictionaries.php 20/23
+>>> dishes = ["pizza", "sauerkraut", "paella",
+"hamburger"]
+>>> countries = ["Italy", "Germany", "Spain",
+"USA"]
+>>> dict(zip(countries, dishes))
+{'USA': 'hamburger', 'Germany': 'sauerkraut',
+'Spain': 'paella', 'Italy': 'pizza'}
+>>>
+There is still one question concerning the function zip(). What happens, if one of the
+two argument lists contains more elements than the other one?
+It's easy to answer: The superfluous elements, which cannot be paired, will be ignored:
+>>> dishes = ["pizza", "sauerkraut", "paella",
+"hamburger"]
+>>> countries = ["Italy", "Germany", "Spain",
+"USA"," Switzerland"]
+>>> country_specialities = list(zip(countries,
+dishes))
+>>> country_specialities_dict =
+dict(country_specialities)
+>>> print(country_specialities_dict)
+{'Germany': 'sauerkraut', 'Italy': 'pizza', 'USA':
+'hamburger', 'Spain': 'paella'}
+>>>
+So in this course, we will not answer the burning question, what the national dish of
+Switzerland is.
+EVERYTHING IN ONE STEP
+10/31/2019 Python Tutorial: Dictionaries
+https://www.python-course.eu/python3_dictionaries.php 21/23
+Normally, we recommend not to implement too many steps in one programming
+expression, though it looks more impressive and the code is more compact. Using
+"talking" variable names in intermediate steps can enhance legibility. Though it might
+be alluring to create our previous dictionary just in one go:
+>>> country_specialities_dict =
+dict(list(zip(["pizza", "sauerkraut", "paella",
+"hamburger"], ["Italy", "Germany", "Spain",
+"USA"," Switzerland"])))
+>>> print(country_specialities_dict)
+{'paella': 'Spain', 'hamburger': 'USA',
+'sauerkraut': 'Germany', 'pizza': 'Italy'}
+>>>
+On the other hand, the code in the previous script is gilding the lily:
+dishes = ["pizza", "sauerkraut", "paella",
+"hamburger"]
+countries = ["Italy", "Germany", "Spain", "USA"]
+country_specialities_zip = zip(dishes,countries)
+print(list(country_specialities_zip))
+country_specialities_list =
+list(country_specialities_zip)
+country_specialities_dict =
+dict(country_specialities_list)
+print(country_specialities_dict)
+We get the same result, as if we would have called it in one go.
+
+53. You have to keep in mind that iterators exhaust
+themselves, if they are used. You can see this in the following interactive session:
+>>> l1 = ["a","b","c"]
+>>> l2 = [1,2,3]
+>>> c = zip(l1, l2)
+>>> for i in c:
+... print(i)
+...
+('a', 1)
+('b', 2)
+('c', 3)
+>>> for i in c:
+... print(i)
+...
+This effect can be seen by calling the list casting operator as well:
+>>> l1 = ["a","b","c"]
+>>> l2 = [1,2,3]
+>>> c = zip(l1,l2)
+>>> z1 = list(c)
+>>> z2 = list(c)
+>>> print(z1)
+[('a', 1), ('b', 2), ('c', 3)]
+>>> print(z2)
+[]
+As an exercise, you may muse about the following script.
+dishes = ["pizza", "sauerkraut", "paella",
+"hamburger"]
+countries = ["Italy", "Germany", "Spain", "USA"]
+country_specialities_zip = zip(dishes,countries)
+print(list(country_specialities_zip))
+country_specialities_list =
+list(country_specialities_zip)
+country_specialities_dict =
+dict(country_specialities_list)
+print(country_specialities_dict)
+If you start this script, you will see that the dictionary you want to create will be empty:
+$ python3 tricky_code.py
+[('pizza', 'Italy'), ('sauerkraut', 'Germany'),
+('paella', 'Spain'), ('hamburger', 'USA')]
+{}
+$
+
+############################################################################################################
+54. that applying "type" to an object returns the class of
+which the object is an instance of:
+
+x = [4, 5, 9]
+y = "Hello"
+print(type(x), type(y))
+The code above returned the following:
+<class 'list'> <class 'str'>
+
+55. If you apply type on the name of a class itself, you get the class "type" returned.
+print(type(list), type(str))
+The above Python code returned the following:
+<class 'type'> <class 'type'>
+
+56. This is similar to applying type on type(x) and type(y):
+x = [4, 5, 9]
+y = "Hello"
+print(type(x), type(y))
+print(type(type(x)), type(type(y)))
+This gets us the following result:
+<class 'list'> <class 'str'>
+<class 'type'> <class 'type'>
+
+57. A user-defined class (or the class "object") is an instance of the class "type". So, we can
+see, that classes are created from type. In Python3 there is no difference between
+"classes" and "types". They are in most cases used as synonyms.
+
+58. The fact that classes are instances of a class "type" allows us to program metaclasses.
+We can create classes, which inherit from the class "type". So, a metaclass is a subclass
+of the class "type".
+
+59. Instead of only one argument, type can be called with three parameters:
+type(classname, superclasses, attributes_dict)
+If type is called with three arguments, it will return a new type object. This provides us
+with a dynamic form of the class statement.
+(a) "classname" is a string defining the class name and becomes the name attribute;
+(b) "superclasses" is a list or tuple with the superclasses of our class. This list or tuple
+will become the bases attribute;
+(c) the attributes_dict is a dictionary, functioning as the namespace of our class. It
+contains the definitions for the class body and it becomes the dict attribute.
+
+60. class A:
+pass
+x = A()
+print(type(x))
+After having executed the Python code above we received the following result:
+<class '__main__.A'>
+We can use "type" for the previous class defintion as well:
+A = type("A", (), {})
+x = A()
+print(type(x))
+The previous Python code returned the following result:
+<class '__main__.A'>
+Generally speaking, this means, that we can define a class A with
+type(classname, superclasses, attributedict)
+When we call "type", the call method of type is called. The call method runs two other
+methods: new and init:
+type.__new__(typeclass, classname, superclasses,
+attributedict)
+type.__init__(cls, classname, superclasses,
+attributedict)
+
+The new method creates and returns the new class object, and after this the init method
+initializes the newly created object.
+
+61. class Robot:
+counter = 0
+def __init__(self, name):
+self.name = name
+def sayHello(self):
+return "Hi, I am " + self.name
+def Rob_init(self, name):
+self.name = name
+Robot2 = type("Robot2",
+(),
+{"counter":0,
+"__init__": Rob_init,
+"sayHello": lambda self: "Hi, I am
+" + self.name})
+x = Robot2("Marvin")
+print(x.name)
+print(x.sayHello())
+y = Robot("Marvin")
+print(y.name)
+print(y.sayHello())
+print(x.__dict__)
+print(y.__dict__)
+The previous Python code returned the following result:
+Marvin
+Hi, I am Marvin
+Marvin
+Hi, I am Marvin
+{'name': 'Marvin'}
+{'name': 'Marvin'}
+
+The class definitions for Robot and Robot2 are syntactically completely different, but
+they implement logically the same class.
+
+############################################################################################################
+62. We have two different kinds of decorators in Python:
+Function decorators
+Class decorators
+
+63. A decorator in Python is any callable
+Python object that is used to modify a function or a class. A reference to a function
+"func" or a class "C" is passed to a decorator and the decorator returns a modified
+function or class. The modified functions or classes usually contain calls to the original
+function "func" or class "C".
+
+64. First you have to know or remember that function names are references to
+functions and that we can assign multiple names to the same function:
+>>> def succ(x):
+... return x + 1
+...
+>>> successor = succ
+>>> successor(10)
+11
+>>> succ(10)
+11
+
+65. This means that we have two names, i.e. "succ" and "successor" for the same function.
+The next important fact is that we can delete either "succ" or "successor" without
+deleting the function itself.
+>>> del succ
+>>> successor(10)
+11
+
+66. 
+def our_decorator(func):
+def function_wrapper(x):
+print("Before calling " + func.__name__)
+func(x)
+print("After calling " + func.__name__)
+return function_wrapper
+@our_decorator
+def foo(x):
+print("Hi, foo has been called with " +
+str(x))
+foo("Hi")
+We can decorate every other function which takes one parameter with our decorator
+'our_decorator'. We demonstrate this in the following. We have slightly changed our
+function wrapper, so that we can see the result of the function calls:
+def our_decorator(func):
+def function_wrapper(x):
+print("Before calling " + func.__name__)
+res = func(x)
+print(res)
+print("After calling " + func.__name__)
+return function_wrapper
+@our_decorator
+def succ(n):
+return n + 1
+succ(10)
+The output of the previous program:
+Before calling succ
+11
+After calling succ
+
+67. CHECKING ARGUMENTS WITH A DECORATOR
+
+The following program uses a decorator function to ensure that the argument passed to
+the function factorial is a positive integer:
+def argument_test_natural_number(f):
+def helper(x):
+if type(x) == int and x > 0:
+return f(x)
+else:
+raise Exception("Argument is not an
+integer")
+return helper
+@argument_test_natural_number
+def factorial(n):
+if n == 1:
+return 1
+else:
+return n * factorial(n-1)
+for i in range(1,10):
+print(i, factorial(i))
+print(factorial(-1))
+
+68. COUNTING FUNCTION CALLS WITH DECORATORS
+
+def call_counter(func):
+def helper(x):
+helper.calls += 1
+return func(x)
+helper.calls = 0
+return helper
+@call_counter
+def succ(x):
+return x + 1
+print(succ.calls)
+for i in range(10):
+succ(i)
+print(succ.calls)
+
+69. 
+def call_counter(func):
+def helper(*args, **kwargs):
+helper.calls += 1
+return func(*args, **kwargs)
+helper.calls = 0
+return helper
+@call_counter
+def succ(x):
+return x + 1
+@call_counter
+def mul1(x, y=1):
+return x*y + 1
+print(succ.calls)
+for i in range(10):
+succ(i)
+mul1(3, 4)
+mul1(4)
+mul1(y=3, x=2)
+print(succ.calls)
+print(mul1.calls)
+
+The output looks like this:
+0
+10
+3
+
+70. 
+def greeting(expr):
+def greeting_decorator(func):
+def function_wrapper(x):
+print(expr + ", " + func.__name__ + "
+returns:")
+func(x)
+return function_wrapper
+return greeting_decorator
+@greeting("καλημερα")
+def foo(x):
+print(42)
+foo("Hi")
+The output:
+καλημερα, foo returns:
+42
+If we don't want or cannot use the "at" decorator syntax, we can do it with function
+calls:
+def greeting(expr):
+def greeting_decorator(func):
+def function_wrapper(x):
+print(expr + ", " + func.__name__ + " returns:")
+func(x)
+return function_wrapper
+return greeting_decorator
+def foo(x):
+print(42)
+greeting2 = greeting("καλημερα")
+foo = greeting2(foo)
+foo("Hi")
+The result is the same as before:
+καλημερα, foo returns:
+42
+Of course, we don't need the additional definition of "greeting2". We can directly apply
+the result of the call "greeting("καλημερα")" on "foo":
+foo = greeting("καλημερα")(foo)
+
+71. USING WRAPS FROM FUNCTOOLS
+
+The way we have defined decorators so far hasn't taken into account that the attributes
+__name__ (name of the function),
+__doc__ (the docstring) and
+__module__ (The module in which the function is defined)
+of the original functions will be lost after the decoration.
+The following decorator will be saved in a file greeting_decorator.py:
+
+def greeting(func):
+def function_wrapper(x):
+""" function_wrapper of greeting """
+print("Hi, " + func.__name__ + "
+returns:")
+return func(x)
+return function_wrapper
+We call it in the following program:
+from greeting_decorator import greeting
+@greeting
+def f(x):
+""" just some silly function """
+return x + 4
+f(10)
+print("function name: " + f.__name__)
+print("docstring: " + f.__doc__)
+print("module name: " + f.__module__)
+We get the following "unwanted" results:
+Hi, f returns:
+function name: function_wrapper
+docstring: function_wrapper of greeting
+module name: greeting_decorator
+
+72. 
+We can import the decorator "wraps" from functools instead and decorate our function
+in the decorator with it:
+from functools import wraps
+def greeting(func):
+@wraps(func)
+def function_wrapper(x):
+""" function_wrapper of greeting """
+print("Hi, " + func.__name__ + "
+returns:")
+return func(x)
+return function_wrapper
+
+73. USING A CLASS AS A DECORATOR
+
+class decorator2:
+def __init__(self, f):
+self.f = f
+def __call__(self):
+print("Decorating", self.f.__name__)
+self.f()
+@decorator2
+def foo():
+print("inside foo()")
+foo()
+
+Both versions return the same output:
+Decorating foo
+inside foo()
+
+############################################################################################################
+
+74. List comprehension is a complete substitute for the lambda function as well as the
+functions map(), filter() and reduce().List comprehension is an elegant way to define and create list in Python.
+
+75. convert Celsius values into Fahrenheit and vice versa.
+>>> Celsius = [39.2, 36.5, 37.3, 37.8]
+>>> Fahrenheit = [ ((float(9)/5)*x + 32) for x in
+Celsius ]
+>>> print(Fahrenheit)
+[102.56, 97.700000000000003, 99.140000000000001,
+100.03999999999999]
+>>>
+
+76.
+The following list comprehension creates the Pythagorean triples:
+>>> [(x,y,z) for x in range(1,30) for y in
+range(x,30) for z in range(y,30) if x**2 + y**2 ==
+z**2]
+[(3, 4, 5), (5, 12, 13), (6, 8, 10), (7, 24, 25),
+(8, 15, 17), (9, 12, 15), (10, 24, 26), (12, 16,
+20),(15, 20, 25), (20, 21, 29)]
+
+77.
+>>> colours = [ "red", "green", "yellow", "blue" ]
+>>> things = [ "house", "car", "tree" ]
+>>> coloured_things = [ (x,y) for x in colours for
+y in things ]
+>>> print(coloured_things)
+[('red', 'house'), ('red', 'car'), ('red',
+'tree'), ('green', 'house'), ('green', 'car'),
+('green', 'tree'), ('yellow', 'house'), ('yellow',
+'car'), ('yellow', 'tree'), ('blue', 'house'),
+('blue', 'car'), ('blue', 'tree')]
+>>>
+
+78. GENERATOR COMPREHENSION
+
+a generator comprehension returns a generator instead of a list.
+>>> x = (x **2 for x in range(20))
+>>> print(x)
+at 0xb7307aa4>
+>>> x = list(x)
+>>> print(x)
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121,
+144, 169, 196, 225, 256, 289, 324, 361]
+
+79. SET COMPREHENSION
+
+>>> from math import sqrt
+>>> n = 100
+>>> sqrt_n = int(sqrt(n))
+>>> no_primes = {j for i in range(2, sqrt_n+1) for
+j in range(i*2, n, i)}
+>>> no_primes
+{4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22,
+24, 25, 26, 27, 28, 30, 32, 33, 34, 35, 36, 38,
+39, 40, 42, 44, 45, 46, 48, 49, 50, 51, 52, 54,
+55, 56, 57, 58, 60, 62, 63, 64, 65, 66, 68, 69,
+70, 72, 74, 75, 76, 77, 78, 80, 81, 82, 84, 85,
+86, 87, 88, 90, 91, 92, 93, 94, 95, 96, 98, 99}
+>>> primes = {i for i in range(2, n) if i not in
+no_primes}
+>>> print(primes)
+{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41,
+43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97}
+>>>
+
+80. RECURSIVE FUNCTION TO CALCULATE THE PRIMES
+
+The following Python script uses a recursive function to calculate the prime numbers. It
+incorporates the fact that it is enough to examine the multiples of the prime numbers up
+to the square root of n:
+from math import sqrt
+def primes(n):
+if n == 0:
+return []
+elif n == 1:
+return []
+else:
+p = primes(int(sqrt(n)))
+no_p = {j for i in p for j in range(i*2,
+n+1, i)}
+p = {x for x in range(2, n + 1) if x not
+in no_p}
+return p
+for i in range(1,50):
+print(i, primes(i))
+
+############################################################################################################
+R E G U L A R E X P R E S S I O N S
+
+81. [a-e] a simplified writing for [abcde] or [0-5] denotes [012345]
+
+82. Exercise:
+What character class is described by [-a-z]?
+Answer The character "-" and all the characters "a", "b", "c" all the way up to "z".
+
+83. The only other special character inside square brackets (character class choice) is the
+caret "^". If it is used directly after an opening sqare bracket, it negates the choice. [^0-
+9] denotes the choice "any character but a digit". The position of the caret within the
+square brackets is crucial. If it is not positioned as the first character following the
+opening square bracket, it has no special meaning.
+[^abc] means anything but an "a", "b" or "c"
+[a^bc] means an "a", "b", "c" or a "^"
+
+84. 
+M1
+---
+import re
+fh = open("simpsons_phone_book.txt")
+for line in fh:
+if re.search(r"J.*Neu",line):
+print(line.rstrip())
+fh.close()
+The program above returns the following results:
+Jack Neu 555-7666
+Jeb Neu 555-5543
+Jennifer Neu 555-3652
+
+M2
+---
+Instead of downloading simpsons_phone_book.txt, we can use the file directly from the
+website by using urlopen from the module urllib.request:
+import re
+from urllib.request import urlopen
+with urlopen('https://www.pythoncourse.
+eu/simpsons_phone_book.txt') as fh:
+for line in fh:
+# line is a byte string so we transform it
+to utf-8:
+line = line.decode('utf-8').rstrip()
+if re.search(r"J.*Neu",line):
+print(line)
+
+85. PREDEFINED CHARACTER CLASSES
+\d Matches any decimal digit; equivalent to the set [0-9].
+\D The complement of \d. It matches any non-digit character; equivalent to the set
+[^0-9].
+\s Matches any whitespace character; equivalent to [ \t\n\r\f\v].
+\S The complement of \s. It matches any non-whitespace character; equiv. to [^
+\t\n\r\f\v].
+\w
+Matches any alphanumeric character; equivalent to [a-zA-Z0-9_]. With LOCALE,
+it will match the set [a-zA-Z0-9_] plus characters defined as letters for the current
+locale.
+\W Matches the complement of \w.
+\b Matches the empty string, but only at the start or end of a word.
+\B Matches the empty string, but not at the start or end of a word.
+\\ Matches a literal backslash.
+
+86. >>> import re
+>>> s1 = "Mayer is a very common Name"
+>>> s2 = "He is called Meyer but he isn't German."
+>>> print(re.search(r"^M[ae][iy]er", s1))
+<_sre.SRE_Match object at 0x7fc59c5f26b0>
+>>> print(re.search(r"^M[ae][iy]er", s2))
+None
+But what happens if we concatenate the two strings s1 and s2 in the following way:
+s = s2 + "\n" + s1
+Now the string doesn't start with a Maier of any kind, but the name is following a
+newline character:
+>>> s = s2 + "\n" + s1
+>>> print(re.search(r"^M[ae][iy]er", s))
+None
+>>>
+
+87.
+>>> print(re.search(r"^M[ae][iy]er", s,
+re.MULTILINE))
+<_sre.SRE_Match object at 0x7fc59c5f26b0>
+>>> print(re.search(r"^M[ae][iy]er", s, re.M))
+<_sre.SRE_Match object at 0x7fc59c5f26b0>
+>>> print(re.match(r"^M[ae][iy]er", s, re.M))
+None
+>>>
+The previous example also shows that the multiline mode doesn't affect the match
+method. match() never checks anything but the beginning of the string for a match.
+
+88.
+>>> print(re.search(r"Python\.$","I like
+Python."))
+<_sre.SRE_Match object at 0x7fc59c5f26b0>
+>>> print(re.search(r"Python\.$","I like Python
+and Perl."))
+None
+>>> print(re.search(r"Python\.$","I like
+Python.\nSome prefer Java or Perl."))
+None
+>>> print(re.search(r"Python\.$","I like
+Python.\nSome prefer Java or Perl.", re.M))
+<_sre.SRE_Match object at 0x7fc59c5f26b0>
+>>>
+
+89.
+If we try to figure out a fitting regular expression, we realize that we miss something. A
+way to tell the computer "this "e" may or may not occur". A question mark is used as a
+notation for this. A question mark declares that the preceding character or expression is
+optional.
+The final Mayer-Recognizer looks now like this:
+r"M[ae][iy]e?r"
+A subexpression is grouped by round brackets and a question mark following such a
+group means that this group may or may not exist. With the following expression we
+can match dates like "Feb 2011" or February 2011":
+r"Feb(ruary)? 2011"
+
+90. QUANTIFIERS
+
+A quantifier after a token, which can be a single character or group in brackets,
+specifies how often that preceding element is allowed to occur. The most common
+quantifiers are
+the question mark ?
+the asterisk or star character *, which is derived from the Kleene star
+and the plus sign +, derived from the Kleene cross
+
+91.
+Exercise:
+Write a regular expression which matches strings which starts with a sequence of digits
+- at least one digit - followed by a blank.
+Solution:
+r"^[0-9][0-9]* "
+
+92.
+A star following a character or a subexpression group means that this
+expression or character may be repeated arbitrarily, even zero times.
+r"[0-9]*"
+
+93. 
+Using + or * are too unspecific for our purpose and the following expression seems to
+be too clumsy:
+r"^[0-9][0-9][0-9][0-9] [A-Za-z]+"
+Fortunately, there is an alternative available:
+r"^[0-9]{4} [A-Za-z]*"
+
+94. 
+r"^[0-9]{4,5} [A-Z][a-z]{2,}"
+The general syntax is {from, to}: this means that the expression has to appear at least
+"from" times and not more than "to" times. {, to} is an abbreviated spelling for {0,to}
+and {from,} is an abbreviation for "at least from times but no upper limit"
+
+95. A match object contains the methods group(), span(), start() and end(), as can be seen in
+the following application:
+
+>>> import re
+>>> mo = re.search("[0-9]+", "Customer number:
+232454, Date: February 12, 2011")
+>>> mo.group()
+'232454'
+>>> mo.span()
+(17, 23)
+>>> mo.start()
+17
+
+96.
+>>> mo.end()
+23
+>>> mo.span()[0]
+17
+>>> mo.span()[1]
+23
+>>>
+These methods are not difficult to understand. span() returns a tuple with the start and
+end position, i.e. the string index where the regular expression started matching in the
+string and ended matching. The methods start() and end() are in a way superfluous as
+the information is contained in span(), i.e. span()[0] is equal to start() and span()[1] is
+equal to end(). group(), if called without argument, returns the substring, which had
+been matched by the complete regular expression. With the help of group() we are also
+capable of accessing the matched substring by grouping parentheses, to get the matched
+substring of the n-th group, we call group() with the argument n: group(n).
+We can also call group with more than integer argument, e.g. group(n,m). group(n,m) -
+provided there exists a subgoup n and m - returns a tuple with the matched substrings.
+group(n,m) is equal to (group(n), group(m)):
+
+>>> import re
+>>> mo = re.search("([0-9]+).*: (.*)", "Customer
+number: 232454, Date: February 12, 2011")
+>>> mo.group()
+'232454, Date: February 12, 2011'
+>>> mo.group(1)
+'232454'
+>>> mo.group(2)
+'February 12, 2011'
+>>> mo.group(1,2)
+('232454', 'February 12, 2011')
+>>>
+
+97. A very intuitive example are XML or HTML tags. E.g. let's assume we have a file
+(called "tags.txt") with content like this:
+<composer>Wolfgang Amadeus Mozart</composer>
+<author>Samuel Beckett</author>
+<city>London</city>
+We want to rewrite this text automatically to
+composer: Wolfgang Amadeus Mozart
+author: Samuel Beckett
+city: London
+
+import re
+fh = open("tags.txt")
+for i in fh:
+res = re.search(r"<([a-z]+)>(.*)</\1>",i)
+print(res.group(1) + ": " + res.group(2))
+
+98.
+import re
+l = ["555-8396 Neu, Allison",
+"Burns, C. Montgomery",
+"555-5299 Putz, Lionel",
+"555-7334 Simpson, Homer Jay"]
+for i in l:
+res = re.search(r"([0-9-]*)\s*([A-Za-z]+),\s+
+(.*)", i)
+print(res.group(3) + " " + res.group(2) + " "
++ res.group(1))
+
+output -
+Allison Neu 555-8396
+C. Montgomery Burns
+Lionel Putz 555-5299
+Homer Jay Simpson 555-7334
+
+99.
+Using capturing groups instead of "numbered" capturing groups allows you to assign
+descriptive names instead of automatic numbers to the groups. In the following
+example, we demonstrate this approach by catching the hours, minutes and seconds
+from a UNIX date string.
+>>> import re
+>>> s = "Sun Oct 14 13:47:03 CEST 2012"
+>>> expr = r"\b(?P<hours>\d\d):(?P<minutes>\d\d):
+(?P<seconds>\d\d)\b"
+>>> x = re.search(expr,s)
+>>> x.group('hours')
+'13'
+>>> x.group('minutes')
+'47'
+>>> x.start('minutes')
+14
+>>> x.end('minutes')
+16
+>>> x.span('seconds')
+(17, 19)
+>>>
+
+100.COMPREHENSIVE PYTHON EXERCISE
+
+In this comprehensive exercise, we have to bring together the information of two files.
+In the first file, we have a list of nearly 15000 lines of post codes with the
+corresponding city names plus additional information. Here are some arbitrary lines of
+this file:
+osm_id ort plz bundesland
+1104550 Aach 78267 Baden-Württemberg
+...
+446465 Freiburg (Elbe) 21729 Niedersachsen
+62768 Freiburg im Breisgau 79098 Baden-Württemberg
+62768 Freiburg im Breisgau 79100 Baden-Württemberg
+62768 Freiburg im Breisgau 79102 Baden-Württemberg
+...
+454863 Fulda 36037 Hessen
+454863 Fulda 36039 Hessen
+454863 Fulda 36041 Hessen
+...
+1451600 Gallin 19258 Mecklenburg-Vorpommern
+449887 Gallin-Kuppentin 19386 Mecklenburg-
+Vorpommern
+10/31/2019 Python Tutorial: Regular Expression
+https://www.python-course.eu/python3_re.php 23/27
+...
+57082 Gärtringen 71116 Baden-Württemberg
+1334113 Gartz (Oder) 16307 Brandenburg
+...
+2791802 Giengen an der Brenz 89522 Baden-
+Württemberg
+2791802 Giengen an der Brenz 89537 Baden-
+Württemberg
+...
+1187159 Saarbrücken 66133 Saarland
+1256034 Saarburg 54439 Rheinland-Pfalz
+1184570 Saarlouis 66740 Saarland
+1184566 Saarwellingen 66793 Saarland
+The other file contains a list of the 19 largest German cities. Each line consists of the
+rank, the name of the city, the population, and the state (Bundesland):
+1. Berlin 3.382.169 Berlin
+2. Hamburg 1.715.392 Hamburg
+3. München 1.210.223 Bayern
+4. Köln 962.884 Nordrhein-Westfalen
+5. Frankfurt am Main 646.550 Hessen
+6. Essen 595.243 Nordrhein-Westfalen
+7. Dortmund 588.994 Nordrhein-Westfalen
+8. Stuttgart 583.874 Baden-Württemberg
+9. Düsseldorf 569.364 Nordrhein-Westfalen
+10. Bremen 539.403 Bremen
+11. Hannover 515.001 Niedersachsen
+12. Duisburg 514.915 Nordrhein-Westfalen
+13. Leipzig 493.208 Sachsen
+14. Nürnberg 488.400 Bayern
+15. Dresden 477.807 Sachsen
+16. Bochum 391.147 Nordrhein-Westfalen
+17. Wuppertal 366.434 Nordrhein-Westfalen
+10/31/2019 Python Tutorial: Regular Expression
+https://www.python-course.eu/python3_re.php 24/27
+18. Bielefeld 321.758 Nordrhein-Westfalen
+19. Mannheim 306.729 Baden-Württemberg
+Our task is to create a list with the top 19 cities, with the city names accompanied by
+the postal code. If you want to test the following program, you have to save the list
+above in a file called largest_cities_germany.txt and you have to download and save the
+list of German post codes
+import re
+with open("zuordnung_plz_ort.txt", encoding="utf-
+8") as fh_post_codes:
+codes4city = {}
+for line in fh_post_codes:
+res = re.search(r"[\d ]+([^\d]+[az])\
+s(\d+)", line)
+if res:
+city, post_code = res.groups()
+if city in codes4city:
+codes4city[city].add(post_code)
+else:
+codes4city[city] = {post_code}
+with open("largest_cities_germany.txt",
+encoding="utf-8") as fh_largest_cities:
+for line in fh_largest_cities:
+re_obj = re.search(r"^[0-9]{1,2}\.\s+
+([\w\s-]+\w)\s+[0-9]", line)
+city = re_obj.group(1)
+print(city, codes4city[city])
+The output of this file looks like this, but we have left out all but the first three postal
+codes for every city:
+Berlin {'10715', '13158', '13187', ...}
+Hamburg {'22143', '22119', '22523', ...}
+München {'80802', '80331', '80807', ...}
+Köln {'51065', '50997', '51067', ...}
+Frankfurt am Main {'65934', '60529', '60308', ...}
+Essen {'45144', '45134', '45309', ... }
+Dortmund {'44328', '44263', '44369',...}
+Stuttgart {'70174', '70565', '70173', ...}
+Düsseldorf {'40217', '40589', '40472', ...}
+Bremen {'28207', '28717', '28777', ...}
+Hannover {'30169', '30419', '30451', ...}
+Duisburg {'47137', '47059', '47228', ...}
+Leipzig {'4158', '4329', '4349', ...'}
+Nürnberg {'90419', '90451', '90482', ...}
+Dresden {'1217', '1169', '1324', ...}
+Bochum {'44801', '44892', '44805', ...}
+Wuppertal {'42109', '42119', '42287', ...}
+Bielefeld {'33613', '33607', '33699', ...}
+Mannheim {'68161', '68169', '68167', ...}
+
+101. ANOTHER COMPREHENSIVE EXAMPLE
+
+A regular expression for matching this superset of UK postcodes looks like this:
+r"\b[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UWZ]{
+2}\b"
+The following Python program uses the regexp above:
+import re
+example_codes = ["SW1A 0AA", # House of Commons
+"SW1A 1AA", # Buckingham Palace
+"SW1A 2AA", # Downing Street
+"BX3 2BB", # Barclays Bank
+"DH98 1BT", # British Telecom
+"N1 9GU", # Guardian Newspaper
+"E98 1TT", # The Times
+"TIM E22", # a fake postcode
+"A B1 A22", # not a valid
+postcode
+"EC2N 2DB", # Deutsche Bank
+"SE9 2UG", # University of
+Greenwhich
+"N1 0UY", # Islington, London
+"EC1V 8DS", # Clerkenwell, London
+"WC1X 9DT", # WC1X 9DT
+"B42 1LG", # Birmingham
+"B28 9AD", # Birmingham
+"W12 7RJ", # London, BBC News
+Centre
+"BBC 007" # a fake postcode
+]
+
+pc_re = r"[A-z]{1,2}[0-9R][0-9A-Z]? [0-9][ABDHJLNP-
+UW-Z]{2}"
+for postcode in example_codes:
+r = re.search(pc_re, postcode)
+if r:
+print(postcode + " matched!")
+else:
+print(postcode + " is not a valid
+postcode!")
+
+############################################################################################################
+
+PYTEST
+
+102. Test files which pytest will use for testing have to start with test_ or end with
+_test.py
+
+103. 
+The first file is the file which should be tested. We assume that it is saved as
+fibonacci.py:
+def fib(n):
+old, new = 0, 1
+for _ in range(n):
+old, new = new, old + new
+return old
+Now, we have to provide the code for the file test_fibonacci.py. This file will be used by 'pytest':
+from fibonacci import fib
+def test_fib():
+assert fib(0) == 0
+assert fib(1) == 1
+assert fib(10) == 55
+We call pytest in a command shell in the directory where the two file shown above reside:
+(base) bernd@moon:~$ pytest
+The result of this code can be seen in the following:
+============================= test session starts
+==============================
+platform linux -- Python 3.7.1, pytest-4.0.2, py-1.7.0, pluggy-0.8.0
+rootdir: /home/bernd/Dropbox
+(Bodenseo)/kurse/python_en/examples/pytest/pytest_ex1, inifile:
+plugins: remotedata-0.3.1, openfiles-0.3.1, doctestplus-0.2.0, arraydiff-0.3
+collected 1 item
+test_fibonacci.py .
+[100%]
+=========================== 1 passed in 0.01 seconds
+===========================
+
+104.
+The files to be tested:
+fibonacci.py
+foobar_plus.py
+foobar.py
+The test files:
+test_fibonacci.py
+
+
+############################################################################################################
+
+OPERATOR OVERLOADING
+
+1. Operator Overloading means giving extended meaning beyond their predefined operational meaning.
+
+2.
+# Python program to show use of
+# + operator for different purposes.
+print(1 + 2)
+# concatenate two strings
+print("Geeks"+"For")
+# Product two numbers
+print(3 * 4)
+# Repeat the String
+print("Geeks"*4)
+
+Output:
+3
+GeeksFor
+12
+GeeksGeeksGeeksGeeks
+
+3. 
+
+############################################################################################################
+
+
+############################################################################################################
+
+
+############################################################################################################
+
+PYTHON ESSENTIAL TRAINING
+https://www.linkedin.com/learning/python-essential-training-2/exercise-files
+
+1.
+>>> import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+>>> 
+
+2. Everything is an object.
+3. print is a function.
+4. All text is now unicode.
+5. Question 2 of 2
+Why should you select UTF-8 as the default editor encoding?
+
+You are correct!
+so it can match the Unicode standard of Python 3
+6. Shebang line
