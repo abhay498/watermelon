@@ -2995,4 +2995,31 @@ print(odd)
 (0, 1)
 >>> 
 #--------------------------------------------------------------------------------------
+98. # maximum continuous zeros
 
+k = 110001100001
+number = str(k)
+
+count = 0 
+max_count = 0 
+
+i = 0 
+while i < len(number):
+    if number[i] == '0':
+        count = 1 
+        j = i + 1
+        while j < len(number):
+            if number[j] == '0':
+                count += 1 
+                j += 1
+            else:
+                break
+            
+            
+        if count > max_count:
+            max_count = count
+        
+    i += 1    
+print(max_count)
+
+#--------------------------------------------------------------------------------------
