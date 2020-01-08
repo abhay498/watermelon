@@ -1,3 +1,5 @@
+# Copyright © 2020 Elephant. All rights reserved
+
 Keeping main counter as i
 
 #--------------------------------------------------------------------------------------
