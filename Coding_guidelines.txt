@@ -359,10 +359,26 @@ class C(object):
 •	While Python’s built-in data types such as dictionaries appear to have atomic operations, there are corner cases where they aren’t atomic (e.g. if __hash__ or __eq__ are implemented as Python methods) and their atomicity should not be relied upon. Neither should you rely on atomic variable assignment (since this in turn depends on dictionaries).
 •	Use the Queue module’s Queue data type as the preferred way to communicate data between threads. Otherwise, use the threading module and its locking primitives. Learn about the proper use of condition variables so you can use threading.Condition instead of using lower-level locks.
 
+19.  Power Features
+•	Avoid these features in your code.
+•	Python is an extremely flexible language and gives you many fancy features such as custom metaclasses, access to bytecode, on-the-fly compilation, dynamic inheritance, object reparenting, import hacks, reflection (e.g. some uses of getattr()), modification of system internals, etc.
+•	These are powerful language features. They can make your code more compact.
+•	It’s very tempting to use these “cool” features when they’re not absolutely necessary. 
+•	It’s harder to read, understand, and debug code that’s using unusual features underneath.
+•	It doesn’t seem that way at first (to the original author), but when revisiting the code, it tends to be more difficult than code that is longer but is straightforward.
+•	Standard library modules and classes that internally use these features are okay to use (for example, abc.ABCMeta, collections.namedtuple, dataclasses, and enum).
 
+20. Type Annotated Code
+•	You can annotate Python 3 code with type hints according to PEP-484, and type-check the code at build time with a type checking tool like pytype.
+•	Type annotations can be in the source or in a stub pyi file. Whenever possible, annotations should be in the source. Use pyi files for third-party or extension modules.
+•	Type annotations (or “type hints”) are for function or method arguments and return values:
+def func(a: int) -> List[int]:
+•	You can also declare the type of a variable using a special comment:
+a = SomeFunc()  # type: SomeType
 
-
-
+•	Type annotations improve the readability and maintainability of your code. The type checker will convert many runtime errors to build-time errors, and reduce your ability to use Power Features.
+•	You will have to keep the type declarations up to date. You might see type errors that you think are valid code. Use of a type checker may reduce your ability to use Power Features.
+•	You are strongly encouraged to enable Python type analysis when updating code. When adding or modifying public APIs, include type annotations and enable checking via pytype in the build system. As static analysis is relatively new to Python, we acknowledge that undesired side-effects (such as wrongly inferred types) may prevent adoption by some projects. In those situations, authors are encouraged to add a comment with a TODO or link to a bug describing the issue(s) currently preventing type annotation adoption in the BUILD file or in the code itself as appropriate.
 
 ### Till here ###
 
@@ -388,9 +404,6 @@ class C(object):
 15. Parantheses -> Use parentheses sparingly.
 	It is fine, though not required, to use parentheses around tuples. Do not use them in return statements or conditional statements
 	unless using parentheses for implied line continuation or to indicate a tuple.
-
-16. Use of from __future__ import statements is encouraged. All new code should contain the following and existing code should be updated to be compatible when possible:
-	from __future__ import absolute_import from __future__ import division from __future__ import print_function
 
 18. When to use is and == in python ?
     https://stackoverflow.com/questions/6570371/when-to-use-and-when-to-use-is
