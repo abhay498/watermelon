@@ -107,20 +107,80 @@ import jodie
 •	A class can be defined inside of a method, function, or class. 
 •	Nesting can make your outer function longer and less readable.
 •	They are fine with some caveats. Avoid nested functions or classes except when closing over a local value. Do not nest a function just to hide it from users of a module. Instead, prefix its name with an _ at the module level so that it can still be accessed by tests.
+7. Comprehensions & Generator Expressions
+•	List, Dict, and Set comprehensions as well as generator expressions are okay to use for simple cases. Each portion must fit on one line: mapping expression, for clause, filter expression. Multiple for clauses or filter expressions are not permitted. Use loops instead when things get more complicated.
+•	Yes:
+  result = [mapping_expr for value in iterable if filter_expr]
+
+  result = [{'key': value} for value in iterable
+            if a_long_filter_expression(value)]
+
+  result = [complicated_transform(x)
+            for x in iterable if predicate(x)]
+
+  descriptive_name = [
+      transform({'key': key, 'value': value}, color='black')
+      for key, value in generate_iterable(some_input)
+      if complicated_condition_is_met(key, value)
+  ]
+
+  result = []
+  for x in range(10):
+      for y in range(5):
+          if x * y > 10:
+              result.append((x, y))
+
+  return {x: complicated_transform(x)
+          for x in long_generator_function(parameter)
+          if x is not None}
+
+  squares_generator = (x**2 for x in range(10))
+
+  unique_names = {user.name for user in users if user is not None}
+
+  eat(jelly_bean for jelly_bean in jelly_beans
+      if jelly_bean.color == 'black')
+
+•	No:
+  result = [complicated_transform(
+                x, some_argument=x+1)
+            for x in iterable if predicate(x)]
+
+  result = [(x, y) for x in range(10) for y in range(5) if x * y > 10]
+
+  return ((x, y, z)
+          for x in range(5)
+          for y in range(5)
+          if x != y
+          for z in range(5)
+          if y != z)
+8.   Default Iterators and Operators
+•	Use default iterators and operators for types that support them, like lists, dictionaries, and files. The built-in types define iterator methods, too. Prefer these methods to methods that return lists, except that you should not mutate a container while iterating over it. Never use Python 2 specific iteration methods such as dict.iter*() unless necessary.
+•	Yes:  for key in adict: ...
+      	if key not in adict: ...
+      	if obj in alist: ...
+      	for line in afile: ...
+      	for k, v in adict.items(): ...
+      	for k, v in six.iteritems(adict): ...
+
+•	No:   for key in adict.keys(): ...
+      	if not adict.has_key(key): ...
+      	for line in afile.readlines(): ...
+      	for k, v in dict.iteritems(): ...
+9. Generators
+•	Use generators as needed.   
+•	A generator function returns an iterator that yields a value each time it executes a yield statement. After it yields a value, the runtime state of the generator function is suspended until the next value is needed.
+•	Pros : Simpler code, because the state of local variables and control flow are preserved for each call. A generator uses less memory than a function that creates an entire list of values at once.
+•	Cons: None
+•	Fine. Use “Yields:” rather than “Returns:” in the docstring for generator functions.
+
+10. Lambda Functions
+•	Okay to use them for one-liners. If the code inside the lambda function is longer than 60-80 chars, it’s probably better to define it    as a regular nested function.
+•	For common operations like multiplication, use the functions from the operator module instead of lambda functions. For example, prefer operator.mul to lambda x, y: x * y.
 ### Till here ###
-6. List, Set and Dictionary Comprehensions & Generator Expressions
-   Okay to use for simple cases. Each portion must fit on one line: mapping expression, for clause, filter expression. Multiple for
-   clauses or filter expressions are not permitted. Use loops instead when things get more complicated.
-
-7. Generators
-   A generator function returns an iterator that yields a value each time it executes a yield statement. After it yields a value, the      runtime state of the generator function is suspended until the next value is needed.
-
-8. Okay to use them for one-liners. If the code inside the lambda function is longer than 60-80 chars, it’s probably better to define it    as a regular nested function.
-   For common operations like multiplication, use the functions from the operator module instead of lambda functions. For example,          prefer operator.mul to lambda x, y: x * y.
-
-9. Conditional Expressions [ Okay for simple cases ]
-
-Okay to use for simple cases. Each portion must fit on one line: true-expression, if-expression, else-expression. Use a complete if statement when things get more complicated.
+9. Conditional Expressions 
+•	Conditional expressions (sometimes called a “ternary operator”) are mechanisms that provide a shorter syntax for if statements. For example: x = 1 if cond else 2.
+•	Okay to use for simple cases. Each portion must fit on one line: true-expression, if-expression, else-expression. Use a complete if statement when things get more complicated.
 
 one_line = 'yes' if predicate(value) else 'no'
 slightly_split = ('yes' if predicate(value)
