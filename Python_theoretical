@@ -4,9 +4,10 @@
 2. User-defined functions vs. Built-in / Pre-defined functions
    https://stackoverflow.com/questions/17159904/user-defined-functions-vs-built-in-pre-defined-functions
 
-3.   
- 
+3.   https://docs.python.org/3/glossary.html
 
+4.
+ 
 Algorithm	      Time Complexity	               Space Complexity
                Best	 Average	       Worst	               Worst
 Quicksort	   Ω(n log(n))	 Θ(n log(n))	O(n^2)	      O(log(n))
