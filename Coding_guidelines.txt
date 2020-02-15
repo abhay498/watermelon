@@ -1,14 +1,14 @@
 Coding guidelines and respective tools with respect Python 3.6 and above versions
 ----------------------------------------------------------------------------------------------------------------
 
-1. Code formatter - autopep8, yapf
+1. Code formatter - yapf, autopep8.
 2. Pylint
-  •	Make sure to run pylint on your code.
-  •	pylint is a tool for finding bugs and style problems in Python source code.
-  •	pylint isn’t perfect. To take advantage of it, we’ll need to sometimes: 
+  • Make sure to run pylint on your code.
+  • pylint is a tool for finding bugs and style problems in Python source code.
+  • pylint isn’t perfect. To take advantage of it, we’ll need to sometimes: 
     	  a) Write around it 
-		  b) Suppress its warnings or 
-		  c) Improve it.
+          b) Suppress its warnings or 
+          c) Improve it.
   •	https://pypi.org/project/pylint/
   •	To suppress warnings, you can set a line-level comment:
    	   dict = 'something awful'  # Bad Idea... pylint: disable=redefined-builtin
