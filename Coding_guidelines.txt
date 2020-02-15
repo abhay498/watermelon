@@ -696,46 +696,183 @@ No: class SampleClass:
 
 •	Inheriting from object is needed to make properties work properly in Python 2 and can protect your code from potential incompatibility with Python 3. It also defines special methods that implement the default semantics of objects including __new__, __init__, __delattr__, __getattribute__, __setattr__, __hash__, __repr__, and __str__.
 
+35. Strings
+•	Use the format method or the % operator for formatting strings, even when the parameters are all strings.
+•	Use your best judgment to decide between + and % (or format) though.
 
-### Till here ###
+•	Yes: x = a + b
+     x = '%s, %s!' % (imperative, expletive)
+     x = '{}, {}'.format(first, second)
+     x = 'name: %s; score: %d' % (name, n)
+     x = 'name: {}; score: {}'.format(name, n)
+     x = f'name: {name}; score: {n}'  # Python 3.6+
 
-13.  Imports should be on separate lines.
+No: x = '%s%s' % (a, b)  # use + in this case
+    x = '{}{}'.format(a, b)  # use + in this case
+    x = first + ', ' + second
+    x = 'name: ' + name + '; score: ' + str(n)
+•	Avoid using the + and += operators to accumulate a string within a loop. Since strings are immutable, this creates unnecessary temporary objects and results in quadratic rather than linear running time. Instead, add each substring to a list and ''.join the list after the loop terminates (or, write each substring to a io.BytesIO buffer).
 
-9. Be consistent with your choice of string quote character within a file. Pick ' or " and stick with it.
+•	Yes: items = ['<table>']
+     for last_name, first_name in employee_list:
+         items.append('<tr><td>%s, %s</td></tr>' % (last_name, first_name))
+     items.append('</table>')
+     employee_table = ''.join(items)
+No: employee_table = '<table>'
+    for last_name, first_name in employee_list:
+        employee_table += '<tr><td>%s, %s</td></tr>' % (last_name, first_name)
+    employee_table += '</table>'
 
-10. Prefer """ for multi-line strings rather than ''' . Projects may choose to use ''' for all non-docstring multi-line strings if and only if they also use ' for regular strings.
-	Docstrings must use """ regardless.
+•	Be consistent with your choice of string quote character within a file. Pick ' or " and stick with it. It is okay to use the other quote character on a string to avoid the need to \\ escape within the string.
 
-11. If a class inherits from no other base classes, explicitly inherit from object . This also applies to nested classes.
+•	Yes:
+  	Python('Why are you hiding your eyes?')
+	Gollum("I'm scared of lint errors.")
+        Narrator('"Good!" thought a happy Python reviewer.')
+       No:
+	Python("Why are you hiding your eyes?")
+  	Gollum('The lint. It burns. It burns us.')
+	Gollum("Always the great lint. Watching. Watching.")
+•	Prefer """ for multi-line strings rather than '''.
+•	Docstrings must use """ regardless.
+•	Multi-line strings do not flow with the indentation of the rest of the program. If you need to avoid embedding extra space in the string, use either concatenated single-line strings or a multi-line string with textwrap.dedent() to remove the initial space on each line:
 
-12. Classes should have a docstring below the class definition describing the class. If your class has public attributes,
-	they should be documented here in an Attributes section
+•	No:
+  long_string = """This is pretty ugly.
+Don't do this.
+"""
+•	Yes:
+  long_string = """This is fine if your use case can accept
+      extraneous leading spaces."""
+•	Yes:
+  long_string = ("And this is fine if you can not accept\n" +
+                 "extraneous leading spaces.")
+•	Yes:
+  long_string = ("And this too is fine if you can not accept\n"
+                 "extraneous leading spaces.")
+•	Yes:
+  import textwrap
 
-13. List all exceptions that are relevant to the interface.
+  long_string = textwrap.dedent("""\
+      This is also fine, because textwrap.dedent()
+      will collapse common leading spaces in each line.""")
 
-14. The docstring should be descriptive ( """Fetches rows from a Bigtable.""" ) rather than
-	imperative ( """Fetch rows from a Bigtable.""" ). A docstring should describe the
-	function’s calling syntax and its semantics, not its implementation. For tricky code,
-	comments alongside the code are more appropriate than using docstrings. 
- 
-	
 
-18. When to use is and == in python ?
+
+36. Files and Sockets
+•	Explicitly close files and sockets when done with them.
+Leaving files, sockets or other file-like objects open unnecessarily has many downsides:
+•	They may consume limited system resources, such as file descriptors. Code that deals with many such objects may exhaust those resources unnecessarily if they’re not returned to the system promptly after use.
+•	Holding files open may prevent other actions such as moving or deleting them.
+•	Files and sockets that are shared throughout a program may inadvertently be read from or written to after logically being closed. If they are actually closed, attempts to read or write from them will throw exceptions, making the problem known sooner.
+
+•	The preferred way to manage files is using the “with” statement:
+with open("hello.txt") as hello_file:
+    for line in hello_file:
+        print(line)
+•	For file-like objects that do not support the “with” statement, use contextlib.closing():
+import contextlib
+
+with contextlib.closing(urllib.urlopen("http://www.python.org/")) as front_page:
+    for line in front_page:
+        print(line)
+37. TODO
+•	Use TODO comments for code that is temporary, a short-term solution, or good-enough but not perfect.
+•	# TODO(kl@gmail.com): Use a "*" here for string repetition.
+   # TODO(Zeke) Change this to use relations.
+38.  Imports formatting
+•	Imports should be on separate lines.
+•	Yes: import os
+            import sys
+No:  import os, sys
+•	Imports should be grouped from most generic to least generic:
+•	Within each grouping, imports should be sorted lexicographically, ignoring case, according to each module’s full package path. Code may optionally place a blank line between import sections.
+
+•	Example
+
+import collections
+import queue
+import sys
+
+from absl import app
+from absl import flags
+import bs4
+import cryptography
+import tensorflow as tf
+
+from book.genres import scifi
+from myproject.backend.hgwells import time_machine
+from myproject.backend.state_machine import main_loop
+from otherproject.ai import body
+from otherproject.ai import mind
+from otherproject.ai import soul
+
+# Older style code may have these imports down here instead:
+#from myproject.backend.hgwells import time_machine
+#from myproject.backend.state_machine import main_loop
+
+39. Statements
+Yes:
+
+  if foo: bar(foo)  # no else statement here
+No:
+
+  if foo: bar(foo)
+  else:   baz(foo)
+
+  try:               bar(foo)
+  except ValueError: baz(foo)
+
+  try:
+      bar(foo)
+  except ValueError: baz(foo)
+
+40. Naming
+•	module_name, package_name, ClassName, method_name, ExceptionName, function_name, GLOBAL_CONSTANT_NAME, global_var_name, instance_var_name, function_parameter_name, local_var_name.
+Function names, variable names, and filenames should be descriptive; eschew abbreviation. In particular, do not use abbreviations that are ambiguous or unfamiliar to readers outside your project, and do not abbreviate by deleting letters within a word.
+41. Names to Avoid
+•	single character names except for counters or iterators. You may use “e” as an exception identifier in try/except statements.
+•	dashes (-) in any package/module name
+•	__double_leading_and_trailing_underscore__ names (reserved by Python)
+42. Python filenames must have a .py extension and must not contain dashes (-). 
+43. Guidelines derived from Guido’s Recommendations
+
+Type	Public	Internal
+Packages	lower_with_under	
+Modules	lower_with_under	_lower_with_under
+Classes	CapWords	_CapWords
+Exceptions	CapWords	
+Functions	lower_with_under()	_lower_with_under()
+Global/Class Constants	CAPS_WITH_UNDER	_CAPS_WITH_UNDER
+Global/Class Variables	lower_with_under	_lower_with_under
+Instance Variables	lower_with_under	_lower_with_under (protected)
+Method Names	lower_with_under()	_lower_with_under() (protected)
+Function/Method Parameters	lower_with_under	
+Local Variables	lower_with_under	
+
+44. While Python supports making things private by using a leading double underscore __ (aka. “dunder”) prefix on a name, this is discouraged. Prefer the use of a single underscore. They are easier to type, read, and to access from small unittests. Lint warnings take care of invalid access to protected members.
+
+45. Function length
+•	Prefer small and focused functions.
+•	We recognize that long functions are sometimes appropriate, so no hard limit is placed on function length. If a function exceeds about 40 lines, think about whether it can be broken up without harming the structure of the program. Even if your long function works perfectly now, someone modifying it in a few months may add new behavior. This could result in bugs that are hard to find. Keeping your functions short and simple makes it easier for other people to read and modify your code.
+•	You could find long and complicated functions when working with some code. Do not be intimidated by modifying existing code: if working with such a function proves to be difficult, you find that errors are hard to debug, or you want to use a piece of it in several different contexts, consider breaking up the function into smaller and more manageable pieces.
+
+46. Type Annotations
+•	Familiarize yourself with PEP-484.
+
+47.  BE CONSISTENT.
+•	If you’re editing code, take a few minutes to look at the code around you and determine its style. If they use spaces around all their arithmetic operators, you should too. If their comments have little boxes of hash marks around them, make your comments have little boxes of hash marks around them too.
+
+•	The point of having style guidelines is to have a common vocabulary of coding so people can concentrate on what you’re saying rather than on how you’re saying it. We present global style rules here, so people know the vocabulary, but local style is also important. If code you add to a file looks drastically different from the existing code around it, it throws readers out of their rhythm when they go to read it. Avoid this.
+48. When to use is and == in python ?
     https://stackoverflow.com/questions/6570371/when-to-use-and-when-to-use-is
 
-19. https://pybit.es/faster-python.html
+49. https://pybit.es/faster-python.html
     Time complexities and space complexities.
     
-20. https://medium.com/humans-create-software/how-do-i-learn-to-write-simpler-more-efficient-code-with-fewer-lines-da0fe693146e
+50. https://medium.com/humans-create-software/how-do-i-learn-to-write-simpler-more-efficient-code-with-fewer-lines-da0fe693146e
     
-21. https://stackabuse.com/big-o-notation-and-algorithm-analysis-with-python-examples/
+51. https://stackabuse.com/big-o-notation-and-algorithm-analysis-with-python-examples/
+# END
 
-22. Function length
-    Prefer small and focused functions.
-
-    a. We recognize that long functions are sometimes appropriate, so no hard limit is placed on function length. If a function exceeds        about 40 lines, think about whether it can be broken up without harming the structure of the program.
-
-    b. Even if your long function works perfectly now, someone modifying it in a few months may add new behavior. This could result in  bugs that are hard to find. Keeping your functions short and simple makes it easier for other people to read and modify your code.
-
-    c. You could find long and complicated functions when working with some code. Do not be intimidated by modifying existing code: if  working with such a function proves to be difficult, you find that errors are hard to debug, or you want to use a piece of it in  several different contexts, consider breaking up the function into smaller and more manageable pieces.
 
