@@ -1,6 +1,21 @@
 
-1. Port numbers
+Important Topics
 
-   HTTP : 80
-   HTTPS : 443
+1. Subnetting
+2. OSPF
+3. MPLS
+4. OSI layer model, it includes packet flow via model.
+5. TCP and UDP
+6. VLAN
+7. What happens when you type www.google.com
+8. Packet transformation
+9. Functioning of a router -- Juniper
+10. Port numbers
+
+
+10. Port numbers
+    HTTP : 80
+    HTTPS : 443
+   
+   
    
