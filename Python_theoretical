@@ -3030,5 +3030,3 @@ You are correct!
 It allows you to test your script when running it as a stand-alone program.
 
 47.  The Python db api is a consolidated interface for a number of database systems. It's important to understand that every database engine has its own interface, its own requirements, and really its own paradigm, so no single interface will ever serve all of them equally.
-
-
