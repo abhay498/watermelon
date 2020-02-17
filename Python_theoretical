@@ -2856,6 +2856,75 @@ You cannot call it with arithmetic_mean(x) because "arithmetic_mean" can't cope 
 ('append', 'block', 'extract', 'yes')
 
 ############################################################################################################
+GLOBAL, LOCAL AND NON LOCAL VARIABLES
+
+154. Global variables are generally bad practice and should be avoided.
+
+155. When you define variables inside a function definition, they are local to this function
+by default. This means that anything you will do to such a variable in the body of the
+function will have no effect on other variables outside of the function, even if they have
+the same name. This means that the function body is the scope of such a variable, i.e.
+the enclosing context where this name with its values is associated.
+
+156. All variables have the scope of the block, where they are declared and defined in. They
+can only be used after the point of their declaration.
+
+157. 
+def f():
+s = "I love London!"
+print(s)
+s = "I love Paris!"
+f()
+print(s)
+The output looks like this:
+I love London!
+I love Paris!
+
+158. Ambiguous situation.
+A variable can't be both local and global inside of a function.
+
+>>> def f():
+... print(s)
+... s = "I love London!"
+... print(s)
+...
+>>> s = "I love Paris!"
+>>> f()
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+File "<stdin>", line 2, in f
+UnboundLocalError: local variable 's' referenced
+before assignment
+>>>
+
+159.
+def f():
+global s
+print(s)
+s = "Only in spring, but London is great as
+well!"
+print(s)
+s = "I am looking for a course in Paris!"
+f()
+print(s)
+
+OUTPUT:
+I am looking for a course in Paris!
+Only in spring, but London is great as well!
+Only in spring, but London is great as well!
+
+160.
+Local variables of functions can't be accessed from outside, when the function call has
+finished:
+def f():
+s = "I am globally not known"
+print(s)
+f()
+print(s) --> NameError: name 's' is not defined
+
+161.
+
+############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
 https://www.linkedin.com/learning/python-essential-training-2/exercise-files
