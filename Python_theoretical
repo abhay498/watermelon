@@ -2743,7 +2743,117 @@ razor lay crossed.\n'
 
 
 ############################################################################################################
+FUNCTIONS
 
+144. Using functions usually enhances the comprehensibility and quality of the program. It also lowers the
+cost for development and maintenance of the software.
+
+145. If the return statement is without an expression, the special value None is returned.
+
+146. If there is no return statement in the function code, the function ends, when the control flow reaches
+the end of the function body and the value "None" will be returned.
+
+147. The first statement in the body of a function is usually a string, which can be accessed
+with function_name.__doc__
+This statement is called Docstring.
+Example:
+def Hello(name="everybody"):
+""" Greets a person """
+print("Hello " + name + "!")
+print("The docstring of the function Hello: " +
+Hello.__doc__)
+The output:
+The docstring of the function Hello: Greets a
+person
+
+148. KEYWORD PARAMETERS
+
+def sumsub(a, b, c=0, d=0):
+return a - b + c - d
+print(sumsub(12,4))
+print(sumsub(42,15,d=10))
+
+Keyword parameters can only be those, which are not used as positional arguments. We
+can see the benefit in the example. If we hadn't keyword parameters, the second call to
+function would have needed all four arguments, even though the c needs just the default
+value:
+print(sumsub(42,15,0,10))
+
+149. A function can return exactly one value, or we should better say one object.
+
+150. Variable names are by default local to the function, in which they get defined.
+
+def f():
+print(s)
+s =
+"Python"
+f()
+Output:
+Python
+
+def f():
+s =
+"Perl"
+print(s)
+Output:
+Perl
+Python
+
+151.
+s =
+"Python"
+f()
+print(s)
+def f():
+print(s)
+s =
+"Perl"
+print(s)
+s =
+"Python"
+f()
+print(s)
+If we execute the previous script, we get the
+error message:
+UnboundLocalError: local variable 's'
+referenced before assignment
+The variable s is ambigious in f(), i.e. in the
+first print in f() the global s could be used
+with the value "Python". After this we define
+a local variable s with the assignment s =
+"Perl"
+def f():
+global s
+print(s)
+s =
+"dog"
+print(s)
+s = "cat"
+f()
+print(s)
+
+152. ARBITRARY NUMBER OF PARAMETERS
+
+def arithmetic_mean(first, *values):
+""" This function calculates the arithmetic
+mean of a non-empty
+arbitrary number of numerical values """
+return (first + sum(values)) / (1 +
+len(values))
+
+x = [3, 5, 9]
+arithmetic_mean(*x)
+You cannot call it with arithmetic_mean(x) because "arithmetic_mean" can't cope with a list.
+
+153. ARBITRARY NUMBER OF KEYWORD PARAMETERS
+
+>>> def f(a,b,x,y):
+... print(a,b,x,y)
+…
+>>> d = {'a':'append',
+'b':'block','x':'extract','y':'yes'}
+>>> f(**d)
+('append', 'block', 'extract', 'yes')
 
 ############################################################################################################
 
