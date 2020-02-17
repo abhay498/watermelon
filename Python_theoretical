@@ -740,6 +740,7 @@ print(el)
 34
 
 32. CLASS ATTRIBUTES
+
 a. Instance attributes are owned by the specific instances of a class.
 b. Class attributes are attributes which are owned by the class itself.
    They will be shared by all the instances of the
@@ -949,6 +950,7 @@ Tuple as keys are okay, as you can see in the following example:
 {3.1415: 'abc', (1, 2, 3): 'abc'}
 
 43. OPERATORS ON DICTIONARIES
+
 Operator Explanation
 len(d) returns the number of stored entries, i.e. the number of (key,value) pairs.
 del d[k] deletes the key k together with his value
@@ -2111,20 +2113,297 @@ test_fibonacci.py .
 ===========================
 
 104.
-The files to be tested:
-fibonacci.py
-foobar_plus.py
-foobar.py
-The test files:
-test_fibonacci.py
+(a) The files to be tested:
+	fibonacci.py
+	foobar_plus.py
+	foobar.py
+	The test files:
+	test_fibonacci.py
 
+	The test files:
+	test_fibonacci.py
+	test_foobar_plus.py
+	test_foobar.py
+	We start 'pytest' in the directory 'ex2' and get the following results:
+	$ pytest
+	==================== test session starts ======================
+	platform linux -- Python 3.7.3, pytest-4.3.1, py-1.8.0, pluggy-0.9.0
+	rootdir: /home/bernd/Dropbox (Bodenseo)/websites/pythoncourse.
+	eu/examples/pytest/ex2, inifile:
+	plugins: remotedata-
 
+ (b) We will select now only the files containing 'plus' and 'fibo'
+ 	 $ pytest -k 'plus or fibo'
+	 ============================= test session starts
+	 ==============================
+	 platform linux -- Python 3.7.1, pytest-4.0.2, py-1.7.0, pluggy-0.8.0
+	 rootdir:
+
+105. MARKERS IN PYTEST
+
+     Test functions can be marked or tagged by decorating them with 'pytest.mark.'.
+     Such a marker can be used to select or deselect test functions.
+	 You can see the markers which exist for your test suite by typing
+	 $ pytest --markers
+	 @pytest.mark.openfiles_ignore:
+	 @pytest.mark.remote_data:
+	 @pytest.mark.internet_off:
+	 @pytest.mark.filterwarnings(warning):
+	 @pytest.mark.skip(reason=None):
+	 @pytest.mark.skipif(condition):
+	 @pytest.mark.xfail(condition, reason=None, run=True, raises=None, strict=False):
+     @pytest.mark.parametrize(argnames, argvalues):
+	 @pytest.mark.usefixtures(fixturename1, fixturename2, ...):
+	 @pytest.mark.tryfirst:
+	 @pytest.mark.trylast:
+	 Above list also contains custom defined markers!
+	 
+106. REGISTERING MARKERS
+
+	Since pytest version 4.5 markers have to be registered.
+	They can be registered in the init file pytest.ini, placed in the test directory.
+	We register the markers 'slow' and 'crazy', which we will use in the following example:
+	[pytest]
+	markers =
+	slow: mark a test as a 'slow' (slowly) running test
+	crazy: stupid function to test :-)
+	We add a recursive and inefficient version rfib to our fibonacci module and mark the corresponding test routine with slow, besides
+	this rfib is marked with crazy as well:
+	# content of fibonacci.py
+	def fib(n):
+	old, new = 0, 1
+	for i in range(n):	 
+	old, new = new, old + new
+	return old
+	def rfib(n):
+	if n == 0:
+	return 0
+	elif n == 1:
+	return 1
+	else:
+	return rfib(n-1) + rfib(n-2)
+	The corresponding test file:
+	#content of test_fibonacci.py
+	import pytest
+	from fibonacci import fib, rfib
+	def test_fib():
+	assert fib(0) == 0
+	assert fib(1) == 1
+	assert fib(34) == 5702887
+	@pytest.mark.crazy
+	@pytest.mark.slow
+	def test_rfib():
+	assert fib(0) == 0
+	assert fib(1) == 1
+	assert rfib(34) == 5702887
+	Besides this we will add the files foobar.py and test_foobar.py as well. We mark the test functions in test_foobar.py as crazy.
+	# content of foobar.py
+	def foo():
+	return "foo"
+	def bar():
+	return "bar"
+	This is the correponding test file:
+	# content of test_foobar.py
+	import pytest
+	from foobar import foo, bar
+	@pytest.mark.crazy
+	def test_foo():
+	assert foo() == "foo"
+	@pytest.mark.crazy
+	def test_bar():
+	assert bar() == "bar"
+	We will start tests now depending on the markers.
+	Let's start all tests, which are not marked as slow:
+	$ pytest -svv -k "slow"
+	===================================== test session starts
+	======================================
+	platform linux -- Python 3.7.1, pytest-4.0.2, py-1.7.0, pluggy-0.8.0 --
+	/home/bernd/anaconda3/bin/python
+	cachedir: .pytest_cache
+	rootdir: /home/bernd/Dropbox
+	(Bodenseo)/kurse/python_en/examples/pytest/ex_tagging, inifile:
+	plugins: remotedata-0.3.1, openfiles-0.3.1, doctestplus-0.2.0, arraydiff-0.3
+	collected 4 items / 3 deselected
+	test_fibonacci.py::test_rfib PASSED
+	============================ 1 passed, 3 deselected in 7.05 seconds
+	============================
+	We will run now only the tests which are not marked as slow or crazy:
+	$ pytest -svv -k "not slow and not crazy"
+	======================= test session starts =======================
+	platform linux -- Python 3.7.1, pytest-4.0.2, py-1.7.0, pluggy-0.8.0 --
+	/home/bernd/anaconda3/bin/python
+	cachedir: .pytest_cache
+	rootdir: /home/bernd/Dropbox
+	(Bodenseo)/kurse/python_en/examples/pytest/ex_tagging, inifile:
+	plugins: remotedata-0.3.1, openfiles-0.3.1, doctestplus-0.2.0, arraydiff-0.3
+	collected 4 items / 3 deselected
+	test_fibonacci.py::test_fib PASSED
+	===================== 1 passed, 3 deselected in 0.01 seconds
+	====================
+	 
+107. SKIPIF MARKER
+
+	(a)
+	
+	import pytest
+	import sys
+	from foobar import foo, bar
+	@pytest.mark.skipif(
+	sys.version_info[0] == 3 and sys.version_info[1] == 6,
+	reason="Python version has to be higher than 3.5!")
+	def test_foo():
+	assert foo() == "foo"
+	@pytest.mark.crazy
+	def test_bar():
+	assert bar() == "bar"	 
+
+	(b) 
+	
+	Instead of a conditional skip we can also use an uncoditional skip. This way we can always skip. We can add a reason. The
+	following example shows how this can be accomplished by marking the function test_bar with a skip marker. The reason we give is
+	that it is "even fooer than foo":
+	import pytest
+	import sys
+	from foobar import foo, bar
+	@pytest.mark.skipif(
+	sys.version_info[0] == 3 and sys.version_info[1] == 6,
+	reason="Python version has to be higher than 3.5!")
+	def test_foo():
+	assert foo() == "foo"
+	@pytest.mark.skip(reason="Even fooer than foo, so we skip!")
+	def test_bar():
+	assert bar() == "bar"
+
+	If we call pytest on this code, we get the following output:
+	$ pytest -v
+	================ test session starts ===============
+	platform linux -- Python 3.6.9, pytest-5.0.1, py-1.8.0, pluggy-0.12.0 --
+	/home/bernd/anaconda3/envs/unittest/bin/python
+	cachedir: .pytest_cache
+	rootdir: /home/bernd/Dropbox
+	(Bodenseo)/kurse/python_en/examples/pytest/ex_tagging2, inifile: pytest.ini
+	collected 4 items
+
+108. PARAMETRIZATION WITH MARKERS
+
+	We will demonstrate parametrization with markers with our Fibonacci function.
+	# content of fibonacci.py
+	def fib(n):
+	old, new = 0, 1
+	for _ in range(n):
+	old, new = new, old + new
+	return old
+	We write a pytest test function which will test against this fibonacci function with various values:
+	# content of the file test_fibonacci.py
+	import pytest
+	from fibonacci import fib
+	@pytest.mark.parametrize(
+	'n, res', [(0, 0),
+	(1, 1),
+	(2, 1),
+	(3, 2),
+	(4, 3),
+	(5, 5),
+	(6, 8)])
+	def test_fib(n, res):
+	assert fib(n) == res
+	
+	When we call pytest, we get the following results:
+	$ pytest -v
+	============================ test session starts ============================
+	platform linux -- Python 3.6.9, pytest-5.0.1, py-1.8.0, pluggy-0.12.0 --
+	/home/bernd/anaconda3/envs/unittest/bin/python
+	cachedir: .pytest_cache
+	rootdir: /home/bernd/Dropbox
+	(Bodenseo)/kurse/python_en/examples/pytest/ex_parametrization1
+	collected 7 items
+	test_fibonacci.py::test_fib[0-0] PASSED
+	[ 14%]
+	test_fibonacci.py::test_fib[1-1] PASSED
+	[ 28%]
+	test_fibonacci.py::test_fib[2-1] PASSED
+	[ 42%]
+	test_fibonacci.py::test_fib[3-2] PASSED
+	[ 57%]
+	test_fibonacci.py::test_fib[4-3] PASSED
+	[ 71%]
+	test_fibonacci.py::test_fib[5-5] PASSED
+	[ 85%]
+	test_fibonacci.py::test_fib[6-8] PASSED
+	[100%]
+	https://www.python-course.eu/python3_pytest.php 10/12
+	========================== 7 passed in 0.01 seconds =========================
+	The numbers inside of the square brackets on front of the word "PASSED" are the values of 'n' and 'res'.
+
+109. Calling "pytest -s -v" will deliver the following output:
+
+110. COMMAND LINE OPTIONS / FIXTURES
+
+	At first, we have to write a file conftest.py with the functions cmdopt and pytest_addoption:
+	 
+	import pytest
+	def pytest_addoption(parser):
+	parser.addoption("--cmdopt",
+	action="store",
+	default="full",
+	help="'num' of tests or full")
+	@pytest.fixture
+	def cmdopt(request):
+	return request.config.getoption("--cmdopt")
+	The code for our fibonacci test module looks like. The test_fif function has a parameter 'cmdopt' which gets the parameter option:
+	from fibonacci import fib
+	results = [0, 1, 1, 2, 3, 5, 8, 13, 21,
+	34, 55, 89, 144, 233, 377]
+	def test_fib(cmdopt):
+	if cmdopt == "full":
+	num = len(results)
+	else:
+	num = len(results)
+	if int(cmdopt) < len(results):
+	num = int(cmdopt)
+	for i in range(num):
+	assert fib(i) == results[i]
+	We can call it now with various options, as we can see in the following:
+	$ pytest -q --cmdopt=full -v -s
+	============ test session starts ================
+	platform linux -- Python 3.6.9, pytest-5.0.1, py-1.8.0, pluggy-0.12.0
+	rootdir: /home/bernd/Dropbox
+	(Bodenseo)/kurse/python_en/examples/pytest/ex_cmd_line
+	collected 1 item
+	test_fibonacci.py running 15 tests!
+	.
+	============= 1 passed in 0.01 seconds ============
+	$ pytest -q --cmdopt=6 -v -s
+	============= test session starts ==============
+	platform linux -- Python 3.6.9, pytest-5.0.1, py-1.8.0, pluggy-0.12.0
+	rootdir: /home/bernd/Dropbox
+	(Bodenseo)/kurse/python_en/examples/pytest/ex_cmd_line
+	collected 1 item
+	 
+	test_fibonacci.py running 6 tests!
+	.
+	=========================== 1 passed in 0.01 seconds
+	================================
+	Let's put an error in our test results:
+	results = [0, 1, 1, 2, 3, 1001, 8,…]
+	Calling pytest with 'pytest -q --cmdopt=10 -v -s' gives us the following output:
+	================== test session starts ================== platform linux -- Python 3.6.9, pytest-5.0.1, py-1.8.0, pluggy-
+	0.12.0 rootdir: /home/bernd/Dropbox (Bodenseo)/kurse/python_en/examples/pytest/ex_cmd_line collected 1 item test_fibonacci.py
+	running 10 tests! F =============== FAILURES =================== _______________test_fib
+	___________________ cmdopt = '10' def test_fib(cmdopt): if cmdopt == "full": num = len(results) else: num = len(results) if
+	int(cmdopt) < len(results): num = int(cmdopt) print(f"running {num:2d} tests!") for i in range(num): > assert fib(i) == results[i] E
+	assert 5 == 1001 E + where 5 = fib(5) test_fibonacci.py:16: AssertionError ================ 1 failed in 0.03 seconds
+	=================	 
+	 
+111. 
+112. 
 ############################################################################################################
 
 OPERATOR OVERLOADING
 
 1. Operator Overloading means giving extended meaning beyond their predefined operational meaning.
 
+############################################################################################################
 2.
 # Python program to show use of
 # + operator for different purposes.
@@ -2142,9 +2421,325 @@ GeeksFor
 12
 GeeksGeeksGeeksGeeks
 
-3. 
+############################################################################################################
+3. when we use + operator, the magic method __add__ is automatically invoked in which the operation for
++ operator is defined.
+
+4. 
+# Python Program illustrate how 
+# to overload an binary + operator 
+
+class A: 
+	def __init__(self, a): 
+		self.a = a 
+
+	# adding two objects 
+	def __add__(self, o): 
+		return self.a + o.a 
+ob1 = A(1) 
+ob2 = A(2) 
+ob3 = A("Geeks") 
+ob4 = A("For") 
+
+print(ob1 + ob2) 
+print(ob3 + ob4) 
+
+Output :
+
+3
+GeeksFor
+
+5. 
+# Python program to overload 
+# a comparison operators 
+
+class A: 
+	def __init__(self, a): 
+		self.a = a 
+	def __gt__(self, other): 
+		if(self.a>other.a): 
+			return True
+		else: 
+			return False
+ob1 = A(2) 
+ob2 = A(3) 
+if(ob1>ob2): 
+	print("ob1 is greater than ob2") 
+else: 
+	print("ob2 is greater than ob1") 
+
+6.
+Python magic methods or special functions for operator overloading
+Binary Operators:
+OPERATOR	MAGIC METHOD
++	__add__(self, other)
+–	__sub__(self, other)
+*	__mul__(self, other)
+/	__truediv__(self, other)
+//	__floordiv__(self, other)
+%	__mod__(self, other)
+**	__pow__(self, other)
+
+Comparison Operators :
+OPERATOR	MAGIC METHOD
+<	__lt__(self, other)
+>	__gt__(self, other)
+<=	__le__(self, other)
+>=	__ge__(self, other)
+==	__eq__(self, other)
+!=	__ne__(self, other)
+
+Assignment Operators :
+OPERATOR	MAGIC METHOD
+-=	__isub__(self, other)
++=	__iadd__(self, other)
+*=	__imul__(self, other)
+/=	__idiv__(self, other)
+//=	__ifloordiv__(self, other)
+%=	__imod__(self, other)
+**=	__ipow__(self, other)
+
+Unary Operators :
+OPERATOR	MAGIC METHOD
+–	__neg__(self, other)
++	__pos__(self, other)
+~	__invert__(self, other)
 
 ############################################################################################################
+EXCEPTIONAL HANDLING
+
+124.
+Let's look at a simple example. Assuming we want to ask the user to enter an integer
+number. If we use a input(), the input will be a string, which we have to cast into an
+integer. If the input has not been a valid integer, we will generate (raise) a ValueError.
+We show this in the following interactive session:
+>>> n = int(input("Please enter a number: "))
+Please enter a number: 23.5
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+ValueError: invalid literal for int() with base
+10: '23.5'
+With the aid of exception handling, we can write robust code for reading an integer
+from input:
+while True:
+try:
+n = input("Please enter an integer: ")
+n = int(n)
+break
+except ValueError:
+print("No valid integer! Please try again
+...")
+print("Great, you successfully entered an
+integer!")
+
+125. A try statement may have more than one except clause for different exceptions. But at
+most one except clause will be executed.
+
+126. 
+import sys
+try:
+f = open('integers.txt')
+s = f.readline()
+i = int(s.strip())
+except IOError as e:
+errno, strerror = e.args
+print("I/O error({0}):
+{1}".format(errno,strerror))
+# e can be printed directly without using
+.args:
+# print(e)
+except ValueError:
+print("No valid integer in line.")
+except:
+print("Unexpected error:", sys.exc_info()[0])
+raise
+
+The except
+clause for the IOError specifies a variable "e" after the exception name (IOError). The
+variable "e" is bound to an exception instance with the arguments stored in
+instance.args.
+If we call the above script with a non-existing file, we get the message:
+I/O error(2): No such file or directory
+And if the file integers.txt is not readable, e.g. if we don't have the permission to read it,
+we get the following message:
+I/O error(13): Permission denied
+
+127.
+An except clause may name more than one exception in a tuple of error names, as we
+see in the following example:
+try:
+f = open('integers.txt')
+s = f.readline()
+i = int(s.strip())
+except (IOError, ValueError):
+print("An I/O error or a ValueError occurred")
+except:
+print("An unexpected error occurred")
+raise
+
+128. CUSTOM-MADE EXCEPTIONS
+
+class MyException(Exception):
+pass
+raise MyException("An exception doesn't always
+prove the rule!")
+
+129. ELSE CLAUSE
+
+The try ... except statement has an optional else clause. An else block has to be
+positioned after all the except clauses. An else clause will be executed if the try clause
+doesn't raise an exception.
+
+python exception_test.py integers.txt
+
+import sys
+file_name = sys.argv[1]
+text = []
+try:
+fh = open(file_name, 'r')
+except IOError:
+print('cannot open', file_name)
+else:
+text = fh.readlines()
+fh.close()
+if text:
+print(text[100])
+
+############################################################################################################
+EXECUTE A PYTHON SCRIPT
+
+130. The truth is: Python is both an interpreted and a compiled language.
+
+131. People would assume that the compiler
+translates the Python code into machine language. Python code is translated into
+intermediate code, which has to be executed by a virtual machine, known as the PVM,
+the Python virtual machine.
+
+132. For whatever reason you want to compile a python program manually? No problem. It
+can be done with the module py_compile, either using the interpreter shell
+
+>>> import py_compile
+>>>
+py_compile.compile('my_first_simple_program.py')
+>>>
+or using the following command at the shell prompt
+python -m py_compile my_first_simple_program.py
+Either way, you may notice two things: First, there will be a new subdirectory
+"__pycache__", if it hasn't already existed. You will find a file
+"my_first_simple_script.cpython-34.pyc" in this subdirectory. This is the compiled
+version of our file in byte code.
+
+133. You can also automatically compile all Python files using the compileall module.
+
+monty@python:~/python$ python -m compileall .
+Listing . ...
+
+134. Some newbies to Python wonder sometimes where these ominous files with the .pyc suffix might come
+from. If Python has write-access for the directory where the Python program resides, it
+will store the compiled byte code in a file that ends with a .pyc suffix. If Python has no
+write access, the program will work anyway. The byte code will be produced but
+discarded when the program exits.
+
+135. Whenever a Python program is called, Python will check, if a compiled version with the
+.pyc suffix exists. This file has to be newer than the file with the .py suffix. If such a file
+exists, Python will load the byte code, which will speed up the start up time of the
+script. If there exists no byte code version, Python will create the byte code before it
+starts the execution of the program. Execution of a Python program means execution of
+the byte code on the Python Virtual Machine (PVM).
+
+Source code ---> Byte code ---> Python Virtual Machine
+
+136. RUNNABLE SCRIPTS UNDER LINUX
+
+A Python script can also be started like any other script under Linux, e.g. Bash scripts.
+Two steps are necessary for this purpose:
+
+1. The shebang line #!/usr/bin/env python3 has to be added as the first line of your
+Python code file. Alternatively, this line can be #!/usr/bin/python3, if this is the
+location of your Python interpreter. By instead using env as in the first shebang
+line, the interpreter is searched for and located at the time the script is run. This
+makes the script more portable. Yet, it also suffers from the same problem: The
+path to env may also be different on a per-machine basis.
+
+2. The file has to be made executable: The command "chmod +x scriptname" has to
+be executed on a Linux shell, e.g. bash. "chmod 755 scriptname" can also be used
+to make your file executable. In our example:
+$ chmod +x my_first_simple_program.py
+
+############################################################################################################
+
+F I L E M A N A G E M E N T
+
+137. The "r" is optional. An open() command with just a file name is opened for reading per
+default. The open() function returns a file object, which offers attributes and methods.
+fobj = open("ad_lesbiam.txt")
+
+138. 
+fobj = open("ad_lesbiam.txt")
+for line in fobj:
+	print(line.rstrip())
+
+fobj.close()
+
+139. You will often find the with statement for reading and writing files. The advantage is
+that the file will be automatically closed after the indented block after the with has
+finished execution:
+
+with open("example.txt", "w") as fh:
+	fh.write("To write or not to write\nthat is
+	the question!\n")
+
+140.
+>>> poem = open("ad_lesbiam.txt").readlines()
+>>> print(poem)
+['V. ad Lesbiam \n', '\n', 'VIVAMUS mea Lesbia,
+atque amemus,\n', 'rumoresque senum severiorum\n',
+'omnes unius aestimemus assis!\n', 'soles occidere
+et redire possunt:\n', 'nobis cum semel occidit
+breuis lux,\n', 'nox est perpetua una
+dormienda.\n', 'da mi basia mille, deinde
+centum,\n', 'dein mille altera, dein secunda
+centum,\n', 'deinde usque altera mille, deinde
+centum.\n', 'dein, cum milia multa fecerimus,\n',
+'conturbabimus illa, ne sciamus,\n', 'aut ne quis
+malus inuidere possit,\n', 'cum tantum sciat esse
+basiorum.\n', '(GAIUS VALERIUS CATULLUS)']
+>>> print(poem[2])
+VIVAMUS mea Lesbia, atque amemus,
+
+141.
+Another convenient way to read in a file might be the method read() of open. With this
+method we can read the complete file into a string, as we can see in the next example:
+>>> poem = open("ad_lesbiam.txt").read()
+>>> print(poem[16:34])
+VIVAMUS mea Lesbia
+>>> type(poem)
+<type 'str'>
+>>>
+
+142. To work with seek, we will often need the method tell,
+which "tells" us the current position.When we have just opened a file, it will be zero.
+
+143.
+>>> fh = open("buck_mulligan.txt")
+>>> fh.tell()
+0
+>>> fh.read(7)
+'Stately'
+>>> fh.tell()
+7
+>>> fh.read()
+', plump Buck Mulligan came from the stairhead,
+bearing a bowl of\nlather on which a mirror and a
+razor lay crossed.\n'
+>>> fh.tell()
+122
+>>> fh.seek(9)
+9
+>>> fh.read(5)
+'plump'
+
+
 
 
 ############################################################################################################
@@ -2181,11 +2776,259 @@ Namespaces are one honking great idea -- let's do more of those!
 >>> 
 
 2. Everything is an object.
+
 3. print is a function.
+
 4. All text is now unicode.
+
 5. Question 2 of 2
 Why should you select UTF-8 as the default editor encoding?
 
 You are correct!
 so it can match the Unicode standard of Python 3
+
 6. Shebang line
+
+7.  So type is a built-in function that prints the type of a value or variable.
+And so when I save and run this you'll notice that it says that the type is class 'int'.
+That's the integer type. It's one of the built-in types.
+Python uses a form of dynamic typing sometimes called duck typing where the type of a value
+is determined by the value itself. In other words, if it walks like a duck, it's a duck.
+So if I change this value to say 7.0 and I save and run it, you see now it's class 'float'.
+So it's a floating point number.
+
+8. In Python 3, all types are classes, even the built-in types.
+
+9.  There is no difference between single quotes and double quotes in Python.
+In some languages double quotes are interpolated, single quotes are not, or
+there may be other distinctions. In Python, there is no difference whatsoever.
+In fact, you can even do it this way. You can use three single quotes.
+And if I save and run you'll see there's no difference. What that allows you to do,
+though, is to put things on several lines. So, using three quotes you can actually make
+a multi-line string. And if I save and run this, you see that the result here, and I'll
+open this up, says x is seven with lots of newlines and before and after it. And those single
+quotes can be double quotes as well. So, you'll often see this. These triple quotes are usually
+made out of double quotes, I know that seems to be the style that most often people use. So,
+if I save and run this, you see our result is still the same. But for now, we're going to go
+right back to my style choice. And again, it's good to have a default style and stick to it.
+For my part, I tend to use the single quotes. 
+
+10. 
+a = 8
+b = 9
+x = f'seven {a} {b}'
+print('x is {}'.format(x))
+print(type(x))
+
+11. 
+from decimal import *
+a = Decimal('.10')
+b = Decimal('.30')
+x = a + a + a - b 
+print('x is {}'.format(x))
+print(type(x))
+
+12. 
+x = True
+print('x is {}'.format(x))
+print(x)
+print(type(x))
+
+O / P :
+x is True                                                                                                               
+True                                                                                                                    
+<class 'bool'> 
+
+13. 
+x = None
+print('x is {}'.format(x))
+print(x)
+print(type(x))
+
+O / P :
+x is None                                                                                                             
+None                                                                                                                  
+<class 'NoneType'> 
+ 
+14. 
+x = None
+print('x is {}'.format(x))
+print(x)
+print(type(x))
+
+if x:
+    print('True')
+else:
+    print('False')
+	
+O / P :
+x is None                                                                                                             
+None                                                                                                                  
+<class 'NoneType'>                                                                                                    
+False 
+
+	a. None evaluates to False
+	b. 0  evaluates to False
+	c. Empty string evaluates to False.
+
+15. 
+
+Like the tuple, a range is not mutable, If I try to say X sub two equals 42,
+save and run, I get this error, "TypeError: 'range' object "does not support item
+assignment," because it's immutable. If I want a mutable list, I simply construct
+a list with the results from range using the list constructor, like this, and save and run it.
+
+x = range(10)
+x[2] = 42
+for i in x:
+    print('i is {}'.format(i))
+	
+O / P :
+Traceback (most recent call last):                                                                                    
+  File "main.py", line 2, in <module>                                                                                 
+    x[2] = 42                                                                                                         
+TypeError: 'range' object does not support item assignment
+
+16. And dictionaries are mutable.
+
+17. In Python, everything is an object.
+
+18. 
+You have the following tuples. Which condition evaluates to a true statement?
+ 
+
+a=('0',1,'0',[1,'0'])
+b=('0',1,'0',[1,'0'])
+
+
+if (type(a)==type(b)):
+if (id(a[0])==id(b[2])):
+all of these answers     <---
+if (a==b):
+
+19. if '0': ==> evaluates to True
+
+20. 
+Is there a difference between the strings '{1} {0}'.format('a','b') and f'{"b"} {"a"}'?
+
+You are correct!
+These strings are actually exactly the same.
+
+21. 
+x = (1, 'two', 3.0, [4, 'four'], 5)
+y = (1, 'two', 3.0, [4, 'four'], 5)
+print('x is {}'.format(x))
+print(id(x))
+print(id(y))
+
+print(id(x[0]))
+print(id(y[0]))
+
+if isinstance(x, tuple):
+    print('yep')
+elif isinstance(y, list):
+    print('list')
+else:
+    print('nope')
+	
+O / P :
+
+x is (1, 'two', 3.0, [4, 'four'], 5)                                                                                  
+140203163542016                                                                                                       
+140203162941752                                                                                                       
+10105088                                                                                                              
+10105088                                                                                                              
+yep
+
+##########################################
+
+30. If you try to access a key that doesn't exist you'll get a key error exception so
+if I say print animals sub Godzilla you notice that I get the exception of key error
+Godzilla because that key does not exist. Or you can use the get method to return a value
+when you don't know if the key exists. I can instead say animals.get like that and I get the
+none value because that key doesn't exist so if you don't want the exception, you want just
+a none value, you can use the get method. So Python's dictionary type is both simple and
+useful.
+
+31. I've defined two different sets and I've defined them just using strings and when I run
+this you'll notice using my print_set function below that what I get is an unordered list of
+the unique characters in each string. There's no duplicates because a set does not allow
+duplicates. And the lists are unordered, each time I run it you'll notice they come up in
+a different order.
+
+32. In Python, everything is an object and variables store references to objects. 
+
+33. So let's take a look at the class constructor.
+There's a special class method name called init, with double underscores before and after,
+so those are two underscore characters. One and two, both before and after the word init.
+And that's a special name for a class function which operates as an initializer, or a constructor.
+And so you pass it three arguments, of course the first argument is always self, and that's what
+makes it a method, an object method, because this self points at the object.
+And then the three parameters type, name, and sound. And those are used to initialize object variables.
+And these are object variables because they're never initialized until after the object is defined,
+so they don't exist in the class without having been constructed into an object. And you notice that
+the object variables all have an underscore at the beginning of the name. Again, this is traditional,
+and this discourages users of the object from accessing these variables directly. Instead, you have
+these accessors, or getters, I call them getters, some people call them accessors.
+Which simply return the value of those object variables. 
+
+34. Now you'll also notice this special method called str, with two underscores before and two underscores after. We've seen this before, in our constructor init, with two underscores before and two underscores after. So this is a specially-named method, which provides the string representation of the object. And this allows us to print it with simply this print and the object like that, without needing a special function, like we had in the previous lessons. You can find a list of all the special method names here in the documentation, under data model. And if you click on special method names, you'll see a whole bunch of them, with all of their descriptions. And there's str right there, the informal or nicely printable string representation of an object. And there's just a lot more of them. There's all the comparison operators, and this list goes on for quite a while. Methods are the primary interface for classes and objects. They work exactly like functions, except they are bound to the object through their first argument, commonly named self.
+
+35. So it's important to understand the distinction between class variables and object variables and how to properly encapsulate data in your objects.
+
+36. Iterator objects
+
+37. it's important to note here that a string is immutable, it cannot be changed. So when you use one of these transformation methods, the return string is a different object.
+
+38.
+In long string consisting of digits and dashes, how would you replace all dashes with spaces?
+split on dashes and join on spaces
+
+39. 
+Question 2 of 3
+What will the following code print?
+ 
+
+a=1
+b=-1
+print('{1:<+04} {0:+04}'.format(a,b))
+
+Correct answer:
+-100 +001
+
+40.
+You are given two strings: s1='Test' and s2='tEST'. Which of the following conditions will be false?
+
+You are correct!
+s1.title()==s2
+
+41. A little bit about the open function here, by default, it opens the file in read-only mode,
+which would be the same as providing a mode with a R letter.
+
+42. On line 10, I close the out file, and this is important because again, buffering, all of what we've written to the file may not be completely written by the time our main function ends, and we want to prevent any data loss, so it's a good idea to close the file explicitly that you've written to. You can also the close the infile. I can say, infile.close, and this is less important because you're not going to really lose any data, and it will be closed automatically when we exit the main function. So now I'm going to run this. You notice it happens very quickly.
+
+43. Your environment has very limited memory. How will you prefer to copy a file of an unknown size and content in this case?
+
+You are correct!
+Use small buffers over many iterations.
+
+44. Question 2 of 3
+How can you easily check if all items in a tuple are zeros?
+
+You are correct!
+Use an any() function.
+
+45. The expression divmod(15,2) will return a _____ with a value of _____.
+tuple; (7,1)
+
+46. How can the following line of code be useful when you're planning to use your script as a module?
+ 
+
+if __name__ == '__main__':    main()
+
+You are correct!
+It allows you to test your script when running it as a stand-alone program.
+
+47.  The Python db api is a consolidated interface for a number of database systems. It's important to understand that every database engine has its own interface, its own requirements, and really its own paradigm, so no single interface will ever serve all of them equally.
+
+
