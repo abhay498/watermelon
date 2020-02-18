@@ -4,7 +4,7 @@ Important Topics
 1. Subnetting
 2. OSPF
 3. MPLS
-4. OSI layer model, it includes packet flow via model.
+4. Traversing the OSI layer model.
 5. TCP and UDP
 6. VLAN
 7. What happens when you type www.google.com
