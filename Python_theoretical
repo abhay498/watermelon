@@ -3136,6 +3136,44 @@ James takes care of you!
 >>> 
 
 175. 
+class Robot:
+def __init__(self, name):
+self.name = name
+def say_hi(self):
+print("Hi, I am " + self.name)
+
+M1
+--
+class PhysicianRobot(Robot):
+def say_hi(self):
+super().say_hi()
+print("and I am a physician!")
+doc = PhysicianRobot("Dr. Frankenstein")
+doc.say_hi()
+
+O/P
+Hi, I am Dr. Frankenstein
+and I am a physician!
+
+M2
+--
+class PhysicianRobot(Robot):
+def say_hi(self):
+Robot.say_hi(self)
+print("and I am a physician!")
+doc = PhysicianRobot("Dr. Frankenstein")
+doc.say_hi()
+
+O/P
+Hi, I am Dr. Frankenstein
+and I am a physician!
+
+super is not realls necessary in this case. One could argue that it makes the code more
+maintainable, because we could change the name of the parent class, but this is seldom
+done anyway in existing classes. The real benefit of super shows when we use it with
+multiple inheritance.
+
+176. 
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
