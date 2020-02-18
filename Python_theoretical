@@ -3072,6 +3072,46 @@ is considered to be reused in the subclass.
 171.(a) The class from which a class inherits is called the parent or superclass.
     (b) A class which inherits from a superclass is called a subclass, also called heir class or child class.
 
+172. DIFFERENCE BETWEEN TYPE AND ISINSTANCE
+
+class Robot:
+    def __init__(self, name):
+	self.name = name
+    def say_hi(self):
+	print("Hi, I am " + self.name)
+    class PhysicianRobot(Robot):
+	pass
+		
+x = Robot("Marvin")
+y = PhysicianRobot("James")
+print(x, type(x))
+print(y, type(y))
+
+y.say_hi()
+<__main__.Robot object at 0x7fd0080b3ba8> <class
+'__main__.Robot'>
+<__main__.PhysicianRobot object at 0x7fd0080b3b70>
+<class '__main__.PhysicianRobot'>
+Hi, I am James
+
+x = Robot("Marvin")
+y = PhysicianRobot("James")
+print(isinstance(x, Robot), isinstance(y, Robot))
+print(isinstance(x, PhysicianRobot))
+print(isinstance(y, PhysicianRobot))
+print(type(y) == Robot, type(y) == PhysicianRobot)
+True True
+False
+True
+False True
+
+Now it should be clear, why PEP 8, the official Style Guide for Python code, says:
+"Object type comparisons should always use isinstance() instead of comparing types
+directly."
+
+173. Now it should be clear, why PEP 8, the official Style Guide for Python code, says:
+"Object type comparisons should always use isinstance() instead of comparing types
+directly."
 
 ############################################################################################################
 
