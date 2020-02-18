@@ -3173,7 +3173,27 @@ maintainable, because we could change the name of the parent class, but this is 
 done anyway in existing classes. The real benefit of super shows when we use it with
 multiple inheritance.
 
-176. 
+DISTINCTION BETWEEN OVERWRITING, OVERLOADING AND OVERRIDING
+
+176. OVERWRITING
+If we overwrite a function, the original function will be gone. The function will be
+redefined.
+
+def f(x):
+return x + 42
+print(f(3))
+# f will be overwritten (or redefined) in the
+following:
+def f(x):
+return x + 43
+print(f(3))
+45
+46
+
+177. OVERLOADING
+Overloading is the ability to define a function with the same name multiple times.
+
+
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
