@@ -3113,6 +3113,29 @@ directly."
 "Object type comparisons should always use isinstance() instead of comparing types
 directly."
 
+174. OVERRIDING
+
+class Robot:
+    def __init__(self, name):
+        self.name = name
+
+    def say_hi(self):
+        print("Hi, I am " + self.name)
+
+class PhysicianRobot(Robot):
+    def say_hi(self):
+        print("Everything will be okay! ")
+        print(self.name + " takes care of you!")
+
+y = PhysicianRobot("James")
+y.say_hi()
+
+O/P :
+Everything will be okay! 
+James takes care of you!
+>>> 
+
+175. 
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
