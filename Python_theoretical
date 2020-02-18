@@ -3033,6 +3033,35 @@ After calling g: Zurich
 Yet there is a huge difference: The value of the global x is changed now!
 
 ############################################################################################################
+HISTORY OF PYTHON
+
+167.
+In an interview with Bill Venners1, Guido van Rossum said: "In the early 1980s, I worked as an implementer
+on a team building a language called ABC at Centrum voor Wiskunde en Informatica
+(CWI). I don't know how well people know ABC's influence on Python. I try to
+mention ABC's influence because I'm indebted to everything I learned during that
+project and to the people who worked on it."
+Later on in the same Interview, Guido van Rossum continued: "I remembered all my
+experience and some of my frustration with ABC. I decided to try to design a simple
+scripting language that possessed some of ABC's better properties, but without its
+problems. So I started typing. I created a simple virtual machine, a simple parser, and a
+simple runtime. I made my own version of the various ABC parts that I liked.
+I created a basic syntax, used indentation for statement grouping instead of curly braces or beginend
+blocks, and developed a small number of powerful data types: a hash table (or
+dictionary, as we call it), a list, strings, and numbers.
+
+168. what about the name "Python" ?
+Guido van Rossum, the creator of Python, wrote in 1996 about the origin of the name of his
+programming language1: "Over six years ago, in December 1989, I was looking for a
+'hobby' programming project that would keep me occupied during the week around
+Christmas. My office ... would be closed, but I had a home computer, and not much else
+on my hands. I decided to write an interpreter for the new scripting language I had been
+thinking about lately: a descendant of ABC that would appeal to Unix/C hackers. I
+chose Python as a working title for the project, being in a slightly irreverent mood (and
+a big fan of Monty Python's Flying Circus)."
+
+169. Guido Van Rossum published the first version of Python code (version 0.9.0) at
+alt.sources in February 1991.
 
 ############################################################################################################
 
