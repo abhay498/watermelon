@@ -2939,6 +2939,101 @@ The output looks like this:
 42 17 4 17
 42 15 3 4
 
+162. GLOBAL VARIABLES IN NESTED FUNCTIONS
+
+This means that the global keyword in nested functions does
+not affect the namespace of their enclosing namespace!
+
+def f():
+city = "Hamburg"
+def g():
+global city
+city = "Geneva"
+print("Before calling g: " + city)
+print("Calling g now:")
+g()
+print("After calling g: " + city)
+f()
+print("Value of city in main: " + city)
+This program returns the following results:
+Before calling g: Hamburg
+Calling g now:
+After calling g: Hamburg
+Value of city in main: Geneva
+
+163.
+def f():
+nonlocal city
+print(city)
+city = "Frankfurt"
+f()
+
+We get the following error:
+File "/home/bernd/nested_globals.py", line 2
+nonlocal city
+^
+SyntaxError: no binding for nonlocal 'city' found
+
+164.
+def f():
+city = "Munich"
+def g():
+nonlocal city
+city = "Zurich"
+print("Before calling g: " + city)
+print("Calling g now:")
+g()
+print("After calling g: " + city)
+city = "Stuttgart"
+f()
+print("'city' in main: " + city)
+Calling the previous program results in the following output:
+Before calling g: Munich
+Calling g now:
+After calling g: Zurich
+'city' in main: Stuttgart
+
+165.
+def f():
+#city = "Munich"
+def g():
+nonlocal city
+city = "Zurich"
+print("Before calling g: " + city)
+print("Calling g now:")
+g()
+print("After calling g: " + city)
+city = "Stuttgart"
+f()
+print("'city' in main: " + city)
+We get the following error message:
+File "/home/bernd/nested_globals.py", line 4
+nonlocal city
+^
+SyntaxError: no binding for nonlocal 'city' found
+
+166.
+def f():
+#city = "Munich"
+def g():
+global city
+city = "Zurich"
+print("Before calling g: " + city)
+print("Calling g now:")
+g()
+print("After calling g: " + city)
+city = "Stuttgart"
+f()
+print("'city' in main: " + city)
+This leads to the following output:
+Before calling g: Stuttgart
+Calling g now:
+After calling g: Zurich
+'city' in main: Zurich
+Yet there is a huge difference: The value of the global x is changed now!
+
+############################################################################################################
+
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
