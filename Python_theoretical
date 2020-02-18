@@ -3192,7 +3192,17 @@ print(f(3))
 
 177. OVERLOADING
 Overloading is the ability to define a function with the same name multiple times.
+https://www.geeksforgeeks.org/python-method-overloading/
 
+In the above code we have defined two product method, but we can only use the second product method, as python does not
+supports method overloading. We may define many method of same name and different argument but we can only use the latest
+defined method. Calling the other method will produce an error. Like here calling product(4, 5) will produce an error as
+the latest defined product method takes three arguments.
+
+178. OVERRIDING
+https://www.geeksforgeeks.org/method-overriding-in-python/
+Method overriding is an ability of any object-oriented programming language that allows a subclass or child class to provide
+a specific implementation of a method that is already provided by one of its super-classes or parent classes. 
 
 ############################################################################################################
 
