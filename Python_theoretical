@@ -3064,6 +3064,16 @@ a big fan of Monty Python's Flying Circus)."
 alt.sources in February 1991.
 
 ############################################################################################################
+INHERITANCE
+
+170. Inheritance supports code reusability. The methods or generally speaking the software inherited by a subclass
+is considered to be reused in the subclass.
+
+171.(a) The class from which a class inherits is called the parent or superclass.
+    (b) A class which inherits from a superclass is called a subclass, also called heir class or child class.
+
+
+############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
 https://www.linkedin.com/learning/python-essential-training-2/exercise-files
