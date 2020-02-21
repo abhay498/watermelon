@@ -3038,3 +3038,36 @@ print(a[-1:-5])
 #O/P  : []
 
 #--------------------------------------------------------------------------------------
+100. # Using reload module
+
+#########################
+import pdb
+def sample(x = 50):
+    b = 0
+    b = b + 2 * x
+    pdb.set_trace()
+    print(b)
+
+sample()
+
+##
+(Pdb) import a
+50
+(Pdb) import a
+(Pdb) import importlib
+(Pdb) importlib.reload(a)
+100
+<module 'a' from '/home/abhay/Desktop/a.py'>
+(Pdb)
+
+##
+
+import pdb
+def sample(x = 50):
+    b = 0
+    b = b + 2 * x
+    pdb.set_trace()
+    print(b)
+
+sample()
+#--------------------------------------------------------------------------------------
