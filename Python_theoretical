@@ -3251,6 +3251,38 @@ HEY !!!!!! GfG I am initialised(Class GEG1)
 Printing from class GFG3: 10
 Printing from class GFG2: 11
 Printing from class GFG1: 12
+
+############################################################################################################
+THE INTERPRETER , AN INTERACTIVE SHELL
+
+179.
+Similarly, a shell in operating systems lies between the kernel
+of the operating system and the user.
+
+>>> 3 + 2 * 4
+11
+>>>
+The most recent output value is automatically stored by the interpreter in a special variable
+with the name "_". So we can print the output from the recent example again by typing an
+underscore after the prompt:
+>>> _
+11
+>>>
+The underscore can be used in other expressions like any other variable:
+>>> _ * 3
+33
+>>>
+
+The underscore variable is only available in the Python shell. It's NOT available in Python
+scripts or programs.
+
+180.
+Multiplication on strings is defined, which is essentially a multiple concatenation:
+>>> ".-." * 4
+'.-..-..-..-.'
+>>>
+
+############################################################################################################
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
