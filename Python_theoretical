@@ -3481,6 +3481,197 @@ b. Calculating the sum of the numbers from 1 to 100:
 >>> reduce(lambda x, y: x+y, range(1,101))
 5050
 
+############################################################################################################
+MAGIC METHODS AND OPERATOR OVERLOADING
+
+195. Magic methods methods are sometimes called dunder methods!
+
+196. When you create an instance x of
+a class A with the statement "x = A()", Python will do the necessary calls to __new__
+and __init__.
+
+197. The __call__ method enables Python programmers to write classes where the instances behave like functions.
+     Both functions and the instances of such classes are called callables.
+     
+198. The mechanism works like this: If we have an expression "x + y" and x is an instance of
+class K, then Python will check the class definition of K. If K has a method __add__ it
+will be called with x.__add__(y), otherwise we will get an error message.
+
+199. OVERVIEW OF MAGIC METHODS
+
+BINARY OPERATORS
+Operator Method
++ object.__add__(self, other)
+- object.__sub__(self, other)
+* object.__mul__(self, other)
+// object.__floordiv__(self, other)
+/ object.__truediv__(self, other)
+% object.__mod__(self, other)
+** object.__pow__(self, other[, modulo])
+<< object.__lshift__(self, other)
+>> object.__rshift__(self, other)
+& object.__and__(self, other)
+^ object.__xor__(self, other)
+| object.__or__(self, other)
+
+EXTENDED ASSIGNMENTS
+Operator Method
++= object.__iadd__(self, other)
+-= object.__isub__(self, other)
+*= object.__imul__(self, other)
+/= object.__idiv__(self, other)
+//= object.__ifloordiv__(self, other)
+%= object.__imod__(self, other)
+**= object.__ipow__(self, other[, modulo])
+<<= object.__ilshift__(self, other)
+>>= object.__irshift__(self, other)
+&= object.__iand__(self, other)
+^= object.__ixor__(self, other)
+|= object.__ior__(self, other)
+
+UNARY OPERATORS
+Operator Method
+- object.__neg__(self)
++ object.__pos__(self)
+abs() object.__abs__(self)
+~ object.__invert__(self)
+complex() object.__complex__(self)
+int() object.__int__(self)
+long() object.__long__(self)
+float() object.__float__(self)
+oct() object.__oct__(self)
+hex() object.__hex__(self
+
+COMPARISON OPERATORS
+Operator Method
+< object.__lt__(self, other)
+<= object.__le__(self, other)
+== object.__eq__(self, other)
+!= object.__ne__(self, other)
+>= object.__ge__(self, other)
+> object.__gt__(self, other)
+
+200. 
+
+>>> from unit_conversions import Length
+>>> L = Length
+>>> print(L(2.56,"m") + L(3,"yd") + L(7.8,"in") +
+L(7.03,"cm"))
+5.57162
+>>>
+
+class Length:
+    __metric = {"mm" : 0.001, "cm" : 0.01, "m" :1, "km" : 1000,
+                "in" : 0.0254, "ft" : 0.3048, "yd": 0.9144,
+                "mi" : 1609.344 }
+        
+    def __init__(self, value, unit = "m" ):
+        self.value = value
+        self.unit = unit
+
+    def Converse2Metres(self):
+        return self.value * Length.__metric[self.unit]
+    
+    def __add__(self, other):
+        l = self.Converse2Metres() + other.Converse2Metres()
+        return Length(l / Length.__metric[self.unit], self.unit )
+
+    def __str__(self):
+        return str(self.Converse2Metres())
+
+    def __repr__(self):
+        return "Length(" + str(self.value) + ", '" + self.unit + "')"
+    
+if __name__ == "__main__":
+    x = Length(4)
+    print(x)
+    y = eval(repr(x))
+    z = Length(4.5, "yd") + Length(1)
+    print(repr(z))
+    print(z)
+
+4
+Length(5.593613298337708, 'yd')
+5.1148
+We use the method__iadd__ to implement the extended assignment:
+def __iadd__(self, other):
+l = self.Converse2Metres() +
+other.Converse2Metres()
+self.value = l /
+Length.__metric[self.unit]
+return self
+Now we are capable to write the following assignments:
+x += Length(1)
+x += Length(4, "yd")
+
+
+200. EXERCISES
+1. Write a class with the name Ccy, similar to the previously defined Length class.
+Ccy should contain values in various currencies, e.g. "EUR", "GBP" or "USD". An instance
+should contain the amount and the currency unit.
+The class, you are going to design as an excercise, might be best described with the
+following example session:
+
+201. STANDARD CLASSES AS BASE CLASSES
+     It's possible to use standard classes - like int, float, dict or lists - as base classes as well.
+     
+     We extend the list class by adding a push method:
+     class Plist(list):
+         def __init__(self, l):
+             list.__init__(self, l)
+         def push(self, item):
+             self.append(item)
+
+     if __name__ == "__main__":
+         x = Plist([3,4])
+         x.push(47)
+         print(x)
+
+This means that all the previously introduced binary and extended assignment operators
+exist in the "reversed" version as well:
+__radd__
+__rsub__
+__rmul__
+...
+and so on
+
+202. THE __CALL__ METHOD
+The __call__ method can be used to turn the instances of the class into callables.
+Functions are callable objects. A callable object is an object which can be used and
+behaves like a function but might not be a function. By using the __call__ method it is
+possible to define classes in a way that the instances will be callable objects. The
+__call__ method is called, if the instance is called "like a function", i.e. using brackets.
+The following example defines a class with which we can create abitrary polynomial
+functions:
+
+class Polynomial:
+def __init__(self, *coefficients):
+self.coefficients = coefficients[::-1]
+def __call__(self, x):
+res = 0
+for index, coeff in
+enumerate(self.coefficients):
+res += coeff * x** index
+return res
+# a constant function
+p1 = Polynomial(42)
+# a straight Line
+p2 = Polynomial(0.75, 2)
+# a third degree Polynomial
+p3 = Polynomial(1, -0.5, 0.75, 2)
+for i in range(1, 10):
+print(i, p1(i), p2(i), p3(i))
+
+These are the results of the previous function:
+1 42 2.75 3.25
+2 42 3.5 9.5
+3 42 4.25 26.75
+4 42 5.0 61.0
+5 42 5.75 118.25
+6 42 6.5 204.5
+7 42 7.25 325.75
+8 42 8.0 488.0
+9 42 8.75 697.25
 
 ############################################################################################################
 
