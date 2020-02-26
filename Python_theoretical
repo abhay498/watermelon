@@ -3593,17 +3593,54 @@ if __name__ == "__main__":
 4
 Length(5.593613298337708, 'yd')
 5.1148
+
 We use the method__iadd__ to implement the extended assignment:
 def __iadd__(self, other):
-l = self.Converse2Metres() +
-other.Converse2Metres()
-self.value = l /
-Length.__metric[self.unit]
-return self
+    l = self.Converse2Metres() + other.Converse2Metres()
+    self.value = l / Length.__metric[self.unit]
+    return self
+
 Now we are capable to write the following assignments:
 x += Length(1)
 x += Length(4, "yd")
 
+def __add__(self, other):
+    if type(other) == int or type(other) == float:
+        l = self.Converse2Metres() + other
+    else:
+	l = self.Converse2Metres() + other.Converse2Metres()
+	return Length(l / Length.__metric[self.unit], self.unit )
+
+def __iadd__(self, other):
+    if type(other) == int or type(other) == float:
+        l = self.Converse2Metres() + other
+    else:
+        l = self.Converse2Metres() + other.Converse2Metres()
+    self.value = l / Length.__metric[self.unit]
+    return self
+ 
+>>> from unit_conversions import Length
+>>> x = Length(3, "yd") + 5
+>>> x = 5 + Length(3, "yd")
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for +:
+'int' and 'Length'
+>>>
+
+def __radd__(self, other):
+if type(other) == int or type(other) ==
+float:
+l = self.Converse2Metres() +
+otherLength.__radd__(Length(3, "yd"), 5)
+else:
+l = self.Converse2Metres() +
+other.Converse2Metres()
+return Length(l /
+Length.__metric[self.unit], self.unit )
+
+def __radd__(self, other):
+return Length.__add__(self,other)
 
 200. EXERCISES
 1. Write a class with the name Ccy, similar to the previously defined Length class.
@@ -3611,6 +3648,20 @@ Ccy should contain values in various currencies, e.g. "EUR", "GBP" or "USD". An 
 should contain the amount and the currency unit.
 The class, you are going to design as an excercise, might be best described with the
 following example session:
+
+>>> from currencies import Ccy
+>>> v1 = Ccy(23.43, "EUR")
+>>> v2 = Ccy(19.97, "USD")
+>>> print(v1 + v2)
+32.89 EUR
+>>> print(v2 + v1)
+31.07 USD
+>>> print(v1 + 3) # an int or a float is
+considered to be a EUR value
+27.43 EUR
+>>> print(3 + v1)
+27.43 EUR
+>>>
 
 201. STANDARD CLASSES AS BASE CLASSES
      It's possible to use standard classes - like int, float, dict or lists - as base classes as well.
