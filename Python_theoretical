@@ -3438,6 +3438,50 @@ function(item) returns True.
 >>> fibonacci = [0,1,1,2,3,5,8,13,21,34,55]
 >>> odd_numbers = list(filter(lambda x: x % 2,
 fibonacci))
+>>> print(odd_numbers)
+[1, 1, 3, 5, 13, 21, 55]
+>>> even_numbers = list(filter(lambda x: x % 2 ==
+0, fibonacci))
+>>> print(even_numbers)
+[0, 2, 8, 34]
+>>>
+>>>
+>>> # or alternatively:
+...
+>>> even_numbers = list(filter(lambda x: x % 2 -1,
+fibonacci))
+>>> print(even_numbers)
+[0, 2, 8, 34]
+>>>
+
+191. Guido van Rossum hates reduce().
+
+192. The function 
+     reduce(func, seq)
+     continually applies the function func() to the sequence seq. It returns a single value.
+
+193.
+>>> import functools
+>>> functools.reduce(lambda x,y: x+y,
+[47,11,42,13])
+113
+>>>
+
+194. EXAMPLES OF REDUCE()
+
+a. Determining the maximum of a list of numerical values by using reduce:
+>>> from functools import reduce
+>>> f = lambda a,b: a if (a > b) else b
+>>> reduce(f, [47,11,42,102,13])
+102
+>>>
+
+b. Calculating the sum of the numbers from 1 to 100:
+>>> from functools import reduce
+>>> reduce(lambda x, y: x+y, range(1,101))
+5050
+
+
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
