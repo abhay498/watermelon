@@ -1590,6 +1590,7 @@ Decorating foo
 inside foo()
 
 ############################################################################################################
+LIST COMPREHENSION
 
 74. List comprehension is a complete substitute for the lambda function as well as the
 functions map(), filter() and reduce().List comprehension is an elegant way to define and create list in Python.
@@ -3337,6 +3338,106 @@ THE CALENDAR CLASS
 
 THE CALENDAR-CLOCK CLASS
 
+############################################################################################################
+INPUT FROM KEYBOARD
+
+############################################################################################################
+LAMBDA, FILTER, REDUCE AND MAP
+
+182. If Guido van Rossum, the author of the programming language Python, had got his will, this chapter would
+be missing in our tutorial.
+
+183. We can see the result: lambda, map() and filter() are still part of core Python. Only
+reduce() had to go; it moved into the module functools.
+
+His reasoning for dropping them is like this:
+- There is an equally powerful alternative to lambda, filter, map and reduce, i.e. list comprehension
+- List comprehension is more evident and easier to understand
+- Having both list comprehension and "Filter, map, reduce and lambda" is transgressing the Python motto
+  "There should be one obvious way to solve a problem".
+  
+184. Some like it, others hate it and many are afraid of the lambda operator. 
+     The lambda feature was added to Python due to the demand from Lisp programmers.
+
+185. The general syntax of a lambda function is quite simple:
+     lambda argument_list: expression
+     
+186. The argument list consists of a comma separated list of arguments and the expression is
+     an arithmetic expression using these arguments. You can assign the function to a
+     variable to give it a name.
+     
+     The following example of a lambda function returns the sum of its two arguments:
+     >>> sum = lambda x, y : x + y
+     >>> sum(3,4)
+     7
+     >>>
+     
+187. THE MAP() FUNCTION
+
+As we have mentioned earlier, the advantage of the lambda operator can be seen when
+it is used in combination with the map() function.
+map() is a function which takes two arguments:
+
+r = map(func, seq)
+
+The first argument func is the name of a function and the second a sequence (e.g. a list)
+seq. map() applies the function func to all the elements of the sequence seq.
+
+With Python 3, map() returns an iterator.
+
+188.
+The following example illustrates the way of working of map():
+>>> def fahrenheit(T):
+... return ((float(9)/5)*T + 32)
+...
+>>> def celsius(T):
+... return (float(5)/9)*(T-32)
+...
+>>> temperatures = (36.5, 37, 37.5, 38, 39)
+>>> F = map(fahrenheit, temperatures)
+>>> C = map(celsius, F)
+>>>
+>>> temperatures_in_Fahrenheit =
+list(map(fahrenheit, temperatures))
+>>> temperatures_in_Celsius = list(map(celsius,
+temperatures_in_Fahrenheit))
+>>> print(temperatures_in_Fahrenheit)
+[97.7, 98.60000000000001, 99.5, 100.4, 102.2]
+>>> print(temperatures_in_Celsius)
+[36.5, 37.00000000000001, 37.5, 38.00000000000001,
+39.0]
+>>>
+
+189.
+By using lambda, we wouldn't have had
+to define and name the functions fahrenheit() and celsius(). You can see this in the
+following interactive session:
+>>> C = [39.2, 36.5, 37.3, 38, 37.8]
+>>> F = list(map(lambda x: (float(9)/5)*x + 32,
+C))
+>>> print(F)
+[102.56, 97.7, 99.14, 100.4, 100.03999999999999]
+>>> C = list(map(lambda x: (float(5)/9)*(x-32),
+F))
+>>> print(C)
+[39.2, 36.5, 37.300000000000004,
+38.00000000000001, 37.8]
+>>>
+
+190. FILTERING
+
+The function
+
+filter(function, sequence)
+
+offers an elegant way to filter out all the elements of a sequence "sequence", for which
+the function function returns True. i.e. an item will be produced by the iterator result of
+filter(function, sequence) if item is included in the sequence "sequence" and if
+function(item) returns True.
+
+>>> fibonacci = [0,1,1,2,3,5,8,13,21,34,55]
+>>> odd_numbers = list(filter(lambda x: x % 2,
+fibonacci))
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
