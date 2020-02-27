@@ -4067,13 +4067,23 @@ and this discourages users of the object from accessing these variables directly
 these accessors, or getters, I call them getters, some people call them accessors.
 Which simply return the value of those object variables. 
 
-34. Now you'll also notice this special method called str, with two underscores before and two underscores after. We've seen this before, in our constructor init, with two underscores before and two underscores after. So this is a specially-named method, which provides the string representation of the object. And this allows us to print it with simply this print and the object like that, without needing a special function, like we had in the previous lessons. You can find a list of all the special method names here in the documentation, under data model. And if you click on special method names, you'll see a whole bunch of them, with all of their descriptions. And there's str right there, the informal or nicely printable string representation of an object. And there's just a lot more of them. There's all the comparison operators, and this list goes on for quite a while. Methods are the primary interface for classes and objects. They work exactly like functions, except they are bound to the object through their first argument, commonly named self.
+34. Now you'll also notice this special method called str, with two underscores before and two underscores after. We've seen this
+before, in our constructor init, with two underscores before and two underscores after. So this is a specially-named method, which
+provides the string representation of the object. And this allows us to print it with simply this print and the object like that, 
+without needing a special function, like we had in the previous lessons. You can find a list of all the special method names here
+in the documentation, under data model. And if you click on special method names, you'll see a whole bunch of them, with all of
+their descriptions. And there's str right there, the informal or nicely printable string representation of an object. And there's
+just a lot more of them. There's all the comparison operators, and this list goes on for quite a while. Methods are the primary
+interface for classes and objects. They work exactly like functions, except they are bound to the object through their first argument,
+commonly named self.
 
-35. So it's important to understand the distinction between class variables and object variables and how to properly encapsulate data in your objects.
+35. So it's important to understand the distinction between class variables and object variables and how to properly encapsulate data
+in your objects.
 
 36. Iterator objects
 
-37. it's important to note here that a string is immutable, it cannot be changed. So when you use one of these transformation methods, the return string is a different object.
+37. it's important to note here that a string is immutable, it cannot be changed. So when you use one of these transformation methods,
+the return string is a different object.
 
 38.
 In long string consisting of digits and dashes, how would you replace all dashes with spaces?
@@ -4100,7 +4110,11 @@ s1.title()==s2
 41. A little bit about the open function here, by default, it opens the file in read-only mode,
 which would be the same as providing a mode with a R letter.
 
-42. On line 10, I close the out file, and this is important because again, buffering, all of what we've written to the file may not be completely written by the time our main function ends, and we want to prevent any data loss, so it's a good idea to close the file explicitly that you've written to. You can also the close the infile. I can say, infile.close, and this is less important because you're not going to really lose any data, and it will be closed automatically when we exit the main function. So now I'm going to run this. You notice it happens very quickly.
+42. On line 10, I close the out file, and this is important because again, buffering, all of what we've written to the file may not
+be completely written by the time our main function ends, and we want to prevent any data loss, so it's a good idea to close the file
+explicitly that you've written to. You can also the close the infile. I can say, infile.close, and this is less important because
+you're not going to really lose any data, and it will be closed automatically when we exit the main function. So now I'm going to
+run this. You notice it happens very quickly.
 
 43. Your environment has very limited memory. How will you prefer to copy a file of an unknown size and content in this case?
 
@@ -4124,4 +4138,6 @@ if __name__ == '__main__':    main()
 You are correct!
 It allows you to test your script when running it as a stand-alone program.
 
-47.  The Python db api is a consolidated interface for a number of database systems. It's important to understand that every database engine has its own interface, its own requirements, and really its own paradigm, so no single interface will ever serve all of them equally.
+47.  The Python db api is a consolidated interface for a number of database systems. It's important to understand that every database
+engine has its own interface, its own requirements, and really its own paradigm, so no single interface will ever serve all of them
+equally.
