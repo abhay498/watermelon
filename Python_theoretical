@@ -3821,6 +3821,26 @@ Write a Python function weigh(), which calculates the weights needed and their d
 on the pans to weigh any amount from 1 to 40.
 
 ############################################################################################################
+META CLASSES
+
+207. A metaclass is a class whose instances are classes. Like an "ordinary" class defines
+the behavior of the instances of the class, a metaclass defines the behavior of classes
+and their instances.
+
+208. There are numerous use cases for metaclasses. Just to name a few:
+
+logging and profiling
+interface checking
+registering classes at creation time
+automatically adding new methods
+automatic property creation
+proxies
+automatic resource locking/synchronization.
+
+209. 
+
+
+############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
 https://www.linkedin.com/learning/python-essential-training-2/exercise-files
