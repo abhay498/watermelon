@@ -3740,6 +3740,7 @@ helper() which is doing what fib() would do on its own plus a wrapper which save
 calculated results.
 
 205. 
+# M1
 def memoize(f):
   memo = {}
   def helper(x):
@@ -3758,6 +3759,66 @@ def fib(n):
 
 fib = memoize(fib)
 print(fib(40))
+
+# M2
+def memoize(f):
+  memo = {}
+  def helper(x):
+    if x not in memo:
+      memo[x] = f(x)
+    return memo[x]
+  return helper
+
+@memoize
+def fib(n):
+  if n == 0:
+    return 0
+  elif n == 1:
+    return 1
+  else:
+    return fib(n-1) + fib(n-2)
+
+print(fib(40))
+
+# USING A CALLABLE CLASS FOR MEMOIZATION
+
+206. We can encapsulate the caching of the results in a class as well, as you can see in the
+following example:-
+
+class Memoize:
+  def __init__(self, fn):
+    self.fn = fn
+    self.memo = {}
+    
+  def __call__(self, *args):
+    if args not in self.memo:
+      self.memo[args] = self.fn(*args)
+      return self.memo[args]
+    
+@Memoize
+def fib(n):
+  if n == 0:
+    return 0
+  elif n == 1:
+    return 1
+  else:
+    return fib(n-1) + fib(n-2)
+
+As we are using a dictionary, we can't use mutable arguments, i.e. the arguments have
+to be immutable.
+
+EXERCISE
+
+1. Our exercise is an old riddle, going back to 1612. The French Jesuit Claude-
+Gaspar Bachet phrased it. We have to weigh quantities (e.g. sugar or flour) from 1
+to 40 pounds. What is the least number of weights that can be used on a balance
+scale to way any of these quantities.The first idea might be to use
+weights of 1, 2, 4, 8, 16 and 32 pounds. This is a minimal number,
+if we restrict ourself to put weights on one side and the stuff, e.g. the
+sugar, on the other side. But it is possible to put weights on both
+pans of the scale. Now, we need only four weights, i.e. 1, 3, 9, 27
+Write a Python function weigh(), which calculates the weights needed and their distribution
+on the pans to weigh any amount from 1 to 40.
 
 ############################################################################################################
 
