@@ -3837,7 +3837,44 @@ automatic property creation
 proxies
 automatic resource locking/synchronization.
 
-209. 
+209. DEFINING METACLASSES
+
+- Principially, metaclasses are defined like any other Python class, but they are classes that inherit from "type".
+- Another difference is, that a metaclass is called automatically, when the class statement using a metaclass ends.
+- In other words: If no "metaclass" keyword is passed after the base classes (there may be no base classes either) of the
+  class header, type() (i.e. __call__ of type) will be called.
+
+class LittleMeta(type):
+  def __new__(cls, clsname, superclasses, attributedict):
+    print("clsname: ", clsname)
+    print("superclasses: ", superclasses)
+    print("attributedict: ", attributedict)
+    return type.__new__(cls, clsname, superclasses, attributedict)
+  
+class S:
+    pass
+class A(S, metaclass=LittleMeta):
+    pass
+
+a = A()
+
+OUTPUT
+>>> 
+clsname:  A
+superclasses:  (<class '__main__.S'>,)
+attributedict:  {'__module__': '__main__', '__qualname__': 'A'}
+>>> 
+
+210. We have learned in our chapter "Type and Class Relationship" that after the class
+definition has been processed, Python calls type(classname, superclasses, attributes_dict)
+
+211.
+
+212.
+
+213.
+
+214. 
 
 
 ############################################################################################################
