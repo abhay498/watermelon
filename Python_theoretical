@@ -2669,7 +2669,7 @@ $ chmod +x my_first_simple_program.py
 
 ############################################################################################################
 
-F I L E M A N A G E M E N T
+FILE MANAGEMENT
 
 137. The "r" is optional. An open() command with just a file name is opened for reading per
 default. The open() function returns a file object, which offers attributes and methods.
@@ -3723,6 +3723,41 @@ These are the results of the previous function:
 7 42 7.25 325.75
 8 42 8.0 488.0
 9 42 8.75 697.25
+
+############################################################################################################
+MEMOIZATION WITH DECORATORS
+
+203. Memoisation is a technique used in computing to speed up programs.
+This is accomplished by memorizing the calculation results of processed input such as the results of function
+calls. If the same input or a function call with the same parameters is used, the previously stored results
+can be used again and unnecessary calculation are avoided.
+
+204. memoize() takes a function as an argument. The function memoize uses a dictionary "memo" to store the
+function results. Though the variable "memo" as well as the function "f" are local to
+memoize, they are captured by a closure through the helper function which is returned
+as a reference by memoize(). So, the call memoize(fib) returns a reference to the
+helper() which is doing what fib() would do on its own plus a wrapper which saves the
+calculated results.
+
+205. 
+def memoize(f):
+  memo = {}
+  def helper(x):
+    if x not in memo:
+      memo[x] = f(x)
+    return memo[x]
+  return helper
+
+def fib(n):
+  if n == 0:
+    return 0
+  elif n == 1:
+    return 1
+  else:
+    return fib(n-1) + fib(n-2)
+
+fib = memoize(fib)
+print(fib(40))
 
 ############################################################################################################
 
