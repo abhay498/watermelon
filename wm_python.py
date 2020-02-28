@@ -769,6 +769,11 @@ Decorators allow us to wrap another function in order to extend the behavior of 
 without modifying it.
 """
 
+# https://www.oreilly.com/content/5-reasons-you-need-to-learn-to-write-python-decorators/
+# https://www.quora.com/What-is-the-use-of-decorators-in-Python-and-when-do-you-use-them
+# https://stackoverflow.com/questions/489720/what-are-some-common-uses-for-python-decorators
+# https://www.geeksforgeeks.org/decorators-in-python/
+	
 # Example 1
 def double(f):
     def g(a,b):
