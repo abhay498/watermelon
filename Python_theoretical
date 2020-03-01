@@ -4117,6 +4117,135 @@ Number too large
 New number: 17
 Congratulation. You made it!
 $
+
+SHALLOW AND DEEP COPY
+
+226. 
+In this chapter, we will cover the question of how to copy lists and nested lists.
+
+>>> x = 3
+>>> y = x
+>>> print(id(x), id(y))
+9251744 9251744
+>>> y = 4
+>>> print(id(x), id(y))
+9251744 9251776
+>>> print(x,y)
+3 4
+>>>
+
+227. 
+COPYING A LIST
+
+>>> colours1 = ["red", "blue"]
+>>> colours2 = colours1
+>>> print(colours1)
+['red', 'blue']
+>>> print(colours2)
+['red', 'blue']
+>>> print(id(colours1),id(colours2))
+43444416 43444416
+>>> colours2 = ["rouge", "vert"]
+>>> print(colours1)
+['red', 'blue']
+>>> print(colours2)
+['rouge', 'vert']
+>>> print(id(colours1),id(colours2))
+43444416 43444200
+>>>
+
+228. 
+In the example above a simple list is assigned to colours1. This list is a so-called
+"shallow list", because it doesn't have a nested structure, i.e. no sublists are contained in
+the list. In the next step we assign colour1 to colours2.
+
+>>> colours1 = ["red", "blue"]
+>>> colours2 = colours1
+>>> print(id(colours1),id(colours2))
+14603760 14603760
+>>> colours2[1] = "green"
+>>> print(id(colours1),id(colours2))
+14603760 14603760
+>>> print(colours1)
+['red', 'green']
+>>> print(colours2)
+['red', 'green']
+>>>
+
+COPY WITH THE SLICE OPERATOR
+
+229.
+It's possible to completely copy shallow list structures with the slice operator without
+having any of the side effects, which we have described above:
+>>> list1 = ['a','b','c','d']
+>>> list2 = list1[:]
+>>> list2[1] = 'x'
+>>> print(list2)
+['a', 'x', 'c', 'd']
+>>> print(list1)
+['a', 'b', 'c', 'd']
+>>>
+But as soon as a list contains sublists, we have another difficulty: The sublists are not
+copied but only the references to the sublists. The following example list "lst2" contains
+one sublist. We create a shallow copy with the slicing operator.
+>>> lst1 = ['a','b',['ab','ba']]
+>>> lst2 = lst1[:]
+
+230. 
+If you assign a new value to the 0th or the 1st index of one of the two lists, there will be
+no side effect.
+>>> lst1 = ['a','b',['ab','ba']]
+>>> lst2 = lst1[:]
+>>> lst2[0] = 'c'
+>>> print(lst1)
+['a', 'b', ['ab', 'ba']]
+>>> print(lst2)
+['c', 'b', ['ab', 'ba']]
+of the elements of the sublist:
+>>> lst2[2][1] = 'd'
+>>> print(lst1)
+['a', 'b', ['ab', 'd']]
+>>> print(lst2)
+['c', 'b', ['ab', 'd']]
+
+
+USING THE METHOD DEEPCOPY FROM THE MODULE COPY
+
+231.
+Let's use deepcopy for our previous list:
+>>> from copy import deepcopy
+>>>
+>>> lst1 = ['a','b',['ab','ba']]
+>>>
+>>> lst2 = deepcopy(lst1)
+>>>
+>>> lst1
+['a', 'b', ['ab', 'ba']]
+>>> lst2
+['a', 'b', ['ab', 'ba']]
+>>> id(lst1)
+139716507600200
+>>> id(lst2)
+139716507600904
+>>> id(lst1[0])
+139716538182096
+>>> id(lst2[0])
+139716538182096
+>>> id(lst2[2])
+139716507602632
+>>> id(lst1[2])
+139716507615880
+>>>
+
+The following diagram shows the situation after copying the list:
+>>> lst2[2][1] = "d"
+>>> lst2[0] = "c"
+>>> print(lst1)
+['a', 'b', ['ab', 'ba']]
+>>> print(lst2)
+['c', 'b', ['ab', 'd']]
+>>>
+
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
