@@ -4035,8 +4035,88 @@ consumption of programs, which create many instances of non-builtin types.
 
 
 ###########################################################################################
+LOOPS
 
+221.
+Python has these three channels as well:
+standard input
+standard output
+standard error
+They are contained in the module sys. Their names are:
+sys.stdin
+sys.stdout
+sys.stderror
 
+222.
+The following script shows how to read with a while loop character by character from
+standard input (keyboard).
+import sys
+text = ""
+while 1:
+c = sys.stdin.read(1)
+text = text + c
+if c == '\n':
+break
+print("Input: %s" % text)
+Though it's possible to read input like this, usually the function input() is used.
+>>> name = input("What's your name?\n")
+What's your name?
+Tux
+>>> print(name)
+Tux
+>>>
+
+223. The statements in the else part are
+executed, when the condition is not
+fulfilled anymore.
+The general syntax of a while loop looks like this:
+
+while condition:
+statement_1
+statement_n
+else:
+statement_1
+...
+statement_n
+
+224. Now comes the crucial point: If a loop is
+left by break, the else part is not
+executed.
+
+225. A little guessing number game.
+
+A human player has to guess a number between a range of 1 to n. The player
+inputs his guess. The program informs the player, if this number is larger, smaller or
+equal to the secret number, i.e. the number which the program has randomly created. If
+the player wants to gives up, he or she can input a 0 or a negative number.
+
+import random
+n = 20
+to_be_guessed = int(n * random.random()) + 1
+guess = 0
+while guess != to_be_guessed:
+guess = int(input("New number: "))
+if guess > 0:
+if guess > to_be_guessed:
+print("Number too large")
+elif guess < to_be_guessed:
+print("Number too small")
+else:
+print("Sorry that you're giving up!")
+break
+else:
+print("Congratulation. You made it!")
+The output of a game session might look like this:
+$ python3 number_game.py
+New number: 12
+Number too small
+New number: 15
+Number too small
+New number: 18
+Number too large
+New number: 17
+Congratulation. You made it!
+$
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
