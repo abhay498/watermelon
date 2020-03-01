@@ -3842,8 +3842,10 @@ automatic resource locking/synchronization.
 - Principially, metaclasses are defined like any other Python class, but they are classes that inherit from "type".
 - Another difference is, that a metaclass is called automatically, when the class statement using a metaclass ends.
 - In other words: If no "metaclass" keyword is passed after the base classes (there may be no base classes either) of the
-  class header, type() (i.e. __call__ of type) will be called.
+  class header, type() (i.e. __call__ of type) will be called.If a metaclass keyword is used
+  on the other hand, the class assigned to it will be called instead of type.
 
+210.
 class LittleMeta(type):
   def __new__(cls, clsname, superclasses, attributedict):
     print("clsname: ", clsname)
@@ -3864,25 +3866,108 @@ clsname:  A
 superclasses:  (<class '__main__.S'>,)
 attributedict:  {'__module__': '__main__', '__qualname__': 'A'}
 >>> 
+We can see LittleMeta.__new__ has been called and not type.__new__.
 
-210. We have learned in our chapter "Type and Class Relationship" that after the class
+210.
+x = input("Do you need the answer? (y/n): ")
+if x.lower() == "y":
+required = True
+else:
+required = False
+def the_answer(self, *args):
+return 42
+class EssentialAnswers(type):
+def __init__(cls, clsname, superclasses,
+attributedict):
+if required:
+cls.the_answer = the_answer
+class Philosopher1(metaclass=EssentialAnswers):
+pass
+class Philosopher2(metaclass=EssentialAnswers):
+pass
+class Philosopher3(metaclass=EssentialAnswers):
+pass
+plato = Philosopher1()
+print(plato.the_answer())
+kant = Philosopher2()
+# let's see what Kant has to say :-)
+print(kant.the_answer())
+Do you need the answer? (y/n): y
+42
+42
+
+211. We have learned in our chapter "Type and Class Relationship" that after the class
 definition has been processed, Python calls type(classname, superclasses, attributes_dict)
+This is not the case, if a metaclass has been declared in the header.
+Our classes Philosopher1, Philosopher2 and
+Philosopher3 have been hooked to the metaclass EssentialAnswers. That's why
+EssentialAnswer will be called instead of type:
+EssentialAnswer(classname, superclasses,
+attributes_dict)
+To be precise, the arguments of the calls will be set the the following values:
+EssentialAnswer('Philopsopher1',
+(),
+{'__module__': '__main__',
+'__qualname__': 'Philosopher1'})
 
-211.
+CREATING SINGLETONS USING METACLASSES
 
-212.
+212. The singleton pattern is a design pattern that restricts the instantiation of a class to one
+object. It is used in cases where exactly one object is needed.
 
-213.
+class Singleton(type):
+_instances = {}
+def __call__(cls, *args, **kwargs):
+if cls not in cls._instances:
+cls._instances[cls] = super(Singleton,
+cls).__call__(*args, **kwargs)
+return cls._instances[cls]
+class SingletonClass(metaclass=Singleton):
+pass
+class RegularClass():
+pass
+x = SingletonClass()
+y = SingletonClass()
+print(x == y)
+x = RegularClass()
+y = RegularClass()
+print(x == y)
+True
+False
 
-214. 
+CREATING SINGLETONS USING METACLASSES
+213. 
+Alternatively, we can create Singleton classes by inheriting from a Singleton class,
+which can be defined like this:
+
+class Singleton(object):
+_instance = None
+def __new__(cls, *args, **kwargs):
+if not cls._instance:
+cls._instance = object.__new__(cls,
+*args, **kwargs)
+return cls._instance
+class SingletonClass(Singleton):
+pass
+class RegularClass():
+pass
+x = SingletonClass()
+y = SingletonClass()
+print(x == y)
+x = RegularClass()
+y = RegularClass()
+print(x == y)
+True
+False
 
 ########################################################################################
 SLOTS
 
 AVOIDING DYNAMICALLY CREATED ATTRIBUTES
 
-- The attributes of objects are stored in a dictionary "__dict__".
-- Like any other
+214. The attributes of objects are stored in a dictionary "__dict__".
+
+215. Like any other
 dictionary, a dictionary used for attribute
 storage doesn't have a fixed number of
 elements. In other words, you can add
@@ -3901,16 +3986,16 @@ have created so far:
 >>> a.y = "dynamically
 created attribute"
 
-- The dictionary containing the attributes
+216.  The dictionary containing the attributes
 of "a" can be accessed like this:
 >>> a.__dict__
 {'y': 'dynamically created attribute', 'x': 66}
 
--
+217. 
 You might have wondered that you can dynamically add attributes to the classes, we
 have defined so far, but that you can't do this with built-in classes like 'int', or 'list':
 
--
+218. 
 Using a dictionary for attribute storage is very convenient, but it can mean a waste of
 space for objects, which have only a small amount of instance variables. The space
 consumption can become critical when creating large numbers of instances. Slots are a
@@ -3918,7 +4003,7 @@ nice way to work around this space consumption problem. Instead of having a dyna
 dict that allows adding attributes to objects dynamically, slots provide a static structure
 which prohibits additions after the creation of an instance.
 
--
+219. 
 When we design a class, we can use slots to prevent the dynamic creation of attributes.
 To define slots, you have to define a list with the name __slots__. The list has to
 contain all the attributes, you want to use. We demonstrate this in the following class, in
@@ -3939,6 +4024,8 @@ Traceback (most recent call last):
 File "slots_ex.py", line 12, in <module>
 x.new = "not possible"
 AttributeError: 'S' object has no attribute 'new'
+
+220.
 We mentioned in the beginning that slots are preventing a waste of space with objects.
 Since Python 3.3 this advantage is not as impressive any more. With Python 3.3 Key-
 Sharing Dictionaries are used for the storage of objects. The attributes of the instances
