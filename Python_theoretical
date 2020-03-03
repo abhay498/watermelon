@@ -4736,6 +4736,179 @@ Error: 42
 
 
 ###########################################################################################
+PACKAGES IN PYTHON
+
+267. We learned that modules are files
+containing Python statements and
+definitions, like function and class
+definitions. We will learn in this chapter
+how to bundle multiple modules
+together to form a package.
+
+268. A package is basically a directory with
+Python files and a file with the name
+__init__.py. This means that every
+directory inside of the Python path, which contains a file named __init__.py, will be
+treated as a package by Python. It's possible to put several modules into a Package.
+
+269. 
+We will call our package "simple_package".
+This directory needs to contain a file
+with the name "__init__.py". This file
+can be empty, or it can contain valid
+Python code. This code will be executed
+when a package will be imported, so it
+can be used to initialize a package, e.g.
+to make sure that some other modules
+are imported or some values set. Now
+we can put into this directory all the
+Python files which will be the
+submodules of our module.
+We create two simple files a.py and b.py just for the sake of filling the package with
+modules.
+The content of a.py:
+def bar():
+print("Hello, function 'bar' from module 'a'
+calling")
+The content of b.py:
+def foo():
+print("Hello, function 'foo' from module 'b'
+calling")
+We will also add an empty file with the name __init__.py inside of simple_package
+directory.
+Let's see whats happening, when we import simple_package from the interactive
+Python shell, assuming that the directory simple_package is either in the directory from
+which you call the shell or that it is contained in the search path or environment
+variable "PYTHONPATH" (from your operating system):
+
+
+>>> import simple_package
+>>>
+>>> simple_package
+<module 'simple_package' from '/home/bernd/Dropbox
+(Bodenseo)/websites/pythoncourse.
+eu/examples/simple_package/__init__.py'>
+>>>
+>>> simple_package/a
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+NameError: name 'a' is not defined
+>>>
+>>> simple_package/b
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+NameError: name 'b' is not defined
+
+We can see that the package simple_package has been loaded but neither the module
+"a" nor the module "b"! We can import the modules a and b in the following way:
+>>> from simple_package import a, b
+>>> a.bar()
+Hello, function 'bar' from module 'a' calling
+>>> b.foo()
+Hello, function 'foo' from module 'b' calling
+>>>
+
+As we have seen at the beginning of the chapter, we can't access neither "a" nor "b" by
+solely importing simple_package.
+Yet, there is a way to automatically load these modules. We can use the file __init__.py
+for this purpose. All we have to do is add the following lines to the so far empty file
+__init__.py:
+import simple_package.a
+import simple_package.b
+
+It will work now:
+>>> import simple_package
+>>>
+>>> simple_package.a.bar()
+Hello, function 'bar' from module 'a' calling
+>>>
+>>> simple_package.b.foo()
+Hello, function 'foo' from module 'b' calling
+
+270.
+Python provides a mechanism to give an explicit index of the subpackages and modules
+of a packages, which should be imported. For this purpose, we can define a list named
+__all__. This list will be taken as the list of module and package names to be imported
+when from package import * is encountered.
+We will add now the line
+__all__ = ["formats", "filters", "effects",
+"foobar"]
+to the __init__.py file of the sound directory. We get a completely different result now:
+>>> from sound import *
+sound package is getting imported!
+formats package is getting imported!
+filters package is getting imported!
+effects package is getting imported!
+The module foobar is getting imported
+>>>
+
+271.
+Even though it is already apparent that all the modules have been imported, we can
+check with dir again:
+>>> dir()
+['__builtins__', '__doc__', '__loader__',
+'__name__', '__package__', '__spec__', 'effects',
+'filters', 'foobar', 'formats']
+>>>
+The next question is what will be imported, if we use * in a subpackage:
+>>> from sound.effects import *
+sound package is getting imported!
+effects package is getting imported!
+>>> dir()
+['__builtins__', '__doc__', '__loader__',
+'__name__', '__package__', '__spec__']
+>>>
+Like expected the modules inside of effects have not been imported automatically. So
+we can add the following __all__ list into the __init__ file of the package effects:
+__all__ = ["echo", "surround", "reverse"]
+Now we get the intended result:
+>>> from sound.effects import *
+sound package is getting imported!
+effects package is getting imported!
+Module echo.py has been loaded!
+Module surround.py has been loaded!
+Module reverse.py has been loaded!
+>>>
+>>> dir()
+['__builtins__', '__doc__', '__loader__',
+'__name__', '__package__', '__spec__', 'echo',
+'reverse', 'surround']
+>>>
+Although certain modules are designed to export only names that follow certain
+patterns when you use import *, it is still considered bad practice. The recommended
+way is to import specific modules from a package instead of using *.
+
+272.
+|-- effects
+| |-- echo.py
+| |-- __init__.py
+| |-- reverse.py
+| `-- surround.py
+|-- filters
+| |-- equalizer.py
+| |-- __init__.py
+| |-- karaoke.py
+| `-- vocoder.py
+|-- formats
+| |-- aiffread.py
+| |-- aiffwrite.py
+| |-- auread.py
+| |-- auwrite.py
+| |-- __init__.py
+| |-- wavread.py
+| `-- wavwrite.py
+`-- __init__.py
+
+It is also possible to automatically import the package formats, when we are importing
+the effects package. We can also do this with a relative path, which we will include
+into the __init__.py file of the directory effects:
+from .. import formats
+
+Importing sound will also automatically import the modules formats and effects:
+>>> import sound
+formats package is getting imported!
+effects package is getting imported!
+sound package is getting imported!
 
 ############################################################################################################
 
