@@ -4326,6 +4326,80 @@ x.do_something()
 Some implementation!
 The enrichment from AnotherSubclass
 
+###########################################################################################
+SEQUENTIAL DATA TYPES
+
+238. 
+
+Python provides for six sequence (or sequential) data types:
+
+strings
+byte sequences
+byte arrays
+lists
+tuples
+range objects
+
+239. Where is the benefit of tuples?
+
+Tuples are faster than lists.
+If you know that some data doesn't have to be changed, you should use tuples
+instead of lists, because this protects your data against accidental changes.
+The main advantage of tuples consists in the fact that tuples can be used as keys in
+dictionaries, while lists can't.
+
+240.
+In the following example we define a string and we print every third character of this
+string:
+>>> str = "Python under Linux is great"
+>>> str[::3]
+'Ph d n e'
+
+241.
+The following string, which looks like letter salad, contains two sentences. One of them
+contains covert advertising of my Python courses in Canada:
+"TPoyrtohnotno ciosu rtshees lianr gTeosrto
+nCtiot yb yi nB oCdaennasdeao"
+Try to figure it out using slicing with the step argument. The solution is: You have to set
+step to 2
+>>> s
+'TPoyrtohnotno ciosu rtshees lianr gTeosrto
+nCtiot yb yi nB oCdaennasdeao'
+>>> s[::2]
+'Toronto is the largest City in Canada'
+>>> s[1::2]
+'Python courses in Toronto by Bodenseo'
+>>>
+
+You may be interested in how we created the string. You have to understand list
+comprehension to understand the following:
+>>> s = "Toronto is the largest City in Canada"
+>>> t = "Python courses in Toronto by Bodenseo"
+>>> s = "".join(["".join(x) for x in zip(s,t)])
+>>> s
+'TPoyrtohnotno ciosu rtshees lianr gTeosrto
+nCtiot yb yi nB oCdaennasdeao'
+>>>
+
+242.
+It's a kind of abbreviation for an n-times concatenation, i.e.
+str * 4
+is the same as
+str + str + str + str
+
+243. THE PITFALLS OF REPETITIONS
+
+>>> x = ["a","b","c"]
+>>> y = [x] * 4
+>>> y
+[['a', 'b', 'c'], ['a', 'b', 'c'], ['a', 'b',
+'c'], ['a', 'b', 'c']]
+>>> y[0][0] = "p"
+>>> y
+[['p', 'b', 'c'], ['p', 'b', 'c'], ['p', 'b',
+'c'], ['p', 'b', 'c']]
+>>>
+
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
