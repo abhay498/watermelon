@@ -1,0 +1,11 @@
+
+How to become superuser on Ubuntu Linux ?
+
+Answer:
+Open a terminal Window. Press Ctrl+Alt+T to open the terminal on Ubuntu
+To become root user type:
+sudo -i
+OR
+sudo -s
+When promoted provide your password
+After successful login, the $ prompt would change to # to indicate that you logged in as root user on Ubuntu
