@@ -4675,7 +4675,67 @@ if the set is empty
 'c'
 
 ###########################################################################################
+PRINT
 
+263. PRINT FUNCTION
+
+The arguments of the print function are the following ones:
+print(value1, ..., sep=' ', end='\n',
+file=sys.stdout, flush=False)
+
+264. 
+>>> print("a","b")
+a b
+>>> print("a","b",sep="")
+ab
+>>> print(192,168,178,42,sep=".")
+192.168.178.42
+>>> print("a","b",sep=":-)")
+a:-)b
+>>>
+
+265. 
+A print call is ended by a newline, as we can see in the following usage:
+>>> for i in range(4):
+... print(i)
+...
+0
+1
+2
+3
+>>>
+To change this behaviour, we can assign an arbitrary string to the keyword parameter
+"end". This string will be used for ending the output of the values of a print call:
+>>> for i in range(4):
+... print(i, end=" ")
+...
+0 1 2 3 >>>
+>>> for i in range(4):
+... print(i, end=" :-) ")
+...
+0 :-) 1 :-) 2 :-) 3 :-) >>>
+
+266.
+
+The output of the print function is send to the standard output stream (sys.stdout) by
+default. By redefining the keyword parameter "file" we can send the output into a
+different stream e.g. sys.stderr or a file:
+>>> fh = open("data.txt","w")
+>>> print("42 is the answer, but what is the
+question?", file=fh)
+>>> fh.close()
+>>>
+We can see that we don't get any output in the interactive shell. The output is sent to the
+file "data.txt". It's also possible to redirect the output to the standard error channel this
+way:
+>>> import sys
+>>> # output into sys.stderr:
+...
+>>> print("Error: 42", file=sys.stderr)
+Error: 42
+
+
+###########################################################################################
 
 ############################################################################################################
 
