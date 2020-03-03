@@ -5201,6 +5201,189 @@ loop
 10 ** 3
 Result: 1000
 
+###########################################################################################
+ADVANCED REGULAR EXPRESSIONS
+
+281.
+We can just use the findall method of the re
+module:
+re.findall(pattern, string[, flags])
+findall returns all non-overlapping matches of pattern in string, as a list of strings. The
+string is scanned left-to-right, and matches are returned in the order in which they are
+found.
+
+>>> t="A fat cat doesn't eat oat but a rat eats
+bats."
+>>> mo = re.findall("[force]at", t)
+>>> print(mo)
+['fat', 'cat', 'eat', 'oat', 'rat', 'eat']
+
+282.
+In the following example, we check, if one of the cities London, Paris, Zurich,
+Konstanz Bern or Strasbourg appear in a string preceded by the word "location":
+>>> import re
+>>> str = "Course location is London or Paris!"
+>>> mo = re.search(r"location.*
+(London|Paris|Zurich|Strasbourg)",str)
+>>> if mo: print(mo.group())
+...
+location is London or Paris
+>>>
+
+283.
+
+If you consider the previous example as too artificial, here is another one. Let's assume,
+you want to filter your email. You want to find all the correspondence (conversations)
+between you and Guido van Rossum, the creator and designer of Python. The following
+regular expression is helpful for this purpose:
+r"(^To:|^From:) (Guido|van Rossum)"
+This expression matches all lines starting with either 'To:' or 'From:', followed by a
+space and then either by the first name 'Guido' or the surname 'van Rossum'.
+
+284. COMPILING REGULAR EXPRESSIONS
+
+If you want to use the same regexp more than once in a script, it might be a good idea
+to use a regular expression object, i.e. the regex is compiled.
+The general syntax:
+re.compile(pattern[, flags])
+compile returns a regex object, which can be used later for searching and replacing. The
+expressions behaviour can be modified by specifying a flag value.
+
+Abbreviation Full name Description
+re.I re.IGNORECASE Makes the regular expression case-insensitive
+re.L re.LOCALE
+The behaviour of some special sequences like \w,
+\W, \b,\s, \S will be made dependant on the current
+locale, i.e. the user's language, country aso.
+re.M re.MULTILINE
+^ and $ will match at the beginning and at the end
+of each line and not just at the beginning and the
+end of the string
+re.S re.DOTALL The dot "." will match every character plus the
+newline
+re.U re.UNICODE Makes \w, \W, \b, \B, \d, \D, \s, \S dependent on
+Unicode character properties
+re.X re.VERBOSE
+Allowing "verbose regular expressions", i.e.
+whitespace are ignored. This means that spaces,
+tabs, and carriage returns are not matched as such.
+If you want to match a space in a verbose regular
+expression, you'll need to escape it by escaping it
+with a backslash in front of it or include it in a
+character class.
+# are also ignored, except when in a character class
+or preceded by an non-escaped backslash.
+Everything following a "#" will be ignored until
+the end of the line, so this character can be used to
+start a comment.
+
+285.
+Compiled regular objects usually are not saving much time, because Python internally
+compiles AND CACHES regexes whenever you use them with re.search() or
+re.match(). The only extra time a non-compiled regex takes is the time it needs to check
+the cache, which is a key lookup of a dictionary.
+A good reason to use them is to separate the definition of a regex from its use.
+
+286.
+>>> import re
+>>> regex = r"[A-z]{1,2}[0-9R][0-9A-Z]? [0-9][ABDHJLNP-
+UW-Z]{2}"
+>>> address = "BBC News Centre, London, W12 7RJ"
+>>> compiled_re = re.compile(regex)
+>>> res = compiled_re.search(address)
+>>> print(res)
+<_sre.SRE_Match object at 0x174e578>
+>>>
+
+287.
+
+>>> mammon = "The god of the world's leading
+religion. The chief temple is in the holy city of
+New York."
+>>> mammon.split(" ",3)
+['The', 'god', 'of', "the world's leading
+religion. The chief temple is in the holy city of
+New York."]
+
+288.
+If multiple blanks or whitespaces are connected, split() will split the string after every
+single blank, so that we will get empty strings and strings with only a tab inside ('\t') in
+our result list:
+>>> mammon = "The god \t of the world's leading
+religion. The chief temple is in the holy city of
+New York."
+>>> mammon.split(" ",5)
+['The', 'god', '', '\t', 'of', "the world's
+leading religion. The chief temple is in the holy
+city of New York."]
+>>>
+We can prevent the separation of empty strings by using None as the first argument.
+Now split will use the default behaviour, i.e. every substring consisting of connected
+whitespace characters will be taken as one separator:
+>>> mammon.split(None,5)
+['The', 'god', 'of', 'the', "world's", 'leading
+religion. The chief temple is in the holy city of
+New York.']
+
+289. REGULAR EXPRESSION SPLIT
+
+The string method split() is the right tool in many cases, but what, if you want e.g. to
+get the bare words of a text, i.e. without any special characters and whitespaces. If we
+want this, we have to use the split function from the re module.
+
+>>> import re
+>>> metamorphoses = "OF bodies chang'd to various
+forms, I sing: Ye Gods, from whom these miracles
+did spring, Inspire my numbers with coelestial
+heat;"
+>>> re.split("\W+",metamorphoses)
+['OF', 'bodies', 'chang', 'd', 'to', 'various',
+'forms', 'I', 'sing', 'Ye', 'Gods', 'from',
+'whom', 'these', 'miracles', 'did', 'spring',
+'Inspire', 'my', 'numbers', 'with', 'coelestial',
+'heat', '']
+
+290.
+Let's assume that we have data lines with surnames, first names and
+professions of names. We want to clear the data line of the superfluous and redundant
+text descriptions, i.e. "surname: ", "prename: " and so on, so that we have solely the
+surname in the first column, the first name in the second column and the profession in
+the third column:
+>>> import re
+>>> lines = ["surname: Obama, prename: Barack,
+profession: president", "surname: Merkel, prename:
+Angela, profession: chancellor"]
+>>> for line in lines:
+... re.split(",* *\w*: ", line)
+...
+['', 'Obama', 'Barack', 'president']
+['', 'Merkel', 'Angela', 'chancellor']
+>>>
+We can easily improve the script by using a slice operator, so that we don't have the
+empty string as the first element of our result lists:
+>>> import re
+>>> lines = ["surname: Obama, prename: Barack,
+profession: president", "surname: Merkel, prename:
+Angela, profession: chancellor"]
+>>> for line in lines:
+... re.split(",* *\w*: ", line)[1:]
+...
+['Obama', 'Barack', 'president']
+['Merkel', 'Angela', 'chancellor']
+>>>
+
+291. SEARCH AND REPLACE WITH SUB
+
+re.sub(regex, replacement, subject)
+Every match of the regular expression regex in the string subject will be replaced by the
+string replacement.
+Example:
+>>> import re
+>>> str = "yes I said yes I will Yes."
+>>> res = re.sub("[yY]es","no", str)
+>>> print(res)
+no I said no I will no.
+
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
