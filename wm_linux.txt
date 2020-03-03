@@ -8,4 +8,8 @@ sudo -i
 OR
 sudo -s
 When promoted provide your password
-After successful login, the $ prompt would change to # to indicate that you logged in as root user on Ubuntu
+After successful login, the $ prompt would change to # to indicate that you logged in as root user on Ubuntu.
+
+COMMANDS
+
+whoami
