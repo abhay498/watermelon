@@ -1680,7 +1680,7 @@ for i in range(1,50):
 print(i, primes(i))
 
 ############################################################################################################
-R E G U L A R E X P R E S S I O N S
+REGULAR EXPRESSIONS
 
 81. [a-e] a simplified writing for [abcde] or [0-5] denotes [012345]
 
