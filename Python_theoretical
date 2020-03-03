@@ -5162,6 +5162,45 @@ F(n) = Fib(n-1)* a + Fib(n) * b
 From this we can conclude that for a natural number n, n>1, the following holds true:
 Fib(2*n + 1) = Fib(n)**2 + Fib(n+1)**2
 
+###########################################################################################
+ARITHMETIC AND COMPARISON OPERATORS
+
+279. 
+>>> 10 // 3
+3
+If at least one of the operands is a
+float value, we get a truncated
+float value as the result.
+>>> 10.0 // 3
+3.0
+>>>
+A note about efficiency:
+The results of int(10 / 3) and 10 //
+3 are equal. But the "//" division
+is more than two times as fast!
+You can see this here:
+In [9]: %%timeit
+for x in range(1,
+100):
+y = int(100 /
+x)
+...:
+100000 loops, best
+of 3: 11.1 μs per
+loop
+In [10]: %%timeit
+for x in range(1,
+100):
+y = 100 // x
+....:
+100000 loops, best
+of 3: 4.48 μs per
+loop
+
+280.
+10 ** 3
+Result: 1000
+
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
