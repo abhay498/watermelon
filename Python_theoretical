@@ -5384,6 +5384,167 @@ Example:
 >>> print(res)
 no I said no I will no.
 
+###########################################################################################
+PYTHON TESTS
+
+292. Even though it's hardly possible to
+completely eliminate all errors in a software product, we should always work
+ambitiously to this end, i.e. to keep the number of errors minimal.
+
+293. Every module has a name, which is defined in the built-in attribute __name__. Let's
+assume that we have written a module "xyz" which we have saved as "xyz.py". If we
+import this module with "import xyz", the string "xyz" will be assigned to __name__.
+If we call the file xyz.py as a standalone program, i.e. in the following way,
+$python3 xyz.py
+the value of __name__ will be the string '__main__'.
+
+DOCTEST MODULE
+294. 
+The doctest module is often considered easier to use than the unittest, though the later is
+more suitable for more complex tests. doctest is a test framework that comes
+prepackaged with Python. The doctest module searches for pieces of text that look like
+interactive Python sessions inside of the documentation parts of a module, and then
+executes (or reexecutes) the commands of those sessions to verify that they work
+exactly as shown, i.e. that the same results can be achieved. In other words: The help
+text of the module is parsed, for example, python sessions. These examples are run and
+the results are compared against the expected value.
+
+Usage of doctest:
+To use "doctest" it has to be imported. The part of an interactive Python sessions with
+the examples and the output has to be copied inside of the docstring the corresponding
+function.
+We demonstrate this way of proceeding with the following simple example. We have
+slimmed down the previous module, so that only the function fib is left:
+
+import doctest
+def fib(n):
+"""
+Calculates the n-th Fibonacci number
+iteratively
+>>> fib(0)
+0
+>>> fib(1)
+1
+>>> fib(10)
+55
+>>> fib(15)
+610
+>>>
+"""
+a, b = 0, 1
+for i in range(n):
+a, b = b, a + b
+return a
+if __name__ == "__main__":
+doctest.testmod()
+If we start our module directly like this
+$ python3 fibonacci_doctest.py
+we get no output, because everything is okay.
+To see how doctest works, if something is wrong, we place an error in our code:
+We change again
+a, b = 0, 1
+into
+a, b = 1, 1
+Now we get the following, if we start our module:
+$ python3 fibonacci_doctest.py
+**************************************************
+********************
+File "fibonacci_doctest.py", line 8, in
+__main__.fib
+Failed example:
+fib(0)
+Expected:
+0
+Got:
+1
+**************************************************
+********************
+File "fibonacci_doctest.py", line 12, in
+__main__.fib
+Failed example:
+fib(10)
+Expected:
+55
+Got:
+89
+**************************************************
+********************
+File "fibonacci_doctest.py", line 14, in
+__main__.fib
+Failed example:
+fib(15)
+Expected:
+610
+Got:
+987
+**************************************************
+********************
+1 items had failures:
+3 of 4 in __main__.fib
+***Test Failed*** 3 failures.
+
+295. TEST-DRIVEN DEVELOPMENT (TDD)
+
+What about testing code you haven't yet written? You think that this is not possible? It
+is not only possible, it is the un der ly ing idea of test-dri ven de vel opment. In the extreme
+case, you define tests be fore you start coding the actual source code. The program
+developer writes an automated test case which defines the desired "behaviour" of a
+function. This test case will - that's the idea behind the approach - initially fail, because
+the code has still to be written.
+Now we have to keep on writing and changing the code for the function fib until it
+passes the test.
+
+UNITTEST
+296. The Python module unittest is a unit testing framework.
+
+import unittest
+from fibonacci import fib
+class FibonacciTest(unittest.TestCase):
+def testCalculation(self):
+self.assertEqual(fib(0), 0)
+self.assertEqual(fib(1), 1)
+self.assertEqual(fib(5), 5)
+self.assertEqual(fib(10), 55)
+self.assertEqual(fib(20), 6765)
+if __name__ == "__main__":
+unittest.main()
+If we call this test case, we get the following output:
+$ python3 fibonacci_unittest.py
+.
+--------------------------------------------------
+--------------------
+Ran 1 test in 0.000s
+OK
+
+This is usually the desired result, but we are now interested what happens in the error
+case. Therefore we will create our previous error again. We change again the well
+known line:
+a, b = 0, 1
+will be changed in
+a, b = 1, 1
+Now the test result looks like this:
+$ python3 fibonacci_unittest.py
+F
+==================================================
+====================
+FAIL: testCalculation (__main__.FibonacciTest)
+--------------------------------------------------
+--------------------
+Traceback (most recent call last):
+File "fibonacci_unittest.py", line 7, in
+testCalculation
+self.assertEqual(fib(0), 0)
+AssertionError: 1 != 0
+--------------------------------------------------
+--------------------
+Ran 1 test in 0.000s
+FAILED (failures=1)
+
+297.
+The doctest is okay. The problem is the implementation of the fibonacci function. This
+recursive approach is "highly" inefficient. You need a lot of patience to wait for the
+termination of the test. The number of hours, days or weeks depend on your computer.
+
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
