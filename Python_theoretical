@@ -5545,6 +5545,225 @@ The doctest is okay. The problem is the implementation of the fibonacci function
 recursive approach is "highly" inefficient. You need a lot of patience to wait for the
 termination of the test. The number of hours, days or weeks depend on your computer.
 
+###########################################################################################
+FORMATTED OUTPUT
+
+MANY WAYS FOR A NICER OUTPUT
+
+298.
+Since Python 2.6 has been introduced, the string method format should be used instead
+of this old-style formatting. Unfortunately, string modulo "%" is still available in
+Python3 and what is even worse, it is still widely used. That's why we cover it in great
+detail in this tutorial. You should be capable of understanding it, when you encounter it
+in some Python code. But it is very likely that one day this old style of formatting will
+be removed from the language. So you should get used to str.format().
+
+299.
+Examples of positional parameters:
+>>> "First argument: {0}, second one:
+{1}".format(47,11)
+'First argument: 47, second one: 11'
+>>> "Second argument: {1}, first one:
+{0}".format(47,11)
+'Second argument: 11, first one: 47'
+>>> "Second argument: {1:3d}, first one:
+{0:7.2f}".format(47.42,11)
+'Second argument: 11, first one: 47.42'
+>>> "First argument: {}, second one:
+{}".format(47,11)
+'First argument: 47, second one: 11'
+>>> # arguments can be used more than once:
+...
+>>> "various precisions: {0:6.2f} or
+{0:6.3f}".format(1.4148)
+'various precisions: 1.41 or 1.415'
+>>>
+
+300.
+In the following example we demonstrate how keyword parameters can be used with
+the format method:
+>>> "Art: {a:5d}, Price: {p:8.2f}".format(a=453,
+p=59.058)
+'Art: 453, Price: 59.06'
+>>>
+
+301.
+It's possible to left or right justify data with the format method. To this end, we can
+precede the formatting with a "<" (left justify) or ">" (right justify). We demonstrate
+this with the following examples:
+>>> "{0:<20s} {1:6.2f}".format('Spam & Eggs:',
+6.99)
+'Spam & Eggs: 6.99'
+>>> "{0:>20s} {1:6.2f}".format('Spam & Eggs:',
+6.99)
+' Spam & Eggs: 6.99'
+
+302.
+Using the position or the index:
+>>> print("The capital of {0:s} is
+{1:s}".format("Ontario","Toronto"))
+The capital of Ontario is Toronto
+>>>
+Just to mention it once more: We could have used empty curly braces in the
+previous example!
+
+303.
+Using keyword parameters:
+>>> print("The capital of {province} is
+{capital}".format(province="Ontario",capital="T
+oronto"))
+The capital of Ontario is Toronto
+>>>
+The second case can be expressed with a dictionary as well, as we can see in the
+following code:
+>>> data =
+dict(province="Ontario",capital="Toronto")
+>>> data
+{'province': 'Ontario', 'capital': 'Toronto'}
+>>> print("The capital of {province} is
+{capital}".format(**data))
+The capital of Ontario is Toronto
+The double "*" in front of data turns data automatically into the form
+'province="Ontario",capital="Toronto"'. Let's look at the following Python program:
+capital_country = {"United States" : "Washington",
+"US" : "Washington",
+"Canada" : "Ottawa",
+"Germany": "Berlin",
+"France" : "Paris",
+"England" : "London",
+"UK" : "London",
+"Switzerland" : "Bern",
+"Austria" : "Vienna",
+"Netherlands" : "Amsterdam"}
+print("Countries and their capitals:")
+for c in capital_country:
+print("{country}: {capital}".format(country=c,
+capital=capital_country[c]))
+
+304.
+If we start this program, we get the following output:
+$ python3 country_capitals.py
+Countries and their capitals:
+United States: Washington
+Canada: Ottawa
+Austria: Vienna
+Netherlands: Amsterdam
+Germany: Berlin
+UK: London
+Switzerland: Bern
+England: London
+US: Washington
+France: Paris
+
+305.
+We can rewrite the previous example by using the dictionary directly. The output will
+be the same:
+capital_country = {"United States" : "Washington",
+"US" : "Washington",
+"Canada" : "Ottawa",
+"Germany": "Berlin",
+"France" : "Paris",
+"England" : "London",
+"UK" : "London",
+"Switzerland" : "Bern",
+"Austria" : "Vienna",
+"Netherlands" : "Amsterdam"}
+print("Countries and their capitals:")
+for c in capital_country:
+format_string = c + ": {" + c + "}"
+print(format_string.format(**capital_country))
+
+306. USING LOCAL VARIABLE NAMES IN "FORMAT"
+
+"locals" is a function, which returns a dictionary with the current scope's local
+variables, i.e- the local variable names are the keys of this dictionary and the
+corresponding values are the values of these variables:
+
+>>> a = 42
+>>> b = 47
+>>> def f(): return 42
+...
+>>> locals()
+{'a': 42, 'b': 47, 'f': <function f at
+0xb718ca6c>, '__builtins__': <module 'builtins'
+(built-in)>, '__package__': None, '__name__':
+'__main__', '__doc__': None}
+>>>
+
+# OTHER STRING METHODS FOR FORMATTING
+
+307. 
+center(...):
+S.center(width[, fillchar]) -> str
+Return S centred in a string of length width. Padding is done using the specified
+fill character. The default value is a space.
+Examples:
+>>> s = "Python"
+>>> s.center(10)
+' Python '
+>>> s.center(10,"*")
+'**Python**'
+
+308.
+ljust(...):
+S.ljust(width[, fillchar]) -> str
+Return S left-justified in a string of length "width". Padding is done using the
+specified fill character. If none is given, a space will be used as default.
+Examples:
+>>> s = "Training"
+>>> s.ljust(12)
+'Training '
+>>> s.ljust(12,":")
+'Training::::'
+>>>
+
+309.
+rjust(...):
+S.rjust(width[, fillchar]) -> str
+Return S right-justified in a string of length width. Padding is done using the
+specified fill character. The default value is again a space.
+Examples:
+
+>>> s = "Programming"
+>>> s.rjust(15)
+' Programming'
+>>> s.rjust(15, "~")
+'~~~~Programming'
+>>>
+zfill(...):
+S.zfill(width) -> str
+Pad a string S with zeros on the left, to fill a field of the specified width. The
+string S is never truncated. This method can be easily emulated with rjust.
+Examples:
+>>> account_number = "43447879"
+>>> account_number.zfill(12)
+'000043447879'
+>>> # can be emulated with rjust:
+...
+>>> account_number.rjust(12,"0")
+'000043447879'
+>>>
+
+FORMATTED STRING LITERALS
+
+310.
+Python 3.6 introduces formatted string literals. They are prefixed with an 'f'. The
+formatting syntax is similar to the format strings accepted by str.format().
+
+>>> price = 11.23
+>>> f"Price in Euro: {price}"
+'Price in Euro: 11.23'
+>>> f"Price in Swiss Franks: {price * 1.086}"
+'Price in Swiss Franks: 12.195780000000001'
+>>> f"Price in Swiss Franks: {price * 1.086:5.2f}"
+'Price in Swiss Franks: 12.20'
+>>> for article in ["bread", "butter", "tea"]:
+... print(f"{article:>10}:")
+...
+bread:
+butter:
+tea:
+
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
