@@ -5781,6 +5781,190 @@ c = int(sqrt(c_square))
 if ((c_square - c**2) == 0):
 print(a, b, c)
 
+###########################################################################################
+PARAMETERS AND ARGUMENTS
+
+"CALL BY VALUE" AND "CALL BY NAME"
+
+312.
+BY using Call by Reference we save
+both computation time and memory space, because arguments do not need to be
+copied.
+
+Correctly speaking, Python uses a mechanism, which is known as "Call-by-Object",
+sometimes also called "Call by Object Reference" or "Call by Sharing".
+
+313.
+>>> def no_side_effects(cities):
+... print(cities)
+... cities = cities + ["Birmingham",
+"Bradford"]
+... print(cities)
+...
+>>> locations = ["London", "Leeds", "Glasgow",
+"Sheffield"]
+>>> no_side_effects(locations)
+['London', 'Leeds', 'Glasgow', 'Sheffield']
+['London', 'Leeds', 'Glasgow', 'Sheffield',
+'Birmingham', 'Bradford']
+>>> print(locations)
+['London', 'Leeds', 'Glasgow', 'Sheffield']
+>>>
+
+314.
+>>> def side_effects(cities):
+... print(cities)
+... cities += ["Birmingham", "Bradford"]
+... print(cities)
+...
+>>> locations = ["London", "Leeds", "Glasgow",
+"Sheffield"]
+>>> side_effects(locations)
+['London', 'Leeds', 'Glasgow', 'Sheffield']
+['London', 'Leeds', 'Glasgow', 'Sheffield',
+'Birmingham', 'Bradford']
+>>> print(locations)
+['London', 'Leeds', 'Glasgow', 'Sheffield',
+'Birmingham', 'Bradford']
+>>>
+
+We can see that Birmingham and Bradford are included in the global list locations as
+well, because += acts as an in-place operation.
+
+315.
+The user of this function can prevent this side effect by passing a copy to the function.
+A shallow copy is sufficient, because there are no nested structures in the list. To satisfy
+our French customers as well, we change the city names in the next example to
+demonstrate the effect of the slice operator in the function call:
+>>> def side_effects(cities):
+... print(cities)
+... cities += ["Paris", "Marseille"]
+... print(cities)
+...
+>>> locations = ["Lyon", "Toulouse", "Nice",
+"Nantes", "Strasbourg"]
+>>> side_effects(locations[:])
+['Lyon', 'Toulouse', 'Nice', 'Nantes',
+'Strasbourg']
+['Lyon', 'Toulouse', 'Nice', 'Nantes',
+'Strasbourg', 'Paris', 'Marseille']
+>>> print(locations)
+['Lyon', 'Toulouse', 'Nice', 'Nantes',
+'Strasbourg']
+>>>
+We can see that the global list locations has not been effected by the execution of the
+function.
+
+COMMAND LINE ARGUMENTS
+ 
+316.
+The arguments are
+separated by spaces. Inside of the script these arguments are accessible through the list
+variable sys.argv. The name of the script is included in this list sys.argv[0]. sys.argv[1]
+contains the first parameter, sys.argv[2] the second and so on.
+The following script (arguments.py) prints all arguments:
+# Module sys has to be imported:
+import sys
+# Iteration over all arguments:
+for eachArg in sys.argv:
+print(eachArg)
+Example call to this script:
+python argumente.py python course for beginners
+This call creates the following output:
+argumente.py
+python
+course
+for
+beginners
+
+VARIABLE LENGTH OF PARAMETERS
+
+317. 
+EXERCISE
+Write a function which calculates the arithmetic mean of a variable number of values.
+SOLUTION
+def arithmetic_mean(x, *l):
+""" The function calculates the arithmetic
+mean of a non-empty
+arbitrary number of numbers """
+sum = x
+for i in l:
+sum += i
+return sum / (1.0 + len(l))
+
+You might ask yourself, why we used both a positional parameter "x" and the variable
+parameter "*l" in our function definition. We could have only used *l to contain all our
+numbers. The idea is that we wanted to enforce that we always have a non-empty list of
+numbers. This is necessary to prevent a division by zero error, because the average of
+an empty list of numbers is not defined.
+
+318.
+>>> from statistics import arithmetic_mean
+>>> arithmetic_mean(4,7,9)
+6.666666666666667
+>>> arithmetic_mean(4,7,9,45,-3.7,99)
+26.71666666666667
+This works fine, but there is a catch. What if somebody wants to call the function with a
+list, instead of a variable number of numbers, as we have shown above? We can see in
+the following that we raise an error, as most hopefully, you might expect:
+>>> l = [4,7,9,45,-3.7,99]
+>>> arithmetic_mean(l)
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+File "statistics.py", line 8, in arithmetic_mean
+return sum / (1.0 + len(l))
+TypeError: unsupported operand type(s) for /:
+'list' and 'float'
+The rescue is using another asterisk:
+>>> arithmetic_mean(*l)
+26.71666666666667
+>>>
+
+319.
+* IN FUNCTION CALLS
+
+>>> def f(x,y,z):
+... print(x,y,z)
+...
+>>> p = (47,11,12)
+>>> f(*p)
+(47, 11, 12)
+There is hardly any need to mention that this way of calling our function is more
+comfortable than the following one:
+>>> f(p[0],p[1],p[2])
+(47, 11, 12)
+>>>
+
+ARBITRARY KEYWORD PARAMETERS
+320. 
+
+>>> def f(**args):
+... print(args)
+...
+>>> f()
+{}
+>>> f(de="Germnan",en="English",fr="French")
+{'fr': 'French', 'de': 'Germnan', 'en': 'English'}
+>>>
+
+DOUBLE ASTERISK IN FUNCTION CALLS
+321.
+
+>>> def f(a,b,x,y):
+... print(a,b,x,y)
+...
+>>> d = {'a':'append',
+'b':'block','x':'extract','y':'yes'}
+>>> f(**d)
+('append', 'block', 'extract', 'yes')
+and now in combination with *:
+>>> t = (47,11)
+>>> d = {'x':'extract','y':'yes'}
+>>> f(*t, **d)
+(47, 11, 'extract', 'yes')
+>>>
+
+################################################################################################
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
