@@ -5964,7 +5964,422 @@ and now in combination with *:
 (47, 11, 'extract', 'yes')
 >>>
 
-################################################################################################
+#######################################################################################################
+OBJECT-ORIENTED PROGRAMMING
+
+322.
+>>> x = 42
+>>> type(x)
+<class 'int'>
+>>> y = 4.34
+>>> type(y)
+<class 'float'>
+>>> def f(x):
+... return x + 1
+...
+>>> type(f)
+<class 'function'>
+>>> import math
+>>> type(math)
+<class 'module'>
+>>>
+
+323.
+The class name is followed
+by a listing of other class names, which are classes from which the defined class
+inherits from. These classes are called superclasses, base classes or sometimes parent
+classes.
+
+class Robot:
+pass
+if __name__ == "__main__":
+x = Robot()
+y = Robot()
+y2 = y
+print(y == y2)
+print(y == x)
+
+The output of this example
+program looks like this:
+True
+False
+
+ATTRIBUTES
+
+324.
+Attributes are created inside of a class definition, as we will soon learn. We can
+dynamically create arbitrary new attributes for existing instances of a class. We do this
+by joining an arbitrary name to the instance name, separated by a dot ".". In the
+following example, we demonstrate this by created an attribute for the name and the
+build year:
+>>> class Robot:
+... pass
+...
+>>> x = Robot()
+>>> y = Robot()
+>>>
+>>> x.name = "Marvin"
+>>> x.build_year = "1979"
+>>>
+>>> y.name = "Caliban"
+>>> y.build_year = "1993"
+>>>
+>>> print(x.name)
+Marvin
+>>> print(y.build_year)
+1993
+>>>
+
+If you want to know, what's happening internally: The instances possess dictionaries
+__dict__, which they use to store their attributes and their corresponding values:
+>>> x.__dict__
+{'name': 'Marvin', 'build_year': '1979'}
+>>> y.__dict__
+{'name': 'Caliban', 'build_year': '1993'}
+
+325.
+Attributes can be bound to class names as well. In this case, each instance will possess
+this name as well. Watch out, what happens, if you assign the same name to an instance:
+>>> class Robot(object):
+... pass
+...
+>>> x = Robot()
+>>> Robot.brand = "Kuka"
+>>> x.brand
+'Kuka'
+>>> x.brand = "Thales"
+>>> Robot.brand
+'Kuka'
+>>> y = Robot()
+>>> y.brand
+'Kuka'
+>>> Robot.brand = "Thales"
+>>> y.brand
+'Thales'
+>>> x.brand
+'Thales'
+
+>>> x.__dict__
+{'brand': 'Thales'}
+>>> y.__dict__
+{}
+>>>
+>>> Robot.__dict__
+mappingproxy({'__module__': '__main__',
+'__weakref__': , '__doc__': None, '__dict__': ,
+'brand': 'Thales'})
+
+326.
+If an attribute name is not in included in either of the dictionary, the attribute name is
+not defined. If you try to access a non-existing attribute, you will raise an
+AttributeError:
+>>> x.energy
+Traceback (most recent call last):
+File "<stdin>", line 1, in
+AttributeError: 'Robot' object has no attribute
+'energy'
+>>>
+By using the function getattr, you can prevent this exception, if you provide a default
+value as the third argument:
+>>> getattr(x, 'energy', 100)
+100
+>>>
+
+327.
+Binding attributes to objects is a general concept in Python. Even function names can
+be attributed. You can bind an attribute to a function name in the same way, we have
+done so far to other instances of classes:
+>>> def f(x):
+... return 42
+...
+>>> f.x = 42
+>>> print(f.x)
+42
+>>>
+
+This can be used as a replacement for the static function variables of C and C++, which
+are not possible in Python. We use a counter attribute in the following example:
+def f(x):
+f.counter = getattr(f, "counter", 0) + 1
+return "Monty Python"
+for i in range(10):
+f(i)
+print(f.counter)
+
+METHODS
+328.
+The proper way to do it:
+Instead of defining a function outside of a class definition and binding it to a class
+attribute, we define a method directly inside (indented) of a class definition.
+A method is "just" a function which is defined inside of a class.
+The first parameter is used a reference to the calling instance.
+This parameter is usually called self.
+Self corresponds to the Robot object x.
+
+329.
+We have seen that a method differs from a function only in two aspects:
+It belongs to a class, and it is defined within a class
+The first parameter in the definition of a method has to be a reference to the
+instance, which called the method. This parameter is usually called "self".
+
+330.
+THE __INIT__ METHOD
+
+We want to define the attributes of an instance right after its creation. __init__ is a
+method which is immediately and automatically called after an instance has been
+created. This name is fixed and it is not possible to chose another name. __init__ is one
+of the so-called magic methods, of which we will get to know some more details later.
+The __init__ method is used to initialize an instance.
+
+>>> class A:
+... def __init__(self):
+... print("__init__ has been executed!")
+...
+>>> x = A()
+__init__ has been executed!
+>>>
+
+331.
+__STR__- AND __REPR__-METHODS
+
+A frequently asked question is when to use __repr__ annd when __str__. __str__ is
+always the right choice, if the output should be for the end user or in other words, if it
+should be nicely printed. __repr__ on the other hand is used for the internal
+representation of an object. The output of __repr__ should be - if feasible - a string
+which can be parsed by the python interpreter. The result of this parsing is in an equal
+object.
+This means that the following should be true for an object "o":
+o == eval(repr(o))
+
+332.
+>>> l = [3,8,9]
+>>> s = repr(l)
+>>> s
+'[3, 8, 9]'
+>>> l == eval(s)
+True
+>>> l == eval(str(l))
+True
+>>>
+
+333.
+We show in the following example with the datetime module that eval can only be
+applied on the strings created by repr:
+>>> import datetime
+>>> today = datetime.datetime.now()
+>>> str_s = str(today)
+>>> eval(str_s)
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+File "<string>", line 1
+2014-01-26 17:35:39.215144
+^
+SyntaxError: invalid token
+>>> repr_s = repr(today)
+>>> t = eval(repr_s)
+>>> type(t)
+<class 'datetime.datetime'>
+>>>
+
+334.
+class Robot:
+def __init__(self, name, build_year):
+self.name = name
+self.build_year = build_year
+def __repr__(self):
+return "Robot('" + self.name + "', " +
+str(self.build_year) + ")"
+if __name__ == "__main__":
+x = Robot("Marvin", 1979)
+x_str = str(x)
+print(x_str)
+print("Type of x_str: ", type(x_str))
+new = eval(x_str)
+print(new)
+print("Type of new:", type(new))
+x_str has the value Robot('Marvin', 1979). eval(x_str) converts it again into a Robot
+instance.
+The script returns the following output:
+$ python3 robot_class5.py
+Robot("Marvin",1979)
+Type of x_str: <class 'str'>
+Robot("Marvin",1979)
+Type of new: <class '__main__.Robot'>
+
+class Robot:
+def __init__(self, name, build_year):
+self.name = name
+self.build_year = build_year
+def __repr__(self):
+return "Robot('" + self.name + "', " +
+str(self.build_year) + ")"
+def __str__(self):
+return "Name: " + self.name + ", Build
+Year: " + str(self.build_year)
+if __name__ == "__main__":
+x = Robot("Marvin", 1979)
+x_str = str(x)
+print(x_str)
+print("Type of x_str: ", type(x_str))
+new = eval(x_str)
+print(new)
+print("Type of new:", type(new))
+
+$ python3 robot_class6.py
+Name: Marvin, Build Year: 1979
+Type of x_str: <class 'str'>
+
+Traceback (most recent call last):
+File "robot_class6.py", line 19, in <module>
+new = eval(x_str)
+File "<string>", line 1
+Name: Marvin, Build Year: 1979
+^
+SyntaxError: invalid syntax
+
+We show in the following program that x_repr can still be turned into a Robot object:
+class Robot:
+def __init__(self, name, build_year):
+self.name = name
+self.build_year = build_year
+def __repr__(self):
+return "Robot(\"" + self.name + "\"," +
+str(self.build_year) + ")"
+def __str__(self):
+return "Name: " + self.name + ", Build
+Year: " + str(self.build_year)
+if __name__ == "__main__":
+x = Robot("Marvin", 1979)
+x_repr = repr(x)
+print(x_repr, type(x_repr))
+new = eval(x_repr)
+print(new)
+print("Type of new:", type(new))
+
+The output looks like this:
+$ python3 robot_class6b.py
+Robot("Marvin",1979) <class 'str'>
+Name: Marvin, Build Year: 1979
+Type of new: <class '__main__.Robot'>
+
+335.
+To summarize the attribute types:
+Naming Type Meaning
+name Public These attributes can be freely used inside or outside of a class
+definition.
+_name Protected Protected attributes should not be used outside of the class
+definition, unless inside of a subclass definition.
+__name Private This kind of attribute is inaccessible and invisible. It's neither
+possible to read nor write to those attributes, except inside of the
+class definition itself.
+
+336.
+class A():
+def __init__(self):
+self.__priv = "I am private"
+self._prot = "I am protected"
+self.pub = "I am public"
+We store this class (attribute_tests.py) and test its behaviour in the following interactive
+Python shell:
+>>> from attribute_tests import A
+>>> x = A()
+>>> x.pub
+'I am public'
+>>> x.pub = x.pub + " and my value can be changed"
+>>> x.pub
+'I am public and my value can be changed'
+>>> x._prot
+'I am protected'
+>>> x.__priv
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+AttributeError: 'A' object has no attribute
+'__priv'
+>>>
+
+337.
+class Robot:
+def __init__(self, name=None,
+build_year=2000):
+self.__name = name
+self.__build_year = build_year
+def say_hi(self):
+if self.__name:
+print("Hi, I am " + self.__name)
+else:
+print("Hi, I am a robot without a
+name")
+def set_name(self, name):
+self.__name = name
+def get_name(self):
+return self.__name
+def set_build_year(self, by):
+self.__build_year = by
+def get_build_year(self):
+return self.__build_year
+def __repr__(self):
+return "Robot('" + self.__name + "', " +
+str(self.__build_year) + ")"
+def __str__(self):
+return "Name: " + self.__name + ", Build
+Year: " + str(self.__build_year)
+if __name__ == "__main__":
+x = Robot("Marvin", 1979)
+y = Robot("Caliban", 1943)
+for rob in [x, y]:
+rob.say_hi()
+if rob.get_name() == "Caliban":
+rob.set_build_year(1993)
+print("I was built in the year " +
+str(rob.get_build_year()) + "!")
+
+Hi, I am Marvin
+I was built in the year 1979!
+Hi, I am Caliban
+I was built in the year 1993!
+
+Every private attribute of our class has a getter and a setter.
+
+DESTRUCTOR
+
+338. There is no "real"
+destructor, but something similar, i.e. the method __del__.
+
+339.
+There is a way to access a private attribute directly. In our example, we can do it like
+this: x._Robot__build_year
+You shouldn't do this under any circumstances!
+
+340.
+The usage of the __del__method is very problematic.
+
+The following script is an example with __init__ and __del__:
+class Robot():
+def __init__(self, name):
+print(name + " has been created!")
+def __del__(self):
+print ("Robot has been destroyed")
+if __name__ == "__main__":
+x = Robot("Tik-Tok")
+y = Robot("Jenkins")
+z = x
+print("Deleting x")
+del x
+print("Deleting z")
+del z
+del y
+The output of the previous program:
+$ python3 del_example.py
+Tik-Tok has been created!
+Jenkins has been created!
+Deleting x
+Deleting z
+Robot has been destroyed
+Robot has been destroyed
+
+#######################################################################################################
+
+
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
