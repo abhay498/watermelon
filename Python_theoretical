@@ -6378,7 +6378,27 @@ Robot has been destroyed
 Robot has been destroyed
 
 #######################################################################################################
+NAMESPACES AND SCOPES
 
+341.
+Some namespaces in Python:
+global names of a module
+local names in a function or method invocation
+built-in names: this namespace contains built-in fuctions (e.g. abs(), cmp(), ...)
+and built-in exception names.
+
+342. 
+Namespaces have different lifetimes,
+because they are often created at different points in time. There is one namespace which
+is present from beginning to end: The namespace containing the built-in names is
+created when the Python interpreter starts up, and is never deleted. The global
+namespace of a module is generated when the module is read in. Module namespaces
+normally last until the script ends, i.e. the interpreter quits. When a function is called, a
+local namespace is created for this function. This namespace is deleted either if the
+function ends, i.e. returns, or if the function raises an exception, which is not dealt with
+within the function.
+
+#######################################################################################################
 
 ############################################################################################################
 
