@@ -6401,6 +6401,504 @@ within the function.
 #######################################################################################################
 GENERATORS
 
+343. An iterator can be seen as a pointer to a
+container, e.g. a list structure that can
+iterate over all the elements of this
+container.
+
+344. Generators are a special kind of function, which enable us to implement or generate
+iterators.
+
+345. We are iterating over a list, but you shouldn't be mistaken: A
+list is not an iterator, but it can be used like an iterator:
+
+346. 
+What is really happening, when you use an iterable like a string, a list, or a tuple, inside
+of a for loop is the following: The function "iter" is called on the iterable. The return
+value of iter is an iterable. We can iterate over this iterable with the next function until
+the iterable is exhausted and returns a StopIteration exception:
+>>> expertises = ["Novice", "Beginner",
+"Intermediate", "Proficient", "Experienced",
+"Advanced"]
+>>> expertises_iterator = iter(expertises)
+>>> next(expertises_iterator)
+'Novice'
+>>> next(expertises_iterator)
+'Beginner'
+>>> next(expertises_iterator)
+'Intermediate'
+>>> next(expertises_iterator)
+'Proficient'
+>>> next(expertises_iterator)
+'Experienced'
+>>> next(expertises_iterator)
+'Advanced'
+>>> next(expertises_iterator)
+Traceback (most recent call last):
+File "", line 1, in
+StopIteration
+Internally, the for loop also calls the next function and terminates, when it gets
+StopIteration.
+
+347.
+other_cities = ["Strasbourg", "Freiburg",
+"Stuttgart",
+"Vienna / Wien", "Hannover",
+"Berlin",
+"Zurich"]
+city_iterator = iter(other_cities)
+while city_iterator:
+try:
+city = next(city_iterator)
+print(city)
+except StopIteration:
+break
+
+348.
+The
+yield statement turns a functions into a generator. A generator is a function which
+returns a generator object. This generator object can be seen like a function which
+produces a sequence of results instead of a single object. This sequence of values is
+produced by iterating over it, e.g. with a for loop.
+
+349. 
+As soon as "next" is called again on the generator
+object, the generator function will resume execution right after the yield statement in
+the code, where the last call exited. The execution will continue in the state in which the
+generator was left after the last yield.
+
+350.
+Can we send a reset to an iterator is a frequently asked question, so that it can start the
+iteration all over again. There is no reset, but it's possible to create another generator.
+This can be done e.g. by having the statement "x = city_generator()" again.
+
+351.
+Method of working:
+A generator is called like a function. Its return value is an iterator, i.e. a generator
+object. The code of the generator will not be executed at this stage.
+The iterator can be used by calling the next method. The first time the execution
+starts like a function, i.e. the first line of code within the body of the iterator. The
+code is executed until a yield statement is reached.
+yield returns the value of the expression, which is following the keyword yield.
+This is like a function, but Python keeps track of the position of this yield and the
+state of the local variables is stored for the next call. At the next call, the
+execution continues with the statement following the yield statement and the
+variables have the same values as they had in the previous call.
+The iterator is finished, if the generator body is completely worked through or if
+the program flow encounters a return statement without a value.
+
+352.
+
+def fibonacci(n):
+""" A generator for creating the Fibonacci
+numbers """
+a, b, counter = 0, 1, 0
+while True:
+if (counter > n):
+return
+yield a
+a, b = b, a + b
+counter += 1
+f = fibonacci(5)
+for x in f:
+print(x, " ", end="") #
+print()
+
+353.
+We have to take care when we use this iterator that a termination criterion is
+used:
+def fibonacci():
+"""Generates an infinite sequence of Fibonacci
+numbers on demand"""
+a, b = 0, 1
+while True:
+yield a
+a, b = b, a + b
+f = fibonacci()
+counter = 0
+for x in f:
+print(x, " ", end="")
+counter += 1
+if (counter > 10):
+break
+print()
+
+354.
+A return statement inside of a generator is
+equivalent to raise StopIteration()
+
+355.
+
+>>> def gen():
+... yield 1
+... return 42
+...
+>>>
+>>> g = gen()
+>>> next(g)
+1
+>>> next(g)
+Traceback (most recent call last):
+File "", line 1, in
+StopIteration: 42
+>>>
+
+356.
+SEND METHOD /COROUTINES
+Generators can not only send objects but also receive objects. Sending a message, i.e.
+an object, into the generator can be achieved by applying the send method to the
+generator object.
+
+>>> def simple_coroutine():
+... print("coroutine has been started!")
+... x = yield
+... print("coroutine received: ", x)
+...
+>>> cr = simple_coroutine()
+>>> cr
+>>> next(cr)
+coroutine has been started!
+>>> cr.send("Hi")
+coroutine received: Hi
+Traceback (most recent call last):
+File "", line 1, in
+StopIteration
+>>>
+
+357.
+We had to call next on the generator first, because the generator needed to be started.
+Using send to a generator which hasn't been started leads to an exception:
+>>> cr = simple_coroutine()
+>>> cr.send("Hi")
+Traceback (most recent call last):
+File "", line 1, in
+TypeError: can't send non-None value to a juststarted
+generator
+>>>
+
+358.
+def infinite_looper(objects):
+count = 0
+while True:
+if count >= len(objects):
+count = 0
+message = yield objects[count]
+if message != None:
+count = 0 if message < 0 else message
+else:
+count += 1
+We demonstrate how to use this generator in the following interactive session, assuming
+that the generator is saved in a file called generator_decorator.py:
+>>> x = infinite_looper("A string with some
+words")
+>>> next(x)
+'A'
+>>> x.send(9)
+'w'
+>>> x.send(10)
+'i'
+>>>
+
+THE THROW METHOD
+
+359.
+The throw() method raises an exception at the point where the generator was paused,
+and returns the next value yielded by the generator. It raises StopIteration if the
+generator exits without yielding another value.
+
+def infinite_looper(objects):
+count = 0
+while True:
+if count >= len(objects):
+count = 0
+try:
+message = yield objects[count]
+except Exception:
+print("index: " + str(count))
+if message != None:
+count = 0 if message < 0 else message
+else:
+count += 1
+
+We can use it like this:
+>>> from generator_throw import infinite_looper
+>>> looper = infinite_looper("Python")
+>>> next(looper)
+'P'
+>>> next(looper)
+'y'
+>>> looper.throw(Exception)
+index: 1
+'t'
+>>> next(looper)
+'h'
+
+360.
+class StateOfGenerator(Exception):
+def __init__(self, message=None):
+self.message = message
+def infinite_looper(objects):
+count = 0
+while True:
+if count >= len(objects):
+count = 0
+try:
+message = yield objects[count]
+except StateOfGenerator:
+print("index: " + str(count))
+if message != None:
+count = 0 if message < 0 else message
+else:
+count += 1
+
+We can use the previous generator like this:
+>>> from generator_throw import infinite_looper,
+StateOfGenerator
+>>> looper = infinite_looper("Python")
+>>> next(looper)
+'P'
+>>> next(looper)
+'y'
+>>> looper.throw(StateOfGenerator)
+index: 1
+'t'
+>>> next(looper)
+'h'
+>>>
+
+361. DECORATING GENERATORS
+
+from functools import wraps
+def get_ready(gen):
+"""
+Decorator: gets a generator gen ready
+by advancing to first yield statement
+"""
+@wraps(gen)
+def generator(*args,**kwargs):
+g = gen(*args,**kwargs)
+next(g)
+return g
+return generator
+@get_ready
+def infinite_looper(objects):
+count = -1
+message = yield None
+while True:
+count += 1
+if message != None:
+count = 0 if message < 0 else message
+if count >= len(objects):
+count = 0
+message = yield objects[count]
+x = infinite_looper("abcdef")
+print(next(x))
+print(x.send(4))
+print(next(x))
+print(next(x))
+print(x.send(5))
+print(next(x))
+This program returns the following results:
+a
+e
+f
+a
+f
+a
+
+362. YIELD FROM
+
+"yield from" is available since Python 3.3!
+The yield from <expr> statement can be used inside the body of a generator. <expr> has
+to be an expression evaluating to an iterable, from which an iterator will be extracted.
+The iterator is run to exhaustion, i.e. until it encounters a StopIteration exception. This
+iterator yields and receives values to or from the caller of the generator, i.e. the one
+which contains the yield from statement.
+
+def gen1():
+for char in "Python":
+yield char
+for i in range(5):
+yield i
+def gen2():
+yield from "Python"
+yield from range(5)
+g1 = gen1()
+g2 = gen2()
+print("g1: ", end=", ")
+for x in g1:
+print(x, end=", ")
+print("\ng2: ", end=", ")
+for x in g2:
+print(x, end=", ")
+print()
+
+g1: , P, y, t, h, o, n, 0, 1, 2, 3, 4,
+g2: , P, y, t, h, o, n, 0, 1, 2, 3, 4,
+
+363.
+def subgenerator():
+yield 1
+return 42
+def delegating_generator():
+x = yield from subgenerator()
+print(x)
+for x in delegating_generator():
+print(x)
+The above code returns the following code:
+1
+42
+
+364.
+The full semantics of the yield from expression is described in six points in "PEP 380 -
+- Syntax for Delegating to a Subgenerator" in terms of the generator protocol:
+
+- Any values that the iterator yields are passed directly to the caller.
+- Any values sent to the delegating generator using send() are passed directly to the
+  iterator. If the sent value is None, the iterator's __next__() method is called. If the
+  sent value is not None, the iterator's send() method is called. If the call raises
+  StopIteration, the delegating generator is resumed. Any other exception is
+  propagated to the delegating generator.
+- Exceptions other than GeneratorExit thrown into the delegating generator are
+  passed to the throw() method of the iterator. If the call raises StopIteration, the
+  delegating generator is resumed. Any other exception is propagated to the
+  delegating generator.
+- If a GeneratorExit exception is thrown into the delegating generator, or the
+  close() method of the delegating generator is called, then the close() method of
+  the iterator is called if it has one. If this call results in an exception, it is
+  propagated to the delegating generator. Otherwise, GeneratorExit is raised in the
+  delegating generator.
+- The value of the yield from expression is the first argument to the StopIteration
+  exception raised by the iterator when it terminates.
+- return expr in a generator causes StopIteration(expr) to be raised upon exit
+  from the generator.
+  
+RECURSIVE GENERATORS
+ 
+365.
+
+M1
+
+The permutation generator can be called with an arbitrary list of objects. The iterator
+returned by this generator generates all the possible permutations:
+def permutations(items):
+n = len(items)
+if n==0: yield []
+else:
+for i in range(len(items)):
+for cc in
+permutations(items[:i]+items[i+1:]):
+yield [items[i]]+cc
+for p in permutations(['r','e','d']):
+print(''.join(p))
+for p in permutations(list("game")):
+print(''.join(p) + ", ", end="")
+
+M2
+
+Creating permutations with itertools:
+>>> import itertools
+>>> perms = itertools.permutations(['r','e','d'])
+>>> perms
+<itertools.permutations object at 0x7fb0da3e4a70>
+>>> list(perms)
+[('r', 'e', 'd'), ('r', 'd', 'e'), ('e', 'r',
+'d'), ('e', 'd', 'r'), ('d', 'r', 'e'), ('d', 'e',
+'r')]
+>>>
+
+366.
+A generator for the creation of k-permuations of n objects looks very similar to our
+previous permutations generator:
+def k_permutations(items, n):
+if n==0:
+yield []
+else:
+for item in items:
+for kp in k_permutations(items, n-1):
+if item not in kp:
+yield [item] + kp
+for kp in k_permutations("abcd", 3):
+print(kp)
+
+A GENERATOR OF GENERATORS
+
+367.
+
+The second generator of our Fibonacci sequence example generates an iterator, which
+can theoretically produce all the Fibonacci numbers, i.e. an infinite number. But you
+shouldn't try to produce all these numbers, as we would do in the following example:
+list(fibonacci())
+This will show you very fast the limits of your computer.
+
+368.
+The following script returns the first 10 elements of the Fibonacci sequence:
+#!/usr/bin/env python3
+def fibonacci():
+"""Ein Fibonacci-Zahlen-Generator"""
+a, b = 0, 1
+while True:
+yield a
+a, b = b, a + b
+def firstn(g, n):
+for i in range(n):
+yield next(g)
+print(list(firstn(fibonacci(), 10)))
+The output looks like this:
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+369.
+EXERCISES
+1. Write a generator which computes the running average.
+
+2. Write a generator "trange", which generates a sequence of time tuples from start
+to stop incremented by step. A time tuple is a 3-tuple of integers: (hours, minutes,
+seconds)
+Example:
+for time in trange((10, 10, 10), (13, 50, 15),
+(0, 15, 12) ):
+print(time)
+will return
+(10, 10, 10)
+(10, 25, 22)
+(10, 40, 34)
+(10, 55, 46)
+(11, 10, 58)
+(11, 26, 10)
+(11, 41, 22)
+(11, 56, 34)
+(12, 11, 46)
+(12, 26, 58)
+(12, 42, 10)
+(12, 57, 22)
+(13, 12, 34)
+(13, 27, 46)
+(13, 42, 58)
+
+3. Write a version "rtrange" of the previous generator, which can receive message to
+reset the start value.
+
+4. Write a program, using the newly written generator "trange", to create a file
+"times_and_temperatures.txt". The lines of this file contain a time in the format
+hh::mm::ss and random temperatures between 10.0 and 25.0 degrees. The times
+should be ascending in steps of 90 seconds starting with 6:00:00.
+For example:
+06:00:00 20.1
+06:01:30 16.1
+06:03:00 16.9
+06:04:30 13.4
+06:06:00 23.7
+06:07:30 23.6
+06:09:00 17.5
+06:10:30 11.0
+
+5. Write a generator with the name
+"random_ones_and_zeroes", which returns a
+bitstream, i.e. a zero or a one in every iteration.
+The probability p for returning a 1 is defined in a
+variable p. The generator will initialize this value
+to 0.5. This means that zeroes and ones will be
+returned with the same probability.
 
 ############################################################################################################
 
