@@ -3135,8 +3135,71 @@ The Student DOB using getattr() is : 2541997
 >>> 
 
 #--------------------------------------------------------------------------------------
-103.
+103. # any() Function
 
+# a. any() function example with lists
+
+# all values are true
+lis1 = [10, 20, 30, 40]
+print(any(lis1))
+
+# all values are false
+lis2 = [0, False]
+print(any(lis2))
+
+# one value is false, others are true
+lis3 = [0, 10, 5, 15]
+print(any(lis3))
+
+# one value is true, others are false
+lis4 = [10, 0, False]
+print(any(lis4))
+
+# empty iterable
+lis5 = []
+print(any(lis5))
+
+================ RESTART: C:\Users\abhsingh\Desktop\sample_45.py ===============
+True
+False
+True
+True
+False
+>>>
+
+#-----------------------------------------
+
+# b. any() function example with Dictionaries
+
+# all keys are true
+dict1 = {1: 'False', 2: 'True'}
+print(any(dict1))
+
+# all keys are false
+dict2 = {0: 'False', False: 'True'}
+print(any(dict2))
+
+# one key is false, other is true
+dict3 = {0: 'False', 1: 0}
+print(any(dict3))
+
+# One key is true, '0' is not false its True
+# because '0' is a string not a number
+# if it is 0 without quotes then its false
+dict4 = {'0': 'False'}
+print(any(dict4))
+
+# empty dictionary
+dict5 = {}
+print(any(dict5))
+
+================ RESTART: C:\Users\abhsingh\Desktop\sample_45.py ===============
+True
+False
+True
+True
+False
+>>> 
 
 #--------------------------------------------------------------------------------------
 
