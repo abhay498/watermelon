@@ -3076,3 +3076,68 @@ def sample(x = 50):
 
 sample()
 #--------------------------------------------------------------------------------------
+101. # enumerate()
+
+# A lot of times when dealing with iterators, we also get a need to keep a count of iterations.
+# Python eases the programmers’ task by providing a built-in function enumerate() for this task.
+
+l1 = ["eat","sleep","repeat"] 
+s1 = "geek"
+  
+# creating enumerate objects 
+obj1 = enumerate(l1) 
+obj2 = enumerate(s1) 
+  
+print ("Return type:",type(obj1) )
+print (list(enumerate(l1)))
+  
+# changing start index to 2 from 0 
+print (list(enumerate(s1,2)))
+print((dict(enumerate(s1,2))))
+
+#--------------------------------------------------------------------------------------
+102. # namedtuple()
+
+# Python supports a type of container like dictionaries called “namedtuples()” present in module, “collection“.
+# Like dictionaries they contain keys that are hashed to a particular value. But on contrary, it supports both
+# access from key value and iteration, the functionality that dictionaries lack.
+
+# Example 1
+
+# importing "collections" for namedtuple() 
+import collections 
+  
+# Declaring namedtuple() 
+Student = collections.namedtuple('Student',['name','age','DOB']) 
+  
+# Adding values 
+S = Student('Nandini','19','2541997') 
+  
+# Access using index 
+print ("The Student age using index is : ",end ="") 
+print (S[1]) 
+  
+# Access using name  
+print ("The Student name using keyname is : ",end ="") 
+print (S.name) 
+  
+# Access using getattr() 
+print ("The Student DOB using getattr() is : ",end ="") 
+print (getattr(S,'DOB'))
+
+O/P:
+
+>>> 
+================ RESTART: C:\Users\abhsingh\Desktop\sample_45.py ===============
+The Student age using index is : 19
+The Student name using keyname is : Nandini
+The Student DOB using getattr() is : 2541997
+>>> 
+
+#--------------------------------------------------------------------------------------
+103.
+
+
+#--------------------------------------------------------------------------------------
+
+
