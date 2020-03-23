@@ -6900,6 +6900,70 @@ variable p. The generator will initialize this value
 to 0.5. This means that zeroes and ones will be
 returned with the same probability.
 
+370. If you want to develop programs which are readable, reliable and maintainable without
+too much effort, you have to use some kind of modular software design. Especially if
+your application has a certain size.
+
+371. Modular programming is a software design technique to split your
+code into separate parts. These parts are called modules. The focus for this separation
+should be to have modules with no or just few dependencies upon other modules. In
+other words: Minimization of dependencies is the goal.
+
+372. When creating a modular
+system, several modules are built separately and more or less independently. The
+executable application will be created by putting them together.
+
+So far we haven't explained what a Python module is. To put it in a nutshell: every file,
+which has the file extension .py and consists of proper Python code, can be seen or is a
+module! There is no special syntax required to make such a file a module.
+
+373. It's not recommended to use the asterisk notation in an import statement, except when
+working in the interactive Python shell.
+
+The module name is moulded out of the file name by
+removing the suffix .py. For example, if the file name is fibonacci.py, the module name
+is fibonacci.
+
+As you can easily imagine: It's a pain if you have to use those functions often in your
+program and you always have to type in the fully qualified name, i.e. fibonacci.fib(7).
+One solution consists in assigning a local name to a module function to get a shorter
+name:
+>>> fib = fibonacci.ifib
+>>> fib(10)
+55
+>>>
+
+We save with the name "one_time.py" and import it two times in an interactive session:
+>>> import one_time
+The module is imported now!
+>>> import one_time
+>>>
+We can see that it was only imported once. Each module can only be imported once per
+interpreter session or in a program or script. If you change a module and if you want to
+reload it, you must restart the interpreter again.
+
+Since version 3.4 you should use the "importlib" module, because imp.reload is marked
+as deprecated:
+>>> from importlib import reload
+>>> import one_time
+The module is imported now!
+>>> reload(one_time)
+The module is imported now!
+>>>
+
+Global
+variables of a module can be accessed with the same notation as functions, i.e.
+modname.name
+A module can import other modules. It is customary to place all import statements at
+the beginning of a module or a script.
+
+IMPORTING NAMES FROM A MODULE DIRECTLY
+
+Essentially a Python module is a script, so it can be run as a script:
+python fibo.py
+The module which has been started as a script will be executed as if it had been
+imported, but with one exception: The system variable __name__ is set to "__main__".
+
 ############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
