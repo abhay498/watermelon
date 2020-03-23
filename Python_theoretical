@@ -6924,7 +6924,7 @@ The module name is moulded out of the file name by
 removing the suffix .py. For example, if the file name is fibonacci.py, the module name
 is fibonacci.
 
-As you can easily imagine: It's a pain if you have to use those functions often in your
+374. As you can easily imagine: It's a pain if you have to use those functions often in your
 program and you always have to type in the fully qualified name, i.e. fibonacci.fib(7).
 One solution consists in assigning a local name to a module function to get a shorter
 name:
@@ -6933,7 +6933,7 @@ name:
 55
 >>>
 
-We save with the name "one_time.py" and import it two times in an interactive session:
+375. We save with the name "one_time.py" and import it two times in an interactive session:
 >>> import one_time
 The module is imported now!
 >>> import one_time
@@ -6942,7 +6942,7 @@ We can see that it was only imported once. Each module can only be imported once
 interpreter session or in a program or script. If you change a module and if you want to
 reload it, you must restart the interpreter again.
 
-Since version 3.4 you should use the "importlib" module, because imp.reload is marked
+376. Since version 3.4 you should use the "importlib" module, because imp.reload is marked
 as deprecated:
 >>> from importlib import reload
 >>> import one_time
@@ -6951,13 +6951,13 @@ The module is imported now!
 The module is imported now!
 >>>
 
-Global
-variables of a module can be accessed with the same notation as functions, i.e.
+377. Global variables of a module can be accessed with the same notation as functions, i.e.
 modname.name
-A module can import other modules. It is customary to place all import statements at
+
+378. A module can import other modules. It is customary to place all import statements at
 the beginning of a module or a script.
 
-IMPORTING NAMES FROM A MODULE DIRECTLY
+379. IMPORTING NAMES FROM A MODULE DIRECTLY
 
 Essentially a Python module is a script, so it can be run as a script:
 python fibo.py
