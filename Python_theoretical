@@ -7026,6 +7026,164 @@ importing the builtins module:
 'BufferError', 'BytesWarning',
 
 ############################################################################################################
+ON THE ROAD TO META CLASSES
+
+386. 
+class Philosopher1:
+def the_answer(self, *args):
+return 42
+class Philosopher2:
+def the_answer(self, *args):
+return 42
+class Philosopher3:
+def the_answer(self, *args):
+return 42
+plato = Philosopher1()
+print(plato.the_answer())
+kant = Philosopher2()
+# let's see what Kant has to say :-)
+print(kant.the_answer())
+42
+42
+
+Making above code better below :
+-----------------------------------------------------------
+
+
+Each Philosopher class inherits now from this base class:
+class Answers:
+def the_answer(self, *args):
+return 42
+class Philosopher1(Answers):
+pass
+class Philosopher2(Answers):
+pass
+class Philosopher3(Answers):
+pass
+plato = Philosopher1()
+print(plato.the_answer())
+kant = Philosopher2()
+# let's see what Kant has to say :-)
+print(kant.the_answer())
+42
+42
+
+Making above code to be used at run-time :
+-----------------------------------------------------------
+
+# the following variable would be set as the
+result of a runtime calculation:
+x = input("Do you need the answer? (y/n): ")
+if x=="y":
+required = True
+else:
+required = False
+def the_answer(self, *args):
+return 42
+class Philosopher1:
+pass
+if required:
+Philosopher1.the_answer = the_answer
+class Philosopher2:
+pass
+if required:
+Philosopher2.the_answer = the_answer
+class Philosopher3:
+pass
+if required:
+Philosopher3.the_answer = the_answer
+plato = Philosopher1()
+kant = Philosopher2()
+
+# let's see what Plato and Kant have to say :-)
+if required:
+print(kant.the_answer())
+print(plato.the_answer())
+else:
+print("The silence of the philosphers")
+Do you need the answer? (y/n): y
+42
+42
+
+We can improve our approach by defining a manager function and avoiding redundant
+code this way. The manager function will be used to augment the classes conditionally.
+-----------------------------------------------------------
+# the following variable would be set as the
+result of a runtime calculation:
+x = input("Do you need the answer? (y/n): ")
+if x=="y":
+required = True
+else:
+required = False
+def the_answer(self, *args):
+return 42
+# manager function
+def augment_answer(cls):
+if required:
+cls.the_answer = the_answer
+class Philosopher1:
+pass
+augment_answer(Philosopher1)
+class Philosopher2:
+pass
+augment_answer(Philosopher2)
+class Philosopher3:
+pass
+augment_answer(Philosopher3)
+plato = Philosopher1()
+kant = Philosopher2()
+# let's see what Plato and Kant have to say :-)
+if required:
+print(kant.the_answer())
+print(plato.the_answer())
+else:
+print("The silence of the philosphers")
+Do you need the answer? (y/n): y
+42
+42
+
+We need a way to make sure that "some" code might be
+executed automatically after the end of a class definition.
+-----------------------------------------------------------
+# the following variable would be set as the
+result of a runtime calculation:
+x = input("Do you need the answer? (y/n): ")
+if x=="y":
+required = True
+else:
+required = False
+def the_answer(self, *args):
+return 42
+def augment_answer(cls):
+if required:
+cls.the_answer = the_answer
+# we have to return the class now:
+return cls
+@augment_answer
+class Philosopher1:
+pass
+@augment_answer
+class Philosopher2:
+pass
+@augment_answer
+class Philosopher3:
+pass
+plato = Philosopher1()
+kant = Philosopher2()
+# let's see what Plato and Kant have to say :-)
+if required:
+print(kant.the_answer())
+print(plato.the_answer())
+else:
+print("The silence of the philosphers")
+Do you need the answer? (y/n): y
+42
+42
+Metaclasses can also be used for this purpose as we will learn in the next chapter.
+
+############################################################################################################
+
+############################################################################################################
 
 PYTHON ESSENTIAL TRAINING
 https://www.linkedin.com/learning/python-essential-training-2/exercise-files
