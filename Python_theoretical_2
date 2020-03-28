@@ -1,0 +1,58 @@
+
+############################################################################################################
+PYTHON NETWORK SCANNER
+
+1. 
+When it comes to penetration testing or just a simple analysis the network scanner is one major tool for
+analysing which hosts are available on the local network.
+
+2. 
+In this case we start with a simple network scanner, which lists the available hosts on your network.
+To get this done there are two (basically some more but we stick to the two simplest ones) possibilities:
+
+ICMP Echo Request
+TCP Scan
+
+3.
+This is well known by using the ping command. An ICMP packet is send to the specified (by IP address) host
+and if an ICMP echo is received, it is clear that the host is online. This can be used as a network scanner
+by just trying all available IP addresses. Enabling multithreading delivers great performance improvements.
+
+for host in available_ip_addresses:
+    print(ping -i 1 host)
+
+This relies on the assumption that network devices have ICMP enabled. Personal firewalls or general firewalls
+are often set to so called "stealth mode" which means they do not react to ICMP echo reqests. In this case no
+echo is received and it looks like the host is down.
+
+4.
+To overcome this, the TCP scan can help. This relies on the assumption that hosts on the network have open ports where a client can connect to (see 3-Way-Handshake). Here we have to guess ports which may be open. This is mainly dependend on the OS but also on the settings. It is likely that some ports are open but not guaranteed. The following ports may be open dependent on the operating systems:
+
+mac = [22, 445, 548, 631]
+linux = [20, 21, 22, 23, 25, 80, 111, 443, 445, 631, 993, 995]
+windows = [135, 137, 138, 139, 445]
+aios = [49152, 62078] # Apple iOS (ios is also the name for Cisco's OS running on their products)
+
+When now writing a network scanner we can iterate over all the possible IP addresses on the network and for every IP we try to connect to one of the ports. If the connection was successful (ACK received) we know that this host is available at the given IP address.
+
+To check wether a connection succeeds or fails we can do the following in Python:
+
+import socket
+socket_obj = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+socket.setdefaulttimeout(1)
+result = socket_obj.connect_ex((addr,port))
+socket_obj.close()
+
+socket_obj.connect_ex((addr,port)) returns 0 if the connection succeeds, otherwise it delivers an error indicator.
+
+5.
+The provided network scanner can simply be used by the following command:
+
+python avail_hosts_tcp_scan.py <networkaddress> <fromhost> <tohost> <hosttypes>
+
+python avail_hosts_tcp_scan.py 192.168.0.1 1 10 windows
+
+hosttypes are the above mentioned systems which have different default ports opened, use: windows, linux, mac, aios, unspec
+
+unspec uses the complete port range.
+############################################################################################################
