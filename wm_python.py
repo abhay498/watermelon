@@ -2550,8 +2550,7 @@ def partition(arr,low,high):
     pivot = arr[high]
   
     for j in range(low , high): 
- 
-        if   arr[j] < pivot: 
+        if arr[j] < pivot: 
 
             i = i+1 
             arr[i],arr[j] = arr[j],arr[i] 
@@ -2568,8 +2567,14 @@ def quickSort(arr,low,high):
 arr = [10, 7, 8, 9, 1, 5] 
 n = len(arr) 
 quickSort(arr,0,n-1) 
-print ("Sorted array after quick sort is:") 
+print("Sorted array after quick sort is:") 
 print(arr)
+
+# OUTPUT
+#================== RESTART: C:\Users\Admin\Desktop\rough_34.py =================
+#Sorted array after quick sort is:
+#[1, 5, 7, 8, 9, 10]
+#>>> 
 
 #--------------------------------------------------------------------------------------
 86. # Heap sort
