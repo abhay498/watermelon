@@ -1,6 +1,10 @@
 # Copyright © 2020 Elephant. All rights reserved
 
-Keeping main counter as i
+# Rules #
+# Keeping main counter as i
+# General case : M1 should be using built-in functions.
+# General case : M2 should be without built-in functions.
+# Specify source
 
 #--------------------------------------------------------------------------------------
 # 1. """ Fibonacci series upto 100 """
