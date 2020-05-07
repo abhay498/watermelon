@@ -1253,7 +1253,7 @@ link.traverse()
 49. """ Binary search tree"""
 
 class Node(object):
-    def __init__(self,data):
+    def __init__(self, data):
         self.value = data
         self.left = None
         self.right = None
@@ -1262,13 +1262,13 @@ class Tree(object):
     def __init__(self):
         self.root = None
 
-    def insert(self,data):
-        if self.root == None:
+    def insert(self, data):
+        if self.root is None:
             self.root = Node(data)
         else:
             self._insert(self.root, data)
                 
-    def _insert(self,node, data):
+    def _insert(self, node, data):
         if(data < node.value):
             if(node.left is not None):
                 self._insert(node.left, data)
@@ -1281,11 +1281,11 @@ class Tree(object):
                 node.right = Node(data)
 
     def preorder(self):
-        if (self.root != None):
+        if (self.root is not None):
             self._preorder(self.root)
 
     def _preorder(self,cur):
-        print(cur.value,end = ' ')
+        print(cur.value, end = ' ')
         if cur.left is not None:
             self._preorder(cur.left)
         if cur.right is not None:
@@ -1302,7 +1302,7 @@ class Tree(object):
         if cur.right is not None:
             self._postorder(cur.right)
 
-        print (cur.value,end = ' ')
+        print (cur.value, end = ' ')
 
     def inorder(self):
         if self.root is not None:
@@ -1311,11 +1311,11 @@ class Tree(object):
     def _inorder(self, cur):
         if cur.left is not None:
             self._inorder(cur.left)
-        print (cur.value,end = ' ')
+        print (cur.value, end = ' ')
         if cur.right is not None:
             self._inorder(cur.right)
             
-    def search(self,item):
+    def search(self, item):
         q = self.root
         self.found = False
         self.parent = None
@@ -1333,7 +1333,7 @@ class Tree(object):
             else:
                 q = q.right
             
-    def delete(self,item):
+    def delete(self, item):
         #self.found = False
         self.xsucc = None
         
@@ -1347,7 +1347,7 @@ class Tree(object):
             print("Data not found")
             return -2
     
-        if(self.x.left is not None) and (self.x.right is not None):
+        if (self.x.left is not None) and (self.x.right is not None):
             self.parent = self.x
             self.xsucc = self.xsucc.right
         
