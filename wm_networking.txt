@@ -38,6 +38,8 @@ TFTP - 69
 DNS -  53
 BooTPS / DHCP - 67
     
+SCP runs over TCP port 22 by default.
+SFTP port number is the SSH port 22.
 ---------------------------------------------------------------------------------------------------------------------------------------
 Popular protocols
 
