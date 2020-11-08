@@ -15,6 +15,7 @@ After successful login, the $ prompt would change to # to indicate that you logg
 COMMANDS
 
 whoami
+scp source_file_name username@destination_host:destination_folder
 
 ##################################################################################################################
 1. Number of occurences of a word in a file	
@@ -30,5 +31,6 @@ abhay@abhay-VirtualBox:~/Desktop$ grep -o -i james tray | wc -l
 4
 ##################################################################################################################
 https://www.cyberciti.biz/faq/how-to-check-os-version-in-linux-command-line/
+https://www.cs.colostate.edu/helpdocs/ftp.html
 ##################################################################################################################
 
