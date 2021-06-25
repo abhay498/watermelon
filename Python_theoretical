@@ -8,15 +8,15 @@
 
 4.
  
-Algorithm	      Time Complexity	               Space Complexity
-               Best	 Average	       Worst	               Worst
-Quicksort	   Ω(n log(n))	 Θ(n log(n))	O(n^2)	      O(log(n))
-Mergesort	Ω(n log(n))	Θ(n log(n))	O(n log(n))	   O(n)
-Heapsort	   Ω(n log(n))	Θ(n log(n))	O(n log(n))	      O(1)
-Bubble Sort	Ω(n)	Θ(n^2)	O(n^2)	               O(1)
-Insertion Sort	Ω(n)	Θ(n^2)	O(n^2)	            O(1)
-Selection Sort	Ω(n^2)	Θ(n^2)	O(n^2)	         O(1)
-Cubesort	Ω(n)	Θ(n log(n))	O(n log(n))	            O(n)
+Algorithm	              Time Complexity	                          Space Complexity
+                    Best	 Average	    Worst	               Worst
+Quicksort	   nlog(n)	 nlog(n)	    n^2   	              log(n)
+Mergesort	   nlog(n)	 nlog(n)	  nlog(n)                       n 
+Heapsort	   nlog(n)	 nlog(n) 	  nlog(n)	              O(1)
+Bubble Sort	    n    	  n^2    	   n^2                        O(1)
+Insertion Sort	    n	          n^2	           n^2                        O(1)
+Selection Sort	   n^2  	  n^2              n^2                        O(1)
+Cubesort	    n   	 nlog(n))	  nlog(n)	              O(n)
 
 4. https://www.python-course.eu/python3_deep_copy.php
 
