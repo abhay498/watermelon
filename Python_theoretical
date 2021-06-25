@@ -64,6 +64,16 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 		>>>
 		
 	      b.
+	      string = 'Abhi is smart, he is, intelligent'
+	      count_1= string.count('is')
+              print(count_1)
+	      
+	      o/p:
+	        >>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		2
+		>>> 
+
 8. Built-in List Functions & Methods
 
 1	cmp(list1, list2)
