@@ -16,7 +16,6 @@ Heapsort	   nlog(n)	 nlog(n) 	  nlog(n)	              O(1)
 Bubble Sort	    n    	  n^2    	   n^2                        O(1)
 Insertion Sort	    n	          n^2	           n^2                        O(1)
 Selection Sort	   n^2  	  n^2              n^2                        O(1)
-Cubesort	    n   	 nlog(n))	  nlog(n)	              O(n)
 
 4. https://www.python-course.eu/python3_deep_copy.php
 
