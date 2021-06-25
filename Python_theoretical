@@ -26,7 +26,7 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 
 7. Built-in String Methods
 
-	# capitalize() --> Capitalizes first letter of string
+	# capitalize() --> capitalize first letter of string and make other letters lowercase.
 	# count(str, beg= 0, end=len(string)) --> Counts how many times str occurs in string or in a substring of
                                           string if starting index beg and ending index end are given.
 	# endswith(suffix, beg=0, end=len(string)) --> Determines if string or a substring of string (if starting index
@@ -51,6 +51,19 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 	                                             starts with substring str; returns true if so and false otherwise.
         # strip([chars]) --> Performs both lstrip() and rstrip() on string.
 
+        # Examples : 
+	   
+	     a. name = 'hello how are you'
+		name_2 = name.capitalize()
+		print(name_2)
+
+	        o/p : 
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		Hello how are you
+		>>>
+		
+	      b.
 8. Built-in List Functions & Methods
 
 1	cmp(list1, list2)
