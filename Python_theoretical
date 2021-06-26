@@ -53,8 +53,8 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 
         # Examples : 
 	   
-	     a. name = 'hello how are you'
-		name_2 = name.capitalize()
+	     a. string = 'hello how are you'
+		name_2 = string.capitalize()
 		print(name_2)
 
 	        o/p : 
