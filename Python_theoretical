@@ -208,6 +208,48 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 		buggets of buggets of buggets
 		buggets of buggets of nuggets
 		>>> 
+		
+		j.
+		string = 'nuggets of nuggets'
+		print(string.split())
+
+		string = 'nuggets, of, nuggets'
+		print(string.split(','))
+
+		string = 'nuggets:of:nuggets'
+		print(string.split(':'))
+
+		string = 'CatBatSatOr'
+		print(string.split('t'))
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		['nuggets', 'of', 'nuggets']
+		['nuggets', ' of', ' nuggets']
+		['nuggets', 'of', 'nuggets']
+		['Ca', 'Ba', 'Sa', 'Or']
+		>>> 
+
+		##################################################################################
+
+		i.
+
+		string = 'nuggets:of:nuggets:shyam:ram:hurricane'
+
+		print(string.split(':', 0))
+		print(string.split(':', 3))
+		print(string.split(':', 7))
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		['nuggets:of:nuggets:shyam:ram:hurricane']
+		['nuggets', 'of', 'nuggets', 'shyam:ram:hurricane']
+		['nuggets', 'of', 'nuggets', 'shyam', 'ram', 'hurricane']
+		>>> 
 
 8. Built-in List Functions & Methods
 
