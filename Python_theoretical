@@ -74,6 +74,70 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 		2
 		>>> 
 
+	      c.
+	    
+		string = 'nuggets of nuggets.'
+
+		string_2 = string.endswith('of nuggets')
+		print(string_2)
+
+		string_2= string.endswith('nuggets.')
+		print(string_2)
+
+		string_2= string.endswith('nuggets of nuggets.')
+		print(string_2)
+
+              o/p:
+	        >>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		False
+		True
+		True
+		>>> 
+		
+		d.
+		
+		string = 'nuggets of nuggets.'
+		string_2 = 'shyam'
+
+		print(string.find('nuggets'))
+		print(string.find('of'))
+
+		if string.find('hello') != -1:
+		    print('contains {0} in {1}'.format(string_2, string))
+		else:
+		    print('does not contain {0} in {1}'.format(string_2, string))
+		
+		o/p:
+		
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		0
+		8
+		does not contain shyam in nuggets of nuggets.
+		>>> 
+	      
+	      e.
+	      
+		string = 'nuggets of nuggets.'
+
+		print(string.find('nu', 2))
+		print(string.find('nuggets ', 2))
+		print(string.find('n', 4,11))
+		print(string.find('n', 11,12))
+		print(string.find('of ', 4, 11))
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		11
+		-1
+		-1
+		11
+		8
+		>>> 
+
+	     f.
+	     
 8. Built-in List Functions & Methods
 
 1	cmp(list1, list2)
