@@ -37,8 +37,6 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 	# index(str, beg=0, end=len(string)) --> Same as find(), but raises an exception if str not found.
         # join(seq) --> Merges (concatenates) the string representations of elements in sequence seq into a string, with separator string.
 	# len(string) --> Returns the length of the string
-        # max(str) --> Returns the max alphabetical character from the string str.
-        # min(str) --> Returns the min alphabetical character from the string str.
         # replace(old, new [, max]) --> Replaces all occurrences of old in string with new or at most max occurrences if max given.
         # split(str="", num=string.count(str)) --> Splits string according to delimiter str (space if not provided) and returns list of substrings;
 	                                           split into at most num substrings if given.
@@ -193,7 +191,24 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 		>>> 
 
 		i.
-		
+		string = 'nuggets of nuggets of nuggets'
+
+		print(string.replace('nuggets', 'shyam'))
+		print(string.replace('nuggets', 'shyam', 2))
+
+		print(string.replace('n', 'b'))
+		print(string.replace('n', 'b', 2))
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		shyam of shyam of shyam
+		shyam of shyam of nuggets
+		buggets of buggets of buggets
+		buggets of buggets of nuggets
+		>>> 
+
 8. Built-in List Functions & Methods
 
 1	cmp(list1, list2)
