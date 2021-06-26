@@ -138,6 +138,54 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 
 	     f.
 	     
+		string = 'nuggets of nuggets.'
+		string_2 = 'shyam'
+
+		print(string.index('nuggets'))
+		print(string.index('of'))
+
+		result = string.index(string_2)
+		print('result is {}'.format(result))
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		0
+		8
+		Traceback (most recent call last):
+		  File "C:\Users\Abhay\OneDrive\Desktop\one.py", line 8, in <module>
+		    result = string.index(string_2)
+		ValueError: substring not found
+		>>> 
+
+	      g.
+	      
+		list_1 = ['1' ,'2', '3', '4']
+		string = '-'
+
+		print(string.join(list_1))
+		print(string)
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		1-2-3-4
+		-
+		>>> 
+              
+	       ##########################################
+	       
+	       list_1 = ['n', 'u', 'g', 'g', 'e', 't', 's']
+	       print(''.join(list_1))
+
+		o/p:
+		
+	        >>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		nuggets
+		>>> 
+		
 8. Built-in List Functions & Methods
 
 1	cmp(list1, list2)
