@@ -232,7 +232,7 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 
 		##################################################################################
 
-		i.
+		k.
 
 		string = 'nuggets:of:nuggets:shyam:ram:hurricane'
 
@@ -248,6 +248,56 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 		['nuggets', 'of', 'nuggets', 'shyam:ram:hurricane']
 		['nuggets', 'of', 'nuggets', 'shyam', 'ram', 'hurricane']
 		>>> 
+
+ 		l.
+		
+		string = 'nuggetsofnuggets'
+
+		print(string.startswith('nuggets'))
+		print(string.startswith('nuggets', 9, 10))
+		print(string.startswith('nuggets', 9, 20))
+
+		o/p:
+		
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		True
+		False
+		True
+		>>> 
+
+		######################################################################
+		
+		m.
+
+		string = ' nuggets of nuggets '
+		string_2 = 'etsn '
+
+		print(string.strip())
+		print(string.strip(' nuggets'))
+		print(string.strip(string_2))
+		print(string)
+
+
+		string_3 = ' the King has the largest army in the entire world the'
+		print(string_3.strip(' the'))
+
+		string_4 = 'nuggets of nuggets'
+		string_5 = 'ugetns'
+		print(string_4.strip(string_5))
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		nuggets of nuggets
+		of
+		uggets of nugg
+		 nuggets of nuggets 
+		King has the largest army in the entire world
+		 of 
+		>>> 
+
 
 8. Built-in List Functions & Methods
 
