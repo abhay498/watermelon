@@ -523,8 +523,6 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 10. Built-in Dictionary Functions & Methods
 
 # len(dict) --> Gives the total length of the dictionary. This would be equal to the number of items in the dictionary.
-# str(dict) --> Produces a printable string representation of a dictionary
-# type(variable) --> Returns the type of the passed variable. If passed variable is dictionary, then it would return a dictionary type.
 # dict.clear()
 # dict.copy() --> Returns a shallow copy of dictionary dict
 # dict.fromkeys() --> Create a new dictionary with keys from seq and values set to value.
@@ -536,6 +534,7 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 # dict.update(dict2) --> Adds dictionary dict2's key-values pairs to dict
 # dict.values() --> Returns list of dictionary dict's values
 
+11. Other Built-in methods
 #####################################################################################################
 #
 #                     https://www.python-course.eu/python3_pytest.php
