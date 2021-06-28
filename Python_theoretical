@@ -522,7 +522,6 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 
 10. Built-in Dictionary Functions & Methods
 
-# cmp(dict1, dict2) Compares elements of both dict.
 # len(dict) --> Gives the total length of the dictionary. This would be equal to the number of items in the dictionary.
 # str(dict) --> Produces a printable string representation of a dictionary
 # type(variable) --> Returns the type of the passed variable. If passed variable is dictionary, then it would return a dictionary type.
