@@ -532,6 +532,314 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 # dict.update(dict2) --> Adds dictionary dict2's key-values pairs to dict
 # dict.values() --> Returns list of dictionary dict's values
 
+
+		a.
+		dict1 ={'Name':'Steve', 'Age':30, 'Designation':'Programmer'}
+		print("len() method :", len(dict1))
+		print("len() method with keys() :", len(dict1.keys()))
+		print("len() method with values():", len(dict1.values()))
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		len() method : 3
+		len() method with keys() : 3
+		len() method with values(): 3
+		>>> 
+
+		b.
+		text1 = {1: "geeks", 2: "for"}
+		text2 = text1
+		text1.clear()
+
+		print('After removing items using clear()')
+		print('text1 =', text1)
+		print('text2 =', text2)
+
+		print('##################################')
+
+		text1 = {1: "one", 2: "two"}
+		text2 = text1
+
+
+		text1 = {}
+
+		print('After removing items by assigning {}')
+		print('text1 =', text1)
+		print('text2 =', text2)
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		After removing items using clear()
+		text1 = {}
+		text2 = {}
+		##################################
+		After removing items by assigning {}
+		text1 = {}
+		text2 = {1: 'one', 2: 'two'}
+		>>> 
+
+		c.
+
+		original = {1:'geeks', 2:'for'}
+		new = original.copy()
+		new.clear()
+		print('new: ', new)
+		print('original: ', original)
+
+		print('###########################')
+
+		original = {1:'one', 2:'two'}
+		new = original
+		new.clear()
+		print('new: ', new)
+		print('original: ', original)
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		new:  {}
+		original:  {1: 'geeks', 2: 'for'}
+		###########################
+		new:  {}
+		original:  {}
+		>>> 
+
+		d.
+		seq = {'a', 'b', 'c', 'd', 'e'}
+		res_dict = dict.fromkeys(seq)
+		print(res_dict)
+		res_dict2 = dict.fromkeys(seq, 1)
+		print(res_dict2)
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		{'c': None, 'a': None, 'e': None, 'd': None, 'b': None}
+		{'c': 1, 'a': 1, 'e': 1, 'd': 1, 'b': 1}
+		>>> 
+
+		e.
+		dic = {"A":1, "B":2}
+		print(dic.get("A"))
+		print(dic.get("C"))
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		1
+		None
+		>>> 
+
+		f.
+		Dictionary1 = { 'A': 'Geeks', 'B': 4, 'C': 'Geeks' }
+		print("Original Dictionary items:")
+		items = Dictionary1.items()
+		print(items)
+		del [Dictionary1['C']]
+		print('Updated Dictionary:')
+		print(items)
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		Original Dictionary items:
+		dict_items([('A', 'Geeks'), ('B', 4), ('C', 'Geeks')])
+		Updated Dictionary:
+		dict_items([('A', 'Geeks'), ('B', 4)])
+		>>> 
+
+		##################
+
+		a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+		d_items = a_dict.items()
+		print(d_items)
+
+		for item in a_dict.items():
+			print(item)
+			print(type(item))
+
+		for key, value in a_dict.items():
+			print(key, '->', value)
+			
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		dict_items([('color', 'blue'), ('fruit', 'apple'), ('pet', 'dog')])
+		('color', 'blue')
+		<class 'tuple'>
+		('fruit', 'apple')
+		<class 'tuple'>
+		('pet', 'dog')
+		<class 'tuple'>
+		color -> blue
+		fruit -> apple
+		pet -> dog
+		>>> 
+
+		g.
+		a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+		keys = a_dict.keys()
+		print(keys)
+
+		for key in a_dict.keys():
+			print(key, '->', a_dict[key])
+			
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		dict_keys(['color', 'fruit', 'pet'])
+		color -> blue
+		fruit -> apple
+		pet -> dog
+		>>> 
+
+		h.
+		dictionary_one = { 'A': 'Geeks', 'B': 'For'}
+		dictionary_two = { 'B': 'Geeks' }
+
+		print("Original Dictionary:")
+		print(dictionary_one)
+
+		dictionary_one.update(dictionary_two)
+		print("Dictionary after updation:")
+		print(dictionary_one)
+
+		dictionary_one.update(C = 'Geeks', D = 'clock')
+		print("Dictionary after updation:")
+		print(dictionary_one)
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		Original Dictionary:
+		{'A': 'Geeks', 'B': 'For'}
+		Dictionary after updation:
+		{'A': 'Geeks', 'B': 'Geeks'}
+		Dictionary after updation:
+		{'A': 'Geeks', 'B': 'Geeks', 'C': 'Geeks', 'D': 'clock'}
+		>>> 
+
+		i.
+
+		a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+		values = a_dict.values()
+		print(values)
+
+		for value in a_dict.values():
+			print(value)
+			
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		dict_values(['blue', 'apple', 'dog'])
+		blue
+		apple
+		dog
+		>>> 
+
+		#############################################
+
+		>>> a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+		>>> 'pet' in a_dict.keys()
+		True
+		>>> 'apple' in a_dict.values()
+		True
+		>>> 'onion' in a_dict.values()
+		False
+
+		#############################################
+
+		>>> a_dict = {'one': 1, 'two': 2, 'thee': 3, 'four': 4}
+		>>> new_dict = {}
+		>>> for key, value in a_dict.items():
+		...     new_dict[value] = key
+		...
+		>>> new_dict
+		{1: 'one', 2: 'two', 3: 'thee', 4: 'four'}
+
+		#############################################
+		>>> objects = ['blue', 'apple', 'dog']
+		>>> categories = ['color', 'fruit', 'pet']
+		>>> a_dict = {key: value for key, value in zip(categories, objects)}
+		>>> a_dict
+		{'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+
+		#############################################
+		>>> a_dict = {'one': 1, 'two': 2, 'thee': 3, 'four': 4}
+		>>> new_dict = {k: v for k, v in a_dict.items() if v <= 2}
+		>>> new_dict
+		{'one': 1, 'two': 2}
+
+		#############################################
+
+		>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+		>>> for key in sorted(incomes):
+		...     print(key, '->', incomes[key])
+		...
+		apple -> 5600.0
+		banana -> 5000.0
+		orange -> 3500.0
+
+		#############################################
+
+		a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+
+		while True:
+			try:
+				print(f'Dictionary length: {len(a_dict)}')
+				item = a_dict.popitem()
+				print(f'{item} removed')
+			except KeyError:
+				print('The dictionary has no item now...')
+				break
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		Dictionary length: 3
+		('pet', 'dog') removed
+		Dictionary length: 2
+		('fruit', 'apple') removed
+		Dictionary length: 1
+		('color', 'blue') removed
+		Dictionary length: 0
+		The dictionary has no item now...
+		>>> 
+		#############################################
+		>>> from collections import ChainMap
+		>>> fruit_prices = {'apple': 0.40, 'orange': 0.35}
+		>>> vegetable_prices = {'pepper': 0.20, 'onion': 0.55}
+		>>> chained_dict = ChainMap(fruit_prices, vegetable_prices)
+		>>> chained_dict  # A ChainMap object
+		ChainMap({'apple': 0.4, 'orange': 0.35}, {'pepper': 0.2, 'onion': 0.55})
+		>>> for key in chained_dict:
+		...     print(key, '->', chained_dict[key])
+		...
+		pepper -> 0.2
+		orange -> 0.35
+		onion -> 0.55
+		apple -> 0.4
+
+		#############################################
+		>>> fruit_prices = {'apple': 0.40, 'orange': 0.35}
+		>>> vegetable_prices = {'pepper': 0.20, 'onion': 0.55}
+		>>> # How to use the unpacking operator **
+		>>> {**vegetable_prices, **fruit_prices}
+		{'pepper': 0.2, 'onion': 0.55, 'apple': 0.4, 'orange': 0.35}
+		>>> # You can use this feature to iterate through multiple dictionaries
+		>>> for k, v in {**vegetable_prices, **fruit_prices}.items():
+		...     print(k, '->', v)
+		...
+		pepper -> 0.2
+		onion -> 0.55
+		apple -> 0.4
+		orange -> 0.35
+
+		#############################################
+
 11. Other Built-in methods
 #####################################################################################################
 #
