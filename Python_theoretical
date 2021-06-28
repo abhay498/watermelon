@@ -417,6 +417,18 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 		['geeks', 'for', 6, 0, 4, 1, 'g', 'e', 'e', 'k', 's']
 		>>> 
 
+		f. 
+
+		list1 = [1, 1, 1, 2, 3, 2, 1]
+		print(list1.count(1))
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		4
+		>>> 
+
+		g.
+		
 10. Built-in Dictionary Functions & Methods
 
 # cmp(dict1, dict2) Compares elements of both dict.
