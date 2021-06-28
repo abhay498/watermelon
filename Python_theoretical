@@ -427,8 +427,99 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 		4
 		>>> 
 
+
 		g.
-		
+
+		list_a = [1, 2, 3, 4, 1, 1, 1, 4, 5]
+		print(list_a.index(4))
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		3
+		>>> 
+
+		h.
+
+		list_a = [ 1, 2, 3, 4, 5, 6, 7 ]
+		list_a.insert(4, 10)
+		print(list_a)
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		[1, 2, 3, 4, 10, 5, 6, 7]
+		>>> 
+
+		i.
+
+		list_a = [ 1, 2, 3, 4, 5, 6 ]
+		popped = list_a.pop()
+		print('popped = ', popped)
+		print('list is = ', list_a)
+
+		list_b = [ 10, 20, 30, 40, 50, 60, 70]
+		popped = list_b.pop(-2)
+		print('popped = ', popped)
+		print('list is = ', list_b)
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		popped =  6
+		list is =  [1, 2, 3, 4, 5]
+		popped =  60
+		list is =  [10, 20, 30, 40, 50, 70]
+		>>> 
+
+		j.
+
+		list_a = [ 1, 2, 1, 1, 4, 5 ]
+		list_a.remove(1)
+		print(list_a)
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		[2, 1, 1, 4, 5]
+		>>> 
+
+		k.
+
+		list_a = [1, 2, 3, 4, 5, 6]
+
+		reversed_list_a = [x for x in reversed(list_a)]
+		print(reversed_list_a)
+		print(list_a)
+
+		list_b = [10, 20 , 30, 40 , 50]
+		list_b.reverse()
+		print(list_b)
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		[6, 5, 4, 3, 2, 1]
+		[1, 2, 3, 4, 5, 6]
+		[50, 40, 30, 20, 10]
+		>>> 
+
+		l.
+
+		numbers = [1, 3, 4, 2]
+		numbers.sort()
+		print(numbers)
+		numbers.sort(reverse=True)
+		print(numbers)
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		[1, 2, 3, 4]
+		[4, 3, 2, 1]
+		>>> 
+
 10. Built-in Dictionary Functions & Methods
 
 # cmp(dict1, dict2) Compares elements of both dict.
