@@ -527,7 +527,6 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 # dict.copy() --> Returns a shallow copy of dictionary dict
 # dict.fromkeys() --> Create a new dictionary with keys from seq and values set to value.
 # dict.get(key, default=None) --> For key key, returns value or default if key not in dictionary
-# dict.has_key(key) --> Returns true if key in dictionary dict, false otherwise
 # dict.items() --> Returns a list of dict's (key, value) tuple pairs
 # dict.keys() --> Returns list of dictionary dict's keys
 # dict.setdefault(key, default=None) --> Similar to get(), but will set dict[key]=default if key is not already in dict
