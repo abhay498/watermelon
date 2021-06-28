@@ -315,6 +315,108 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 	# list.reverse() --> Reverses objects of list in place
 	# list.sort([func]) --> Sorts objects of list, use compare func if given
 
+		a.
+		list_a = ['Hello', 'Edureka', 1, 2, 3]
+		print ('Number of items in the list = ', len(list_a))
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		Number of items in the list =  5
+		>>> 
+
+		b.
+		list_a = [10, 20, 4, 45, 99]
+		print("Largest element is:", max(list_a))
+
+		o/p
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		Largest element is: 99
+		>>> 
+
+		c.
+		list_a = [10, 20, 4, 45, 99]
+		print("Smallest element is:", min(list_a))
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		Smallest element is: 4
+		>>> 
+
+		d.
+		tuple_a = (True, 28, 'Tiger')
+		list_a = list(tuple_a)
+		print(type(list_a))
+		print(type(tuple_a))
+		print(list_a)
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		<class 'list'>
+		<class 'tuple'>
+		[True, 28, 'Tiger']
+		>>> 
+
+		e.
+
+		Time Complexity:
+		Append has constant time complexity i.e.,O(1).
+		Extend has time complexity of O(k). Where k is the length of list which need to be added.
+
+		my_list = ['nuggets', 'for']
+		my_list.append('Abhay')
+		print (my_list)
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		['nuggets', 'for', 'Abhay']
+		>>> 
+
+		#####################################
+
+		my_list = ['geeks', 'for', 'geeks']
+		another_list = [6, 0, 4, 1]
+		my_list.append(another_list)
+		print (my_list)
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		['geeks', 'for', 'geeks', [6, 0, 4, 1]]
+		>>> 
+
+		#####################################
+
+		my_list = ['geeks', 'for']
+		another_list = [6, 0, 4, 1]
+		my_list.extend(another_list)
+		print (my_list)
+
+		o/p:
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		['geeks', 'for', 6, 0, 4, 1]
+		>>> 
+
+		#####################################
+		my_list = ['geeks', 'for', 6, 0, 4, 1]
+		my_list.extend('geeks')
+		print(my_list)
+
+		o/p:
+
+		>>> 
+		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
+		['geeks', 'for', 6, 0, 4, 1, 'g', 'e', 'e', 'k', 's']
+		>>> 
+
 10. Built-in Dictionary Functions & Methods
 
 # cmp(dict1, dict2) Compares elements of both dict.
