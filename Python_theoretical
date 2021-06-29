@@ -841,6 +841,20 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 		#############################################
 
 11. Other Built-in methods
+
+	abs()	Returns the absolute value of a number
+	dir()	Returns a list of the specified object's properties and methods
+	enumerate()	Takes a collection (e.g. a tuple) and returns it as an enumerate object
+	int()	Returns an integer number
+	isinstance()	Returns True if a specified object is an instance of a specified object
+	round()	Rounds a numbers
+	set()	Returns a new set object
+	sum()	Sums the items of an iterator
+	super()	Returns an object that represents the parent class
+	type()	Returns the type of an object
+	vars()	Returns the __dict__ property of an object
+	zip()	Returns an iterator, from two or more iterators
+
 #####################################################################################################
 #
 #                     https://www.python-course.eu/python3_pytest.php
