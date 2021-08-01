@@ -2545,35 +2545,36 @@ print(arr)
 #--------------------------------------------------------------------------------------
 85. # Quick sort
 
-def partition(arr,low,high): 
-    i = ( low-1 )   
+def partition(arr, low, high):
+    i = low - 1
     pivot = arr[high]
-  
-    for j in range(low , high): 
-        if arr[j] < pivot: 
 
-            i = i+1 
-            arr[i],arr[j] = arr[j],arr[i] 
-  
-    arr[i+1],arr[high] = arr[high],arr[i+1] 
-    return ( i+1 ) 
+    for j in range(low, high):
+        if arr[j] < pivot:
 
-def quickSort(arr,low,high): 
-    if low < high: 
-        pi = partition(arr,low,high)  
-        quickSort(arr, low, pi-1) 
-        quickSort(arr, pi+1, high) 
- 
-arr = [10, 7, 8, 9, 1, 5] 
-n = len(arr) 
-quickSort(arr,0,n-1) 
-print("Sorted array after quick sort is:") 
-print(arr)
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
+
+
+def quick_sort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
+
+
+arr = [10, 7, 8, 9, 1, 5]
+n = len(arr)
+quick_sort(arr, 0, n - 1)
+print("List after quick sort : ", arr)
 
 # OUTPUT
-#================== RESTART: C:\Users\Admin\Desktop\rough_34.py =================
-#Sorted array after quick sort is:
-#[1, 5, 7, 8, 9, 10]
+#>>> 
+#================ RESTART: C:\Users\Abhay\OneDrive\Desktop\two.py ===============
+#List after quick sort :  [1, 5, 7, 8, 9, 10]
 #>>> 
 
 #--------------------------------------------------------------------------------------
