@@ -1457,13 +1457,21 @@ print(a_list)
 def bubble_sort(a_list):
     length = len(a_list)
     for i in range(length):
-        for j in range(0, length-1-i):
+        for j in range(0, length - 1 - i):
             if a_list[j] > a_list[j + 1]:
-                a_list[j], a_list[j + 1] = a_list[j+1], a_list[j]
-                
-a_list = [65,43,56,89,4,17]
+                a_list[j], a_list[j + 1] = a_list[j + 1], a_list[j]
+
+
+a_list = [65, 43, 56, 89, 4, 17]
 bubble_sort(a_list)
 print(a_list)
+
+# o/p
+
+#>>> 
+#================ RESTART: C:\Users\Abhay\OneDrive\Desktop\two.py ===============
+#[4, 17, 43, 56, 65, 89]
+#>>> 
 
 #--------------------------------------------------------------------------------------
 52. """ Stack """
