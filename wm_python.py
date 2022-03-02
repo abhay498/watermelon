@@ -2369,22 +2369,30 @@ segregate_0_and_1(arr, arr_size)
 print('Array after segregation is {0}'.format(arr), end = ' ')
 
 # M2
+def segregate_0_and_1(arr):
+    length = len(arr)
+    i = 0
+    j = length - 1
+    
+    while i < j:
+        if arr[i] != 0:
 
-a_list = [0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1]
+            while arr[j] != 0:
+                j -= 1
+                
+            arr[i], arr[j] = arr[j], arr[i]
+            j -= 1
+        i += 1
 
-length = len(a_list)
-count = 0
-for i in a_list:
-    if i == 0:
-        count += 1
+arr = [0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1] 
+segregate_0_and_1(arr)
+print(arr)
 
-for i in range(0, count):
-    a_list[i] = 0
-
-for i in range(count, length):
-    a_list[i] = 1
-
-print(a_list)
+# o / p
+# >>> 
+# =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
+# [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]
+# >>> 
 #--------------------------------------------------------------------------------------
 
 74.# Removing all element from a list greater than 5
