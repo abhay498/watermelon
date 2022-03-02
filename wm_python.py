@@ -2993,8 +2993,8 @@ if fourth <= 255 and fourth >= 0:
 #--------------------------------------------------------------------------------------
 94. # Removing dupicate words
 
-str_a = 'hello try hello no python programming'
-list_a = str_a.split(' ')
+input_string = 'hello try hello no python programming'
+list_a = input_string.split(' ')
 list_b = []
 
 i = 0
@@ -3002,8 +3002,8 @@ while i < len(list_a):
 	if list_a[i] not in list_b:
 		list_b.append(list_a[i])
 	i += 1
-str_b = ' '.join(list_b)
-print(str_b)
+output_string = ' '.join(list_b)
+print(output_String)
 
 #--------------------------------------------------------------------------------------
 95. # Print from reverse
