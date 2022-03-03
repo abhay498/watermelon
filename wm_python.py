@@ -2583,7 +2583,7 @@ def partition(arr, low, high):
     pivot = arr[high]
 
     for j in range(low, high):
-        if arr[j] < pivot:
+        if arr[j] <= pivot:
 
             i += 1
             arr[i], arr[j] = arr[j], arr[i]
@@ -2593,6 +2593,8 @@ def partition(arr, low, high):
 
 
 def quick_sort(arr, low, high):
+    if len(arr) == 1:
+    	return arr
     if low < high:
         pi = partition(arr, low, high)
         quick_sort(arr, low, pi - 1)
@@ -2603,13 +2605,6 @@ arr = [10, 7, 8, 9, 1, 5]
 n = len(arr)
 quick_sort(arr, 0, n - 1)
 print("List after quick sort : ", arr)
-
-# o/p
-
-#>>> 
-#================ RESTART: C:\Users\Abhay\OneDrive\Desktop\two.py ===============
-#List after quick sort :  [1, 5, 7, 8, 9, 10]
-#>>> 
 
 #--------------------------------------------------------------------------------------
 86. # Heap sort
