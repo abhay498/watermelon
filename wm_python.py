@@ -302,7 +302,7 @@ result = binary_search(arr, x)
 if result != -1:
 	print('Number is present at index {0}'.format(result))
 else:
-	print("Number is not present in the list")
+	print('Number is not present in the list')
 
 # o/p
 # >>> 
