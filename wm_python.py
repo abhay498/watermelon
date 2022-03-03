@@ -269,37 +269,47 @@ else:
 
 #--------------------------------------------------------------------------------------
 #10. Binary search
+# Source : https://www.geeksforgeeks.org/python-program-for-binary-search/
+	
+# Iterative Binary Search Function
+# It returns index of x in given array arr if present,
+# else returns -1
+def binary_search(arr, x):
+	low = 0
+	high = len(arr) - 1
+	mid = 0
 
-def binary_search(a_list, num):
-    low = 0
-    high = len(a_list) - 1
+	while low <= high:
 
-    while low <= high:
-        mid = (low + high) // 2
+		mid = (high + low) // 2
 
-        if num == a_list[mid]:
-            return mid
+		if arr[mid] < x:
+			low = mid + 1
 
-        if num < alist[mid]:
-            high = mid - 1
-        else:
-            low = mid + 1
-        
-    return -1
+		elif arr[mid] > x:
+			high = mid - 1
 
-def main():
-    print('Enter numbers in sorted fashion')
-    a_list = [int(x) for x in input().split()]
-    num = int(input('Enter number'))
-    index = binary_search(a_list, num)
+		else:
+			return mid
 
-    if index == -1:
-        print('{0} is not present in the list'.format(num))
-    else:
-        print('{0} is present at index {1}'.format(num, index))
+	return -1
 
-if __name__ == '__main__':
-    main()
+arr = [2, 3, 4, 10, 40]
+x = int(input('Enter the number to search '))
+
+result = binary_search(arr, x)
+
+if result != -1:
+	print('Number is present at index {0}'.format(result))
+else:
+	print("Number is not present in the list")
+
+# o/p
+# >>> 
+# =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
+# Enter the number to search 2
+# Number is present at index 0
+# >>> 
 
 #--------------------------------------------------------------------------------------
 #11. Decimal to binary
