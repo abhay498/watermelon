@@ -2578,6 +2578,8 @@ print('List after insertion sort : ', arr)
 #--------------------------------------------------------------------------------------
 85. # Quick sort
 
+#Source : https://www.geeksforgeeks.org/python-program-for-quicksort/
+
 def partition(arr, low, high):
     i = low - 1
     pivot = arr[high]
