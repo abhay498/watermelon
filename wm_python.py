@@ -2361,7 +2361,7 @@ print('{0} armstrong number is {1}'.format(n, nth_armstrong_number(n)))
 74. # Segregatting 0 and 1
 
 # M1
-def segregate_0_and_1(arr, size): 
+def segregate_0_and_1(arr): 
   
     type0 = 0
     type1 = len(arr) - 1
@@ -2404,7 +2404,7 @@ print(arr)
 # >>> 
 #--------------------------------------------------------------------------------------
 
-74.# Removing all element from a list greater than 5
+741.# Removing all element from a list greater than 5
 
 a_list = [10, 20, 30, 40, 50, 60, 70]
  
