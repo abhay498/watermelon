@@ -2364,7 +2364,7 @@ print('{0} armstrong number is {1}'.format(n, nth_armstrong_number(n)))
 def segregate_0_and_1(arr, size): 
   
     type0 = 0
-    type1 = size - 1
+    type1 = len(arr) - 1
       
     while type0 < type1: 
         if arr[type0] == 1: 
@@ -2374,9 +2374,8 @@ def segregate_0_and_1(arr, size):
             type0 += 1
 
 arr = [0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1] 
-arr_size = len(arr) 
-segregate_0_and_1(arr, arr_size) 
-print('Array after segregation is {0}'.format(arr), end = ' ')
+segregate_0_and_1(arr) 
+print(arr)
 
 # M2
 def segregate_0_and_1(arr):
