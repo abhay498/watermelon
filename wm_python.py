@@ -390,7 +390,7 @@ while i < length - 1:
 
 del a_list[-1]
 
-print('New list is {0}'.format(alist))
+print('New list is {0}'.format(a_list))
 
 #--------------------------------------------------------------------------------------
 #15.  inp = ' DJ on module     234  56, instance 0\r\n\r',extract 234
