@@ -195,7 +195,7 @@ else:
 num = int(input('Enter number'))
 flag = 0
 if num == 1 or num == 4:
-    print('{0} is a perfect square'.format(num))
+    flag = 1
 else:
     i = 3
     while num // 2 > i:
