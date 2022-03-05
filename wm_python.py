@@ -253,17 +253,17 @@ print('Reversed every word in the input sentence : {0}'.format(string))
 
 a_list = [int(x) for x in input().split()]
 num = int(input("Enter number"))
-length = len(alist)
+length = len(a_list)
 flag = 0
 i = 0
 while i < length:
-    if num == alist[i]:
+    if num == a_list[i]:
         flag = 1
         break
     i += 1
 
 if flag:
-    print('{0} is at index {1}'.format(num,i + 1))
+    print('{0} is at index {1}'.format(num, i))
 else:
     print('{0} is not present'.format(num))
 
