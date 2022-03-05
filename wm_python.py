@@ -3015,18 +3015,23 @@ print(output_String)
 #--------------------------------------------------------------------------------------
 95. # Print from reverse
 
-str_a = 'hello try hello no python programming'
-list_a = str_a.split(' ')
+a_string = 'hello try hello no python programming'
+a_list = a_string.split()
 
-list_c = []
-i = len(list_a) - 1
-while i >= 0:
-	list_c.append(list_a[i])
-	i -= 1
-	
-str_b = ' '.join(list_c)
-print(str_b)
+start, end = 0, len(a_list) - 1
+while start < end:
+    a_list[start], a_list[end] = a_list[end], a_list[start]
+    start += 1
+    end -= 1
 
+a_string = ' '.join(a_list)
+print(a_string)
+
+#o/p
+# >>> 
+# =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
+#programming python no hello try hello
+# >>> 
 #--------------------------------------------------------------------------------------
 96. # Odd and even numbers via list comprehension
 
