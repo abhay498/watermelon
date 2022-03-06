@@ -726,11 +726,11 @@ for content in aList:
 keys = ['a','b','c']
 values = [1,2,3]
 
-out_dict = dict(zip(keys,values))
+a_dict = dict(zip(keys,values))
 
-print(out_dict)
-print(list(out_dict.keys()))
-print(list(out_dict.values()))
+print(a_dict)
+print(list(a_dict.keys()))
+print(list(a_dict.values()))
 
 #--------------------------------------------------------------------------------------
 30.
