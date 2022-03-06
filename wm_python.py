@@ -356,21 +356,32 @@ print("Decimal equivalent {0}".format(decimal))
 #13. Insert a number at a specified position in a list
 
 a_list = [int(x) for x in input().split()]
-num = input('Enter number to add')
-num = int(num)
-position = input('Enter position')
-position = int(position)
- 
+num = int(input('Enter number to add'))
+position = int(input('Enter position'))
+
+if position > len(a_list) + 1 or position == 0:
+    raise Exception ('Position out of range')
+
+i = len(a_list) - 1 
 a_list.append(None)
 
-i = len(a_list) - 1
 while i >= position - 1:
-    alist[i + 1] = a_list[i]
+    a_list[i + 1] = a_list[i]
     i -= 1
 
-alist[position - 1] = num
+a_list[position - 1] = num
 
-print('New list is {0}'.format(alist))
+print('New list is {0}'.format(a_list))
+
+#o/p
+
+# >>> 
+# =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
+# 1 2 3
+# Enter number to add92
+# Enter position2
+# New list is [1, 92, 2, 3]
+# >>> 
 
 #--------------------------------------------------------------------------------------
 #14. Delete an integer from a list
