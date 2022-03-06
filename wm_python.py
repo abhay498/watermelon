@@ -2413,26 +2413,7 @@ print(arr)
 # =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
 # [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]
 # >>> 
-#--------------------------------------------------------------------------------------
 
-741.# Removing all element from a list greater than 5
-
-a_list = [10, 20, 30, 40, 50, 60, 70]
- 
-print('Original list')
-print(a_list)
-
-length = len(a_list)
-i=0
-while i < length:
-	if a_list[i] > 35:
-	    a_list.remove(a_list[i])
-	    length = length - 1  
-	    continue
-	i = i + 1
-
-print ('New list')
-print (a_list)
 #--------------------------------------------------------------------------------------
 
 75. # """ Multiprocessing """
@@ -3308,8 +3289,24 @@ file_output.close()
 19_6_2021
 """
 #--------------------------------------------------------------------------------------
+107. # Removing all element from a list greater than 35
 
+a_list = [10, 20, 30, 40, 50, 60, 70]
+ 
+print('Original list')
+print(a_list)
 
+length = len(a_list)
+i=0
+while i < length:
+	if a_list[i] > 35:
+	    a_list.remove(a_list[i])
+	    length = length - 1  
+	    continue
+	i = i + 1
+
+print ('New list')
+print (a_list)
 
 #--------------------------------------------------------------------------------------
 
