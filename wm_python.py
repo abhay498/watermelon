@@ -1821,8 +1821,8 @@ example_one('Hunt','won','the','race')
 
 def example_three(f_argv, arg_one, arg_two, **kwargs):
     print('First argument is {0}'.format(f_argv))
-    print('arg_one {1}',format(arg_one))
-    print('arg_two {1}',format(arg_two))
+    print('arg_one {0}'.format(arg_one))
+    print('arg_two {0}'.format(arg_two))
     
 args = ('Hunt','was','F1')
 example_three(*args)
