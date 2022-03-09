@@ -86,25 +86,6 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 		True
 		True
 		>>> 
-	      
-	      e.
-	      
-		string = 'nuggets of nuggets.'
-
-		print(string.find('nu', 2))
-		print(string.find('nuggets ', 2))
-		print(string.find('n', 4,11))
-		print(string.find('n', 11,12))
-		print(string.find('of ', 4, 11))
-
-		>>> 
-		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
-		11
-		-1
-		-1
-		11
-		8
-		>>> 
 
 	     f.
 	     
