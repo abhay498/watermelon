@@ -2695,12 +2695,8 @@ print ("A random number from range is : ",end="")
 print (random.randrange(20, 50, 3))
 
 # Example 3
-import random 
-
-a_list = list(range(2, 25, 4))
-print(a_list) # [2, 6, 10, 14, 18, 22]
 random.shuffle(a_list)
-print(a_list) # [6, 14, 2, 18, 22, 10]
+print(a_list)
 
 #--------------------------------------------------------------------------------------
 90.
