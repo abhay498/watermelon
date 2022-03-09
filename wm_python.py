@@ -2524,6 +2524,11 @@ print(minimum)
 
 nums = {n**2 for n in range(10)}
 print(nums)
+
+# A set is an unordered and mutable collection of unique elements
+# The range() function returns a sequence of numbers, starting from 0 by default, and increments by 1 (by default), and stops before a specified number.
+## range(start, stop, step)
+
 #--------------------------------------------------------------------------------------
 83. # Selection sort
 
