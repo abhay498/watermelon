@@ -6,17 +6,9 @@
 
 3.   https://docs.python.org/3/glossary.html
 
-4.
+4. Algorithms and their time complexities
+      --- Refer drive
  
-Algorithm	              Time Complexity	                          Space Complexity
-                    Best	 Average	    Worst	               Worst
-Quicksort	   nlog(n)	 nlog(n)	    n^2   	              log(n)
-Mergesort	   nlog(n)	 nlog(n)	  nlog(n)                       n 
-Heapsort	   nlog(n)	 nlog(n) 	  nlog(n)	              O(1)
-Bubble Sort	    n    	  n^2    	   n^2                        O(1)
-Insertion Sort	    n	          n^2	           n^2                        O(1)
-Selection Sort	   n^2  	  n^2              n^2                        O(1)
-
 4. https://www.python-course.eu/python3_deep_copy.php
 
 5. https://medium.com/@meghamohan/mutable-and-immutable-side-of-python-c2145cf72747
