@@ -32,9 +32,8 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 	# endswith(suffix, beg=0, end=len(string)) --> Determines if string or a substring of string (if starting index
 					       beg and ending index end are given) ends with suffix; returns true
 					       if so and false otherwise.
-	# find(str, beg=0 end=len(string)) --> Determine if str occurs in string or in a substring of string if starting
-				       index beg and ending index end are given returns index if found and -1 otherwise.
-	# index(str, beg=0, end=len(string)) --> Same as find(), but raises an exception if str not found.
+	# index(str, beg=0, end=len(string)) --> Determine if str occurs in string or in a substring of string if starting
+				       index beg and ending index end are given returns index if found and raises an exception if str not found.
         # join(seq) --> Merges (concatenates) the string representations of elements in sequence seq into a string, with separator string.
 	# len(string) --> Returns the length of the string
         # replace(old, new [, max]) --> Replaces all occurrences of old in string with new or at most max occurrences if max given.
@@ -86,28 +85,6 @@ Selection Sort	   n^2  	  n^2              n^2                        O(1)
 		False
 		True
 		True
-		>>> 
-		
-		d.
-		
-		string = 'nuggets of nuggets.'
-		string_2 = 'shyam'
-
-		print(string.find('nuggets'))
-		print(string.find('of'))
-
-		if string.find('hello') != -1:
-		    print('contains {0} in {1}'.format(string_2, string))
-		else:
-		    print('does not contain {0} in {1}'.format(string_2, string))
-		
-		o/p:
-		
-		>>> 
-		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
-		0
-		8
-		does not contain shyam in nuggets of nuggets.
 		>>> 
 	      
 	      e.
