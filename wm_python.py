@@ -2975,27 +2975,22 @@ person_1.display()
 
 93.
 
-ip = '10.16.177.18'
-
+# Source : https://www.geeksforgeeks.org/python-program-to-validate-an-ip-address/
 import re
-result = re.match('([0-9]+).([0-9]+).([0-9]+).([0-9]+)', ip)
 
-first = int(result.group(1))
-second = int(result.group(2))
-third = int(result.group(3))
-fourth = int(result.group(4))
+regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
 
-if first <= 255 and first >= 0:
-	print('first Octet {0} is valid'.format(first))
-	
-if second <= 255 and second >= 0:
-	print('second Octet {0} is valid'.format(second))
-	
-if third <= 255 and third >= 0:
-	print('third Octet {0} is valid'.format(third))
-	
-if fourth <= 255 and fourth >= 0:
-	print('fourth Octet {0} is valid'.format(fourth))
+def verify_ip_address(ip):
+
+	if(re.search(regex, ip)):
+		print("Valid ip address")
+		
+	else:
+		print("Invalid ip address")
+
+if __name__ == '__main__' :
+	ip = input('Enter IP address : ')
+	verify_ip_address(ip)
 
 #--------------------------------------------------------------------------------------
 94. # Removing dupicate words
