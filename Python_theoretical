@@ -982,7 +982,20 @@ d = Dog()
 print('')
 bat = NonMarineMammal('Bat')
 
-o/p:
+#  o/p:
+
+#  >>> 
+#  =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
+#  Dog has 4 legs.
+#  Dog can't swim.
+#  Dog can't fly.
+#  Dog is a warm-blooded animal.
+#  Dog is an animal.
+
+#  Bat can't swim.
+#  Bat is a warm-blooded animal.
+#  Bat is an animal.
+#  >>> 
 
 >>> Dog.__mro__
 (<class 'Dog'>, 
@@ -993,7 +1006,7 @@ o/p:
 <class 'object'>)
 
 ##
-Here is how MRO works:
+Here is how Method Resolution Order(MRO) works:
 
 A method in the derived calls is always called before the method of the base class.
 In our example, Dog class is called before NonMarineMammal or NoneWingedMammal.
