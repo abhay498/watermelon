@@ -2006,15 +2006,23 @@ else:
 
 #M1
 #---
-number = int(input('Enter number '))
 
-factorial = 1
-i = number
-while i > 1:
-    factorial = factorial * i
-    i -= 1
-    
-print('Factorial of {0} is {1}'.format(number, factorial))
+def factorial(number):
+    factorial = 1
+    i = number
+    while i > 1:
+        factorial = factorial * i
+        i -= 1
+    return factorial
+
+number = int(input('Enter number : '))
+
+if number < 0:
+    print('Factorial does not exist for negative numbers')
+elif number == 0:
+    print('Factorial of 0 is 1')
+else:
+    print('Factorial of {0} is {1}'.format(number, factorial(number)))
      
 #M2
 #---
@@ -2028,7 +2036,7 @@ def factorial(number):
 number = int(input('Enter a number : '))
     
 if number < 0:
-   print('Sorry, factorial does not exist for negative numbers')
+   print('Factorial does not exist for negative numbers')
 elif number == 0:
    print('Factorial of 0 is 1')
 else:
