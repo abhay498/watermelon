@@ -751,14 +751,14 @@ print(slice_1 + slice_2)
 31.
 """ list comprehension """
 
-#Example 1, Print square of all even numbers
+#Print square of all even numbers that are greater than 4 and less than 10.
 #M1
 nums = range(10)
 square_evens = [x**2 for x in nums if x%2 == 0 and x > 4]
 print(square_evens)
 
 #M2
-nums = range(4, 19, 2)
+nums = range(6, 10, 2)
 square_evens = [x**2 for x in nums]
 print(square_evens)
 
@@ -782,7 +782,7 @@ a_list = [each for each in dict_1 if re.match('abhay.*', each, re.I)]
 print(a_list)
 
 # Example 4
-# Removing all elements greater than 5
+# Remove all elements greater than 5
 a = [24 , 66 , 10, 2, 3, 44, 55, 6]
 a = [i for i in a if i < 5]
 print(a)
