@@ -2052,7 +2052,7 @@ words = re.findall('language', passage, re.I)
 count = len(words)
 print(count)
 #--------------------------------------------------------------------------------------
-67. Extract ip address, validate the same and tell which class does it fall under
+67. # Extract ip address, validate the same and tell which class does it fall under
 
 output ="""
 hostname sr1
@@ -2060,7 +2060,7 @@ host address 10.0.2.8/23
 processor
 """
 
-#M1
+#M1 -- Used to specify only private IP addresses
 #---
 import re
 from ipaddress import IPv4Address
@@ -2093,7 +2093,7 @@ try:
 except:
     print('Invalid ip address')
 
-#M2
+#M2 -- For all IP addresses
 #---
 output ="""
 hostname sr1
