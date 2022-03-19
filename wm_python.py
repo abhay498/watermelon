@@ -2713,6 +2713,46 @@ i / p = [3, 5]
 o / p = [[3, 5],[3, 5, 2], [3, 5, 2, 1], [3, 5, 2, 1, 4]]
 """
 
+from copy import deepcopy
+
+def simple(a_list):
+    b_list = []
+    b_list.append(a_list)
+    c_list_length = 1
+
+    length = 0
+    while len(a_list) != length:
+        
+        length = len(a_list)
+        a_list = deepcopy(a_list)
+        
+        while c_list_length != 0:
+            j = 0
+            while j < length - c_list_length:
+                difference = a_list[length - c_list_length] - a_list[j]
+
+                if difference < 0:
+                    difference = -difference
+
+                if difference not in a_list:
+                    a_list.append(difference)
+
+                j += 1
+            c_list_length -= 1
+            
+        if b_list[-1] != a_list:
+            b_list.append(a_list)
+            c_list = list(set(b_list[-1]) - set(b_list[-2]))
+            c_list_length = len(c_list)
+            
+    return b_list
+
+print(simple([10, 16]))
+
+#print(simple([3, 5]))
+
+# [[3, 5], [3, 5, 2], [3, 5, 2, 1], [3, 5, 2, 1, 4]]
+# [[10, 16], [10, 16, 6], [10, 16, 6, 4], [10, 16, 6, 4, 12, 2], [10, 16, 6, 4, 12, 2, 8, 14]]
 
 #--------------------------------------------------------------------------------------
 91.
