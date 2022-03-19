@@ -1106,20 +1106,17 @@ o/p:
 #
 #####################################################################################################
 
-1. A variable is a way of referring
-to a memory location used by a computer program. In many
-programming languages a variable is a symbolic name for
-this physical location. This memory location contains values,
-like numbers, text or more complicated types. We can use this
-variable to tell the computer to save some data in this location
-or to retrieve some data from this location.
+1. A variable is a way of referring to a memory location used by a computer program. In many
+programming languages a variable is a symbolic name for this physical location. This memory
+location contains values, like numbers, text or more complicated types. We can use this
+variable to tell the computer to save some data in this location or to retrieve some data from
+this location.
 
 2. i = 42
 The equal "=" sign in the assignment shouldn't be seen as "is equal to". It should be "read" or
 interpreted as "is set to", meaning in our example "the variable i is set to 42".
 
-3. Python variables are references to objects, but
-the actual data is contained in the objects:
+3. Python variables are references to objects, but the actual data is contained in the objects:
 
 4. I am a python variable.My name is x and I can point to an arbitrary object.
 In this case to an int object.
@@ -1166,20 +1163,17 @@ different identities.
 No identifier can have the same name as one of the Python keywords, although they are
 obeying the above naming conventions:
 
-11. and, as, assert, break, class, continue, def, del,
-elif, else,
-except, False, finally, for, from, global, if, import,
-in, is,
-lambda, None, nonlocal, not, or, pass, raise, return,
-True, try,
+11. and, as, assert, break, class, continue, def, del, elif, else,
+except, False, finally, for, from, global, if, import, in, is,
+lambda, None, nonlocal, not, or, pass, raise, return, True, try,
 while, with, yield
 There is no need to learn them by heart. You can get the list of Python keywords in the
 interactive shell by using help. You type help() in the interactive, but please don't forget the
 parenthesis:
 >>> help()
 
-12. The Style Guide for Python Code
-recommends underscore notation for variable names as well as function names.
+12. The Style Guide for Python Code recommends underscore notation for variable names as well as
+function names.
 
 13. "All identifiers in the Python standard library MUST use ASCII-only identifiers, and SHOULD
 use English words wherever feasible (in many cases, abbreviations and technical terms are
@@ -1255,8 +1249,7 @@ len("Python") will result in 6
 
 21. IMMUTABLE STRINGS
 
-Python strings cannot be changed. Trying to change
-an indexed position will raise an error:
+Python strings cannot be changed. Trying to change an indexed position will raise an error:
 >>> s = "Some things are immutable!"
 >>> s[-1] = "."
 Traceback (most recent call last):
@@ -1292,11 +1285,9 @@ False
 >>> a is b
 True
 
-24. String literals may optionally be prefixed with
-a letter 'r' or 'R'; these strings are called raw strings.
+24. String literals may optionally be prefixed with a letter 'r' or 'R'; these strings are called raw strings.
 
-25. Every string or text in Python 3 is Unicode, but encoded Unicode is represented as
-binary data.
+25. Every string or text in Python 3 is Unicode, but encoded Unicode is represented as binary data.
 
 26. While a string object holds a sequence of characters (in Unicode), a bytes object holds a
 sequence of bytes, out of the range 0 .. 255, representing the ASCII values.
