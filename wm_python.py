@@ -1370,7 +1370,7 @@ class Tree(object):
     
         if (self.x.left is not None) and (self.x.right is not None):
             self.parent = self.x
-            self.xsucc = self.xsucc.right
+            self.xsucc = self.x.right
         
             while (self.xsucc.left is not None):
                 self.parent = self.xsucc
