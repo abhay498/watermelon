@@ -1345,7 +1345,7 @@ class Tree(object):
             if q.value == item:
                 self.found = True
                 self.x = q
-                return
+                return True
             
             self.parent = q
         
@@ -1353,20 +1353,21 @@ class Tree(object):
                 q = q.left
             else:
                 q = q.right
-            
+
+        return False
+    
     def delete(self, item):
-        #self.found = False
         self.xsucc = None
         
         if (self.root is None):
             print("Empty tree")
-            return -1
+            return False
         
         self.search(item)
     
         if (self.found is False):
             print("Data not found")
-            return -2
+            return False
     
         if (self.x.left is not None) and (self.x.right is not None):
             self.parent = self.x
@@ -1380,41 +1381,52 @@ class Tree(object):
             self.x = self.xsucc
         
         if (self.x.left is None) and (self.x.right is None):
-            if self.parent.left is self.x:
-                self.parent.left = None
-            else:
-                self.parent.right = None
+            if self.parent is not None:
+                if self.parent.left is self.x:
+                    self.parent.left = None
+                else:
+                    self.parent.right = None
             
             del self.x
             return
         
         if (self.x.left is None) and (self.x.right is not None):
-            if(self.parent.left is self.x):
-                self.parent.left = self.x.right
+            if self.parent is None:
+                self.root.value = self.root.right.value
+                self.root.right = self.root.right.right
             else:
-                self.parent.right = self.x.right
+                if(self.parent.left is self.x):
+                    self.parent.left = self.x.right
+                else:
+                    self.parent.right = self.x.right
             
             del self.x      
             return
           
         if (self.x.left is not None) and (self.x.right is None):
-            if(self.parent.left is self.x):
-                self.parent.left = self.x.left
+            if self.parent is None:
+                self.root.value = self.root.left.value
+                self.root.left = self.root.left.left
             else:
-                self.parent.right = self.x.left
+                if(self.parent.left is self.x):
+                    self.parent.left = self.x.left
+                else:
+                    self.parent.right = self.x.left
             
             del self.x
             return
-            
+
+##
+
 link = Tree()
 link.insert(5)
 link.insert(10)
 link.insert(13)
 link.insert(2)
 link.insert(3)
-##link.insert(44)
-##link.insert(15)
-##link.insert(100)
+link.insert(44)
+link.insert(15)
+link.insert(100)
 link.inorder()
 print()
 link.delete(10)
@@ -1422,7 +1434,7 @@ link.delete(14)
 link.delete(8)
 link.delete(13)
 link.inorder()
-print()
+print('##')
 link.preorder()
 print()
 link.postorder()
