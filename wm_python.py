@@ -3382,6 +3382,17 @@ class Node:
             child.depthFirstSearch(array)
         return array
 
+graph = Node('A')
+graph.addChild('B').addChild('C').addChild('D')
+graph.children[0].addChild('E').addChild('F')
+array = graph.depthFirstSearch([])
+print(array)
+
+# o /p 
+# >>> 
+# =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
+# ['A', 'B', 'E', 'F', 'C', 'D']
+# >>> 
 #--------------------------------------------------------------------------------------
 109. 
 #--------------------------------------------------------------------------------------
