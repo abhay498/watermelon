@@ -3365,7 +3365,7 @@ print ('New list')
 print (a_list)
 
 #--------------------------------------------------------------------------------------
-108. # Depth first dearch
+108. # Depth first search
 
 class Node:
     def __init__(self, name):
@@ -3394,7 +3394,33 @@ print(array)
 # ['A', 'B', 'E', 'F', 'C', 'D']
 # >>> 
 #--------------------------------------------------------------------------------------
-109. 
+109. # Breadth first search
+
+class Node:
+    def __init__(self, name):
+        self.children = []
+        self.name = name
+
+    def addChild(self, name):
+        self.children.append(Node(name))
+        return self
+
+    def breadthFirstSearch(self, array):
+        queue = [self]
+        while len(queue) > 0:
+            current = queue.pop(0)
+            array.append(current.name)
+            for child in current.children:
+                queue.append(child)
+        return array
+
+
+graph = Node('A')
+graph.addChild('B').addChild('C').addChild('D')
+graph.children[0].addChild('E').addChild('F')
+array = graph.breadthFirstSearch([])
+print(array)
+
 #--------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------
