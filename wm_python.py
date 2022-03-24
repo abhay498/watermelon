@@ -891,8 +891,96 @@ Employee.work_day(5)
 
 #Point_1 : A class method can access or modify class state while a static method can’t access or modify it.
 #--------------------------------------------------------------------------------------
-35.
+35. # Recursion questions
 
+# a. Write a recursive function that takes a number and returns the sum of all the numbers from zero to that number.
+
+def cumulative(num):
+    if num in [0, 1]:
+        return num
+    else:
+        return num + cumulative(num-1)
+		
+print(cumulative(5))
+
+# b. Write a recursive function that takes a number ‘n’ and returns the nth number of the Fibonacci number.
+
+def fibonacci(n):
+    if n in [0, 1]:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+        
+print(fibonacci(5))
+
+# c. Write a recursive function that takes a list of numbers as an input and returns the product of all the
+#    numbers in the list.
+
+def productOfArray(arr):
+    if len(arr) == 0:
+        return 0
+    if len(arr) == 1:
+        return arr[0]
+    else:
+        return arr[len(arr)-1] * productOfArray(arr[:len(arr)-1])
+
+print(productOfArray([5, 4, 3]))
+
+# d. Write a function that takes a string and returns if the string is a palindrome.
+
+def isPalindrom(strng):
+    if len(strng) == 0:
+        return True
+    if strng[0] != strng[len(strng)-1]:
+        return False
+    return isPalindrome(strng[1:-1])
+    
+# e. Write a recursive function that takes a string and reverse the string.
+
+def reverse(st):
+    if len(st) in [0, 1]:
+        return st
+    else:
+        return st[len(st)-1] + reverse(st[:len(st)-1])
+        
+# f. Write a recursive function that takes an array that may contain more arrays in it and
+#    returns an array with all values flattened.
+
+def flatten(arr):
+    res = []
+    for i in arr:
+        if type(i) is list:
+            res.extend(flatten(i))
+        else:
+            res.append(i)
+    return res
+    
+# g. Write a recursive function that takes an array of words and returns an array that contains
+#    all the words capitalized. 
+
+def capitalizeWords(arr):
+    if len(arr) == 0:
+        return []
+    else:
+        return [arr[0].upper()]+capitalizeWords(arr[1:])
+
+# h. Write a recursive function that will return the sum of all the positive numbers in a dictionary
+#    which may contain more dictionaries nested in it.
+
+def evenSum(obj, sum=0):
+    for k in obj.values():
+        if type(k) == int and k%2 ==0:
+            sum += k
+        elif isinstance(k, dict):
+            sum += evenSum(k, sum=0)
+    return sum
+    
+obj = {
+  "a": 2,
+  "b": {"x": 2, "y": {"foo": 3, "z": {"bar": 2}}},
+  "c": {"p": {"h": 2, "r": 5}, "q": 'ball', "r": 5},
+  "d": 1,
+  "e": {"nn": {"lil": 2}, "mm": 'car'}}
 
 #--------------------------------------------------------------------------------------
 36. """ importing module from a different location """
