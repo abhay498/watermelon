@@ -993,6 +993,15 @@ obj = {
   "d": 1,
   "e": {"nn": {"lil": 2}, "mm": 'car'}}
 
+
+print(evenSum(obj))
+
+# o/p:
+
+# >>> 
+# =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
+# 10
+# >>> 
 #--------------------------------------------------------------------------------------
 36. """ importing module from a different location """
 
