@@ -975,6 +975,15 @@ def capitalizeWords(arr):
     else:
         return [arr[0].upper()]+capitalizeWords(arr[1:])
 
+print(capitalizeWords(['Hello','How']))
+
+#o/p :
+
+# >>> 
+# =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
+# ['HELLO', 'HOW']
+# >>> 
+
 # h. Write a recursive function that will return the sum of all the positive numbers which are even numbers in a dictionary
 #    which may contain more dictionaries nested in it.
 
