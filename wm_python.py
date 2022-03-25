@@ -906,12 +906,21 @@ print(cumulative(5))
 # b. Write a recursive function that takes a number ‘n’ and returns the nth number of the Fibonacci number.
 
 def fibonacci(n):
-    if n in [0, 1]:
-        return n
+    if n <= 0:
+        print("Incorrect input")
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 1
     else:
-        return fibonacci(n-1) + fibonacci(n-2)
-        
+        return fibonacci(n-1)+fibonacci(n-2)
+
 print(fibonacci(5))
+
+# >>> 
+# =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
+# 3
+# >>> 
 
 # c. Write a recursive function that takes a list of numbers as an input and returns the product of all the
 #    numbers in the list.
