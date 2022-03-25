@@ -975,7 +975,7 @@ def capitalizeWords(arr):
     else:
         return [arr[0].upper()]+capitalizeWords(arr[1:])
 
-# h. Write a recursive function that will return the sum of all the positive numbers in a dictionary
+# h. Write a recursive function that will return the sum of all the positive numbers which are even numbers in a dictionary
 #    which may contain more dictionaries nested in it.
 
 def evenSum(obj, sum=0):
