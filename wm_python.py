@@ -965,7 +965,15 @@ def flatten(arr):
         else:
             res.append(i)
     return res
-    
+
+print(flatten([1, [2, 3], [4, [5, 6]]]))
+
+#o /p :
+# >>> 
+# =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
+# [1, 2, 3, 4, 5, 6]
+# >>> 
+
 # g. Write a recursive function that takes an array of words and returns an array that contains
 #    all the words capitalized. 
 
