@@ -490,8 +490,8 @@ while i <=5:
 #-----------------------------------------
 #M1
 #----
-with open('input.txt') as f_one:
-    with open('output.txt', 'w') as f_two:
+with open(r'C:\Users\Abhay\OneDrive\Desktop\input.txt') as f_one:
+    with open(r'C:\Users\Abhay\OneDrive\Desktop\output.txt', 'w') as f_two:
         for line in f_one:
             f_two.write(line)
 
