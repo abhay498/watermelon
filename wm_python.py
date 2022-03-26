@@ -498,8 +498,8 @@ with open(r'C:\Users\Abhay\OneDrive\Desktop\input.txt') as f_one:
 #-----------------------------------------
 #M2
 
-file_one = open('input.txt','r')
-file_two = open('output.txt','w')
+file_one = open(r'C:\Users\Abhay\OneDrive\Desktop\input.txt', 'r')
+file_two = open(r'C:\Users\Abhay\OneDrive\Desktop\output.txt', 'w')
 
 for line in file_one:
     file_two.write(line)
