@@ -2209,11 +2209,13 @@ class_C = IPv4Network(('192.168.0.0', '255.255.0.0'))  # or IPv4Network("192.168
 
 def ip_class(ip_address):
     if ip_address in class_A:
-        print('{0} belongs to Class A family'.format(ip_address))
+        print('{0} belongs to Class A private family'.format(ip_address))
     elif ip_address in class_B:
-        print('{0} belongs to Class B family'.format(ip_address))
+        print('{0} belongs to Class B private family'.format(ip_address))
     elif ip_address in class_C:
-        print('{0} belongs to Class C family'.format(ip_address))
+        print('{0} belongs to Class C private family'.format(ip_address))
+    else:
+        print('Not a valid private IP address')
 
 output = output.split('\n')
 output = list(filter(None, output))
@@ -2229,6 +2231,7 @@ try:
     ip_class(ip_address)
 except:
     print('Invalid ip address')
+
 
 #M2 -- For all IP addresses
 #---
