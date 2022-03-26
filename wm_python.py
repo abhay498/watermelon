@@ -3226,27 +3226,26 @@ print(odd)
 
 k = 110001100001
 number = str(k)
+length = len(number)
 
-count = 0 
-max_count = 0 
+count = 0
+max_count = 0
 
-i = 0 
-while i < len(number):
-    if number[i] == '0':
-        count = 1 
-        j = i + 1
-        while j < len(number):
-            if number[j] == '0':
-                count += 1 
-                j += 1
-            else:
-                break
-            
-            
-        if count > max_count:
-            max_count = count
-        
-    i += 1    
+i = 0
+while i < length:
+	if number[i] == '0':
+		j = i + 1
+		count = 1
+		
+		while number[j] == '0':
+			count += 1
+			j += 1
+		
+		if count > max_count:
+			max_count = count
+
+	i += 1
+
 print(max_count)
 
 # Time_complexity : N^2
