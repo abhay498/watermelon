@@ -1801,8 +1801,8 @@ class LinkedList(object):
         
             chk = p.data
             
-    q = p
-    p = p.next_node
+        q = p
+        p = p.next_node
         while p is not None:
             chk = p.data
 
@@ -1815,7 +1815,7 @@ class LinkedList(object):
                 q = p
                 p = p.next_node
             
-        return 1
+        return
 
             
 link = LinkedList()
