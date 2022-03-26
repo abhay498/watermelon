@@ -784,7 +784,7 @@ print(a_list)
 # Example 4
 # Remove all elements greater than 5
 a = [24 , 66 , 10, 2, 3, 44, 55, 6]
-a = [i for i in a if i < 5]
+a = [i for i in a if i <= 5]
 print(a)
 
 #--------------------------------------------------------------------------------------
