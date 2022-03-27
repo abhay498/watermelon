@@ -384,24 +384,40 @@ print('New list is {0}'.format(a_list))
 # >>> 
 
 #--------------------------------------------------------------------------------------
-#14. Delete an integer from a list
+#14. Delete first occurence of the integer from a list, without using pop or remove.
+
+def delete_integer(a_list, num):
+
+    if num not in a_list:
+        return 0
+    
+    flag = 0
+    length = len(a_list)
+    
+    i = 0
+    while i < length - 1:
+        if num == a_list[i] or flag == 1:
+            a_list[i] = a_list[i + 1]
+            flag = 1
+        
+        i += 1
+
+    if flag == 0 and a_list[-1] == num:
+        flag = 1
+
+    if flag:
+        del a_list[-1]
+    return a_list
 
 a_list = [int(x) for x in input().split()]
-num = input('Enter number')
-num = int(num)
-flag = 0
-length = len(a_list)
-i = 0
-while i < length - 1:
-    if num == a_list[i] or flag == 1:
-        a_list[i] = a_list[i + 1]
-        flag = 1
-    
-    i += 1
+num = int(input('Enter number'))
 
-del a_list[-1]
+result = delete_integer(a_list, num)
 
-print('New list is {0}'.format(a_list))
+if result:
+    print('List after deletion :', a_list)
+else:
+    print('Number not present in the list')
 
 #--------------------------------------------------------------------------------------
 #15.  inp = ' DJ on module     234  56, instance 0\r\n\r',extract 234
