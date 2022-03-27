@@ -2237,7 +2237,7 @@ except:
 #---
 output ="""
 hostname sr1
-host address 10.0.2.8/23
+host address 10.1.2.8/23
 processor
 """
 
@@ -2259,22 +2259,26 @@ def identify_class_ip_address(ip, ip_first_block):
         print('{0} is a Class E IP Address'.format(ip))
         return
     
-ip_address = []
 output = output.split('\n')
 output = list(filter(None, output))
 
-pattern = re.compile('(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'
-           	     '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'
-                     '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'
-                     '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')
+pattern = ('(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.'
+           '(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.'
+           '(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.'
+           '(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])')
 
+flag = 0
 for each in output:
-    ip = re.search(pattern, each)
-    if ip:        
-        ip_address.append(ip.group(0))
-        identify_class_ip_address(ip.group(0), int(ip.group(1)))
-        
-print(ip_address)
+    ip = re.search('\s+' + pattern + '/', each)
+    if ip:
+        flag = 1
+        break
+
+if flag:
+    identify_class_ip_address(ip.group(0).strip()[:-1], int(ip.group(1)))
+else:
+    print('Not a valid IP address')
+
 #--------------------------------------------------------------------------------------
 68. Vlan problem
 
