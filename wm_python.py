@@ -3762,3 +3762,35 @@ print(transpose(a_list, b_list))
 # [[4, 7, 5], [5, 1, 6], [3, 8, 4], [9, 2, 7]]
 # >>> 
 #--------------------------------------------------------------------------------------
+
+114. # Tiles problem
+
+a_list = ['a', 'b', 'c', '#', 'e', 'f', 'm', '#'] # // True
+b_list = ['#', 'b', 'c', '#', 'e', 'f', 'm', '#'] # // False
+c_list = ['1', 'b', 'c', '#', 'e', '#', '#', 'l'] # // False
+d_list = ['#', 'b', 'c', 'j', '#', 'o', 'p', 'l', '#', '#'] # // True
+
+def verify_tiles(a_list):
+    length = len(a_list)
+    count = 0
+
+    j = 0
+    while j < length:
+        if a_list[j] != '#':
+            count += 1
+            j += 1
+            continue
+
+        if count < 3 and count != 0:
+            return False
+        else:
+            j += 1
+            count = 0
+
+    if count < 3 and count != 0:
+        return False
+    
+    return True
+        
+print((verify_tiles(d_list)))
+
