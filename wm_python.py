@@ -3794,3 +3794,40 @@ def verify_tiles(a_list):
         
 print((verify_tiles(d_list)))
 
+115. # Wall problem
+
+def verify_wall(a_list):
+
+    length = len(a_list[0])
+    i = 0
+    
+    while i < length:
+        count = 0
+        j = 0
+        while j < length:
+            if a_list[i][j] != '#':
+                count += 1
+                j += 1
+                continue
+                
+            if count < 3 and count != 0:
+                return False
+            else:
+                j += 1
+                count = 0
+        if count < 3 and count != 0:
+            return False
+        
+        i += 1
+
+    return True
+
+a_list = [['a', 'b', 'c', 'd', 'e'],
+          ['e', 'f', 'k', 'd', 'g'],
+          ['#', '#', '#', '#', '#'],
+          ['a', 'm', 'n', 'd', 'k'],
+          ['1', '2', '#', 'n', '#']]
+
+print(verify_wall(a_list))
+
+"...##" #[if no element between 2 tiles then it is fine]
