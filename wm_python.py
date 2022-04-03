@@ -3713,33 +3713,31 @@ print(transpose(l1, l2))
 # M3 ## outdated
 
 def transpose(a_list):
-    length_row = len(a_list[0])
-    length_column = len(a_list)
+    number_of_columns = len(a_list[0])
+    number_of_rows = len(a_list)
     
-    b_list = [[None for x in range(length_column)] for y in range(length_row)]
-
+    b_list = [[None for x in range(number_of_rows)] for y in range(number_of_columns)]
+    
     i = 0
-    while i < length_row:
+    while i < number_of_columns:
         j = 0
-        while j < length_column:
+        while j < number_of_rows:
             b_list[i][j] = a_list[j][i]
             j += 1
         i += 1
         
     return b_list
 
-a_list = [[1, 2, 3],
-          [4, 5, 6],
-          [7, 8, 9],
-          [70, 80, 90]]
+a_list = [[1, 2],
+          [3, 4],
+          [5, 6]]
 
 print(transpose(a_list))
 
 # o/p:
-# 
 # >>> 
 # ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
-# [[1, 4, 7, 70], [2, 5, 8, 80], [3, 6, 9, 90]]
+# [[1, 3, 5], [2, 4, 6]]
 # >>> 
 
 # M4 
@@ -3862,15 +3860,15 @@ def verify_wall(a_list):
     return True
 
 def transpose(a_list):
-    length_row = len(a_list[0])
-    length_column = len(a_list)
+    number_of_columns = len(a_list[0])
+    number_of_rows = len(a_list)
     
-    b_list = [[None for x in range(length_column)] for y in range(length_row)]
-
+    b_list = [[None for x in range(number_of_rows)] for y in range(number_of_columns)]
+    
     i = 0
-    while i < length_row:
+    while i < number_of_columns:
         j = 0
-        while j < length_column:
+        while j < number_of_rows:
             b_list[i][j] = a_list[j][i]
             j += 1
         i += 1
