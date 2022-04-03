@@ -3654,6 +3654,11 @@ while i <= 5:
 #--------------------------------------------------------------------------------------
 112. # Dynamic programming
 
+# Dynamic programming was introduced by American mathematician Richard Bellman. The name “dynamic” has nothing to do with the actual process.
+# There is nothing dynamic in dynamic programming!.
+
+#---------------------------------------------------------------------------------------
+
 # Three steps :
 # a. Recursion
 # b. Store (Memoize)
