@@ -3668,4 +3668,97 @@ while i <= 5:
 # c. Bottom-up
 
 #--------------------------------------------------------------------------------------
+113. # Transposing a matrix
+
+# Source : https://www.geeksforgeeks.org/python-transpose-elements-of-two-dimensional-list/
+
+# M1
+
+import numpy
+
+a_list= [[4, 5, 3, 9],
+         [7, 1, 8, 2],
+         [5, 6, 4, 7]]
+
+print(numpy.transpose(a_list))
+
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
+# [[4 7 5]
+#  [5 1 6]
+#  [3 8 4]
+#  [9 2 7]]
+# >>> 
+
+# M2
+
+def transpose(l1, l2):
+	l2 = list(map(list, zip(*l1)))
+	return l2
+
+l1 = [[4, 5, 3, 9],
+      [7, 1, 8, 2],
+      [5, 6, 4, 7]]
+
+l2 = []
+print(transpose(l1, l2))
+
+# o / p :
+#  
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
+# [[4, 7, 5], [5, 1, 6], [3, 8, 4], [9, 2, 7]]
+# >>> 
+
+# M3 ## outdated
+
+def transpose(a_list):
+    length_row = len(a_list[0])
+    length_column = len(a_list)
+    
+    b_list = [[None for x in range(length_column)] for y in range(length_row)]
+
+    i = 0
+    while i < length_row:
+        j = 0
+        while j < length_column:
+            b_list[i][j] = a_list[j][i]
+            j += 1
+        i += 1
+        
+    return b_list
+
+a_list = [[1, 2, 3],
+          [4, 5, 6],
+          [7, 8, 9],
+          [70, 80, 90]]
+
+print(transpose(a_list))
+
+# o/p:
+# 
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
+# [[1, 4, 7, 70], [2, 5, 8, 80], [3, 6, 9, 90]]
+# >>> 
+
+# M4 
+def transpose(a_list, b_list):
+    for i in range(len(a_list[0])):
+        row =[]
+        for item in a_list:
+            row.append(item[i])
+        b_list.append(row)
+    return b_list
+
+a_list = [[4, 5, 3, 9], [7, 1, 8, 2], [5, 6, 4, 7]]
+b_list = []
+print(transpose(a_list, b_list))
+
+# o/p :
+
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
+# [[4, 7, 5], [5, 1, 6], [3, 8, 4], [9, 2, 7]]
+# >>> 
 #--------------------------------------------------------------------------------------
