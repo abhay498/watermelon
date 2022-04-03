@@ -3831,3 +3831,72 @@ a_list = [['a', 'b', 'c', 'd', 'e'],
 print(verify_wall(a_list))
 
 "...##" #[if no element between 2 tiles then it is fine]
+
+116. # Perfect wall problem
+
+def verify_wall(a_list):
+
+    length = len(a_list[0])
+    i = 0
+    
+    while i < length:
+        count = 0
+        j = 0
+        while j < length:
+            if a_list[i][j] != '#':
+                count += 1
+                j += 1
+                continue
+                
+            if count < 3 and count != 0:
+                return False
+            else:
+                j += 1
+                count = 0
+
+        if count < 3 and count != 0:
+            return False
+        
+        i += 1
+
+    return True
+
+def transpose(a_list):
+    length_row = len(a_list[0])
+    length_column = len(a_list)
+    
+    b_list = [[None for x in range(length_column)] for y in range(length_row)]
+
+    i = 0
+    while i < length_row:
+        j = 0
+        while j < length_column:
+            b_list[i][j] = a_list[j][i]
+            j += 1
+        i += 1
+        
+    return b_list
+
+####################################
+####################################
+
+a_list = [['#', '#', 'c', 'z', 'e'],
+          ['g', 'y', 'k', 'd', 'g'],
+          ['o', 'e', 'h', 'z', 't'],
+          ['a', 'm', 'n', 'd', '#'],
+          ['1', '2', '3', '#', '#']]
+
+result = verify_wall(a_list)
+
+if result is True:
+    print('Proceed for column-wise verification')
+else:
+    print('Broken wall')
+    
+a_list = transpose(a_list)
+result = verify_wall(a_list)
+
+if result is True:
+    print('Perfect wall')
+else:
+    print('Broken wall')
