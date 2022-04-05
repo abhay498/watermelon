@@ -3898,3 +3898,41 @@ if result is True:
     print('Perfect wall')
 else:
     print('Broken wall')
+
+#--------------------------------------------------------------------------------------
+117. # Tower of Hanoi
+# Source : https://www.geeksforgeeks.org/python-program-for-tower-of-hanoi/
+
+def tower_of_hanoi(n , source, destination, auxiliary):
+    if n==1:
+        print ("Move disk 1 from source",source,"to destination",destination)
+        return
+    tower_of_hanoi(n-1, source, auxiliary, destination)
+    print ("Move disk",n,"from source",source,"to destination",destination)
+    tower_of_hanoi(n-1, auxiliary, destination, source)
+
+n = 4
+tower_of_hanoi(n,'A','B','C')
+
+# o/p :
+# 
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
+# Move disk 1 from source A to destination C
+# Move disk 2 from source A to destination B
+# Move disk 1 from source C to destination B
+# Move disk 3 from source A to destination C
+# Move disk 1 from source B to destination A
+# Move disk 2 from source B to destination C
+# Move disk 1 from source A to destination C
+# Move disk 4 from source A to destination B
+# Move disk 1 from source C to destination B
+# Move disk 2 from source C to destination A
+# Move disk 1 from source B to destination A
+# Move disk 3 from source C to destination B
+# Move disk 1 from source A to destination C
+# Move disk 2 from source A to destination B
+# Move disk 1 from source C to destination B
+# >>>
+
+#--------------------------------------------------------------------------------------
