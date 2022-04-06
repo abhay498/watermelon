@@ -3936,3 +3936,22 @@ tower_of_hanoi(n,'A','B','C')
 # >>>
 
 #--------------------------------------------------------------------------------------
+118. 
+
+# a. The modulo operator in Python behaves as follows when used with a negative first operand:
+# -x % y == -(x % y) + y
+#
+# b. The modulo operator always yields a result with the same sign as its second operand (or zero).
+
+m = -5
+k = m % 3
+print(k)
+
+# o/p :
+# 
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
+# 1
+# >>> 
+
+#--------------------------------------------------------------------------------------
