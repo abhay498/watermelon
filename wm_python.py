@@ -3955,3 +3955,35 @@ print(k)
 # >>> 
 
 #--------------------------------------------------------------------------------------
+# 119. GCD or HCF of 2 numbers using modulo operator in Euclidean algorithm.
+
+# M1, Source : https://www.geeksforgeeks.org/c-program-find-gcd-hcf-two-numbers/
+def gcd(a,b):
+    if (b == 0):
+        return a
+    return gcd(b, a%b)
+
+a = 98
+b = 56
+if(gcd(a, b)):
+    print('GCD of', a, 'and', b, 'is', gcd(a, b))
+else:
+    print('not found')
+
+# Time Complexity: O(log(max(a,b)) | Auxiliary Space: O(log(max(a,b))
+
+# o/p:
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
+# GCD of 98 and 56 is 14
+# >>> 
+
+# M2
+import math
+print(math.gcd(98, 56))
+
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
+# 14
+# >>> 
+#--------------------------------------------------------------------------------------
