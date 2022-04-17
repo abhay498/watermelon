@@ -1,12 +1,10 @@
 # Copyright © 2020 Elephant. All rights reserved
 
-# Please always create a separate branch and then commit so, that we can see the difference.
-
-# Rules #
-# Keeping main counter as i
-# General case : M1 should be using built-in functions.
-# General case : M2 should be without built-in functions.
+# Rules
+# Keep main counter as i, j, k, x, y.
+# Solutions should be both without using built-in functions and using built-in functions.Start with solutions that does not use built-in functions.
 # Specify source
+# Use coding guidelines and tools like autopep8.
 
 #--------------------------------------------------------------------------------------
 # 1. """ Fibonacci series upto 100 """
@@ -3323,6 +3321,7 @@ sample()
 # A lot of times when dealing with iterators, we also get a need to keep a count of iterations.
 # Python eases the programmers’ task by providing a built-in function enumerate() for this task.
 
+# Example_1
 l1 = ["eat","sleep","repeat"] 
 s1 = "geek"
   
@@ -3337,6 +3336,32 @@ print (list(enumerate(l1)))
 print (list(enumerate(s1,2)))
 print((dict(enumerate(s1,2))))
 
+# o/p:
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
+# Return type: <class 'enumerate'>
+# [(0, 'eat'), (1, 'sleep'), (2, 'repeat')]
+# [(2, 'g'), (3, 'e'), (4, 'e'), (5, 'k')]
+# {2: 'g', 3: 'e', 4: 'e', 5: 'k'}
+# >>> 
+
+# Example_2
+a_list = [[1, 1], [2, 2], [3, 3], [0, 4], [-2, 6], [4, 0], [2, 1]]
+
+for x, y in enumerate(a_list):
+    print (x, ':', y)
+    
+# o/p:
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
+# 0 : [1, 1]
+# 1 : [2, 2]
+# 2 : [3, 3]
+# 3 : [0, 4]
+# 4 : [-2, 6]
+# 5 : [4, 0]
+# 6 : [2, 1]
+# >>> 
 #--------------------------------------------------------------------------------------
 102. # namedtuple()
 
