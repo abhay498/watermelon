@@ -18,7 +18,6 @@
 
 7. Built-in String Methods
 
-	# capitalize() --> capitalize first letter of string and make other letters lowercase.
 	# count(str, beg= 0, end=len(string)) --> Counts how many times str occurs in string or in a substring of
                                           string if starting index beg and ending index end are given.
 	# endswith(suffix, beg=0, end=len(string)) --> Determines if string or a substring of string (if starting index
@@ -36,17 +35,7 @@
         # strip([chars]) --> Performs both lstrip() and rstrip() on string.
 
         # Examples : 
-	   
-	     a. string = 'hello how are you'
-		name_2 = string.capitalize()
-		print(name_2)
 
-	        o/p : 
-		>>> 
-		================ RESTART: C:\Users\Abhay\OneDrive\Desktop\one.py ===============
-		Hello how are you
-		>>>
-		
 	      b.
 	      string = 'Abhi is smart, he is, intelligent'
 	      count_1= string.count('is')
