@@ -4011,4 +4011,41 @@ print(math.gcd(98, 56))
 # ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\editor.py ==============
 # 14
 # >>> 
+
+#--------------------------------------------------------------------------------------
+# 120. Matrix multiplication
+
+# Source : https://www.geeksforgeeks.org/python-program-multiply-two-matrices/
+# Time Complexity: O(M*M*N), as we are using nested loop traversing, M*M*N.
+# Space Complexity: O(M*N), as we are using a result matrix which is extra space.
+	
+A = [[12, 7, 3],
+    [4, 5, 6],
+    [7, 8, 9]]
+
+B = [[5, 8, 1, 2],
+    [6, 7, 3, 0],
+    [4, 5, 9, 1]]
+    
+result = [[0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]]
+
+for i in range(len(A)):
+    for j in range(len(B[0])):
+        for k in range(len(B)):
+            result[i][j] += A[i][k] * B[k][j]
+
+for r in result:
+    print(r)
+
+# o/p:
+
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\simple.py ==============
+# [114, 160, 60, 27]
+# [74, 97, 73, 14]
+# [119, 157, 112, 23]
+# >>> 
+
 #--------------------------------------------------------------------------------------
