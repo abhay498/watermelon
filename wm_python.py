@@ -4049,3 +4049,41 @@ for r in result:
 # >>> 
 
 #--------------------------------------------------------------------------------------
+# 121. Boolean matrix
+
+# O(row*column) time |  O(1) space
+def modify_matrix(matrix):
+    row_column_1 = []
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            if matrix[i][j] == 1:
+                row_column_1.append([i, j])
+                
+    for i in range(len(row_column_1)):
+        matrix = convert_to_1(matrix, row_column_1[i])
+        
+    return matrix
+
+def convert_to_1(matrix, row_column_1):
+    a, b = row_column_1
+    for i in range(len(matrix[a])):
+        matrix[a][i] = 1
+    for i in range(len(matrix)):
+        matrix[i][b] = 1
+    return matrix
+        
+                   
+matrix = [[0, 0, 1, 0],
+          [0, 1, 0, 0],
+          [0, 0, 0, 0]]
+
+result = modify_matrix(matrix)
+print(result)
+
+# o/p:
+# >>> 
+# ============== RESTART: C:\Users\Abhay\OneDrive\Desktop\simple.py ==============
+# [[1, 1, 1, 1], [1, 1, 1, 1], [0, 1, 1, 0]]
+# >>>
+
+#--------------------------------------------------------------------------------------
