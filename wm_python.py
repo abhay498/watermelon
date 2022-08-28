@@ -1256,7 +1256,7 @@ print(result)
 
 
 #--------------------------------------------------------------------------------------
-45. """ Spiral """
+45. """ Spiral traverse of a matrix"""
 # 1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
 a = [[1,2,3,4],
      [5,6,7,8],
@@ -1265,40 +1265,42 @@ a = [[1,2,3,4],
 
 L = 0
 T = 0
-B = 3
-R = 3
-dir = 0
+B = len(a) - 1
+R = len(a[0]) - 1
+
+direction = 0
+spiral = []
 
 while L <= R and T <= B:
     
-    if dir == 0:        
+    if direction == 0:        
         k = L
         while k <= R:
-            print(a[T][k],end = ' ')
+            spiral.append(a[T][k])
             k += 1
         T += 1 
         
-    if dir == 1:
+    if direction == 1:
         k = T
         while k <= B:
-            print(a[k][R],end = ' ')
+            spiral.append(a[k][R])
             k += 1
         R -= 1
         
-    if dir == 2:
+    if direction == 2:
         k = R
         while k >= L:
-            print(a[B][k],end = ' ')
+            spiral.append(a[B][k])
             k -= 1
         B -= 1
         
-    if dir == 3:
+    if direction == 3:
         k = B
         while k >= T:
-            print(a[k][L],end = ' ')
+            spiral.append(a[k][L])
             k -= 1
         L += 1    
-    dir = (dir + 1) % 4
+    direction = (direction + 1) % 4
 
 #--------------------------------------------------------------------------------------
 46. # 1 2 3 4 8 7 6 5 9 10 11 12 16 15 14 13
