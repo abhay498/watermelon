@@ -1930,10 +1930,9 @@ is_palindrome(105)
 
 #M2
 number = int(input("Enter number: "))
- 
-temp = number
 rev = 0
- 
+
+temp = number
 while temp != 0:
     rev = rev * 10 + temp % 10
     temp = temp // 10
