@@ -103,7 +103,7 @@ string = input('Enter the string ')
 flag = 1
 i = 0
 while i < len(string):
-    if input_string[i] != input_string[-1 -i]:
+    if string[i] != string[-1 -i]:
         flag = 0
         break
     i += 1
