@@ -97,24 +97,21 @@ if string == string_2:
 else:
     print('{0} is NOT a palindrome'.format(string))
 #------------------------------------------
-#M3
-user_string = input('Enter string')
-input_string = list(user_string)
+# M3
+string = input('Enter the string ')
 
-length = len(input_string)
-
-i = 0
 flag = 1
-while i < length // 2:
+i = 0
+while i < len(string):
     if input_string[i] != input_string[-1 -i]:
-        flag =0
+        flag = 0
         break
     i += 1
-        
+
 if flag:
-    print('{0} is a palindrome'.format(user_string))
+    print('{0} is a palindrome'.format(string))
 else:
-    print('{0} is not a palindrome'.format(user_string))
+    print('{0} is not a palindrome'.format(string))
 
 #--------------------------------------------------------------------------------------
 #5. """ Sum of digits of a number """
