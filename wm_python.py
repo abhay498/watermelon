@@ -42,14 +42,6 @@ for num in range(3, 101, 2):
         print(num, end = ' ')
 
 #------------------------------------------
-# M2
-print(2)
-print(3)
-print(5)
-for i in range(2, 100):
-    if i % 2 != 0 and i % 3 !=0 and i % 5 != 0:
-        print(i)
-#------------------------------------------
 # M3
 print(2, end=' ')
 i = 3
