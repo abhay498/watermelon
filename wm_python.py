@@ -2526,24 +2526,24 @@ print('{0} armstrong number is {1}'.format(n, nth_armstrong_number(n)))
 
 #--------------------------------------------------------------------------------------
 
-74. # Segregatting 0 and 1
+74. # Segregating 0 and 1
 
 # M1
-def segregate_0_and_1(arr): 
+def segregate_0_and_1(array): 
   
-    type0 = 0
-    type1 = len(arr) - 1
+    i = 0
+    j = len(array) - 1
       
-    while type0 < type1: 
-        if arr[type0] == 1: 
-            arr[type0],  arr[type1] = arr[type1], arr[type0]
-            type1 -= 1
+    while i < j: 
+        if array[i] == 1: 
+            array[i],  array[j] = array[j], array[i]
+            j -= 1
         else: 
-            type0 += 1
+            i += 1
 
-arr = [0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1] 
-segregate_0_and_1(arr) 
-print(arr)
+array = [0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1] 
+segregate_0_and_1(array) 
+print(array)
 
 # M2
 def segregate_0_and_1(arr):
