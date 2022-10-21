@@ -3427,34 +3427,7 @@ print ('New list')
 print (a_list)
 
 #--------------------------------------------------------------------------------------
-108. # Depth first search
-
-class Node:
-    def __init__(self, name):
-        self.children = []
-        self.name = name
-
-    def addChild(self, name):
-        self.children.append(Node(name))
-        return self
-    
-    def depthFirstSearch(self, array):
-        array.append(self.name)
-        for child in self.children:
-            child.depthFirstSearch(array)
-        return array
-
-graph = Node('A')
-graph.addChild('B').addChild('C').addChild('D')
-graph.children[0].addChild('E').addChild('F')
-array = graph.depthFirstSearch([])
-print(array)
-
-# o /p 
-# >>> 
-# =============== RESTART: C:\Users\Abhay\OneDrive\Desktop\rough.py ==============
-# ['A', 'B', 'E', 'F', 'C', 'D']
-# >>> 
+108.
 #--------------------------------------------------------------------------------------
 109.
 
