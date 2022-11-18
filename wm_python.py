@@ -1078,7 +1078,71 @@ result = obj_child.get_value()
 print(result)
 
 #--------------------------------------------------------------------------------------
-39.
+# 39. https://www.geeksforgeeks.org/rotate-a-matrix-by-90-degree-in-clockwise-direction-without-using-any-extra-space/
+
+# M1
+# O(n*n) time | O(1) space
+def display(arr):
+    for i in range(N) :
+        for j in range(N) :
+            print(arr[i][j],end=" ")
+        print()
+            
+# Function to rotate the matrix 90 degree clockwise
+def rotate90Clockwise(arr) :
+    global N
+    
+    # Transpose of matrix
+    for i in range(N) :
+        for j in range(i+1,N) :
+            arr[i][j],arr[j][i]=arr[j][i],arr[i][j]
+    
+    # Reverse individual rows
+    for i in range(N//2) :
+        low = 0
+        high = N-1
+        while (low<high) :
+            arr[i][low],arr[i][high]=arr[i][high],arr[i][low]
+            low = low + 1
+            high = high - 1
+        
+# Driver code   
+arr = [ [ 1, 2, 3, 4 ],
+        [ 5, 6, 7, 8 ],
+        [ 9, 10, 11, 12 ],
+        [ 13, 14, 15, 16 ] ]
+rotate90Clockwise(arr)
+display(arr)
+
+# M2
+# O(n*n) time | O(1) space
+N = 4
+
+# Function to rotate the matrix
+# 90 degree clockwise
+def rotate90Clockwise(A):
+    N = len(A[0])
+    for i in range(N // 2):
+        for j in range(i, N - i - 1):
+            temp = A[i][j]
+            A[i][j] = A[N - 1 - j][i]
+            A[N - 1 - j][i] = A[N - 1 - i][N - 1 - j]
+            A[N - 1 - i][N - 1 - j] = A[j][N - 1 - i]
+            A[j][N - 1 - i] = temp
+
+# Function to print the matrix
+def printMatrix(A):
+    N = len(A[0])
+    for i in range(N):
+        print(A[i])
+
+# Driver code
+A = [[1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+    [13, 14, 15, 16]]
+rotate90Clockwise(A)
+printMatrix(A)
 
 #--------------------------------------------------------------------------------------
 40. """ Threading """
