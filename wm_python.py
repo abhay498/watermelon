@@ -3718,6 +3718,7 @@ print(result)
 
 #--------------------------------------------------------------------------------------
 # 122. Recursion explained
+# 1. 
 def sample(n):
     total = 0
     if n == 1:
@@ -3738,4 +3739,25 @@ print(result)
 # 10
 # >>> 
 
+#2. 
+def sample(n):
+    total = 0
+    if n == 1 or n == 0:
+        return 1
+    else:
+        total += 1
+        print(total)
+        return sample(n - 1) + sample(n - 2)
+
+result = sample(4)
+print(result)
+
+# >>> 
+# ================== RESTART: C:\Users\Ankur\Desktop\back_up.py ==================
+# 1
+# 1
+# 1
+# 1
+# 5
+# >>> 
 #--------------------------------------------------------------------------------------
