@@ -3717,3 +3717,25 @@ print(result)
 # >>>
 
 #--------------------------------------------------------------------------------------
+# 122. Recursion explained
+def sample(n):
+    total = 0
+    if n == 1:
+        return 1
+    else:
+        total += 1
+        print(total)
+        return n + sample(n - 1)
+
+result = sample(4)
+print(result)
+
+# >>> 
+# ================== RESTART: C:\Users\Ankur\Desktop\back_up.py ==================
+# 1
+# 1
+# 1
+# 10
+# >>> 
+
+#--------------------------------------------------------------------------------------
