@@ -3761,3 +3761,56 @@ print(result)
 # 5
 # >>> 
 #--------------------------------------------------------------------------------------
+# 123. Use of global variables
+
+# Example 1
+x = 4
+
+def add():
+    x = x + 2
+    print(x)
+
+add()
+
+print(x)
+
+# o/p:
+# Traceback (most recent call last):
+#   File "C:\Users\Ankur\Desktop\editor.py", line 8, in <module>
+#     add()
+#   File "C:\Users\Ankur\Desktop\editor.py", line 5, in add
+#     x = x + 2
+# UnboundLocalError: cannot access local variable 'x' where it is not associated with a value
+
+# Example 2
+
+x = 4
+
+def add():
+    print(x)
+
+add()
+
+print(x)
+
+# o/p:
+# 4
+# 4
+
+# Example 3
+x = 4
+
+def add():
+    global x
+    x = x + 2
+    print(x)
+
+add()
+
+print(x)
+
+# o/p:
+# 6
+# 6
+
+#--------------------------------------------------------------------------------------
