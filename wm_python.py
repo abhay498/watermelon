@@ -1326,60 +1326,7 @@ while(i <= 5):
     i += 1       
 
 #--------------------------------------------------------------------------------------
-48. """ Reversing a Linked list """
-class Node(object):
-    def __init__(self,data):
-        self.data = data
-        self.next_node = None
-    
-class LinkedList(object):
-    def __init__(self):
-        self.head = None
-        
-    def insert_end(self,data):
-        
-        new = Node(data)
-        
-        if self.head is None:
-            self.head = new
-        else:
-            p = self.head
-            while p.next_node is not None:
-                    p = p.next_node
-            
-            p.next_node = new
-
-    def traverse(self):
-        p = self.head
-        while p is not None:
-            print(" {0}".format(p.data))
-            p = p.next_node
-            
-    def reverse_node(self):
-        q = self.head
-        r = None
-        s = None
-        
-        while q is not None:
-            s = r
-            r = q
-            q = q.next_node
-            r.next_node = s
-
-        self.head = r
-        
-link = LinkedList()
-link.insert_end(20)
-link.insert_end(30)
-link.insert_end(40)
-link.insert_end(50)
-link.insert_end(60)
-
-link.traverse()
-print("-------")
-link.reverse_node()
-link.traverse()
-
+# 48.
 #--------------------------------------------------------------------------------------
 # 49. 
 
