@@ -1417,27 +1417,7 @@ print(a_list)
 #####################################
 
 #--------------------------------------------------------------------------------------
-51. """ Bubble sort """
-
-def bubble_sort(a_list):
-    length = len(a_list)
-    for i in range(length):
-        for j in range(0, length - 1 - i):
-            if a_list[j] > a_list[j + 1]:
-                a_list[j], a_list[j + 1] = a_list[j + 1], a_list[j]
-
-
-a_list = [65, 43, 56, 89, 4, 17]
-bubble_sort(a_list)
-print(a_list)
-
-# o/p
-
-#>>> 
-#================ RESTART: C:\Users\Abhay\OneDrive\Desktop\two.py ===============
-#[4, 17, 43, 56, 65, 89]
-#>>> 
-
+51. 
 #--------------------------------------------------------------------------------------
 52. """ Stack """
 
@@ -1639,66 +1619,7 @@ link.traverse()
 
 #--------------------------------------------------------------------------------------
 55.
-""" some debugging """
 
-class Node(object):
-    def __init__(self,data):
-        self.data = data
-        self.next_node = None
-    
-class LinkedList(object):
-    def __init__(self):
-        self.head = None
-        
-    def insert_end(self,data):
-        
-        new = Node(data)
-        
-        if self.head is None:
-            self.head = new
-        else:
-            p = self.head
-            while p.next_node is not None:
-                    p = p.next_node
-            
-            p.next_node = new
-
-    def traverse(self):
-        p = self.head
-        while p is not None:
-            print(" {0}".format(p.data),end = ' ')
-            p = p.next_node
-        
-    def sample(self):
-        self.sample_two(self.head)
-
-    def sample_two(self,cur):
-        self.found = 5
-        q = self.head
-        while cur is not None:            
-            print(" {0}".format(cur.data),end = ' ')
-            cur = cur.next_node
-        print()
-        for i  in range(0,2):
-            q = q.next_node
-
-        print("q.data :", q.data)
-    def show(self):
-        print("self.head.data :",self.head.data)
-        print("self.found:",self.found)
-    
-link = LinkedList()
-link.insert_end(20)
-link.insert_end(31)
-link.insert_end(40)
-link.insert_end(51)
-link.insert_end(60)
-
-#link.traverse()
-print()
-link.sample()
-#link.traverse()
-link.show()
 
 #--------------------------------------------------------------------------------------
 56. Usage of decorator
@@ -1796,83 +1717,7 @@ args = ('Hunt', 10)
 kwargs = {'Racer':'Hunt','Year':1979}
 example_five('England', *args, **kwargs)
 #--------------------------------------------------------------------------------------
-59. """ Delete Kth node from the end """
-
-class Node(object):
-    def __init__(self,data):
-        self.data = data
-        self.next_node = None
-    
-class LinkedList(object):
-    def __init__(self):
-        self.head = None
-        self.total = 0
-        
-    def insert_end(self,data):
-        
-        new = Node(data)
-        
-        if self.head is None:
-            self.head = new
-        else:
-            p = self.head
-            while p.next_node is not None:
-                    p = p.next_node
-            
-            p.next_node = new
-
-    def traverse(self, display=1):
-        self.total = 0
-        p = self.head
-        while p is not None:
-            if display:
-               print(p.data, end=' ')
-            p = p.next_node
-            self.total += 1
-    
-    def delete_node(self, position_from_end):
-        print('\nDeleting {0}th node from end'.format(position_from_end))
-        position_from_start = self.total - position_from_end + 1
-
-        if position_from_start <= 0:
-            print('\nNo node present at that position')
-            return
-            
-        p = self.head
-
-        if position_from_start == 1:
-            self.head = p.next_node
-            p.next_node = None
-            del p
-            return
-        
-        count = 1
-        while count < position_from_start - 1:
-                p = p.next_node
-                count += 1
-            
-        q = p.next_node
-        p.next_node = q.next_node
-        q.next_node = None
-        del q
-        
-        
-link = LinkedList()
-link.insert_end(20)
-link.insert_end(30)
-link.insert_end(40)
-link.insert_end(50)
-link.insert_end(60)
-
-link.traverse()
-link.delete_node(2)
-link.traverse()
-link.delete_node(4)
-link.traverse()
-link.delete_node(3)
-link.traverse()
-link.delete_node(1)
-link.traverse()
+59.
 
 #--------------------------------------------------------------------------------------
 60. """ Monkey Patching """
@@ -2488,47 +2333,9 @@ print(nums)
 ## range(start, stop, step)
 
 #--------------------------------------------------------------------------------------
-83. # Selection sort
-
-A = [64, 25, 12, 22, 11] 
-
-for i in range(len(A)): 
-
-	min_id = i 
-	for j in range(i+1, len(A)): 
-		if A[min_id] > A[j]: 
-			min_id = j 	 
-	A[i], A[min_id] = A[min_id], A[i] 
-
-print ("After selection sort") 
-print (A)
+83.
 #--------------------------------------------------------------------------------------
-84. # Insertion sort
-
-def insertion_sort(arr):
-
-    for i in range(1, len(arr)):
-
-        key = arr[i]
-
-        j = i - 1
-        while j >= 0 and key < arr[j]:
-            arr[j + 1] = arr[j]
-            j -= 1
-        arr[j + 1] = key
-
-
-arr = [12, 11, 13, 5, 6]
-insertion_sort(arr)
-print('List after insertion sort : ', arr)
-
-# o/p:
-
-#>>> 
-#================ RESTART: C:\Users\Abhay\OneDrive\Desktop\two.py ===============
-#List after insertion sort :  [5, 6, 11, 12, 13]
-#>>> 
-
+84.
 #--------------------------------------------------------------------------------------
 # 85.
 
@@ -3217,7 +3024,7 @@ else:
 ##>>> 
 
 #--------------------------------------------------------------------------------------
-105. # Inverting Binary tree
+105.
 
 
 #--------------------------------------------------------------------------------------
