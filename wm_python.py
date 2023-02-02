@@ -75,45 +75,6 @@ else:
     print('{0} is not a leap year'.format(year))
 
 #--------------------------------------------------------------------------------------
-#4. """ String is palindrome or not """
-
-#M1
-string = input('Enter string')
-string_2 = string[::-1]
-print(string_2)
-
-if string == string_2:
-    print('{0} is a palindrome'.format(string))
-else:
-    print('{0} is NOT a palindrome'.format(string))
-
-#------------------------------------------
-#M2
-string = input('Enter string')      
-string_2 = ''.join(reversed(string))
-
-if string == string_2:
-    print('{0} is a palindrome'.format(string))
-else:
-    print('{0} is NOT a palindrome'.format(string))
-#------------------------------------------
-# M3
-string = input('Enter the string ')
-
-flag = 1
-i = 0
-while i < len(string):
-    if string[i] != string[-1 -i]:
-        flag = 0
-        break
-    i += 1
-
-if flag:
-    print('{0} is a palindrome'.format(string))
-else:
-    print('{0} is not a palindrome'.format(string))
-
-#--------------------------------------------------------------------------------------
 #5. """ Sum of digits of a number """
 
 num = int(input('Enter number'))
